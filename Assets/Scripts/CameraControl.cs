@@ -8,24 +8,27 @@ public class CameraControl : MonoBehaviour {
 	[SerializeField] private float distance = 7.0f;
 
 	public Transform player;
+	public Transform lockOnCameraSpot;
 
 	private Vector3 offset;
 
 	void Start () {
 		offset = new Vector3(player.position.x, player.position.y + height, player.position.z + distance);
-
 	}
 
-
-
-	void FixedUpdate()
+	void LateUpdate()
 	{
-		offset = Quaternion.AngleAxis (Input.GetAxis ("HorizontalRightStick") * turnSpeed, Vector3.up) * offset;
-		//offset = Quaternion.AngleAxis (Input.GetAxis("VerticalRightStick") * turnSpeed, Vector3.right) * offset;
-
-		transform.position = player.position + offset; 
+		
+		if (Input.GetButton ("LockOn")) {
+			transform.position = Vector3.MoveTowards(transform.position, lockOnCameraSpot.position, turnSpeed / 2);
+			offset = Quaternion.AngleAxis (0, Vector3.up) * offset;
+		} else {
+			offset = Quaternion.AngleAxis (Input.GetAxis ("HorizontalRightStick") * turnSpeed, Vector3.up) * offset;
+			//offset = Quaternion.AngleAxis (Input.GetAxis("VerticalRightStick") * turnSpeed, Vector3.right) * offset;
+			transform.position = Vector3.MoveTowards(transform.position, player.position + offset, turnSpeed / 2); 
+		}
 		transform.LookAt (player.position);
-
+		//Debug.Log (offset);
 	}
 		
 }
