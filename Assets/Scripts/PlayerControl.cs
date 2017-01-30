@@ -16,8 +16,14 @@ public class PlayerControl : MonoBehaviour {
 	private bool dash;
 	private bool lockOn;
 
+	private bool player1 = true;
+	private bool player2;
+	private bool player3;
+	private bool player4;
+
 	void Start() {
 		currentSpeed = defaultSpeed;
+
 	}
 
 	void Update() {
@@ -28,6 +34,9 @@ public class PlayerControl : MonoBehaviour {
         lockOn = Input.GetButton (playerPrefix + "LockOn");
 
 		if (Input.GetButtonDown (playerPrefix +  "Dash")) {
+			
+
+
 			dash = true;
 			currentSpeed = dashSpeed;
 			var effect = Instantiate (speedEffect, transform.position, Quaternion.identity);

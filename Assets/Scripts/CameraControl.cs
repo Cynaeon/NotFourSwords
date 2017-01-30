@@ -13,8 +13,16 @@ public class CameraControl : MonoBehaviour {
 
 	private Vector3 offset;
 
+
 	void Start () {
 		offset = new Vector3(player.position.x, player.position.y + height, player.position.z + distance);
+
+	}
+
+	void Update() {
+		
+
+	
 	}
 
 	void LateUpdate()
