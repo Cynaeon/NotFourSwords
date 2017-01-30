@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour {
 	public Transform playerCamera;
 	public float dashDuration = 0.5f;
 	public ParticleSystem speedEffect;
+    public string playerPrefix;
 
 	private float currentSpeed;
 	private float dashTime;
@@ -20,13 +21,13 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void Update() {
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+		float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
+		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
+		Vector3 movementPlayer = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-		lockOn = Input.GetButton ("LockOn");
+        lockOn = Input.GetButton (playerPrefix + "LockOn");
 
-		if (Input.GetButtonDown ("Dash")) {
+		if (Input.GetButtonDown (playerPrefix +  "Dash")) {
 			dash = true;
 			currentSpeed = dashSpeed;
 			var effect = Instantiate (speedEffect, transform.position, Quaternion.identity);
@@ -43,20 +44,19 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 
-		if (movement != Vector3.zero) {
-			movement = playerCamera.transform.TransformDirection (movement);
-			movement.y = 0.0f;
+        if (movementPlayer != Vector3.zero) {
+            movementPlayer = playerCamera.transform.TransformDirection(movementPlayer);
+            movementPlayer.y = 0.0f;
 
-			Quaternion rotation = new Quaternion (0, 0, playerCamera.rotation.z, 0);
-			if (!lockOn) {
-				transform.rotation = rotation;
-				transform.rotation = Quaternion.LookRotation (movement);
-			}
-
-		}
-
-		transform.Translate (movement * currentSpeed * Time.deltaTime, Space.World);
-
+            Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
+            if (!lockOn) {
+                transform.rotation = rotation;
+                transform.rotation = Quaternion.LookRotation(movementPlayer);
+            }
+        }
+    
+        transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
+      
 		if (lockOn) {
 			LockOnEnemy ();
 		}
