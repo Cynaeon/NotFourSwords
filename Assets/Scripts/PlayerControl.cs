@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public float defaultSpeed = 10.0f;
 	public float dashSpeed = 30.0f;
+	public float pushingSpeed = 5.0f;
 	public Transform playerCamera;
 	public float dashDuration = 0.5f;
 	public ParticleSystem speedEffect;
@@ -15,33 +16,26 @@ public class PlayerControl : MonoBehaviour {
 	private float dashTime;
 	private bool dash;
 	private bool lockOn;
-
-	private bool player1 = true;
-	private bool player2;
-	private bool player3;
-	private bool player4;
+	private bool grabbing;
 
 	void Start() {
 		currentSpeed = defaultSpeed;
-
 	}
 
 	void Update() {
 		float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
-		Vector3 movementPlayer = new Vector3(moveHorizontal, 0.0f, moveVertical);
+		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
         lockOn = Input.GetButton (playerPrefix + "LockOn");
 
 		if (Input.GetButtonDown (playerPrefix +  "Dash")) {
-			
-
-
 			dash = true;
 			currentSpeed = dashSpeed;
 			var effect = Instantiate (speedEffect, transform.position, Quaternion.identity);
 			effect.transform.parent = gameObject.transform;
 		}
+			
 
 		if (dash) {
 			dashTime += Time.deltaTime;
@@ -50,6 +44,14 @@ public class PlayerControl : MonoBehaviour {
 				currentSpeed = defaultSpeed;
 				dashTime = 0;
 			}
+		}
+
+	
+		if(grabbing && !Input.GetButton(playerPrefix + "Action")) {
+			Transform ga = transform.FindChild ("PushBlock");
+			ga.transform.parent = null;
+			grabbing = false;
+			currentSpeed = defaultSpeed;
 		}
 
 
@@ -80,4 +82,17 @@ public class PlayerControl : MonoBehaviour {
 
 		}
 	}
+
+    void OnTriggerStay (Collider other)
+	{
+		if (other.tag == "PushBlock") {
+			if (Input.GetButton (playerPrefix + "Action")) {
+				if (!grabbing) {
+					other.transform.parent = this.gameObject.transform;
+					grabbing = true;
+				}
+			}
+		}
+	}
+
 }

@@ -32,7 +32,6 @@ public class PlayerManager : MonoBehaviour {
 				camera1.enabled = true;
 				player1.SetActive (true);
 			} else {
-				
 				camera1.enabled = false;
 				player1.SetActive (false);
 			}
@@ -66,16 +65,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		int cameraCount = Camera.allCameras.Length;
-		Debug.Log (cameraCount);
 
-
-		foreach (Camera cam in Camera.allCameras) {
-			if (cameraCount == 1) {
-				cam.rect = new Rect (0, 0, 1, 1);
-			} 
-		}
-
-		/////////////////////////////////
 		if (cameraCount == 1) {
 			foreach (Camera cam in Camera.allCameras) {
 				if (cameraCount == 1) {
@@ -115,6 +105,5 @@ public class PlayerManager : MonoBehaviour {
 				count++;
 			}
 		}
-
 	}
 }
