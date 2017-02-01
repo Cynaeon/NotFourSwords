@@ -7,13 +7,17 @@ public class PlayerControl : MonoBehaviour {
 	public float defaultSpeed = 10.0f;
 	public float dashSpeed = 30.0f;
 	public float pushingSpeed = 5.0f;
-	public Transform playerCamera;
+	public float shootingSpeed = 0.5f;
 	public float dashDuration = 0.5f;
+	public Transform playerCamera;
 	public ParticleSystem speedEffect;
+	public GameObject bolt;
     public string playerPrefix;
 
 	private float currentSpeed;
 	private float dashTime;
+	private float lastShot;
+	private Transform lockOnTarget = null;
 	private bool dash;
 	private bool lockOn;
 	private bool grabbing;
@@ -26,9 +30,7 @@ public class PlayerControl : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
 		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-
-        lockOn = Input.GetButton (playerPrefix + "LockOn");
-
+	
 		if (Input.GetButtonDown (playerPrefix +  "Dash")) {
 			dash = true;
 			currentSpeed = dashSpeed;
@@ -68,19 +70,42 @@ public class PlayerControl : MonoBehaviour {
     
         transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
       
+		lockOn = Input.GetButton (playerPrefix + "LockOn");
 		if (lockOn) {
-			LockOnEnemy ();
+			if (lockOnTarget == null) {
+				FindLockOnTarget ();
+			} else {
+				transform.LookAt (lockOnTarget);
+			}
+		} else {
+			lockOnTarget = null;
 		}
+
+		if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed) {
+			Instantiate(bolt, transform.position, transform.rotation);
+			lastShot = 0;
+		}
+		lastShot += Time.deltaTime;
 	}
 
 
-	private void LockOnEnemy() {
-		GameObject enemy = GameObject.FindGameObjectWithTag ("Enemy");
-		if (enemy != null) {
-			transform.LookAt (enemy.transform);
-		} else {
+	private void FindLockOnTarget() {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		float closestDist = 0;
+		Transform closestEnemy = null;
 
+		foreach (GameObject enemy in enemies) {
+			float dist = Vector3.Distance (enemy.transform.position, transform.position);
+			if (closestDist == 0) {
+				closestDist = dist;
+				closestEnemy = enemy.transform;
+			} else if (closestDist > dist) {
+				closestDist = dist;
+				closestEnemy = enemy.transform;
+			}
 		}
+
+		lockOnTarget = closestEnemy;
 	}
 
     void OnTriggerStay (Collider other)
