@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerControl : MonoBehaviour {
 
@@ -14,7 +16,10 @@ public class PlayerControl : MonoBehaviour {
 	public GameObject bolt;
     public string playerPrefix;
 
-	private float currentSpeed;
+    public Camera _playerCamera;
+    public Canvas _playerCanvas;
+
+    private float currentSpeed;
 	private float dashTime;
 	private float lastShot;
 	private Transform lockOnTarget = null;
@@ -111,13 +116,19 @@ public class PlayerControl : MonoBehaviour {
     void OnTriggerStay (Collider other)
 	{
 		if (other.tag == "PushBlock") {
-			if (Input.GetButton (playerPrefix + "Action")) {
+            if (Input.GetButton (playerPrefix + "Action")) {
 				if (!grabbing) {
 					other.transform.parent = this.gameObject.transform;
 					grabbing = true;
 				}
 			}
 		}
+		if (other.tag == "SeeThrough") {
+		    _playerCamera.cullingMask |= (1 << 8);
+
+            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough();
+
+        }
 	}
 
 }

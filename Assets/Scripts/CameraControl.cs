@@ -35,8 +35,7 @@ public class CameraControl : MonoBehaviour {
 			transform.position = Vector3.MoveTowards(transform.position, player.position + offset, turnSpeed / 2); 
 		}
 		transform.LookAt (player.position);
-		//Debug.Log (offset);
-        
+		//Debug.Log (offset);   
 	}
 		
 }
