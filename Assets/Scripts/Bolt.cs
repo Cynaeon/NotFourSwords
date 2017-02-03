@@ -6,7 +6,6 @@ public class Bolt : MonoBehaviour {
 
 	public float speed;
 	public float lifeTime;
-	public ParticleSystem hitEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +24,6 @@ public class Bolt : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Enemy") {
-			Instantiate (hitEffect, transform.position, transform.rotation);
 			Destroy (gameObject);
 		}
 	}

@@ -1,41 +1,97 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraControl : MonoBehaviour {
+[AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
+public class CameraControl : MonoBehaviour
+{
 
-	[SerializeField] private float turnSpeed = 4.0f;
-	[SerializeField] private float height = 8.0f;
-	[SerializeField] private float distance = 7.0f;
-
-	public Transform player;
-	public Transform lockOnCameraSpot;
+    public Transform target;
+    public Transform lockOnCameraSpot;
     public string playerPrefix;
+    
+    private Rigidbody _rigidbody;
+    public float lockOnSpeed = 10.0f;
 
-	private Vector3 offset;
+    float x = 0.0f;
+    float y = 0.0f;
+    private float distance;
+    private float xSpeed;
+    private float ySpeed;
+    private float yMinLimit;
+    private float yMaxLimit;
+    private float distanceMin;
+    private float distanceMax;
 
+    // Use this for initialization
+    void Start()
+    {
+        GameObject cameraManagerGO = GameObject.Find("CameraManager");
+        CameraManager cameraManager = cameraManagerGO.GetComponent<CameraManager>();
+        distance = cameraManager.distance;
+        xSpeed = cameraManager.xSpeed;
+        ySpeed = cameraManager.ySpeed;
+        yMinLimit = cameraManager.yMinLimit;
+        yMaxLimit = cameraManager.yMaxLimit;
+        distanceMin = cameraManager.distanceMin;
+        distanceMax = cameraManager.distanceMax;
 
-	void Start () {
-		offset = new Vector3(player.position.x, player.position.y + height, player.position.z + distance);
+        Vector3 angles = transform.eulerAngles;
+        x = angles.y;
+        y = angles.x;
 
-	}
+        _rigidbody = GetComponent<Rigidbody>();
 
-	void Update() {
-	
-	}
+        // Make the rigid body not change rotation
+        if (_rigidbody != null)
+        {
+            _rigidbody.freezeRotation = true;
+        }
+    }
 
-	void LateUpdate()
-	{
-		
-		if (Input.GetButton (playerPrefix + "LockOn")) {
-			transform.position = Vector3.MoveTowards(transform.position, lockOnCameraSpot.position, turnSpeed / 2);
-			offset = Quaternion.AngleAxis (0, Vector3.up) * offset;
-		} else {
-			//offset += Quaternion.AngleAxis (Input.GetAxis (playerPrefix + "HorizontalRightStick") * turnSpeed, Vector3.up);
-			//offset = Quaternion.AngleAxis (Input.GetAxis("VerticalRightStick") * turnSpeed, Vector3.right) * offset;
-			transform.position = Vector3.MoveTowards(transform.position, player.position + offset, turnSpeed / 2); 
-		}
-		transform.LookAt (player.position);
-		//Debug.Log (offset);   
-	}
-		
+    void LateUpdate()
+    {
+        if (target)
+        {
+            if (Input.GetButton(playerPrefix + "LockOn"))
+            {
+                var targetRotationAngle = target.eulerAngles.y;
+                var currentRotationAngle = transform.eulerAngles.y;
+                x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
+            }
+
+            x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
+            y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
+
+            y = ClampAngle(y, yMinLimit, yMaxLimit);
+
+            Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+            // We could use this if we want to give the player the ability to zoom in and out with the cam
+            //distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+
+            // We could use this to prevent the cam from clipping into walls etc.
+            /*
+            RaycastHit hit;
+            if (Physics.Linecast(target.position, transform.position, out hit))
+            {
+                distance -= hit.distance;
+            }
+            */
+            
+            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+            Vector3 position = rotation * negDistance + target.position;
+
+            transform.rotation = rotation;
+            transform.position = position;
+        }
+    }
+
+    public static float ClampAngle(float angle, float min, float max)
+    {
+        if (angle < -360F)
+            angle += 360F;
+        if (angle > 360F)
+            angle -= 360F;
+        return Mathf.Clamp(angle, min, max);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,15 +16,21 @@ public class PlayerControl : MonoBehaviour {
     private float pushingSpeed;
     private float shootingSpeed;
     private float dashDuration;
+    private float lockAcquisitionRange;
     
     private ParticleSystem speedEffect;
     private GameObject bolt;
+    private Transform lockOnArrow;
+    private Renderer lockOnRend;
+    private Color lockOnGreen;
+    private Color lockOnRed;
     
     private float currentSpeed;
 	private float dashTime;
 	private float lastShot;
 	private Transform lockOnTarget = null;
 	private bool dash;
+    
 	private bool lockOn;
 	private bool grabbing;
 
@@ -36,8 +43,15 @@ public class PlayerControl : MonoBehaviour {
         pushingSpeed = playerManager.pushingSpeed;
         shootingSpeed = playerManager.shootingSpeed;
         dashDuration = playerManager.dashDuration;
+        lockAcquisitionRange = playerManager.lockAcquisitionRange;
         speedEffect = playerManager.speedEffect;
         bolt = playerManager.bolt;
+
+        lockOnArrow = transform.Find("LockOnArrow");
+        //lockOnRend = lockOnArrow.gameObject.GetComponent<Renderer>();
+        //lockOnGreen = lockOnRend.material.color;
+        lockOnRed = Color.red;
+        
 	}
 
 	void Update() {
@@ -51,7 +65,6 @@ public class PlayerControl : MonoBehaviour {
 			var effect = Instantiate (speedEffect, transform.position, Quaternion.identity);
 			effect.transform.parent = gameObject.transform;
 		}
-			
 
 		if (dash) {
 			dashTime += Time.deltaTime;
@@ -83,44 +96,61 @@ public class PlayerControl : MonoBehaviour {
         }
     
         transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
-      
-		lockOn = Input.GetButton (playerPrefix + "LockOn");
-		if (lockOn) {
-			if (lockOnTarget == null) {
-				FindLockOnTarget ();
-			} else {
-				transform.LookAt (lockOnTarget);
-			}
-		} else {
-			lockOnTarget = null;
-		}
+
+        LockOnSystem();
 
 		if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed) {
 			Instantiate(bolt, transform.position, transform.rotation);
 			lastShot = 0;
 		}
 		lastShot += Time.deltaTime;
+        
 	}
 
+    private void LockOnSystem()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float closestDist = 0;
+        Transform closestEnemy = null;
 
-	private void FindLockOnTarget() {
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
-		float closestDist = 0;
-		Transform closestEnemy = null;
+        foreach (GameObject enemy in enemies)
+        {
+            float dist = Vector3.Distance(enemy.transform.position, transform.position);
+            if (closestDist == 0)
+            {
+                closestDist = dist;
+                closestEnemy = enemy.transform;
+            }
+            else if (closestDist > dist)
+            {
+                closestDist = dist;
+                closestEnemy = enemy.transform;
+            }
+        }
+        if (closestDist != 0 && closestDist < lockAcquisitionRange)
+        {
+            lockOnTarget = closestEnemy;
+            Vector3 arrowPos = new Vector3(closestEnemy.position.x, closestEnemy.position.y + 1, closestEnemy.position.z);
+            lockOnArrow.gameObject.SetActive(true);
+            lockOnArrow.transform.position = arrowPos;
+        } else
+        {
+            lockOnArrow.gameObject.SetActive(false);
+        }
 
-		foreach (GameObject enemy in enemies) {
-			float dist = Vector3.Distance (enemy.transform.position, transform.position);
-			if (closestDist == 0) {
-				closestDist = dist;
-				closestEnemy = enemy.transform;
-			} else if (closestDist > dist) {
-				closestDist = dist;
-				closestEnemy = enemy.transform;
-			}
-		}
+        lockOn = Input.GetButton(playerPrefix + "LockOn");
+        if (lockOn)
+        {
+            transform.LookAt(lockOnTarget);
+            //lockOnRend.material.color = lockOnRed;
+        } else
+        {
+            lockOnTarget = null;
+            //lockOnRend.material.color = lockOnGreen;
+        }
 
-		lockOnTarget = closestEnemy;
-	}
+    }
+
 
     void OnTriggerStay (Collider other)
 	{

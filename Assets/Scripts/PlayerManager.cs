@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour {
     public float pushingSpeed = 5.0f;
     public float shootingSpeed = 0.5f;
     public float dashDuration = 0.5f;
+    public float lockAcquisitionRange = 5.0f;
     public Transform playerCamera;
     public ParticleSystem speedEffect;
     public GameObject bolt;
