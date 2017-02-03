@@ -30,7 +30,7 @@ public class CameraControl : MonoBehaviour {
 			transform.position = Vector3.MoveTowards(transform.position, lockOnCameraSpot.position, turnSpeed / 2);
 			offset = Quaternion.AngleAxis (0, Vector3.up) * offset;
 		} else {
-			offset = Quaternion.AngleAxis (Input.GetAxis (playerPrefix + "HorizontalRightStick") * turnSpeed, Vector3.up) * offset;
+			//offset += Quaternion.AngleAxis (Input.GetAxis (playerPrefix + "HorizontalRightStick") * turnSpeed, Vector3.up);
 			//offset = Quaternion.AngleAxis (Input.GetAxis("VerticalRightStick") * turnSpeed, Vector3.right) * offset;
 			transform.position = Vector3.MoveTowards(transform.position, player.position + offset, turnSpeed / 2); 
 		}

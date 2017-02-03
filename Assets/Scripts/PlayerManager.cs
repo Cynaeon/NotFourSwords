@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-	public GameObject player1;
+    public float defaultSpeed = 10.0f;
+    public float dashSpeed = 30.0f;
+    public float pushingSpeed = 5.0f;
+    public float shootingSpeed = 0.5f;
+    public float dashDuration = 0.5f;
+    public Transform playerCamera;
+    public ParticleSystem speedEffect;
+    public GameObject bolt;
+
+    public GameObject player1;
 	public GameObject player2;
 	public GameObject player3;
 	public GameObject player4;

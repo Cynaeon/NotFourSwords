@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class PlayerControl : MonoBehaviour {
 
-	public float defaultSpeed = 10.0f;
-	public float dashSpeed = 30.0f;
-	public float pushingSpeed = 5.0f;
-	public float shootingSpeed = 0.5f;
-	public float dashDuration = 0.5f;
-	public Transform playerCamera;
-	public ParticleSystem speedEffect;
-	public GameObject bolt;
     public string playerPrefix;
-
+    public Transform playerCamera;
     public Camera _playerCamera;
     public Canvas _playerCanvas;
 
+    private float defaultSpeed;
+    private float dashSpeed;
+    private float pushingSpeed;
+    private float shootingSpeed;
+    private float dashDuration;
+    
+    private ParticleSystem speedEffect;
+    private GameObject bolt;
+    
     private float currentSpeed;
 	private float dashTime;
 	private float lastShot;
@@ -28,7 +28,16 @@ public class PlayerControl : MonoBehaviour {
 	private bool grabbing;
 
 	void Start() {
-		currentSpeed = defaultSpeed;
+        GameObject playerManagerGO = GameObject.Find("PlayerManager");
+        PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
+        defaultSpeed = playerManager.defaultSpeed;
+        currentSpeed = defaultSpeed;
+        dashSpeed = playerManager.dashSpeed;
+        pushingSpeed = playerManager.pushingSpeed;
+        shootingSpeed = playerManager.shootingSpeed;
+        dashDuration = playerManager.dashDuration;
+        speedEffect = playerManager.speedEffect;
+        bolt = playerManager.bolt;
 	}
 
 	void Update() {
