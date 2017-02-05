@@ -63,10 +63,8 @@ public class PlayerControl : MonoBehaviour {
 	
 		if (Input.GetButtonDown (playerPrefix +  "Dash")) {
             dashDir = movementPlayer;
-            /*
             dashDir = playerCamera.transform.TransformDirection(dashDir);
             dashDir.y = 0.0f;
-            */
             dash = true;
 			currentSpeed = dashSpeed;
 			var effect = Instantiate (speedEffect, transform.position, Quaternion.identity);
@@ -74,6 +72,7 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 		if (dash) {
+            movementPlayer = Vector3.zero;
 			dashTime += Time.deltaTime;
 			if (dashTime >= dashDuration) {
 				dash = false;
@@ -94,7 +93,8 @@ public class PlayerControl : MonoBehaviour {
             movementPlayer.y = 0.0f;
 
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
-            if (!lockOn) {
+            if (!lockOn)
+            {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
             }
