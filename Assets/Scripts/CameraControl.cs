@@ -66,6 +66,7 @@ public class CameraControl : MonoBehaviour
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
 
+            #region Bonus stuff
             // We could use this if we want to give the player the ability to zoom in and out with the cam
             //distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
 
@@ -77,12 +78,19 @@ public class CameraControl : MonoBehaviour
                 distance -= hit.distance;
             }
             */
-            
+            #endregion
+
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
             Vector3 position = rotation * negDistance + target.position;
 
             transform.rotation = rotation;
             transform.position = position;
+
+            if (Input.GetButton(playerPrefix + "FirstPerson"))
+            {
+                transform.position = target.position;
+                transform.rotation = target.rotation;
+            }
         }
     }
 

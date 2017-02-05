@@ -30,6 +30,7 @@ public class PlayerControl : MonoBehaviour {
 	private float lastShot;
 	private Transform lockOnTarget = null;
 	private bool dash;
+    private Vector3 dashDir;
     
 	private bool lockOn;
 	private bool grabbing;
@@ -58,9 +59,15 @@ public class PlayerControl : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
 		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+        bool firstPerson = Input.GetButton(playerPrefix + "FirstPerson");
 	
 		if (Input.GetButtonDown (playerPrefix +  "Dash")) {
-			dash = true;
+            dashDir = movementPlayer;
+            /*
+            dashDir = playerCamera.transform.TransformDirection(dashDir);
+            dashDir.y = 0.0f;
+            */
+            dash = true;
 			currentSpeed = dashSpeed;
 			var effect = Instantiate (speedEffect, transform.position, Quaternion.identity);
 			effect.transform.parent = gameObject.transform;
@@ -74,15 +81,13 @@ public class PlayerControl : MonoBehaviour {
 				dashTime = 0;
 			}
 		}
-
 	
 		if(grabbing && !Input.GetButton(playerPrefix + "Action")) {
-			Transform ga = transform.FindChild ("PushBlock");
-			ga.transform.parent = null;
+			Transform go = transform.FindChild ("PushBlock");
+			go.transform.parent = null;
 			grabbing = false;
 			currentSpeed = defaultSpeed;
 		}
-
 
         if (movementPlayer != Vector3.zero) {
             movementPlayer = playerCamera.transform.TransformDirection(movementPlayer);
@@ -94,9 +99,16 @@ public class PlayerControl : MonoBehaviour {
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
             }
         }
-    
-        transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
 
+        if (dash)
+        {
+            transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
+
+        }
+        else
+        {
+            transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
+        }
         LockOnSystem();
 
 		if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed) {
@@ -109,46 +121,58 @@ public class PlayerControl : MonoBehaviour {
 
     private void LockOnSystem()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float closestDist = 0;
-        Transform closestEnemy = null;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float dist = Vector3.Distance(enemy.transform.position, transform.position);
-            if (closestDist == 0)
-            {
-                closestDist = dist;
-                closestEnemy = enemy.transform;
-            }
-            else if (closestDist > dist)
-            {
-                closestDist = dist;
-                closestEnemy = enemy.transform;
-            }
-        }
-        if (closestDist != 0 && closestDist < lockAcquisitionRange)
-        {
-            lockOnTarget = closestEnemy;
-            Vector3 arrowPos = new Vector3(closestEnemy.position.x, closestEnemy.position.y + 1, closestEnemy.position.z);
-            lockOnArrow.gameObject.SetActive(true);
-            lockOnArrow.transform.position = arrowPos;
-        } else
-        {
-            lockOnArrow.gameObject.SetActive(false);
-        }
-
         lockOn = Input.GetButton(playerPrefix + "LockOn");
-        if (lockOn)
+
+        // When not pressing lock on, scan nearby area for enemies. Display the lock on arrow on top of the closest enemy.
+        if (!lockOn)
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            float closestDist = 0;
+            Transform closestEnemy = null;
+
+            foreach (GameObject enemy in enemies)
+            {
+                float dist = Vector3.Distance(enemy.transform.position, transform.position);
+                if (closestDist == 0)
+                {
+                    closestDist = dist;
+                    closestEnemy = enemy.transform;
+                }
+                else if (closestDist > dist)
+                {
+                    closestDist = dist;
+                    closestEnemy = enemy.transform;
+                }
+            }
+
+            if (closestDist != 0 && closestDist < lockAcquisitionRange)
+            {
+                lockOnTarget = closestEnemy;
+                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1, lockOnTarget.position.z);
+                lockOnArrow.gameObject.SetActive(true);
+                lockOnArrow.transform.position = arrowPos;
+            }
+            else
+            {
+                lockOnArrow.gameObject.SetActive(false);
+                lockOnTarget = null;
+            }
+        }
+        // If pressing lock on, stop scanning for enemies and keep the arrow on the locked on enemy if there was one. 
+        else 
         {
             transform.LookAt(lockOnTarget);
-            //lockOnRend.material.color = lockOnRed;
-        } else
-        {
-            lockOnTarget = null;
-            //lockOnRend.material.color = lockOnGreen;
-        }
+            if (lockOnTarget != null)
+            {
+                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1, lockOnTarget.position.z);
+                lockOnArrow.transform.position = arrowPos;
+            }
+            else
+            {
+                lockOnArrow.gameObject.SetActive(false);
+            }
 
+        }
     }
 
 
