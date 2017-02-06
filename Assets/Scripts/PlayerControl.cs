@@ -66,7 +66,6 @@ public class PlayerControl : MonoBehaviour {
         //lockOnGreen = lockOnRend.material.color;
         lockOnRed = Color.red;
         
-
     }
     
     void Jump()
@@ -140,8 +139,6 @@ public class PlayerControl : MonoBehaviour {
             _playerCamera.cullingMask = ~(1 << 8);
         }
         
-        
-
         if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
 			Transform go = transform.FindChild ("PushBlock");
 			go.transform.parent = null;
@@ -232,7 +229,6 @@ public class PlayerControl : MonoBehaviour {
             {
                 lockOnArrow.gameObject.SetActive(false);
             }
-
         }
     }
 
