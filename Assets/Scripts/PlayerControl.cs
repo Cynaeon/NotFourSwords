@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour {
 
+    public float hitDistance;
+    public bool IsGrounded;
+    //Layer from which the player is able to jump from
+    public LayerMask layer;
+
+    public float jumpForce;
+
     public string playerPrefix;
     public Transform playerCamera;
     public Camera _playerCamera;
@@ -17,9 +24,10 @@ public class PlayerControl : MonoBehaviour {
     private float shootingSpeed;
     private float dashDuration;
     private float lockAcquisitionRange;
-    
+
     private ParticleSystem speedEffect;
     private GameObject bolt;
+    private Rigidbody _rigidbody;
     private Transform lockOnArrow;
     private Renderer lockOnRend;
     private Color lockOnGreen;
@@ -34,10 +42,15 @@ public class PlayerControl : MonoBehaviour {
     
 	private bool lockOn;
 	private bool grabbing;
+    private bool seeThrough;
+    private bool jumpAbility;
+    private bool ability;
 
 	void Start() {
+
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
+        _rigidbody = GetComponent<Rigidbody>();
         defaultSpeed = playerManager.defaultSpeed;
         currentSpeed = defaultSpeed;
         dashSpeed = playerManager.dashSpeed;
@@ -53,15 +66,51 @@ public class PlayerControl : MonoBehaviour {
         //lockOnGreen = lockOnRend.material.color;
         lockOnRed = Color.red;
         
-	}
 
-	void Update() {
-		float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
+    }
+    
+    void Jump()
+    {
+        //TODO: Jump & Move with Character Controller
+        _rigidbody.AddForce(Vector3.up * jumpForce);
+        
+    }
+
+    //Manages the IsGrounded bool by raycasting down
+    public void UpdateStats()
+    {
+        if (IsGrounded)
+        {
+            hitDistance =  0.35f;
+        }else
+        {
+            hitDistance = 0.15f;
+        }
+
+        if(Physics.Raycast(transform.position - new Vector3(0,0.85f,0) ,-transform.up, hitDistance, layer)){
+            IsGrounded = true;
+        }else
+        {
+            IsGrounded = false;
+        }
+    }
+
+    void Update() {
+        
+        UpdateStats();
+
+        if (IsGrounded && Input.GetButtonDown(playerPrefix + "Item") && jumpAbility)
+        {
+            Jump();
+        }
+
+        float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
-		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0, moveVertical);
         bool firstPerson = Input.GetButton(playerPrefix + "FirstPerson");
-	
-		if (Input.GetButtonDown (playerPrefix +  "Dash")) {
+
+
+        if (Input.GetButtonDown (playerPrefix +  "Dash")) {
             dashDir = movementPlayer;
             dashDir = playerCamera.transform.TransformDirection(dashDir);
             dashDir.y = 0.0f;
@@ -80,8 +129,20 @@ public class PlayerControl : MonoBehaviour {
 				dashTime = 0;
 			}
 		}
-	
-		if(grabbing && !Input.GetButton(playerPrefix + "Action")) {
+        
+        if (seeThrough && Input.GetButton(playerPrefix + "Item"))
+        {
+            _playerCamera.cullingMask |= (1 << 8);
+            
+        }
+        else
+        {
+            _playerCamera.cullingMask = ~(1 << 8);
+        }
+        
+        
+
+        if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
 			Transform go = transform.FindChild ("PushBlock");
 			go.transform.parent = null;
 			grabbing = false;
@@ -175,7 +236,6 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-
     void OnTriggerStay (Collider other)
 	{
 		if (other.tag == "PushBlock") {
@@ -186,12 +246,34 @@ public class PlayerControl : MonoBehaviour {
 				}
 			}
 		}
-		if (other.tag == "SeeThrough") {
-		    _playerCamera.cullingMask |= (1 << 8);
-
-            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough();
+		if (other.tag == "SeeThrough" && !ability)
+        {
+            ability = true;
+            seeThrough = true;
+            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
+            
+            //Destroy(other.gameObject);
 
         }
-	}
+
+        if (other.tag == "Jump" && !ability)
+        {
+            ability = true;
+            jumpAbility = true;
+            _playerCanvas.GetComponent<UIManager>().EnableJump(true);
+
+            //Destroy(other.gameObject);
+
+        }
+        if (other.tag == "Reset")
+        {
+            ability = false;
+            jumpAbility = false;
+            seeThrough = false;
+            _playerCanvas.GetComponent<UIManager>().EnableJump(false);
+            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
+
+        }
+    }
 
 }
