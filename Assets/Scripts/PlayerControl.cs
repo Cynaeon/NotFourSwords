@@ -116,8 +116,12 @@ public class PlayerControl : MonoBehaviour {
 			lastShot = 0;
 		}
 		lastShot += Time.deltaTime;
-        
-	}
+
+        if (transform.position.y < -15)
+        {
+            transform.position = new Vector3(0, 2, 0);
+        }
+    }
 
     private void LockOnSystem()
     {
