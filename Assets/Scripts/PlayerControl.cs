@@ -18,10 +18,14 @@ public class PlayerControl : MonoBehaviour {
     public Camera _playerCamera;
     public Canvas _playerCanvas;
 
+    public Texture2D crosshairTexture;
+    public float crosshairScale = 1;
+
     private float defaultSpeed;
     private float dashSpeed;
     private float pushingSpeed;
     private float shootingSpeed;
+    private float shootingLevel;
     private float dashDuration;
     private float lockAcquisitionRange;
 
@@ -41,6 +45,7 @@ public class PlayerControl : MonoBehaviour {
     private Vector3 dashDir;
     
 	private bool lockOn;
+    private bool firstPerson;
 	private bool grabbing;
     private bool seeThrough;
     private bool jumpAbility;
@@ -106,10 +111,17 @@ public class PlayerControl : MonoBehaviour {
         float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
 		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0, moveVertical);
-        bool firstPerson = Input.GetButton(playerPrefix + "FirstPerson");
-
-
-        if (Input.GetButtonDown (playerPrefix +  "Dash")) {
+        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+        {
+            firstPerson = true;
+            FirstPersonControls();
+        }
+        else
+        {
+            firstPerson = false;   
+        }
+            
+        if (dashTime == 0 && Input.GetButtonDown (playerPrefix +  "Dash")) {
             dashDir = movementPlayer;
             dashDir = playerCamera.transform.TransformDirection(dashDir);
             dashDir.y = 0.0f;
@@ -132,7 +144,6 @@ public class PlayerControl : MonoBehaviour {
         if (seeThrough && Input.GetButton(playerPrefix + "Item"))
         {
             _playerCamera.cullingMask |= (1 << 8);
-            
         }
         else
         {
@@ -151,7 +162,7 @@ public class PlayerControl : MonoBehaviour {
             movementPlayer.y = 0.0f;
 
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
-            if (!lockOn)
+            if (!firstPerson && !lockOn)
             {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -161,23 +172,62 @@ public class PlayerControl : MonoBehaviour {
         if (dash)
         {
             transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
-
         }
         else
         {
             transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
         }
-        LockOnSystem();
 
-		if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed) {
-			Instantiate(bolt, transform.position, transform.rotation);
-			lastShot = 0;
-		}
-		lastShot += Time.deltaTime;
+        LockOnSystem();
+        Shooting();
 
         if (transform.position.y < -15)
         {
             transform.position = new Vector3(0, 2, 0);
+        }
+    }
+
+    private void Shooting()
+    {
+        if (shootingLevel == 0)
+        {
+            shootingSpeed = 0.5f;
+            if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+            {
+                Instantiate(bolt, transform.position, transform.rotation);
+                lastShot = 0;
+            }
+        }
+        else if (shootingLevel == 1)
+        {
+            shootingSpeed = 0.01f;
+            if (Input.GetButtonDown(playerPrefix + "Shoot"))
+            {
+                Instantiate(bolt, transform.position, transform.rotation);
+                lastShot = 0;
+            }
+        }
+        else if (shootingLevel >= 2)
+        {
+            shootingSpeed = 0.05f;
+            if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+            {
+                Instantiate(bolt, transform.position, transform.rotation);
+                lastShot = 0;
+            }
+        }
+        lastShot += Time.deltaTime;
+    }
+
+    private void FirstPersonControls()
+    {
+        if (firstPerson)
+        {
+            float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
+            float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
+            Vector3 lookPlayer = new Vector3(-lookVertical, -lookHorizontal, 0);
+
+            transform.localEulerAngles += lookPlayer;
         }
     }
 
@@ -272,8 +322,19 @@ public class PlayerControl : MonoBehaviour {
             seeThrough = false;
             _playerCanvas.GetComponent<UIManager>().EnableJump(false);
             _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-
+        }
+        if (other.tag == "PowerUp")
+        {
+            shootingLevel++;
+            Destroy(other.gameObject);
         }
     }
 
+    void OnGUI()
+    {
+        if (firstPerson)
+        {
+            GUI.DrawTexture(new Rect((Screen.width - crosshairTexture.width * crosshairScale) / 2, (Screen.height - crosshairTexture.height * crosshairScale) / 2, crosshairTexture.width * crosshairScale, crosshairTexture.height * crosshairScale), crosshairTexture);
+        }
+    }
 }

@@ -8,12 +8,13 @@ public class CameraControl : MonoBehaviour
     public Transform target;
     public Transform lockOnCameraSpot;
     public string playerPrefix;
-    
+
     private Rigidbody _rigidbody;
     public float lockOnSpeed = 10.0f;
 
     float x = 0.0f;
     float y = 0.0f;
+    
     private float distance;
     private float xSpeed;
     private float ySpeed;
@@ -86,7 +87,7 @@ public class CameraControl : MonoBehaviour
             transform.rotation = rotation;
             transform.position = position;
 
-            if (Input.GetButton(playerPrefix + "FirstPerson"))
+            if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
             {
                 transform.position = target.position;
                 transform.rotation = target.rotation;
