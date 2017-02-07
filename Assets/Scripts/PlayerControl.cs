@@ -36,6 +36,7 @@ public class PlayerControl : MonoBehaviour {
     private Renderer lockOnRend;
     private Color lockOnGreen;
     private Color lockOnRed;
+    private GameObject pushBlock;
     
     private float currentSpeed;
 	private float dashTime;
@@ -132,6 +133,7 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 		if (dash) {
+            grabbing = false;
             movementPlayer = Vector3.zero;
 			dashTime += Time.deltaTime;
 			if (dashTime >= dashDuration) {
@@ -151,10 +153,11 @@ public class PlayerControl : MonoBehaviour {
         }
         
         if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
-			Transform go = transform.FindChild ("PushBlock");
-			go.transform.parent = null;
+            pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
+            pushBlock = null;
 			grabbing = false;
 			currentSpeed = defaultSpeed;
+
 		}
 
         if (movementPlayer != Vector3.zero) {
@@ -162,7 +165,7 @@ public class PlayerControl : MonoBehaviour {
             movementPlayer.y = 0.0f;
 
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
-            if (!firstPerson && !lockOn)
+            if (!firstPerson && !lockOn && !grabbing)
             {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -175,6 +178,19 @@ public class PlayerControl : MonoBehaviour {
         }
         else
         {
+            if (grabbing)
+            {
+                if (Mathf.Abs(movementPlayer.x) > Mathf.Abs(movementPlayer.z))
+                {
+                    movementPlayer.z = 0.0f;
+                }
+                else
+                {
+                    movementPlayer.x = 0.0f;
+                }
+                pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
+            }
+            
             transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
         }
 
@@ -291,7 +307,8 @@ public class PlayerControl : MonoBehaviour {
 		if (other.tag == "PushBlock") {
             if (Input.GetButton (playerPrefix + "Action")) {
 				if (!grabbing) {
-					other.transform.parent = this.gameObject.transform;
+                    pushBlock = other.gameObject;
+                    pushBlock.GetComponent<PushBlock>().AddPusher(gameObject);
 					grabbing = true;
 				}
 			}
@@ -327,6 +344,20 @@ public class PlayerControl : MonoBehaviour {
         {
             shootingLevel++;
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "PushBlock")
+        {
+            if (grabbing)
+            {
+                pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
+                pushBlock = null;
+                grabbing = false;
+                currentSpeed = defaultSpeed;
+            }
         }
     }
 
