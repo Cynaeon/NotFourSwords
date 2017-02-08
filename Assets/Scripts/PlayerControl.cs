@@ -6,12 +6,18 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour {
 
-    public float hitDistance;
-    public bool IsGrounded;
-    //Layer from which the player is able to jump from
-    public LayerMask layer;
+    public CharacterController controller;
+    private float verticalVelocity;
+    [SerializeField] private float gravity;
+    [SerializeField] private float jumpForce;
 
-    public float jumpForce;
+    private int _myItem;
+    enum Items
+    {
+        none,
+        jump,
+        seeThrough
+    }
 
     public string playerPrefix;
     public Transform playerCamera;
@@ -31,7 +37,6 @@ public class PlayerControl : MonoBehaviour {
 
     private ParticleSystem speedEffect;
     private GameObject bolt;
-    private Rigidbody _rigidbody;
     private Transform lockOnArrow;
     private Renderer lockOnRend;
     private Color lockOnGreen;
@@ -48,15 +53,15 @@ public class PlayerControl : MonoBehaviour {
 	private bool lockOn;
     private bool firstPerson;
 	private bool grabbing;
-    private bool seeThrough;
-    private bool jumpAbility;
     private bool ability;
+    private bool canSee;
+    private bool canChangeItem;
 
 	void Start() {
 
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
-        _rigidbody = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
         defaultSpeed = playerManager.defaultSpeed;
         currentSpeed = defaultSpeed;
         dashSpeed = playerManager.dashSpeed;
@@ -72,57 +77,19 @@ public class PlayerControl : MonoBehaviour {
         //lockOnGreen = lockOnRend.material.color;
         lockOnRed = Color.red;
         
-    }
-    
-    void Jump()
-    {
-        //TODO: Jump & Move with Character Controller
-        _rigidbody.AddForce(Vector3.up * jumpForce);
-        
-    }
-
-    //Manages the IsGrounded bool by raycasting down
-    public void UpdateStats()
-    {
-        if (IsGrounded)
-        {
-            hitDistance =  0.35f;
-        }else
-        {
-            hitDistance = 0.15f;
-        }
-
-        if(Physics.Raycast(transform.position - new Vector3(0,0.85f,0) ,-transform.up, hitDistance, layer)){
-            IsGrounded = true;
-        }else
-        {
-            IsGrounded = false;
-        }
+        gravity = 10f;
+        jumpForce = 4f;
+        _myItem = (int)Items.none;
+        canSee = false;
     }
 
     void Update() {
-        
-        UpdateStats();
-
-        if (IsGrounded && Input.GetButtonDown(playerPrefix + "Item") && jumpAbility)
-        {
-            Jump();
-        }
 
         float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
-		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0, moveVertical);
-        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
-        {
-            firstPerson = true;
-            FirstPersonControls();
-        }
-        else
-        {
-            firstPerson = false;   
-        }
+		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0 , moveVertical);
             
-        if (dashTime == 0 && Input.GetButtonDown (playerPrefix +  "Dash")) {
+        if (dashTime == 0 && Input.GetButtonDown (playerPrefix +  "Dash") && controller.isGrounded) {
             dashDir = movementPlayer;
             dashDir = playerCamera.transform.TransformDirection(dashDir);
             dashDir.y = 0.0f;
@@ -143,15 +110,8 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
         
-        if (seeThrough && Input.GetButton(playerPrefix + "Item"))
-        {
-            _playerCamera.cullingMask |= (1 << 8);
-        }
-        else
-        {
-            _playerCamera.cullingMask = ~(1 << 8);
-        }
         
+
         if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
             pushBlock = null;
@@ -159,6 +119,7 @@ public class PlayerControl : MonoBehaviour {
 			currentSpeed = defaultSpeed;
 
 		}
+
 
         if (movementPlayer != Vector3.zero) {
             movementPlayer = playerCamera.transform.TransformDirection(movementPlayer);
@@ -172,12 +133,43 @@ public class PlayerControl : MonoBehaviour {
             }
         }
 
-        if (dash)
+        //gravity
+        if (controller.isGrounded)
         {
-            transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
+            verticalVelocity = -gravity * Time.deltaTime;
+            if (Input.GetButtonDown(playerPrefix + "Item") && _myItem == (int)Items.jump)
+            {
+                verticalVelocity = jumpForce;
+            }
         }
         else
         {
+            verticalVelocity -= gravity * Time.deltaTime;
+        }
+
+        //movement
+        if (dash)
+        {
+            //transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
+            movementPlayer.y = verticalVelocity;
+            controller.Move(dashDir * currentSpeed * Time.deltaTime);
+            
+        }
+        else
+        {
+            // transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
+            movementPlayer.y = verticalVelocity;
+            controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+        }
+        
+        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+        {
+            firstPerson = true;
+            FirstPersonControls();
+        }
+        else
+        {
+
             if (grabbing)
             {
                 if (Mathf.Abs(movementPlayer.x) > Mathf.Abs(movementPlayer.z))
@@ -192,6 +184,9 @@ public class PlayerControl : MonoBehaviour {
             }
             
             transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
+
+            firstPerson = false;
+
         }
 
         LockOnSystem();
@@ -201,7 +196,86 @@ public class PlayerControl : MonoBehaviour {
         {
             transform.position = new Vector3(0, 2, 0);
         }
+        
+        if (_myItem == (int) Items.seeThrough  && Input.GetButtonUp(playerPrefix + "Item"))
+        {
+            if (canSee)
+            {
+                _playerCamera.cullingMask = ~(1 << 8);
+                canSee = false;
+            }
+            else
+            {
+                _playerCamera.cullingMask |= (1 << 8);
+                canSee = true;
+            }
+        }
+        
+        if (grabbing && !Input.GetButton(playerPrefix + "Action"))
+        {
+            Transform go = transform.FindChild("PushBlock");
+            go.transform.parent = null;
+            grabbing = false;
+            currentSpeed = defaultSpeed;
+        }
+
+
+        if (Input.GetButtonDown(playerPrefix + "Action"))
+        {
+            if (canChangeItem)
+            {
+                int itemAvailable = FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().checkActive();
+                FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().changeActive(_myItem);
+                switch (itemAvailable)
+                {
+                    case 0:
+                        {
+                            _myItem = (int)Items.none;
+                            _playerCanvas.GetComponent<UIManager>().EnableJump(false);
+                            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
+                            break;
+                        }
+                    case 1:
+                        {
+                            _myItem = (int)Items.jump;
+                            _playerCanvas.GetComponent<UIManager>().EnableJump(true);
+                            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
+                            _playerCamera.cullingMask = ~(1 << 8);
+                            canSee = false;
+                            break;
+                        }
+                    case 2:
+                        {
+                            _myItem = (int)Items.seeThrough;
+                            _playerCanvas.GetComponent<UIManager>().EnableJump(false);
+                            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
+                            break;
+                        }
+                }
+            }
+        }
     }
+
+    private GameObject FindClosestItemSpawner()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("ItemSpawner");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
+
 
     private void Shooting()
     {
@@ -313,42 +387,28 @@ public class PlayerControl : MonoBehaviour {
 				}
 			}
 		}
-		if (other.tag == "SeeThrough" && !ability)
-        {
-            ability = true;
-            seeThrough = true;
-            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
-            
-            //Destroy(other.gameObject);
 
-        }
-
-        if (other.tag == "Jump" && !ability)
-        {
-            ability = true;
-            jumpAbility = true;
-            _playerCanvas.GetComponent<UIManager>().EnableJump(true);
-
-            //Destroy(other.gameObject);
-
-        }
-        if (other.tag == "Reset")
-        {
-            ability = false;
-            jumpAbility = false;
-            seeThrough = false;
-            _playerCanvas.GetComponent<UIManager>().EnableJump(false);
-            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-        }
-        if (other.tag == "PowerUp")
+    if (other.tag == "PowerUp")
         {
             shootingLevel++;
             Destroy(other.gameObject);
         }
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "ItemSpawner")
+        {
+            canChangeItem = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "ItemSpawner")
+        {
+            canChangeItem = false;
+        }
         if (other.tag == "PushBlock")
         {
             if (grabbing)
