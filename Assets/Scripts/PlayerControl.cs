@@ -148,19 +148,7 @@ public class PlayerControl : MonoBehaviour {
         }
 
         //movement
-        if (dash)
-        {
-            //transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
-            movementPlayer.y = verticalVelocity;
-            controller.Move(dashDir * currentSpeed * Time.deltaTime);
-            
-        }
-        else
-        {
-            // transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
-            movementPlayer.y = verticalVelocity;
-            controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
-        }
+        
         
         if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
         {
@@ -180,13 +168,25 @@ public class PlayerControl : MonoBehaviour {
                 {
                     movementPlayer.x = 0.0f;
                 }
+                movementPlayer.y = 0;
                 pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
             }
             
-            transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
-
+            //transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
             firstPerson = false;
+        }
+        if (dash)
+        {
+            //transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
+            movementPlayer.y = verticalVelocity;
+            controller.Move(dashDir * currentSpeed * Time.deltaTime);
 
+        }
+        else
+        {
+            // transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
+            movementPlayer.y = verticalVelocity;
+            controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
         }
 
         LockOnSystem();
