@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
+    public float health = 10.0f;
     public float defaultSpeed = 10.0f;
     public float dashSpeed = 30.0f;
     public float pushingSpeed = 5.0f;
     public float shootingSpeed = 0.5f;
     public float dashDuration = 0.5f;
+    public float invulTime = 0.2f;
     public float lockAcquisitionRange = 5.0f;
     public Transform playerCamera;
     public ParticleSystem speedEffect;

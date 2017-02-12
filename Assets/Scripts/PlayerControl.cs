@@ -24,15 +24,18 @@ public class PlayerControl : MonoBehaviour {
     public Camera _playerCamera;
     public Canvas _playerCanvas;
 
+    public GameObject playerHitbox;
     public Texture2D crosshairTexture;
     public float crosshairScale = 1;
 
+    private float health;
     private float defaultSpeed;
     private float dashSpeed;
     private float pushingSpeed;
     private float shootingSpeed;
     private float shootingLevel;
     private float dashDuration;
+    private float invulTime;
     private float lockAcquisitionRange;
 
     private ParticleSystem speedEffect;
@@ -62,12 +65,14 @@ public class PlayerControl : MonoBehaviour {
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
         controller = GetComponent<CharacterController>();
+        health = playerManager.health;
         defaultSpeed = playerManager.defaultSpeed;
         currentSpeed = defaultSpeed;
         dashSpeed = playerManager.dashSpeed;
         pushingSpeed = playerManager.pushingSpeed;
         shootingSpeed = playerManager.shootingSpeed;
         dashDuration = playerManager.dashDuration;
+        invulTime = playerManager.invulTime;
         lockAcquisitionRange = playerManager.lockAcquisitionRange;
         speedEffect = playerManager.speedEffect;
         bolt = playerManager.bolt;
@@ -89,7 +94,7 @@ public class PlayerControl : MonoBehaviour {
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
 		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0 , moveVertical);
             
-        if (dashTime == 0 && Input.GetButtonDown (playerPrefix +  "Dash") && controller.isGrounded) {
+        if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown (playerPrefix +  "Dash") && controller.isGrounded) {
             dashDir = movementPlayer;
             dashDir = playerCamera.transform.TransformDirection(dashDir);
             dashDir.y = 0.0f;
@@ -100,6 +105,13 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 		if (dash) {
+            if (invulTime >= dashTime)
+            {
+                playerHitbox.SetActive(false);
+            } else
+            {
+                playerHitbox.SetActive(true);
+            }
             grabbing = false;
             movementPlayer = Vector3.zero;
 			dashTime += Time.deltaTime;
@@ -192,9 +204,11 @@ public class PlayerControl : MonoBehaviour {
         LockOnSystem();
         Shooting();
 
-        if (transform.position.y < -15)
+        // This is basically what happens when the player dies
+        if (transform.position.y < -15 || health <= 0)
         {
             transform.position = new Vector3(0, 2, 0);
+            health = 10.0f;
         }
         
         if (_myItem == (int) Items.seeThrough  && Input.GetButtonUp(playerPrefix + "Item"))
@@ -274,6 +288,11 @@ public class PlayerControl : MonoBehaviour {
             }
         }
         return closest;
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        health -= dmg;
     }
 
 
