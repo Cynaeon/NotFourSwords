@@ -22,5 +22,16 @@ public class Hitbox : MonoBehaviour {
         {
             player.GetComponent<PlayerControl>().TakeDamage(10.0f);
         }
+        if (other.tag == "ItemSpawner")
+        {
+            player.GetComponent<PlayerControl>().ItemStateChange(true);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "ItemSpawner")
+        {
+            player.GetComponent<PlayerControl>().ItemStateChange(false);
+        }
     }
 }

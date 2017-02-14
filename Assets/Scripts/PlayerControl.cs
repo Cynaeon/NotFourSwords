@@ -59,6 +59,7 @@ public class PlayerControl : MonoBehaviour {
     private bool ability;
     private bool canSee;
     private bool canChangeItem;
+    private Items myItem;
 
 	void Start() {
 
@@ -81,11 +82,11 @@ public class PlayerControl : MonoBehaviour {
         //lockOnRend = lockOnArrow.gameObject.GetComponent<Renderer>();
         //lockOnGreen = lockOnRend.material.color;
         lockOnRed = Color.red;
+        myItem = Items.none;
         
         gravity = 10f;
         jumpForce = 4f;
-        _myItem = (int)Items.none;
-        canSee = false;
+        
     }
 
     void Update() {
@@ -149,7 +150,7 @@ public class PlayerControl : MonoBehaviour {
         if (controller.isGrounded)
         {
             verticalVelocity = -gravity * Time.deltaTime;
-            if (Input.GetButtonDown(playerPrefix + "Item") && _myItem == (int)Items.jump)
+            if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.jump)
             {
                 verticalVelocity = jumpForce;
             }
@@ -211,16 +212,19 @@ public class PlayerControl : MonoBehaviour {
             health = 10.0f;
         }
         
-        if (_myItem == (int) Items.seeThrough  && Input.GetButtonUp(playerPrefix + "Item"))
+        if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.seeThrough)
         {
             if (canSee)
             {
                 _playerCamera.cullingMask = ~(1 << 8);
+                _playerCamera.cullingMask |= (1 << 9);
                 canSee = false;
             }
             else
             {
                 _playerCamera.cullingMask |= (1 << 8);
+                _playerCamera.cullingMask = ~(1 << 9);
+
                 canSee = true;
             }
         }
@@ -239,19 +243,21 @@ public class PlayerControl : MonoBehaviour {
             if (canChangeItem)
             {
                 int itemAvailable = FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().checkActive();
-                FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().changeActive(_myItem);
+                FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().changeActive((int)myItem);
                 switch (itemAvailable)
                 {
                     case 0:
                         {
-                            _myItem = (int)Items.none;
+                            myItem = Items.none;
                             _playerCanvas.GetComponent<UIManager>().EnableJump(false);
                             _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
+                            _playerCamera.cullingMask = ~(1 << 8);
+                            canSee = false;
                             break;
                         }
                     case 1:
                         {
-                            _myItem = (int)Items.jump;
+                            myItem = Items.jump;
                             _playerCanvas.GetComponent<UIManager>().EnableJump(true);
                             _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
                             _playerCamera.cullingMask = ~(1 << 8);
@@ -260,7 +266,7 @@ public class PlayerControl : MonoBehaviour {
                         }
                     case 2:
                         {
-                            _myItem = (int)Items.seeThrough;
+                            myItem = Items.seeThrough;
                             _playerCanvas.GetComponent<UIManager>().EnableJump(false);
                             _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
                             break;
@@ -413,21 +419,14 @@ public class PlayerControl : MonoBehaviour {
             Destroy(other.gameObject);
         }
     }
-    
-    void OnTriggerEnter(Collider other)
+
+    public void ItemStateChange(bool changeTo)
     {
-        if (other.tag == "ItemSpawner")
-        {
-            canChangeItem = true;
-        }
+        canChangeItem = changeTo;
     }
 
     void OnTriggerExit(Collider other)
     {
-        if(other.tag == "ItemSpawner")
-        {
-            canChangeItem = false;
-        }
         if (other.tag == "PushBlock")
         {
             if (grabbing)
@@ -447,4 +446,5 @@ public class PlayerControl : MonoBehaviour {
             GUI.DrawTexture(new Rect((Screen.width - crosshairTexture.width * crosshairScale) / 2, (Screen.height - crosshairTexture.height * crosshairScale) / 2, crosshairTexture.width * crosshairScale, crosshairTexture.height * crosshairScale), crosshairTexture);
         }
     }
+    
 }

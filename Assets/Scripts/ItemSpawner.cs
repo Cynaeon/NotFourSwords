@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour {
     List<GameObject> Items = new List<GameObject>();
-    
+
+    public GameObject none;
     public GameObject jumpItem;
     public GameObject seeThroughItem;
     
@@ -14,7 +15,7 @@ public class ItemSpawner : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Items.Add(null);
+        Items.Add(none);
         Items.Add(jumpItem);
         Items.Add(seeThroughItem);
         Items[_active].SetActive(true);
@@ -27,11 +28,8 @@ public class ItemSpawner : MonoBehaviour {
 
     public void changeActive(int receivedItem)
     {
-        if (receivedItem != 0)
-        {
             Items[_active].SetActive(false);
             _active = receivedItem;
             Items[_active].SetActive(true);
-        }
     }
 }
