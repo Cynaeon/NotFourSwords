@@ -37,9 +37,15 @@ public class PushBlock : MonoBehaviour {
         pushers.Remove(pusher.GetComponent<PlayerControl>().playerPrefix);
     }
 
-    public void Move(Vector3 movement, float speed)
+    public bool Move(Vector3 movement, float speed)
     {
         this.movement = movement;
         pushingSpeed = speed;
+        if (pushers.Count >= pushersRequired)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

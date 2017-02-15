@@ -94,9 +94,9 @@ public class PlayerControl : MonoBehaviour {
         float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
 		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
 		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0 , moveVertical);
-            
+
         if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown (playerPrefix +  "Dash") && controller.isGrounded) {
-            dashDir = movementPlayer;
+            dashDir = movementPlayer.normalized;
             dashDir = playerCamera.transform.TransformDirection(dashDir);
             dashDir.y = 0.0f;
             dash = true;
@@ -173,7 +173,10 @@ public class PlayerControl : MonoBehaviour {
 
             if (grabbing)
             {
-                if (Mathf.Abs(movementPlayer.x) > Mathf.Abs(movementPlayer.z))
+                Vector3 direction = transform.position - pushBlock.transform.position;
+                direction = direction.normalized;
+
+                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
                 {
                     movementPlayer.z = 0.0f;
                 }
@@ -181,8 +184,13 @@ public class PlayerControl : MonoBehaviour {
                 {
                     movementPlayer.x = 0.0f;
                 }
+
                 movementPlayer.y = 0;
-                pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
+                bool canMove = pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
+                if (!canMove)
+                {
+                    movementPlayer = Vector3.zero;
+                }
             }
             
             //transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
@@ -231,8 +239,6 @@ public class PlayerControl : MonoBehaviour {
         
         if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
-            Transform go = transform.FindChild("PushBlock");
-            go.transform.parent = null;
             grabbing = false;
             currentSpeed = defaultSpeed;
         }
