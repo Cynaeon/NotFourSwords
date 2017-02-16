@@ -14,6 +14,9 @@ public class PlayerManager : MonoBehaviour {
     public float dashDuration = 0.5f;
     public float invulTime = 0.2f;
     public float lockAcquisitionRange = 5.0f;
+    public float gravity = 10f;
+    public float jumpForce = 4f;
+
     public Transform playerCamera;
     public ParticleSystem speedEffect;
     public GameObject bolt;
