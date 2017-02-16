@@ -43,12 +43,15 @@ public class PlayerControl : MonoBehaviour {
     private Transform lockOnArrow;
     private Renderer lockOnRend;
     private Color lockOnGreen;
-    private Color lockOnRed;
+    //private Color lockOnRed;
     private GameObject pushBlock;
     
     private float currentSpeed;
 	private float dashTime;
 	private float lastShot;
+    private bool burstShot;
+    private int burstCount;
+    private float burstSpeed;
 	private Transform lockOnTarget = null;
 	private bool dash;
     private Vector3 dashDir;
@@ -72,6 +75,7 @@ public class PlayerControl : MonoBehaviour {
         dashSpeed = playerManager.dashSpeed;
         pushingSpeed = playerManager.pushingSpeed;
         shootingSpeed = playerManager.shootingSpeed;
+        burstSpeed = playerManager.burstSpeed;
         dashDuration = playerManager.dashDuration;
         invulTime = playerManager.invulTime;
         lockAcquisitionRange = playerManager.lockAcquisitionRange;
@@ -81,7 +85,7 @@ public class PlayerControl : MonoBehaviour {
         lockOnArrow = transform.Find("LockOnArrow");
         //lockOnRend = lockOnArrow.gameObject.GetComponent<Renderer>();
         //lockOnGreen = lockOnRend.material.color;
-        lockOnRed = Color.red;
+        //lockOnRed = Color.red;
         myItem = Items.none;
         
         gravity = 10f;
@@ -122,17 +126,13 @@ public class PlayerControl : MonoBehaviour {
 				dashTime = 0;
 			}
 		}
-        
-        
 
         if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
             pushBlock = null;
 			grabbing = false;
 			currentSpeed = defaultSpeed;
-
 		}
-
 
         if (movementPlayer != Vector3.zero) {
             movementPlayer = playerCamera.transform.TransformDirection(movementPlayer);
@@ -161,8 +161,6 @@ public class PlayerControl : MonoBehaviour {
         }
 
         //movement
-        
-        
         if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
         {
             firstPerson = true;
@@ -170,7 +168,6 @@ public class PlayerControl : MonoBehaviour {
         }
         else
         {
-
             if (grabbing)
             {
                 Vector3 direction = transform.position - pushBlock.transform.position;
@@ -184,7 +181,7 @@ public class PlayerControl : MonoBehaviour {
                 {
                     movementPlayer.x = 0.0f;
                 }
-
+                currentSpeed = pushingSpeed;
                 movementPlayer.y = 0;
                 bool canMove = pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
                 if (!canMove)
@@ -192,20 +189,16 @@ public class PlayerControl : MonoBehaviour {
                     movementPlayer = Vector3.zero;
                 }
             }
-            
-            //transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
             firstPerson = false;
         }
         if (dash)
         {
-            //transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
             movementPlayer.y = verticalVelocity;
             controller.Move(dashDir * currentSpeed * Time.deltaTime);
 
         }
         else
         {
-            // transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
             movementPlayer.y = verticalVelocity;
             controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
         }
@@ -321,16 +314,26 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (shootingLevel == 1)
         {
-            shootingSpeed = 0.01f;
-            if (Input.GetButtonDown(playerPrefix + "Shoot"))
+            shootingSpeed = 0.3f;
+            if (Input.GetButtonDown(playerPrefix + "Shoot") && burstShot == false && lastShot > shootingSpeed)
+            {
+                burstShot = true;
+            }
+            if (burstShot && lastShot > burstSpeed)
             {
                 Instantiate(bolt, transform.position, transform.rotation);
+                burstCount++;
+                if (burstCount >= 3)
+                {
+                    burstShot = false;
+                    burstCount = 0;
+                }
                 lastShot = 0;
             }
         }
         else if (shootingLevel >= 2)
         {
-            shootingSpeed = 0.05f;
+            shootingSpeed = 0.1f;
             if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
             {
                 Instantiate(bolt, transform.position, transform.rotation);
@@ -381,7 +384,7 @@ public class PlayerControl : MonoBehaviour {
             if (closestDist != 0 && closestDist < lockAcquisitionRange)
             {
                 lockOnTarget = closestEnemy;
-                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1, lockOnTarget.position.z);
+                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
                 lockOnArrow.gameObject.SetActive(true);
                 lockOnArrow.transform.position = arrowPos;
             }
@@ -397,7 +400,7 @@ public class PlayerControl : MonoBehaviour {
             transform.LookAt(lockOnTarget);
             if (lockOnTarget != null)
             {
-                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1, lockOnTarget.position.z);
+                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
                 lockOnArrow.transform.position = arrowPos;
             }
             else

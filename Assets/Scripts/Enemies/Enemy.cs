@@ -12,14 +12,12 @@ public class Enemy : MonoBehaviour {
     private Color hitColor = Color.red;
     private float startTime;
 
-	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
         _rend = GetComponent<Renderer>();
         defaultColor = _rend.material.color;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 		if (health <= 0)
         {
             Instantiate(hitEffect, transform.position, transform.rotation);
@@ -31,7 +29,7 @@ public class Enemy : MonoBehaviour {
         }
 	}
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerProjectile")
         {

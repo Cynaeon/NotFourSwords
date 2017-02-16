@@ -7,12 +7,14 @@ public class Bolt : MonoBehaviour {
 	public float speed;
 	public float lifeTime;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public enum projectileType
+    {
+        Enemy, 
+        Player
+    }
+
+    public projectileType type;
 	
-	// Update is called once per frame
 	void Update () {
 		transform.Translate (Vector3.forward * Time.deltaTime * speed);
 		lifeTime -= Time.deltaTime;
@@ -23,8 +25,19 @@ public class Bolt : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Enemy") {
-			Destroy (gameObject);
-		}
-	}
+        if (type == projectileType.Player)
+        {
+            if (other.tag == "Enemy")
+            {
+                Destroy(gameObject);
+            }
+        }
+        if (type == projectileType.Enemy)
+        {
+            if (other.tag == "Player")
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 }

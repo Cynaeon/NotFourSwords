@@ -20,8 +20,8 @@ public class CameraControl : MonoBehaviour
     private float ySpeed;
     private float yMinLimit;
     private float yMaxLimit;
-    private float distanceMin;
-    private float distanceMax;
+    //private float distanceMin;
+    //private float distanceMax;
 
     // Use this for initialization
     void Start()
@@ -33,8 +33,8 @@ public class CameraControl : MonoBehaviour
         ySpeed = cameraManager.ySpeed;
         yMinLimit = cameraManager.yMinLimit;
         yMaxLimit = cameraManager.yMaxLimit;
-        distanceMin = cameraManager.distanceMin;
-        distanceMax = cameraManager.distanceMax;
+        //distanceMin = cameraManager.distanceMin;
+        //distanceMax = cameraManager.distanceMax;
 
         Vector3 angles = transform.eulerAngles;
         x = angles.y;

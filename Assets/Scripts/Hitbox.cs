@@ -6,19 +6,13 @@ public class Hitbox : MonoBehaviour {
 
     public GameObject player;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Fire")
+        {
+            player.GetComponent<PlayerControl>().TakeDamage(10.0f);
+        }
+        if (other.tag == "EnemyProjectile")
         {
             player.GetComponent<PlayerControl>().TakeDamage(10.0f);
         }
