@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerControl : MonoBehaviour
-{
+
+public class PlayerControl : MonoBehaviour {
+
     public float magnetDistance;
     public float magnetVelocity;
     private Collider _grabSpot;
@@ -21,7 +22,7 @@ public class PlayerControl : MonoBehaviour
         seeThrough,
         magnet
     }
-    private Items myItem;
+
     public string playerPrefix;
     public Transform playerCamera;
     public Camera _playerCamera;
@@ -46,33 +47,25 @@ public class PlayerControl : MonoBehaviour
     private Transform lockOnArrow;
     private Renderer lockOnRend;
     private Color lockOnGreen;
-    //private Color lockOnRed;
+    private Color lockOnRed;
     private GameObject pushBlock;
-
+    
     private float currentSpeed;
-    private float verticalVelocity;
-    private float gravity;
-    private float jumpForce;
-    private float dashTime;
-    private float lastShot;
-    private int burstCount;
-    private float burstSpeed;
-    private Transform lockOnTarget = null;
+	private float dashTime;
+	private float lastShot;
+	private Transform lockOnTarget = null;
+	private bool dash;
     private Vector3 dashDir;
     
-    private bool burstShot;
-    private bool lockOn;
+	private bool lockOn;
     private bool firstPerson;
-    private bool grabbing;
+	private bool grabbing;
     private bool ability;
     private bool canSee;
     private bool canChangeItem;
-    private bool canAirDash;
-    private bool hasJumped;
-    private bool dash;
+    private Items myItem;
 
-    void Start()
-    {
+	void Start() {
 
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
@@ -83,15 +76,16 @@ public class PlayerControl : MonoBehaviour
         dashSpeed = playerManager.dashSpeed;
         pushingSpeed = playerManager.pushingSpeed;
         shootingSpeed = playerManager.shootingSpeed;
-        burstSpeed = playerManager.burstSpeed;
         dashDuration = playerManager.dashDuration;
         invulTime = playerManager.invulTime;
         lockAcquisitionRange = playerManager.lockAcquisitionRange;
         speedEffect = playerManager.speedEffect;
         bolt = playerManager.bolt;
-        gravity = playerManager.gravity;
-        jumpForce = playerManager.jumpForce;
+
         lockOnArrow = transform.Find("LockOnArrow");
+        //lockOnRend = lockOnArrow.gameObject.GetComponent<Renderer>();
+        //lockOnGreen = lockOnRend.material.color;
+        lockOnRed = Color.red;
         myItem = Items.none;
         
         gravity = 10f;
@@ -101,49 +95,39 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    void Update()
-    {
+    void Update() {
 
-        float moveHorizontal = Input.GetAxis(playerPrefix + "Horizontal");
-        float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
-        Vector3 movementPlayer = new Vector3(moveHorizontal, 0, moveVertical);
+        float moveHorizontal = Input.GetAxis (playerPrefix + "Horizontal");
+		float moveVertical = Input.GetAxis (playerPrefix + "Vertical");
+		Vector3 movementPlayer = new Vector3 (moveHorizontal, 0 , moveVertical);
+            
+        if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown (playerPrefix +  "Dash") && controller.isGrounded) {
+            dashDir = movementPlayer;
+            dashDir = playerCamera.transform.TransformDirection(dashDir);
+            dashDir.y = 0.0f;
+            dash = true;
+			currentSpeed = dashSpeed;
+			var effect = Instantiate (speedEffect, transform.position, Quaternion.identity);
+			effect.transform.parent = gameObject.transform;
+		}
 
-        if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
-        {
-            if (canAirDash || controller.isGrounded)
-            {
-                dashDir = movementPlayer.normalized;
-                dashDir = playerCamera.transform.TransformDirection(dashDir);
-                dashDir.y = 0.0f;
-                dash = true;
-                currentSpeed = dashSpeed;
-                var effect = Instantiate(speedEffect, transform.position, Quaternion.identity);
-                effect.transform.parent = gameObject.transform;
-            }
-        }
-
-        if (dash)
-        {
+		if (dash) {
             if (invulTime >= dashTime)
             {
                 playerHitbox.SetActive(false);
-            }
-            else
+            } else
             {
                 playerHitbox.SetActive(true);
             }
             grabbing = false;
             movementPlayer = Vector3.zero;
-            dashTime += Time.deltaTime;
-            
-            if (dashTime >= dashDuration)
-            {
-                dash = false;
-                canAirDash = false;
-                currentSpeed = defaultSpeed;
-                dashTime = 0;
-            }
-        }
+			dashTime += Time.deltaTime;
+			if (dashTime >= dashDuration) {
+				dash = false;
+				currentSpeed = defaultSpeed;
+				dashTime = 0;
+			}
+		}
 
         // Magnet
         // Works when no GrabSpot is present
@@ -172,12 +156,13 @@ public class PlayerControl : MonoBehaviour
         if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
             pushBlock = null;
-            grabbing = false;
-            currentSpeed = defaultSpeed;
-        }
+			grabbing = false;
+			currentSpeed = defaultSpeed;
 
-        if (movementPlayer != Vector3.zero)
-        {
+		}
+
+
+        if (movementPlayer != Vector3.zero) {
             movementPlayer = playerCamera.transform.TransformDirection(movementPlayer);
             movementPlayer.y = 0.0f;
 
@@ -196,17 +181,16 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.jump)
             {
                 verticalVelocity = jumpForce;
-                hasJumped = true;
-                canAirDash = true;
             }
         }
         else
         {
-            hasJumped = false;
             verticalVelocity -= gravity * Time.deltaTime;
         }
 
         //movement
+        
+        
         if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
         {
             firstPerson = true;
@@ -214,12 +198,10 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
+
             if (grabbing)
             {
-                Vector3 direction = transform.position - pushBlock.transform.position;
-                direction = direction.normalized;
-
-                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
+                if (Mathf.Abs(movementPlayer.x) > Mathf.Abs(movementPlayer.z))
                 {
                     movementPlayer.z = 0.0f;
                     
@@ -228,24 +210,23 @@ public class PlayerControl : MonoBehaviour
                 {
                     movementPlayer.x = 0.0f;
                 }
-                currentSpeed = pushingSpeed;
                 movementPlayer.y = 0;
-                bool canMove = pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
-                if (!canMove)
-                {
-                    movementPlayer = Vector3.zero;
-                }
+                pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
             }
+            
+            //transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
             firstPerson = false;
         }
-
         if (dash)
         {
-            verticalVelocity = -gravity * Time.deltaTime;
+            //transform.Translate(dashDir * currentSpeed * Time.deltaTime, Space.World);
+            movementPlayer.y = verticalVelocity;
             controller.Move(dashDir * currentSpeed * Time.deltaTime);
+
         }
         else
         {
+            // transform.Translate(movementPlayer * currentSpeed * Time.deltaTime, Space.World);
             movementPlayer.y = verticalVelocity;
             controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
         }
@@ -259,7 +240,7 @@ public class PlayerControl : MonoBehaviour
             transform.position = new Vector3(0, 2, 0);
             health = 10.0f;
         }
-
+        
         if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.seeThrough)
         {
             if (canSee)
@@ -281,6 +262,8 @@ public class PlayerControl : MonoBehaviour
         
         if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
+            Transform go = transform.FindChild("PushBlock");
+            go.transform.parent = null;
             grabbing = false;
             currentSpeed = defaultSpeed;
         }
@@ -367,26 +350,16 @@ public class PlayerControl : MonoBehaviour
         }
         else if (shootingLevel == 1)
         {
-            shootingSpeed = 0.3f;
-            if (Input.GetButtonDown(playerPrefix + "Shoot") && burstShot == false && lastShot > shootingSpeed)
-            {
-                burstShot = true;
-            }
-            if (burstShot && lastShot > burstSpeed)
+            shootingSpeed = 0.01f;
+            if (Input.GetButtonDown(playerPrefix + "Shoot"))
             {
                 Instantiate(bolt, transform.position, transform.rotation);
-                burstCount++;
-                if (burstCount >= 3)
-                {
-                    burstShot = false;
-                    burstCount = 0;
-                }
                 lastShot = 0;
             }
         }
         else if (shootingLevel >= 2)
         {
-            shootingSpeed = 0.1f;
+            shootingSpeed = 0.05f;
             if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
             {
                 Instantiate(bolt, transform.position, transform.rotation);
@@ -437,7 +410,7 @@ public class PlayerControl : MonoBehaviour
             if (closestDist != 0 && closestDist < lockAcquisitionRange)
             {
                 lockOnTarget = closestEnemy;
-                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1, lockOnTarget.position.z);
                 lockOnArrow.gameObject.SetActive(true);
                 lockOnArrow.transform.position = arrowPos;
             }
@@ -448,12 +421,12 @@ public class PlayerControl : MonoBehaviour
             }
         }
         // If pressing lock on, stop scanning for enemies and keep the arrow on the locked on enemy if there was one. 
-        else
+        else 
         {
             transform.LookAt(lockOnTarget);
             if (lockOnTarget != null)
             {
-                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1, lockOnTarget.position.z);
                 lockOnArrow.transform.position = arrowPos;
             }
             else
@@ -463,22 +436,19 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "PushBlock")
-        {
-            if (Input.GetButton(playerPrefix + "Action"))
-            {
-                if (!grabbing)
-                {
+    void OnTriggerStay (Collider other)
+	{
+		if (other.tag == "PushBlock") {
+            if (Input.GetButton (playerPrefix + "Action")) {
+				if (!grabbing) {
                     pushBlock = other.gameObject;
                     pushBlock.GetComponent<PushBlock>().AddPusher(gameObject);
-                    grabbing = true;
-                }
-            }
-        }
+					grabbing = true;
+				}
+			}
+		}
 
-        if (other.tag == "PowerUp")
+    if (other.tag == "PowerUp")
         {
             shootingLevel++;
             Destroy(other.gameObject);
@@ -511,5 +481,5 @@ public class PlayerControl : MonoBehaviour
             GUI.DrawTexture(new Rect((Screen.width - crosshairTexture.width * crosshairScale) / 2, (Screen.height - crosshairTexture.height * crosshairScale) / 2, crosshairTexture.width * crosshairScale, crosshairTexture.height * crosshairScale), crosshairTexture);
         }
     }
-
+    
 }

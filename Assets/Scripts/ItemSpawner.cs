@@ -8,6 +8,7 @@ public class ItemSpawner : MonoBehaviour {
     public GameObject none;
     public GameObject jumpItem;
     public GameObject seeThroughItem;
+    public GameObject magnetItem;
     
     [SerializeField] private int _active = 1;
 
@@ -18,6 +19,7 @@ public class ItemSpawner : MonoBehaviour {
         Items.Add(none);
         Items.Add(jumpItem);
         Items.Add(seeThroughItem);
+        Items.Add(magnetItem);
         Items[_active].SetActive(true);
 	}
 

@@ -3,23 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class PlayerControl : MonoBehaviour
 {
-    public float magnetDistance;
-    public float magnetVelocity;
-    private Collider _grabSpot;
-
     public CharacterController controller;
-    private float verticalVelocity;
-    [SerializeField] private float gravity;
-    [SerializeField] private float jumpForce;
-
     enum Items
     {
         none,
         jump,
-        seeThrough,
-        magnet
+        seeThrough
     }
     private Items myItem;
     public string playerPrefix;
@@ -93,11 +85,6 @@ public class PlayerControl : MonoBehaviour
         jumpForce = playerManager.jumpForce;
         lockOnArrow = transform.Find("LockOnArrow");
         myItem = Items.none;
-        
-        gravity = 10f;
-        jumpForce = 4f;
-
-        _grabSpot = GetComponentInChildren<BoxCollider>();
 
     }
 
@@ -145,31 +132,8 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        // Magnet
-        // Works when no GrabSpot is present
-        if (Input.GetButton(playerPrefix + "Item") && myItem == Items.magnet)
+        if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, magnetDistance))
-            {
-                Debug.Log(hit.distance);
-                if (hit.collider.tag == "Magnetic")
-                {
-                    // Sticking to objects will be added here
-                    verticalVelocity = 0;
-                    movementPlayer = Vector3.zero;
-                    controller.Move(transform.forward * Time.deltaTime * magnetVelocity);
-                }
-                else if (hit.collider.tag == "Metallic")
-                {
-                    // And magnetic lifting here
-                    hit.transform.Translate(-transform.forward * Time.deltaTime * magnetVelocity);
-                }
-            }
-        }
-
-
-        if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
             pushBlock = null;
             grabbing = false;
@@ -222,7 +186,6 @@ public class PlayerControl : MonoBehaviour
                 if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
                 {
                     movementPlayer.z = 0.0f;
-                    
                 }
                 else
                 {
@@ -277,8 +240,6 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        
-        
         if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
             grabbing = false;
@@ -295,34 +256,30 @@ public class PlayerControl : MonoBehaviour
                 switch (itemAvailable)
                 {
                     case 0:
-                        myItem = Items.none;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
-                        _playerCamera.cullingMask = ~(1 << 8);
-                        canSee = false;
-                        break;
+                        {
+                            myItem = Items.none;
+                            _playerCanvas.GetComponent<UIManager>().EnableJump(false);
+                            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
+                            _playerCamera.cullingMask = ~(1 << 8);
+                            canSee = false;
+                            break;
+                        }
                     case 1:
-                        myItem = Items.jump;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(true);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
-                        _playerCamera.cullingMask = ~(1 << 8);
-                        canSee = false;
-                        break;
+                        {
+                            myItem = Items.jump;
+                            _playerCanvas.GetComponent<UIManager>().EnableJump(true);
+                            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
+                            _playerCamera.cullingMask = ~(1 << 8);
+                            canSee = false;
+                            break;
+                        }
                     case 2:
-                        myItem = Items.seeThrough;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
-                        break;
-                    case 3:
-                        myItem = Items.magnet;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(true);
-
-                        break;
+                        {
+                            myItem = Items.seeThrough;
+                            _playerCanvas.GetComponent<UIManager>().EnableJump(false);
+                            _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
+                            break;
+                        }
                 }
             }
         }

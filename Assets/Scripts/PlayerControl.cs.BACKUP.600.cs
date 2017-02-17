@@ -3,8 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+<<<<<<< HEAD
 public class PlayerControl : MonoBehaviour
 {
+    public CharacterController controller;
+=======
+public class PlayerControl : MonoBehaviour {
+
     public float magnetDistance;
     public float magnetVelocity;
     private Collider _grabSpot;
@@ -14,6 +20,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float gravity;
     [SerializeField] private float jumpForce;
 
+>>>>>>> origin/Wew
     enum Items
     {
         none,
@@ -93,11 +100,14 @@ public class PlayerControl : MonoBehaviour
         jumpForce = playerManager.jumpForce;
         lockOnArrow = transform.Find("LockOnArrow");
         myItem = Items.none;
+<<<<<<< HEAD
+=======
         
         gravity = 10f;
         jumpForce = 4f;
 
         _grabSpot = GetComponentInChildren<BoxCollider>();
+>>>>>>> origin/Wew
 
     }
 
@@ -134,6 +144,7 @@ public class PlayerControl : MonoBehaviour
             }
             grabbing = false;
             movementPlayer = Vector3.zero;
+<<<<<<< HEAD
             dashTime += Time.deltaTime;
             
             if (dashTime >= dashDuration)
@@ -144,6 +155,17 @@ public class PlayerControl : MonoBehaviour
                 dashTime = 0;
             }
         }
+
+        if (grabbing && !Input.GetButton(playerPrefix + "Action"))
+        {
+=======
+			dashTime += Time.deltaTime;
+			if (dashTime >= dashDuration) {
+				dash = false;
+				currentSpeed = defaultSpeed;
+				dashTime = 0;
+			}
+		}
 
         // Magnet
         // Works when no GrabSpot is present
@@ -170,6 +192,7 @@ public class PlayerControl : MonoBehaviour
 
 
         if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
+>>>>>>> origin/Wew
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
             pushBlock = null;
             grabbing = false;
@@ -277,8 +300,11 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
+=======
         
         
+>>>>>>> origin/Wew
         if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
             grabbing = false;

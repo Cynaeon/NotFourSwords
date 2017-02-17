@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
     public Image seeThroughImage;
     public Image jumpImage;
+    public Image magnetImage;
 	// Use this for initialization
 	void Start () {
         seeThroughImage.enabled = false;
@@ -23,5 +24,9 @@ public class UIManager : MonoBehaviour {
     public void EnableJump(bool state)
     {
         jumpImage.enabled = state;
+    }
+    public void EnableMagnet(bool state)
+    {
+        magnetImage.enabled = state;
     }
 }
