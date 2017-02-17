@@ -480,6 +480,11 @@ public class PlayerControl : MonoBehaviour
             shootingLevel++;
             Destroy(other.gameObject);
         }
+
+        if (other.tag == "SlidingIce")
+        {
+            
+        }
     }
 
     public void ItemStateChange(bool changeTo)
