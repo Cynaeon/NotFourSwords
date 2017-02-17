@@ -10,9 +10,6 @@ public class PlayerControl : MonoBehaviour
     private Collider _grabSpot;
 
     public CharacterController controller;
-    private float verticalVelocity;
-    [SerializeField] private float gravity;
-    [SerializeField] private float jumpForce;
 
     enum Items
     {
