@@ -3,18 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+<<<<<<< HEAD
 
 public class PlayerControl : MonoBehaviour {
 
+=======
+public class PlayerControl : MonoBehaviour
+{
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
     public float magnetDistance;
     public float magnetVelocity;
-    private Collider _grabSpot;
 
+<<<<<<< HEAD
     public CharacterController controller;
     private float verticalVelocity;
     [SerializeField] private float gravity;
     [SerializeField] private float jumpForce;
 
+=======
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
     enum Items
     {
         none,
@@ -22,16 +29,24 @@ public class PlayerControl : MonoBehaviour {
         seeThrough,
         magnet
     }
+<<<<<<< HEAD
 
+=======
+    private Items myItem;
+
+    #region Public Objects
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
     public string playerPrefix;
     public Transform playerCamera;
     public Camera _playerCamera;
     public Canvas _playerCanvas;
-
     public GameObject playerHitbox;
     public Texture2D crosshairTexture;
     public float crosshairScale = 1;
+    public CharacterController controller;
+    #endregion
 
+    #region Player Attributes
     private float health;
     private float defaultSpeed;
     private float dashSpeed;
@@ -41,7 +56,10 @@ public class PlayerControl : MonoBehaviour {
     private float dashDuration;
     private float invulTime;
     private float lockAcquisitionRange;
+    private Collider _grabSpot;
+    #endregion
 
+    #region Other Objects
     private ParticleSystem speedEffect;
     private GameObject bolt;
     private Transform lockOnArrow;
@@ -49,24 +67,50 @@ public class PlayerControl : MonoBehaviour {
     private Color lockOnGreen;
     private Color lockOnRed;
     private GameObject pushBlock;
+<<<<<<< HEAD
     
+=======
+    #endregion
+
+    #region Private Variables
+    private Vector3 movementPlayer;
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
     private float currentSpeed;
 	private float dashTime;
 	private float lastShot;
 	private Transform lockOnTarget = null;
 	private bool dash;
     private Vector3 dashDir;
+<<<<<<< HEAD
     
 	private bool lockOn;
+=======
+    #endregion
+
+    #region Private Booleans
+    private bool burstShot;
+    private bool lockOn;
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
     private bool firstPerson;
 	private bool grabbing;
     private bool ability;
     private bool canSee;
     private bool canChangeItem;
+<<<<<<< HEAD
     private Items myItem;
 
 	void Start() {
 
+=======
+    private bool canAirDash;
+    private bool hasJumped;
+    private bool dash;
+    #endregion
+
+    void Start()
+    {
+        #region Get player attributes from manager
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
         controller = GetComponent<CharacterController>();
@@ -92,6 +136,7 @@ public class PlayerControl : MonoBehaviour {
         jumpForce = 4f;
 
         _grabSpot = GetComponentInChildren<BoxCollider>();
+<<<<<<< HEAD
 
     }
 
@@ -132,40 +177,44 @@ public class PlayerControl : MonoBehaviour {
         // Magnet
         // Works when no GrabSpot is present
         if (Input.GetButton(playerPrefix + "Item") && myItem == Items.magnet)
+=======
+        #endregion
+    }
+
+    void Update()
+    {
+        // ¯\_(ツ)_/¯
+        GetMovement();
+        Dashing();
+        Magnet();
+        Gravity();
+        FirstPersonControls();
+        Grabbing();
+        Movement();
+        LockOnSystem();
+        Shooting();
+        CheckDeath();
+        Lens();
+        SwitchItems();
+    }
+
+    private void GetMovement()
+    {
+        Vector3 forward = playerCamera.transform.TransformDirection(Vector3.forward);
+        forward.y = 0;
+        forward = forward.normalized;
+        Vector3 right = new Vector3(forward.z, 0, -forward.x);
+
+        float moveHorizontal = Input.GetAxis(playerPrefix + "Horizontal");
+        float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
+        movementPlayer = (moveHorizontal * right + moveVertical * forward).normalized;
+    }
+
+    private void Movement()
+    {
+        if (movementPlayer != Vector3.zero)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, magnetDistance))
-            {
-                Debug.Log(hit.distance);
-                if (hit.collider.tag == "Magnetic")
-                {
-                    // Sticking to objects will be added here
-                    verticalVelocity = 0;
-                    movementPlayer = Vector3.zero;
-                    controller.Move(transform.forward * Time.deltaTime * magnetVelocity);
-                }
-                else if (hit.collider.tag == "Metallic")
-                {
-                    // And magnetic lifting here
-                    hit.transform.Translate(-transform.forward * Time.deltaTime * magnetVelocity);
-                }
-            }
-        }
-
-
-        if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
-            pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
-            pushBlock = null;
-			grabbing = false;
-			currentSpeed = defaultSpeed;
-
-		}
-
-
-        if (movementPlayer != Vector3.zero) {
-            movementPlayer = playerCamera.transform.TransformDirection(movementPlayer);
-            movementPlayer.y = 0.0f;
-
+            
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
             if (!firstPerson && !lockOn && !grabbing)
             {
@@ -174,7 +223,73 @@ public class PlayerControl : MonoBehaviour {
             }
         }
 
-        //gravity
+        if (dash)
+        {
+            verticalVelocity = -gravity * Time.deltaTime;
+            controller.Move(dashDir * currentSpeed * Time.deltaTime);
+        }
+        else
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
+        {
+            movementPlayer.y = verticalVelocity;
+            controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+        }
+    }
+
+<<<<<<< HEAD
+
+        if (grabbing && !Input.GetButton(playerPrefix + "Action")) {
+=======
+    private void Grabbing()
+    {
+        if (grabbing && !Input.GetButton(playerPrefix + "Action"))
+        {
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
+            pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
+            pushBlock = null;
+			grabbing = false;
+			currentSpeed = defaultSpeed;
+
+<<<<<<< HEAD
+		}
+
+
+        if (movementPlayer != Vector3.zero) {
+            movementPlayer = playerCamera.transform.TransformDirection(movementPlayer);
+            movementPlayer.y = 0.0f;
+=======
+        if (grabbing && !firstPerson)
+        {
+            Vector3 direction = transform.position - pushBlock.transform.position;
+            direction = direction.normalized;
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
+
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
+            {
+                movementPlayer.z = 0.0f;
+
+            }
+            else
+            {
+                movementPlayer.x = 0.0f;
+            }
+            currentSpeed = pushingSpeed;
+            movementPlayer.y = 0;
+            bool canMove = pushBlock.GetComponent<PushBlock>().Move(movementPlayer, currentSpeed);
+            if (!canMove)
+            {
+                movementPlayer = Vector3.zero;
+            }
+        }
+        if (grabbing && !Input.GetButton(playerPrefix + "Action"))
+        {
+            grabbing = false;
+            currentSpeed = defaultSpeed;
+        }
+    }
+
+    private void Gravity()
+    {
         if (controller.isGrounded)
         {
             verticalVelocity = -gravity * Time.deltaTime;
@@ -187,7 +302,9 @@ public class PlayerControl : MonoBehaviour {
         {
             verticalVelocity -= gravity * Time.deltaTime;
         }
+    }
 
+<<<<<<< HEAD
         //movement
         
         
@@ -269,6 +386,10 @@ public class PlayerControl : MonoBehaviour {
         }
 
 
+=======
+    private void SwitchItems()
+    {
+>>>>>>> 964bbe934c17c3da8ea10f3a9d0a9aba541fbb3f
         if (Input.GetButtonDown(playerPrefix + "Action"))
         {
             if (canChangeItem)
@@ -311,6 +432,101 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
+    private void Lens()
+    {
+        if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.seeThrough)
+        {
+            if (canSee)
+            {
+                _playerCamera.cullingMask = ~(1 << 8);
+                _playerCamera.cullingMask |= (1 << 9);
+                canSee = false;
+            }
+            else
+            {
+                _playerCamera.cullingMask |= (1 << 8);
+                _playerCamera.cullingMask = ~(1 << 9);
+
+                canSee = true;
+            }
+        }
+    }
+
+    private void CheckDeath()
+    {
+        if (transform.position.y < -15 || health <= 0)
+        {
+            transform.position = new Vector3(0, 2, 0);
+            health = 10.0f;
+        }
+    }
+
+    private void Magnet()
+    {
+        // Magnet
+        // Works when no GrabSpot is present
+        if (Input.GetButton(playerPrefix + "Item") && myItem == Items.magnet)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, magnetDistance))
+            {
+                Debug.Log(hit.distance);
+                if (hit.collider.tag == "Magnetic")
+                {
+                    // Sticking to objects will be added here
+                    verticalVelocity = 0;
+                    movementPlayer = Vector3.zero;
+                    controller.Move(transform.forward * Time.deltaTime * magnetVelocity);
+                }
+                else if (hit.collider.tag == "Metallic")
+                {
+                    // And magnetic lifting here
+                    hit.transform.Translate(-transform.forward * Time.deltaTime * magnetVelocity);
+                }
+            }
+        }
+    }
+
+    private void Dashing()
+    {
+        if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
+        {
+            if (canAirDash || controller.isGrounded)
+            {
+                dashDir = movementPlayer.normalized;
+                dashDir = playerCamera.transform.TransformDirection(dashDir);
+                dashDir.y = 0.0f;
+                dash = true;
+                currentSpeed = dashSpeed;
+                var effect = Instantiate(speedEffect, transform.position, Quaternion.identity);
+                effect.transform.parent = gameObject.transform;
+            }
+        }
+
+        if (dash)
+        {
+            if (invulTime >= dashTime)
+            {
+                playerHitbox.SetActive(false);
+            }
+            else
+            {
+                playerHitbox.SetActive(true);
+            }
+            grabbing = false;
+            movementPlayer = Vector3.zero;
+            dashTime += Time.deltaTime;
+
+            if (dashTime >= dashDuration)
+            {
+                dash = false;
+                canAirDash = false;
+                currentSpeed = defaultSpeed;
+                dashTime = 0;
+            }
+        }
+    }
+
     private GameObject FindClosestItemSpawner()
     {
         GameObject[] gos;
@@ -335,7 +551,6 @@ public class PlayerControl : MonoBehaviour {
     {
         health -= dmg;
     }
-
 
     private void Shooting()
     {
@@ -371,6 +586,14 @@ public class PlayerControl : MonoBehaviour {
 
     private void FirstPersonControls()
     {
+        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+        {
+            firstPerson = true;
+        }
+        else
+        {
+            firstPerson = false;
+        }
         if (firstPerson)
         {
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
@@ -452,6 +675,11 @@ public class PlayerControl : MonoBehaviour {
         {
             shootingLevel++;
             Destroy(other.gameObject);
+        }
+
+        if (other.tag == "SlidingIce")
+        {
+            
         }
     }
 
