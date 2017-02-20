@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     public float magnetDistance;
     public float magnetVelocity;
 
-    enum Items
+    public enum Items
     {
         none,
         jump,
@@ -71,7 +71,6 @@ public class PlayerControl : MonoBehaviour
     private bool lockOn;
     private bool firstPerson;
     private bool grabbing;
-    private bool ability;
     private bool canSee;
     private bool canChangeItem;
     private bool canAirDash;
@@ -102,9 +101,6 @@ public class PlayerControl : MonoBehaviour
         jumpForce = playerManager.jumpForce;
         lockOnArrow = transform.Find("LockOnArrow");
         myItem = Items.none;
-        
-        gravity = 10f;
-        jumpForce = 4f;
 
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
