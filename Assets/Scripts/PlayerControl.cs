@@ -219,11 +219,16 @@ public class PlayerControl : MonoBehaviour
 
     private void SwitchItems()
     {
-        if (Input.GetButtonDown(playerPrefix + "Action"))
+
+        if (canChangeItem)
         {
-            if (canChangeItem)
+            int itemAvailable = FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().checkActive();
+            if(itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none) 
             {
-                int itemAvailable = FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().checkActive();
+                _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
+            }
+            if (Input.GetButtonDown(playerPrefix + "Action"))
+            {
                 FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().changeActive((int)myItem);
                 switch (itemAvailable)
                 {
@@ -259,6 +264,9 @@ public class PlayerControl : MonoBehaviour
                         break;
                 }
             }
+        }else
+        {
+            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
         }
     }
 
