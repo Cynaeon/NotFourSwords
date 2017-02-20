@@ -7,11 +7,13 @@ public class UIManager : MonoBehaviour {
     public Image seeThroughImage;
     public Image jumpImage;
     public Image magnetImage;
+    public Image notificationImage;
 	// Use this for initialization
 	void Start () {
         seeThroughImage.enabled = false;
         jumpImage.enabled = false;
         magnetImage.enabled = false;
+        notificationImage.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -29,5 +31,9 @@ public class UIManager : MonoBehaviour {
     public void EnableMagnet(bool state)
     {
         magnetImage.enabled = state;
+    }
+    public void EnableNotification(bool state)
+    {
+        notificationImage.enabled = state;
     }
 }

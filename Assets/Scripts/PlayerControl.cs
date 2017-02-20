@@ -75,8 +75,7 @@ public class PlayerControl : MonoBehaviour
     private bool grabbing;
     private bool canSee;
     private bool canChangeItem;
-    private bool canAirDash;
-    private bool hasJumped;
+    private bool canDash;
     private bool dash;
     #endregion
 
@@ -204,28 +203,32 @@ public class PlayerControl : MonoBehaviour
     {
         if (controller.isGrounded)
         {
+            canDash = true;
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.jump)
             {
                 verticalVelocity = jumpForce;
-                hasJumped = true;
-                canAirDash = true;
             }
         }
         else
         {
-            hasJumped = false;
+
             verticalVelocity -= gravity * Time.deltaTime;
         }
     }
 
     private void SwitchItems()
     {
-        if (Input.GetButtonDown(playerPrefix + "Action"))
+
+        if (canChangeItem)
         {
-            if (canChangeItem)
+            int itemAvailable = FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().checkActive();
+            if(itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none) 
             {
-                int itemAvailable = FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().checkActive();
+                _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
+            }
+            if (Input.GetButtonDown(playerPrefix + "Action"))
+            {
                 FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().changeActive((int)myItem);
                 switch (itemAvailable)
                 {
@@ -256,10 +259,14 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().EnableJump(false);
                         _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
                         _playerCanvas.GetComponent<UIManager>().EnableMagnet(true);
-
+                        _playerCamera.cullingMask = ~(1 << 8);
+                        canSee = false;
                         break;
                 }
             }
+        }else
+        {
+            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
         }
     }
 
@@ -322,7 +329,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
         {
-            if (canAirDash || controller.isGrounded)
+            if (canDash)
             {
                 dashDir = movementPlayer.normalized;
                 //dashDir = playerCamera.transform.TransformDirection(dashDir);
@@ -350,8 +357,9 @@ public class PlayerControl : MonoBehaviour
 
             if (dashTime >= dashDuration)
             {
+
+                canDash = false;
                 dash = false;
-                canAirDash = false;
                 currentSpeed = defaultSpeed;
                 dashTime = 0;
             }
@@ -519,99 +527,6 @@ public class PlayerControl : MonoBehaviour
                 lockOnTarget = enemyList[switchTarget].transform;
             }
         }
-        /*
-        // When not pressing lock on, scan nearby area for enemies. Display the lock on arrow on top of the closest enemy.
-        if (!lockOn)
-        {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            float closestDist = 0;
-            Transform closestEnemy = null;
-
-            foreach (GameObject enemy in enemies)
-            {
-                float dist = Vector3.Distance(enemy.transform.position, transform.position);
-                if (closestDist == 0)
-                {
-                    closestDist = dist;
-                    closestEnemy = enemy.transform;
-                }
-                else if (closestDist > dist)
-                {
-                    closestDist = dist;
-                    closestEnemy = enemy.transform;
-                }
-            }
-
-            if (closestDist != 0 && closestDist < lockAcquisitionRange)
-            {
-                lockOnTarget = closestEnemy;
-                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
-                lockOnArrow.gameObject.SetActive(true);
-                lockOnArrow.transform.position = arrowPos;
-            }
-            else
-            {
-                lockOnArrow.gameObject.SetActive(false);
-                lockOnTarget = null;
-            }
-        }
-        // If pressing lock on, stop scanning for enemies and keep the arrow on the locked on enemy if there was one. 
-        else
-        {
-            if (lockOnTarget != null)
-            {
-                if (Vector3.Distance(lockOnTarget.transform.position, transform.position) <= lockMaxRange)
-                {
-                    transform.LookAt(lockOnTarget);
-                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
-                    lockOnArrow.transform.position = arrowPos;
-                }
-                else
-                {
-                    lockOnTarget = null;
-                    lockOnArrow.gameObject.SetActive(false);
-                }
-            }
-            else
-            {
-                lockOnTarget = null;
-                lockOnArrow.gameObject.SetActive(false);
-            }
-
-            if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
-            {
-                Debug.Log("karadfsdf");
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-                float closestDist = 0;
-                Transform closestEnemy = null;
-
-                foreach (GameObject enemy in enemies)
-                {
-                    if (enemy != lockOnTarget) { 
-                        float dist = Vector3.Distance(enemy.transform.position, transform.position);
-                        if (closestDist == 0)
-                        {
-                            closestDist = dist;
-                            closestEnemy = enemy.transform;
-                        
-                        }
-                        else if (closestDist > dist)
-                        {
-                            closestDist = dist;
-                            closestEnemy = enemy.transform;
-                        }
-                    }
-                }
-                if (closestDist != 0 && closestDist < lockAcquisitionRange)
-                {
-                    lockOnTarget = closestEnemy;
-                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
-                    lockOnArrow.gameObject.SetActive(true);
-                    lockOnArrow.transform.position = arrowPos;
-                }
-            }
-        }
-        */
     }
 
     void OnTriggerStay(Collider other)
