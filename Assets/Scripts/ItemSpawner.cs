@@ -2,36 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpawner : MonoBehaviour {
+public class ItemSpawner : MonoBehaviour
+{
     List<GameObject> Items = new List<GameObject>();
-
     public GameObject none;
-    public GameObject jumpItem;
-    public GameObject seeThroughItem;
-    public GameObject magnetItem;
-    
-    [SerializeField] private int _active = 1;
+    public GameObject feather;
+    public GameObject lens;
+    public GameObject magnet;
+
+    public enum _items
+    {
+        none,
+        feather,
+        lens,
+        magnet
+    }
+
+    public _items _active;
 
 
     // Use this for initialization
     void Start()
     {
         Items.Add(none);
-        Items.Add(jumpItem);
-        Items.Add(seeThroughItem);
-        Items.Add(magnetItem);
-        Items[_active].SetActive(true);
-	}
+        Items.Add(feather);
+        Items.Add(lens);
+        Items.Add(magnet);
+        Items[(int)_active].SetActive(true);
+    }
 
     public int checkActive()
     {
-        return _active;
+        return (int)_active;
     }
 
     public void changeActive(int receivedItem)
     {
-            Items[_active].SetActive(false);
-            _active = receivedItem;
-            Items[_active].SetActive(true);
+        Items[(int)_active].SetActive(false);
+        switch (receivedItem)
+        {
+            case 0:
+                _active = _items.none;
+                break;
+            case 1:
+                _active = _items.feather;
+                break;
+            case 2:
+                _active = _items.lens;
+                break;
+            case 3:
+                _active = _items.magnet;
+                break;
+
+        }
+
+        Items[(int)_active].SetActive(true);
     }
 }

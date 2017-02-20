@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
 	void Start () {
         seeThroughImage.enabled = false;
         jumpImage.enabled = false;
+        magnetImage.enabled = false;
 	}
 	
 	// Update is called once per frame
