@@ -141,7 +141,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (movementPlayer != Vector3.zero)
         {
-            
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
             if (!firstPerson && !lockOn && !grabbing)
             {
