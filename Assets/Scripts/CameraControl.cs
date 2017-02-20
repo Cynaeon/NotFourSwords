@@ -16,6 +16,7 @@ public class CameraControl : MonoBehaviour
     float y = 0.0f;
     
     private float distance;
+    private float defaultDist;
     private float xSpeed;
     private float ySpeed;
     private float yMinLimit;
@@ -23,7 +24,6 @@ public class CameraControl : MonoBehaviour
     //private float distanceMin;
     //private float distanceMax;
 
-    // Use this for initialization
     void Start()
     {
         GameObject cameraManagerGO = GameObject.Find("CameraManager");
@@ -33,6 +33,7 @@ public class CameraControl : MonoBehaviour
         ySpeed = cameraManager.ySpeed;
         yMinLimit = cameraManager.yMinLimit;
         yMaxLimit = cameraManager.yMaxLimit;
+        defaultDist = distance;
         //distanceMin = cameraManager.distanceMin;
         //distanceMax = cameraManager.distanceMax;
 
@@ -68,17 +69,27 @@ public class CameraControl : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(y, x, 0);
 
             #region Bonus stuff
+            
             // We could use this if we want to give the player the ability to zoom in and out with the cam
-            //distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+            
+            //distance = Mathf.Clamp(distance * 5, 1, 10);
 
             // We could use this to prevent the cam from clipping into walls etc.
-            /*
+            
+            Debug.DrawLine(transform.position, target.position, Color.green, 2);
+            
             RaycastHit hit;
             if (Physics.Linecast(target.position, transform.position, out hit))
             {
-                distance -= hit.distance;
+                if (hit.transform.tag != "Player")
+                {
+                    distance = hit.distance;
+                }
+            } else
+            {
+                distance = defaultDist;
             }
-            */
+            
             #endregion
 
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
@@ -89,7 +100,8 @@ public class CameraControl : MonoBehaviour
 
             if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
             {
-                transform.position = target.position;transform.rotation = target.rotation;
+                transform.position = target.position;
+                transform.rotation = target.rotation;
             }
         }
     }
