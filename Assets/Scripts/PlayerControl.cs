@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class PlayerControl : MonoBehaviour
 {
     public float magnetDistance;
@@ -64,6 +65,7 @@ public class PlayerControl : MonoBehaviour
     private float burstSpeed;
     private Transform lockOnTarget = null;
     private Vector3 dashDir;
+    private int switchTarget;
     #endregion
 
     #region Private Booleans
@@ -451,6 +453,77 @@ public class PlayerControl : MonoBehaviour
     {
         lockOn = Input.GetButton(playerPrefix + "LockOn");
 
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        var enemyList = new List<GameObject>();
+
+        foreach (GameObject enemy in enemies)
+        {
+            if (Vector3.Distance(enemy.transform.position, transform.position) < lockAcquisitionRange)
+            {
+                enemyList.Add(enemy);
+            }
+        }
+
+        enemyList.Sort(delegate (GameObject a, GameObject b)
+        {
+            return Vector2.Distance(this.transform.position, a.transform.position)
+            .CompareTo(
+              Vector2.Distance(this.transform.position, b.transform.position));
+        });
+
+        if (!lockOn)
+        {
+            if (enemyList.Count > 0)
+            {
+                switchTarget = 0;
+                if (Vector3.Distance(enemyList[0].transform.position, transform.position) < lockAcquisitionRange)
+                {
+                    lockOnTarget = enemyList[0].transform;
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                    lockOnArrow.gameObject.SetActive(true);
+                    lockOnArrow.transform.position = arrowPos;
+                }
+                else
+                {
+                    lockOnArrow.gameObject.SetActive(false);
+                    lockOnTarget = null;
+                }
+            }
+        }
+        // Locked on
+        else
+        {
+            if (lockOnTarget != null)
+            {
+                if (Vector3.Distance(lockOnTarget.transform.position, transform.position) <= lockMaxRange)
+                {
+                    transform.LookAt(lockOnTarget);
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                    lockOnArrow.transform.position = arrowPos;
+                }
+                else
+                {
+                    lockOnTarget = null;
+                    lockOnArrow.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                lockOnTarget = null;
+                lockOnArrow.gameObject.SetActive(false);
+            }
+
+            if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
+            {
+                switchTarget++;
+                if (switchTarget >= enemyList.Count)
+                {
+                    switchTarget = 0;
+                }
+                lockOnTarget = enemyList[switchTarget].transform;
+            }
+        }
+        /*
         // When not pressing lock on, scan nearby area for enemies. Display the lock on arrow on top of the closest enemy.
         if (!lockOn)
         {
@@ -542,6 +615,7 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     void OnTriggerStay(Collider other)
