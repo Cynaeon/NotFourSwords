@@ -25,7 +25,6 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerHitbox;
     public Texture2D crosshairTexture;
     public float crosshairScale = 1;
-    public CharacterController controller;
     #endregion
 
     #region Player Attributes
@@ -38,10 +37,12 @@ public class PlayerControl : MonoBehaviour
     private float dashDuration;
     private float invulTime;
     private float lockAcquisitionRange;
+    private float lockMaxRange;
     private Collider _grabSpot;
     #endregion
 
     #region Other Objects
+    private CharacterController controller;
     private ParticleSystem speedEffect;
     private GameObject bolt;
     private Transform lockOnArrow;
@@ -94,6 +95,7 @@ public class PlayerControl : MonoBehaviour
         dashDuration = playerManager.dashDuration;
         invulTime = playerManager.invulTime;
         lockAcquisitionRange = playerManager.lockAcquisitionRange;
+        lockMaxRange = playerManager.lockMaxRange;
         speedEffect = playerManager.speedEffect;
         bolt = playerManager.bolt;
         gravity = playerManager.gravity;
@@ -270,13 +272,13 @@ public class PlayerControl : MonoBehaviour
             if (canSee)
             {
                 _playerCamera.cullingMask = ~(1 << 8);
-                _playerCamera.cullingMask |= (1 << 9);
+                _playerCamera.cullingMask |= (1 << 10);
                 canSee = false;
             }
             else
             {
                 _playerCamera.cullingMask |= (1 << 8);
-                _playerCamera.cullingMask = ~(1 << 9);
+                _playerCamera.cullingMask = ~(1 << 10);
 
                 canSee = true;
             }
@@ -325,7 +327,7 @@ public class PlayerControl : MonoBehaviour
             if (canAirDash || controller.isGrounded)
             {
                 dashDir = movementPlayer.normalized;
-                dashDir = playerCamera.transform.TransformDirection(dashDir);
+                //dashDir = playerCamera.transform.TransformDirection(dashDir);
                 dashDir.y = 0.0f;
                 dash = true;
                 currentSpeed = dashSpeed;
@@ -487,15 +489,57 @@ public class PlayerControl : MonoBehaviour
         // If pressing lock on, stop scanning for enemies and keep the arrow on the locked on enemy if there was one. 
         else
         {
-            transform.LookAt(lockOnTarget);
             if (lockOnTarget != null)
             {
-                Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
-                lockOnArrow.transform.position = arrowPos;
+                if (Vector3.Distance(lockOnTarget.transform.position, transform.position) <= lockMaxRange)
+                {
+                    transform.LookAt(lockOnTarget);
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                    lockOnArrow.transform.position = arrowPos;
+                }
+                else
+                {
+                    lockOnTarget = null;
+                    lockOnArrow.gameObject.SetActive(false);
+                }
             }
             else
             {
+                lockOnTarget = null;
                 lockOnArrow.gameObject.SetActive(false);
+            }
+
+            if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
+            {
+                Debug.Log("karadfsdf");
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                float closestDist = 0;
+                Transform closestEnemy = null;
+
+                foreach (GameObject enemy in enemies)
+                {
+                    if (enemy != lockOnTarget) { 
+                        float dist = Vector3.Distance(enemy.transform.position, transform.position);
+                        if (closestDist == 0)
+                        {
+                            closestDist = dist;
+                            closestEnemy = enemy.transform;
+                        
+                        }
+                        else if (closestDist > dist)
+                        {
+                            closestDist = dist;
+                            closestEnemy = enemy.transform;
+                        }
+                    }
+                }
+                if (closestDist != 0 && closestDist < lockAcquisitionRange)
+                {
+                    lockOnTarget = closestEnemy;
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                    lockOnArrow.gameObject.SetActive(true);
+                    lockOnArrow.transform.position = arrowPos;
+                }
             }
         }
     }
