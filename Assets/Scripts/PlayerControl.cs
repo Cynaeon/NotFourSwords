@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float magnetDistance;
+    public float maxMagnetDistance;
     public float magnetVelocity;
+    public float minMagnetDistance;
+    private bool _magnetActive;
 
     public enum Items
     {
@@ -112,8 +114,8 @@ public class PlayerControl : MonoBehaviour
         // ¯\_(ツ)_/¯
         GetMovement();
         Dashing();
-        Magnet();
         Gravity();
+        Magnet();
         FirstPersonControls();
         Grabbing();
         Movement();
@@ -141,7 +143,7 @@ public class PlayerControl : MonoBehaviour
         if (movementPlayer != Vector3.zero)
         {
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
-            if (!firstPerson && !lockOn && !grabbing)
+            if (!firstPerson && !lockOn && !grabbing && !_magnetActive)
             {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -162,6 +164,14 @@ public class PlayerControl : MonoBehaviour
 
     private void Grabbing()
     {
+        if (Input.GetButton(playerPrefix + "Item"))
+        {
+            _grabSpot.enabled = false;
+        } else
+        {
+            _grabSpot.enabled = true;
+        }
+        
         if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
@@ -305,8 +315,9 @@ public class PlayerControl : MonoBehaviour
         // Works when no GrabSpot is present
         if (Input.GetButton(playerPrefix + "Item") && myItem == Items.magnet)
         {
+            _magnetActive = true;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, magnetDistance))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, maxMagnetDistance))
             {
                 Debug.Log(hit.distance);
                 if (hit.collider.tag == "Magnetic")
@@ -314,7 +325,10 @@ public class PlayerControl : MonoBehaviour
                     // Sticking to objects will be added here
                     verticalVelocity = 0;
                     movementPlayer = Vector3.zero;
-                    controller.Move(transform.forward * Time.deltaTime * magnetVelocity);
+                    if (hit.distance >= minMagnetDistance)
+                    {
+                        controller.Move(transform.forward * Time.deltaTime * magnetVelocity);
+                    }
                 }
                 else if (hit.collider.tag == "Metallic")
                 {
@@ -322,6 +336,9 @@ public class PlayerControl : MonoBehaviour
                     hit.transform.Translate(-transform.forward * Time.deltaTime * magnetVelocity);
                 }
             }
+        } else
+        {
+            _magnetActive = false;
         }
     }
 
