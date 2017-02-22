@@ -333,7 +333,10 @@ public class PlayerControl : MonoBehaviour
                 else if (hit.collider.tag == "Metallic")
                 {
                     // And magnetic lifting here
-                    hit.transform.Translate(-transform.forward * Time.deltaTime * magnetVelocity);
+                    if (hit.distance >= minMagnetDistance)
+                    {
+                        hit.transform.Translate(-transform.forward * Time.deltaTime * magnetVelocity);
+                    }
                 }
             }
         } else
@@ -460,7 +463,7 @@ public class PlayerControl : MonoBehaviour
         {
             firstPerson = false;
         }
-        if (firstPerson)
+        if (firstPerson && !_magnetActive)
         {
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
             float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
