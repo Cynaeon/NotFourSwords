@@ -67,16 +67,8 @@ public class CameraControl : MonoBehaviour
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
-
-            #region Bonus stuff
             
-            // We could use this if we want to give the player the ability to zoom in and out with the cam
-            
-            //distance = Mathf.Clamp(distance * 5, 1, 10);
-
-            // We could use this to prevent the cam from clipping into walls etc.
-            
-            Debug.DrawLine(transform.position, target.position, Color.green, 2);
+            //Debug.DrawLine(transform.position, target.position, Color.green, 2);
             
             RaycastHit hit;
             if (Physics.Linecast(target.position, transform.position, out hit))
@@ -89,8 +81,6 @@ public class CameraControl : MonoBehaviour
             {
                 distance = defaultDist;
             }
-            
-            #endregion
 
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
             Vector3 position = rotation * negDistance + target.position;

@@ -20,6 +20,11 @@ public class Hitbox : MonoBehaviour {
         {
             player.GetComponent<PlayerControl>().ItemStateChange(true);
         }
+        if (other.tag == "PowerUp")
+        {
+            player.GetComponent<PlayerControl>().IncreaseShootingLevel(1);
+            Destroy(other.gameObject);
+        }
     }
     void OnTriggerExit(Collider other)
     {

@@ -75,6 +75,7 @@ public class PlayerControl : MonoBehaviour
     private bool lockOn;
     private bool firstPerson;
     private bool grabbing;
+    private bool climbing;
     private bool canSee;
     private bool canChangeItem;
     private bool canDash;
@@ -143,7 +144,8 @@ public class PlayerControl : MonoBehaviour
         if (movementPlayer != Vector3.zero)
         {
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
-            if (!firstPerson && !lockOn && !grabbing && !_magnetActive)
+            // Put a boolean in the if-statement if you don't want the player to rotate
+            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
             {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -154,6 +156,12 @@ public class PlayerControl : MonoBehaviour
         {
             verticalVelocity = -gravity * Time.deltaTime;
             controller.Move(dashDir * currentSpeed * Time.deltaTime);
+        }
+        else if (climbing)
+        {
+            float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
+            movementPlayer = new Vector3(0, moveVertical, 0);
+            controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
         }
         else
         {
@@ -220,7 +228,7 @@ public class PlayerControl : MonoBehaviour
                 verticalVelocity = jumpForce;
             }
         }
-        else
+        else if (!climbing)
         {
 
             verticalVelocity -= gravity * Time.deltaTime;
@@ -411,6 +419,11 @@ public class PlayerControl : MonoBehaviour
         health -= dmg;
     }
 
+    public void IncreaseShootingLevel(int upgrade)
+    {
+        shootingLevel += upgrade;
+    }
+
     private void Shooting()
     {
         if (shootingLevel == 0)
@@ -564,15 +577,23 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (other.tag == "PowerUp")
+        if (other.tag == "Ladder")
         {
-            shootingLevel++;
-            Destroy(other.gameObject);
+            if (Input.GetButtonDown(playerPrefix + "Action"))
+            {
+                if (!climbing)
+                {
+                    climbing = true;
+                } else
+                {
+                    climbing = false;
+                }
+            }
         }
 
         if (other.tag == "SlidingIce")
         {
-            
+            // xD
         }
     }
 
@@ -591,6 +612,14 @@ public class PlayerControl : MonoBehaviour
                 pushBlock = null;
                 grabbing = false;
                 currentSpeed = defaultSpeed;
+            }
+        }
+
+        if (other.tag == "Ladder")
+        {
+            if (climbing)
+            {
+                climbing = false;
             }
         }
     }
