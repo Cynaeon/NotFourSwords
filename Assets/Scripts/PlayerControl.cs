@@ -28,6 +28,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerHitbox;
     public Texture2D crosshairTexture;
     public float crosshairScale = 1;
+    public GameObject trailModel;
+    public GameObject playerModel;
     #endregion
 
     #region Player Attributes
@@ -38,6 +40,7 @@ public class PlayerControl : MonoBehaviour
     private float shootingSpeed;
     private float shootingLevel;
     private float dashDuration;
+    private float afterImageRatio;
     private float invulTime;
     private float lockAcquisitionRange;
     private float lockMaxRange;
@@ -46,7 +49,6 @@ public class PlayerControl : MonoBehaviour
 
     #region Other Objects
     private CharacterController controller;
-    private ParticleSystem speedEffect;
     private GameObject bolt;
     private Transform lockOnArrow;
     private Renderer lockOnRend;
@@ -62,6 +64,7 @@ public class PlayerControl : MonoBehaviour
     private float gravity;
     private float jumpForce;
     private float dashTime;
+    private float afterImageTime;
     private float lastShot;
     private int burstCount;
     private float burstSpeed;
@@ -96,10 +99,10 @@ public class PlayerControl : MonoBehaviour
         shootingSpeed = playerManager.shootingSpeed;
         burstSpeed = playerManager.burstSpeed;
         dashDuration = playerManager.dashDuration;
+        afterImageRatio = playerManager.afterImageRatio;
         invulTime = playerManager.invulTime;
         lockAcquisitionRange = playerManager.lockAcquisitionRange;
         lockMaxRange = playerManager.lockMaxRange;
-        speedEffect = playerManager.speedEffect;
         bolt = playerManager.bolt;
         gravity = playerManager.gravity;
         jumpForce = playerManager.jumpForce;
@@ -156,6 +159,14 @@ public class PlayerControl : MonoBehaviour
         {
             verticalVelocity = -gravity * Time.deltaTime;
             controller.Move(dashDir * currentSpeed * Time.deltaTime);
+            // Create cool after images
+            afterImageTime -= Time.deltaTime;
+            if (afterImageTime <= 0)
+            {
+                Quaternion rot = playerModel.transform.rotation;
+                Instantiate(trailModel, transform.position, rot);
+                afterImageTime = afterImageRatio;
+            }
         }
         else if (climbing)
         {
@@ -364,8 +375,6 @@ public class PlayerControl : MonoBehaviour
                 dashDir.y = 0.0f;
                 dash = true;
                 currentSpeed = dashSpeed;
-                var effect = Instantiate(speedEffect, transform.position, Quaternion.identity);
-                effect.transform.parent = gameObject.transform;
             }
         }
 
@@ -525,6 +534,11 @@ public class PlayerControl : MonoBehaviour
                     lockOnArrow.gameObject.SetActive(false);
                     lockOnTarget = null;
                 }
+            } 
+            else
+            {
+                lockOnArrow.gameObject.SetActive(false);
+                lockOnTarget = null;
             }
         }
         // Locked on

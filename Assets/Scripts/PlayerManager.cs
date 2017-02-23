@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour {
     public float shootingSpeed = 0.5f;
     public float burstSpeed = 0.2f;
     public float dashDuration = 0.5f;
+    public float afterImageRatio = 0.1f;
     public float invulTime = 0.2f;
     public float lockAcquisitionRange = 5.0f;
     public float lockMaxRange = 15.0f;
@@ -19,7 +20,6 @@ public class PlayerManager : MonoBehaviour {
     public float jumpForce = 4f;
 
     public Transform playerCamera;
-    public ParticleSystem speedEffect;
     public GameObject bolt;
 
     public GameObject player1;
