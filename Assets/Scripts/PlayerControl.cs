@@ -20,6 +20,16 @@ public class PlayerControl : MonoBehaviour
     }
     private Items myItem;
 
+    public enum StateOfTheAnimation
+    {
+        idle,
+        running,
+        dashing
+
+    }
+    private StateOfTheAnimation activeState;
+    private Animator anime;
+
     #region Public Objects
     public string playerPrefix;
     public Transform playerCamera;
@@ -90,6 +100,7 @@ public class PlayerControl : MonoBehaviour
         #region Get player attributes from manager
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
+        anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         health = playerManager.health;
         defaultSpeed = playerManager.defaultSpeed;
@@ -108,7 +119,7 @@ public class PlayerControl : MonoBehaviour
         jumpForce = playerManager.jumpForce;
         lockOnArrow = transform.Find("LockOnArrow");
         myItem = Items.none;
-
+        activeState = StateOfTheAnimation.idle;
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
     }
@@ -128,6 +139,7 @@ public class PlayerControl : MonoBehaviour
         CheckDeath();
         Lens();
         SwitchItems();
+        Animations();
     }
 
     private void GetMovement()
@@ -176,6 +188,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
+
             movementPlayer.y = verticalVelocity;
             controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
         }
@@ -388,13 +401,14 @@ public class PlayerControl : MonoBehaviour
             {
                 playerHitbox.SetActive(true);
             }
+            activeState = StateOfTheAnimation.dashing;
             grabbing = false;
             movementPlayer = Vector3.zero;
             dashTime += Time.deltaTime;
 
             if (dashTime >= dashDuration)
             {
-
+                activeState = StateOfTheAnimation.idle;
                 canDash = false;
                 dash = false;
                 currentSpeed = defaultSpeed;
@@ -645,5 +659,35 @@ public class PlayerControl : MonoBehaviour
             GUI.DrawTexture(new Rect((Screen.width - crosshairTexture.width * crosshairScale) / 2, (Screen.height - crosshairTexture.height * crosshairScale) / 2, crosshairTexture.width * crosshairScale, crosshairTexture.height * crosshairScale), crosshairTexture);
         }
     }
+
+    public void Animations()
+    {
+        if (movementPlayer.x != 0 || movementPlayer.z != 0)
+        {
+            activeState = StateOfTheAnimation.running;
+        }
+        if (movementPlayer.x == 0 && movementPlayer.z == 0 && !dash)
+        {
+            activeState = StateOfTheAnimation.idle;
+        }
+        if (activeState == StateOfTheAnimation.dashing)
+        {
+            anime.SetBool("Dashing", true);
+        }
+        else
+        {
+            anime.SetBool("Dashing", false);
+        }
+        if (activeState == StateOfTheAnimation.running)
+        {
+            anime.SetBool("Running", true);
+        }
+        else
+        {
+            anime.SetBool("Running", false);
+        }
+    }
+
+
 
 }
