@@ -43,7 +43,8 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
     #region Player Attributes
-    private float health;
+    [HideInInspector] public float maxHealth;
+    [HideInInspector] public float currentHealth;
     private float defaultSpeed;
     private float dashSpeed;
     private float pushingSpeed;
@@ -102,7 +103,8 @@ public class PlayerControl : MonoBehaviour
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
         anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
-        health = playerManager.health;
+        currentHealth = playerManager.health;
+        maxHealth = playerManager.health;
         defaultSpeed = playerManager.defaultSpeed;
         currentSpeed = defaultSpeed;
         dashSpeed = playerManager.dashSpeed;
@@ -334,10 +336,10 @@ public class PlayerControl : MonoBehaviour
 
     private void CheckDeath()
     {
-        if (transform.position.y < -15 || health <= 0)
+        if (transform.position.y < -15 || currentHealth <= 0)
         {
             transform.position = new Vector3(0, 2, 0);
-            health = 10.0f;
+            currentHealth = 10.0f;
         }
     }
 
@@ -439,7 +441,12 @@ public class PlayerControl : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        health -= dmg;
+        currentHealth -= dmg;
+    }
+
+    public void HealDamage(float heal)
+    {
+        currentHealth += heal;
     }
 
     public void IncreaseShootingLevel(int upgrade)
@@ -616,6 +623,14 @@ public class PlayerControl : MonoBehaviour
                 {
                     climbing = false;
                 }
+            }
+        }
+
+        if (other.tag == "Pot")
+        {
+            if (dash)
+            {
+                other.GetComponent<Pot>().Destroy();
             }
         }
 

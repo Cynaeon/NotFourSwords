@@ -14,7 +14,7 @@ public class Hitbox : MonoBehaviour {
         }
         if (other.tag == "EnemyProjectile")
         {
-            player.GetComponent<PlayerControl>().TakeDamage(10.0f);
+            player.GetComponent<PlayerControl>().TakeDamage(5.0f);
         }
         if (other.tag == "ItemSpawner")
         {
@@ -23,6 +23,11 @@ public class Hitbox : MonoBehaviour {
         if (other.tag == "PowerUp")
         {
             player.GetComponent<PlayerControl>().IncreaseShootingLevel(1);
+            Destroy(other.gameObject);
+        }
+        if (other.tag == "Heart")
+        {
+            player.GetComponent<PlayerControl>().HealDamage(1.0f);
             Destroy(other.gameObject);
         }
     }
