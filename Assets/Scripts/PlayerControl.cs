@@ -328,7 +328,6 @@ public class PlayerControl : MonoBehaviour
             {
                 _playerCamera.cullingMask |= (1 << 8);
                 _playerCamera.cullingMask = ~(1 << 10);
-
                 canSee = true;
             }
         }
@@ -339,7 +338,7 @@ public class PlayerControl : MonoBehaviour
         if (transform.position.y < -15 || currentHealth <= 0)
         {
             transform.position = new Vector3(0, 2, 0);
-            currentHealth = 10.0f;
+            currentHealth = maxHealth;
         }
     }
 
