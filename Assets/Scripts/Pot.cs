@@ -3,30 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pot : MonoBehaviour {
-
-    public float health;
+    
     public GameObject heart;
-	
-	void Update () {
-		if (health <= 0)
-        {
-            Destroy();
-        }
-	}
+    private Animator anime;
+
+    void Start()
+    {
+        anime = GetComponentInChildren<Animator>();
+    }
 
     public void Destroy()
     {
+        Destroy(gameObject.GetComponent<CapsuleCollider>());
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
         Instantiate(heart, pos, transform.rotation);
         Instantiate(heart, pos, transform.rotation);
-        Destroy(gameObject);
+        anime.Play("Break");
+        
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerProjectile")
         {
-            health -= 1;
+            Destroy();
         }
     }
 }
