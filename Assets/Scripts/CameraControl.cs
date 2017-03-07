@@ -4,7 +4,6 @@ using System.Collections;
 [AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class CameraControl : MonoBehaviour
 {
-
     public Transform target;
     public Transform lockOnCameraSpot;
     public string playerPrefix;

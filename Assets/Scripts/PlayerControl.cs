@@ -69,6 +69,7 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
     #region Private Variables
+    private PlayerManager playerManager;
     private Vector3 movementPlayer;
     private float currentSpeed;
     private float verticalVelocity;
@@ -95,6 +96,7 @@ public class PlayerControl : MonoBehaviour
     private bool canDash;
     private bool dash;
     private FogDensity fogDensity;
+    private bool _isPaused;
     #endregion
 
     void Start()
@@ -102,7 +104,7 @@ public class PlayerControl : MonoBehaviour
         #region Get player attributes from manager
 
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
-        PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
+        playerManager = playerManagerGO.GetComponent<PlayerManager>();
         fogDensity = _playerCamera.GetComponent<FogDensity>();
         anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
@@ -132,19 +134,23 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-        GetMovement();
-        Dashing();
-        Gravity();
-        Magnet();
-        FirstPersonControls();
-        Grabbing();
-        Movement();
-        LockOnSystem();
-        Shooting();
-        CheckDeath();
-        SwitchItems();
-        Lens();
-        Animations();
+        _isPaused = playerManager.isPaused;
+        if (!_isPaused)
+        {
+            GetMovement();
+            Dashing();
+            Gravity();
+            Magnet();
+            FirstPersonControls();
+            Grabbing();
+            Movement();
+            LockOnSystem();
+            Shooting();
+            CheckDeath();
+            SwitchItems();
+            Lens();
+            Animations();
+        }
     }
 
     private void GetMovement()
