@@ -323,6 +323,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Lens()
     {
+        //
         if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.seeThrough)
         {
             if (canSee)
