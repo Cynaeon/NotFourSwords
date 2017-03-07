@@ -94,13 +94,16 @@ public class PlayerControl : MonoBehaviour
     private bool canChangeItem;
     private bool canDash;
     private bool dash;
+    private FogDensity fogDensity;
     #endregion
 
     void Start()
     {
         #region Get player attributes from manager
+
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
         PlayerManager playerManager = playerManagerGO.GetComponent<PlayerManager>();
+        fogDensity = _playerCamera.GetComponent<FogDensity>();
         anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         currentHealth = playerManager.health;
@@ -139,8 +142,8 @@ public class PlayerControl : MonoBehaviour
         LockOnSystem();
         Shooting();
         CheckDeath();
-        Lens();
         SwitchItems();
+        Lens();
         Animations();
     }
 
@@ -281,6 +284,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().EnableJump(false);
                         _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
                         _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
+                        fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -289,6 +293,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().EnableJump(true);
                         _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
                         _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
+                        fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -297,6 +302,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().EnableJump(false);
                         _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
                         _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
+                        canSee = true;
                         break;
                     case 3:
                         myItem = Items.magnet;
@@ -316,19 +322,24 @@ public class PlayerControl : MonoBehaviour
 
     private void Lens()
     {
-        //
         if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.seeThrough)
         {
             if (canSee)
             {
-                _playerCamera.cullingMask = ~(1 << 8);
-                _playerCamera.cullingMask |= (1 << 10);
+                fogDensity.fadeState(true);
+                _playerCamera.clearFlags = CameraClearFlags.SolidColor;
+                _playerCamera.cullingMask |= (1 << 8);
+                _playerCamera.cullingMask = ~(1 << 10);
                 canSee = false;
+
             }
             else
             {
-                _playerCamera.cullingMask |= (1 << 8);
-                _playerCamera.cullingMask = ~(1 << 10);
+                
+                _playerCamera.clearFlags = CameraClearFlags.Skybox;
+                fogDensity.fadeState(false);
+                _playerCamera.cullingMask = ~(1 << 8);
+                _playerCamera.cullingMask |= (1 << 10);
                 canSee = true;
             }
         }
@@ -339,7 +350,7 @@ public class PlayerControl : MonoBehaviour
         if (transform.position.y < -15 || currentHealth <= 0)
         {
             transform.position = new Vector3(0, 2, 0);
-            currentHealth = maxHealth;
+            currentHealth = 10.0f;
         }
     }
 
