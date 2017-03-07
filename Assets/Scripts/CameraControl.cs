@@ -61,6 +61,9 @@ public class CameraControl : MonoBehaviour
                 x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
             }
 
+            // Scale speed with distance
+            xSpeed = 100 / distance;
+
             x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
             y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
 
@@ -69,17 +72,21 @@ public class CameraControl : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(y, x, 0);
             
             //Debug.DrawLine(transform.position, target.position, Color.green, 2);
-            
+
             RaycastHit hit;
             if (Physics.Linecast(target.position, transform.position, out hit))
             {
-                if (hit.transform.tag != "Player")
+                if (hit.transform.tag == "Walls")
                 {
                     distance = hit.distance;
                 }
-            } else
+            }
+            else
             {
-                distance = defaultDist;
+                if (distance <= 10.0f)
+                {
+                    distance += 0.1f;
+                }
             }
 
             Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
