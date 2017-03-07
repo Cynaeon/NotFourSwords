@@ -29,7 +29,6 @@ public class Pot : MonoBehaviour {
         if (other.tag == "PlayerProjectile")
         {
             Destroy();
-            broken = true;
         }
     }
 
@@ -42,6 +41,7 @@ public class Pot : MonoBehaviour {
         Instantiate(heart, pos, transform.rotation);
         anime.Play("Break");
         Invoke("reallyDestroy", 4);
+        broken = true;
     }
 
     public void reallyDestroy()
