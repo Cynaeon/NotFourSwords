@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour {
     private float maxHealth;
     private float currentHealth;
 
-	// Use this for initialization
 	void Start () {
         seeThroughImage.enabled = false;
         jumpImage.enabled = false;
@@ -28,6 +27,7 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
         health.text = "HP: " + currentHealth + " / " + maxHealth;
 

@@ -23,7 +23,7 @@ public class Hitbox : MonoBehaviour {
         }
         if (other.tag == "EnemyProjectile")
         {
-            _playerControl.TakeDamage(5.0f);
+            _playerControl.TakeDamage(1.0f);
         }
         if (other.tag == "ItemSpawner")
         {
@@ -38,6 +38,10 @@ public class Hitbox : MonoBehaviour {
         {
             _playerControl.HealDamage(1.0f);
             Destroy(other.gameObject);
+        }
+        if (other.tag == "Enemy")
+        {
+            _playerControl.TakeDamage(1.0f);
         }
     }
 
