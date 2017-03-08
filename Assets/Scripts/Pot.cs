@@ -29,6 +29,8 @@ public class Pot : MonoBehaviour {
         if (other.tag == "PlayerProjectile")
         {
             Destroy();
+
+            Destroy(other.gameObject);
         }
     }
 

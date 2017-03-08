@@ -473,44 +473,46 @@ public class PlayerControl : MonoBehaviour
 
     private void Shooting()
     {
-        if (shootingLevel == 0)
-        {
-            shootingSpeed = 0.5f;
-            if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+        if (!dash) {
+            if (shootingLevel == 0)
             {
-                Instantiate(bolt, transform.position, transform.rotation);
-                lastShot = 0;
-            }
-        }
-        else if (shootingLevel == 1)
-        {
-            shootingSpeed = 0.3f;
-            if (Input.GetButtonDown(playerPrefix + "Shoot") && burstShot == false && lastShot > shootingSpeed)
-            {
-                burstShot = true;
-            }
-            if (burstShot && lastShot > burstSpeed)
-            {
-                Instantiate(bolt, transform.position, transform.rotation);
-                burstCount++;
-                if (burstCount >= 3)
+                shootingSpeed = 0.5f;
+                if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    burstShot = false;
-                    burstCount = 0;
+                    Instantiate(bolt, transform.position, transform.rotation);
+                    lastShot = 0;
                 }
-                lastShot = 0;
             }
-        }
-        else if (shootingLevel >= 2)
-        {
-            shootingSpeed = 0.1f;
-            if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+            else if (shootingLevel == 1)
             {
-                Instantiate(bolt, transform.position, transform.rotation);
-                lastShot = 0;
+                shootingSpeed = 0.3f;
+                if (Input.GetButtonDown(playerPrefix + "Shoot") && burstShot == false && lastShot > shootingSpeed)
+                {
+                    burstShot = true;
+                }
+                if (burstShot && lastShot > burstSpeed)
+                {
+                    Instantiate(bolt, transform.position, transform.rotation);
+                    burstCount++;
+                    if (burstCount >= 3)
+                    {
+                        burstShot = false;
+                        burstCount = 0;
+                    }
+                    lastShot = 0;
+                }
             }
+            else if (shootingLevel >= 2)
+            {
+                shootingSpeed = 0.1f;
+                if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+                {
+                    Instantiate(bolt, transform.position, transform.rotation);
+                    lastShot = 0;
+                }
+            }
+            lastShot += Time.deltaTime;
         }
-        lastShot += Time.deltaTime;
     }
 
     private void FirstPersonControls()

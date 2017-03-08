@@ -25,42 +25,9 @@ public class Hitbox : MonoBehaviour {
         {
             _playerControl.TakeDamage(1.0f);
         }
-        if (other.tag == "ItemSpawner")
-        {
-            _playerControl.ItemStateChange(true);
-        }
-        if (other.tag == "PowerUp")
-        {
-            _playerControl.IncreaseShootingLevel(1);
-            Destroy(other.gameObject);
-        }
-        if (other.tag == "Heart")
-        {
-            _playerControl.HealDamage(1.0f);
-            Destroy(other.gameObject);
-        }
         if (other.tag == "Enemy")
         {
             _playerControl.TakeDamage(1.0f);
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Chest")
-        {
-            if (Input.GetButtonDown(playerPrefix + "Action"))
-            {
-                other.GetComponent<TreasureChest>().OpenChest();
-            }
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "ItemSpawner")
-        {
-            player.GetComponent<PlayerControl>().ItemStateChange(false);
         }
     }
 }
