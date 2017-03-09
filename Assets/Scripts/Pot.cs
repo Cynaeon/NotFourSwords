@@ -26,11 +26,15 @@ public class Pot : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "PlayerProjectile")
+        if (other.tag == "PlayerProjectile" )
         {
             Destroy();
-
             Destroy(other.gameObject);
+        }
+
+        if (other.tag == "Sword")
+        {
+            Destroy();
         }
     }
 

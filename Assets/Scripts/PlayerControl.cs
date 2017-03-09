@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
     public float crosshairScale = 1;
     public GameObject trailModel;
     public GameObject playerModel;
+    public GameObject sword;
     #endregion
 
     #region Player Attributes
@@ -129,6 +130,8 @@ public class PlayerControl : MonoBehaviour
         activeState = StateOfTheAnimation.idle;
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
+
+        sword.SetActive(false);
     }
 
     void Update()
@@ -148,10 +151,12 @@ public class PlayerControl : MonoBehaviour
             Shooting();
             CheckDeath();
             SwitchItems();
+            Sword();
             Lens();
             Animations();
         }
     }
+
 
     private void GetMovement()
     {
@@ -171,7 +176,7 @@ public class PlayerControl : MonoBehaviour
         {
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
             // Put a boolean in the if-statement if you don't want the player to rotate
-            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
+            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing && sword.activeSelf != true)
             {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -347,6 +352,27 @@ public class PlayerControl : MonoBehaviour
                 _playerCamera.cullingMask = ~(1 << 8);
                 _playerCamera.cullingMask |= (1 << 10);
                 canSee = true;
+            }
+        }
+    }
+
+
+    private void Sword()
+    {
+        if (Input.GetButtonDown(playerPrefix + "Item"))
+        {
+            sword.SetActive(true);
+        }
+
+        if (sword.activeSelf == true)
+        {
+            currentSpeed = pushingSpeed / 2;
+        }
+        else
+        {
+            if (!dash)
+            {
+                currentSpeed = defaultSpeed;
             }
         }
     }

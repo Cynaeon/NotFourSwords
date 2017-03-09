@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour {
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "PlayerProjectile")
+        if (other.tag == "PlayerProjectile" || other.tag == "Sword")
         {
             health -= 1;
             _rend.material.color = hitColor;

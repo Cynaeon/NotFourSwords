@@ -24,7 +24,7 @@ public class FogDensity : MonoBehaviour
     void Start()
     {
         camera = GetComponent<Camera>();
-        clipPlane = 1000;
+        clipPlane = 2000;
         fogDensity = 0;
     }
 
