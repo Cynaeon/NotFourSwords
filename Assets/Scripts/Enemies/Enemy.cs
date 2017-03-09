@@ -29,6 +29,29 @@ public class Enemy : MonoBehaviour {
         }
 	}
 
+    public virtual Transform FindClosestPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float closestDist = 0;
+        Transform closestPlayer = null;
+
+        foreach (GameObject player in players)
+        {
+            float dist = Vector3.Distance(player.transform.position, transform.position);
+            if (closestDist == 0)
+            {
+                closestDist = dist;
+                closestPlayer = player.transform;
+            }
+            else if (closestDist > dist)
+            {
+                closestDist = dist;
+                closestPlayer = player.transform;
+            }
+        }
+        return closestPlayer;
+    }
+
     public virtual void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerProjectile" || other.tag == "Sword")

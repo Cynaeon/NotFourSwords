@@ -23,31 +23,16 @@ public class PeekabooArcher : Enemy {
     public override void Update() {
         base.Update();
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Player");
-        float closestDist = 0;
-        Transform closestPlayer = null;
-
-        foreach (GameObject enemy in enemies)
-        {
-            float dist = Vector3.Distance(enemy.transform.position, transform.position);
-            if (closestDist == 0)
-            {
-                closestDist = dist;
-                closestPlayer = enemy.transform;
-            }
-            else if (closestDist > dist)
-            {
-                closestDist = dist;
-                closestPlayer = enemy.transform;
-            }
-        }
+        Transform closestPlayer = FindClosestPlayer();
+        float closestDist = Vector3.Distance(closestPlayer.position, transform.position);
 
         if (closestDist <= aggroRange)
         {
             Vector3 target = new Vector3(closestPlayer.position.x, transform.position.y, closestPlayer.position.z);
             transform.LookAt(target);
             transform.position = Vector3.MoveTowards(transform.position, upPosition, risingSpeed * Time.deltaTime);
-        } else
+        }
+        else
         {
             transform.position = Vector3.MoveTowards(transform.position, hidePosition, risingSpeed * Time.deltaTime);
         }

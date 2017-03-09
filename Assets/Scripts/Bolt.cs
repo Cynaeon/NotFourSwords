@@ -31,6 +31,10 @@ public class Bolt : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
+            if (other.tag == "Shield")
+            {
+                Destroy(gameObject);
+            }
         }
         if (type == projectileType.Enemy)
         {

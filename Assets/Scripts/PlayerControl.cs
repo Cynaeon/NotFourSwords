@@ -486,6 +486,7 @@ public class PlayerControl : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
+        movementPlayer = -movementPlayer;
         currentHealth -= dmg;
     }
 
