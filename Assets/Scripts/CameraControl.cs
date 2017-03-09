@@ -4,6 +4,9 @@ using System.Collections;
 [AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class CameraControl : MonoBehaviour
 {
+    private PauseManager _pauseManager;
+    private bool _isPaused;
+
     public Transform target;
     public Transform lockOnCameraSpot;
     public string playerPrefix;
@@ -36,6 +39,8 @@ public class CameraControl : MonoBehaviour
         //distanceMin = cameraManager.distanceMin;
         //distanceMax = cameraManager.distanceMax;
 
+        _pauseManager = GetComponent<PauseManager>();
+
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -49,55 +54,63 @@ public class CameraControl : MonoBehaviour
         }
     }
 
+
+    private void Update()
+    {
+        _isPaused = _pauseManager.isPaused;
+    }
+
     void LateUpdate()
     {
-        if (target)
-        {
-            if (Input.GetButton(playerPrefix + "LockOn"))
+        if (!_isPaused) {
+            if (target)
             {
-                var targetRotationAngle = target.eulerAngles.y;
-                var currentRotationAngle = transform.eulerAngles.y;
-                x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
-            }
-
-            // Scale speed with distance
-            xSpeed = 100 / distance;
-
-            x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
-            y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
-
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
-
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
-            
-            //Debug.DrawLine(transform.position, target.position, Color.green, 2);
-
-            RaycastHit hit;
-            if (Physics.Linecast(target.position, transform.position, out hit))
-            {
-                if (hit.transform.tag == "Walls")
+                if (Input.GetButton(playerPrefix + "LockOn"))
                 {
-                    distance = hit.distance;
+                    var targetRotationAngle = target.eulerAngles.y;
+                    var currentRotationAngle = transform.eulerAngles.y;
+                    x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
                 }
-            }
-            else
-            {
-                if (distance <= 10.0f)
+
+                // Scale speed with distance
+                xSpeed = 100 / distance;
+
+                x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
+                y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
+
+                y = ClampAngle(y, yMinLimit, yMaxLimit);
+
+                Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+                //Debug.DrawLine(transform.position, target.position, Color.green, 2);
+
+                RaycastHit hit;
+                if (Physics.Linecast(target.position, transform.position, out hit))
                 {
-                    distance += 0.1f;
+                    if (hit.transform.tag == "Walls")
+                    {
+                        distance = hit.distance;
+                    }
                 }
-            }
+                else
+                {
+                    if (distance <= 10.0f)
+                    {
+                        distance += 0.1f;
+                    }
+                }
 
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-            Vector3 position = rotation * negDistance + target.position;
+                Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+                Vector3 position = rotation * negDistance + target.position;
 
-            transform.rotation = rotation;
-            transform.position = position;
+                transform.rotation = rotation;
+                transform.position = position;
 
-            if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
-            {
-                transform.position = target.position;
-                transform.rotation = target.rotation;
+                if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+                {
+                    transform.position = target.position;
+                    transform.rotation = target.rotation;
+                }
             }
         }
     }
