@@ -11,6 +11,9 @@ public class PlayerControl : MonoBehaviour
     public float minMagnetDistance;
     private bool _magnetActive;
 
+    public PauseManager pauseManager;
+    private bool _isPaused;
+
     public enum Items
     {
         none,
@@ -96,14 +99,13 @@ public class PlayerControl : MonoBehaviour
     private bool canDash;
     private bool dash;
     private FogDensity fogDensity;
-    private bool _isPaused;
     #endregion
 
     void Start()
     {
         #region Get player attributes from manager
-
         GameObject playerManagerGO = GameObject.Find("PlayerManager");
+        pauseManager = GetComponent<PauseManager>();
         playerManager = playerManagerGO.GetComponent<PlayerManager>();
         fogDensity = _playerCamera.GetComponent<FogDensity>();
         anime = GetComponentInChildren<Animator>();
@@ -134,7 +136,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-        _isPaused = playerManager.isPaused;
+        _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
             GetMovement();
