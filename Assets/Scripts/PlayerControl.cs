@@ -678,7 +678,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (dash)
             {
-                other.GetComponent<Pot>().Destroy();
+                other.GetComponent<Pot>().Break();
             }
         }
 
