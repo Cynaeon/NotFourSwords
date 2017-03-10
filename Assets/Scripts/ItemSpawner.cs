@@ -9,13 +9,15 @@ public class ItemSpawner : MonoBehaviour
     public GameObject feather;
     public GameObject lens;
     public GameObject magnet;
+    public GameObject sword;
 
     public enum _items
     {
         none,
         feather,
         lens,
-        magnet
+        magnet,
+        sword
     }
 
     public _items _active;
@@ -28,6 +30,7 @@ public class ItemSpawner : MonoBehaviour
         Items.Add(feather);
         Items.Add(lens);
         Items.Add(magnet);
+        Items.Add(sword);
         Items[(int)_active].SetActive(true);
     }
 
@@ -53,7 +56,9 @@ public class ItemSpawner : MonoBehaviour
             case 3:
                 _active = _items.magnet;
                 break;
-
+            case 4:
+                _active = _items.sword;
+                break;
         }
 
         Items[(int)_active].SetActive(true);

@@ -7,10 +7,10 @@ public class UIManager : MonoBehaviour {
     public Image seeThroughImage;
     public Image jumpImage;
     public Image magnetImage;
+    public Image swordImage;
     public Image notificationImage;
     public Text health;
     public GameObject player;
-
     private float maxHealth;
     private float currentHealth;
 
@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
         jumpImage.enabled = false;
         magnetImage.enabled = false;
         notificationImage.enabled = false;
+        swordImage.enabled = false;
 
         maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
@@ -32,20 +33,17 @@ public class UIManager : MonoBehaviour {
         health.text = "HP: " + currentHealth + " / " + maxHealth;
 
     }
-    public void EnableSeeThrough(bool state)
-    {
-        seeThroughImage.enabled = state;
-    }
-    public void EnableJump(bool state)
-    {
-        jumpImage.enabled = state;
-    }
-    public void EnableMagnet(bool state)
-    {
-        magnetImage.enabled = state;
-    }
+
     public void EnableNotification(bool state)
     {
         notificationImage.enabled = state;
+    }
+
+    public void UIItems(bool jump, bool lens, bool magnet, bool sword)
+    {
+        jumpImage.enabled = jump;
+        seeThroughImage.enabled = lens;
+        magnetImage.enabled = magnet;
+        swordImage.enabled = sword;
     }
 }

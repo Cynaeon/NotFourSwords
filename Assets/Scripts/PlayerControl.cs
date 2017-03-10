@@ -19,7 +19,8 @@ public class PlayerControl : MonoBehaviour
         none,
         jump,
         seeThrough,
-        magnet
+        magnet,
+        sword
     }
     private Items myItem;
 
@@ -43,7 +44,7 @@ public class PlayerControl : MonoBehaviour
     public float crosshairScale = 1;
     public GameObject trailModel;
     public GameObject playerModel;
-    public GameObject sword;
+    public GameObject Sword;
     #endregion
 
     #region Player Attributes
@@ -133,7 +134,7 @@ public class PlayerControl : MonoBehaviour
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
 
-        sword.SetActive(false);
+        Sword.SetActive(false);
     }
 
     void Update()
@@ -153,7 +154,7 @@ public class PlayerControl : MonoBehaviour
             Shooting();
             CheckDeath();
             SwitchItems();
-            Sword();
+            Swording();
             Lens();
             Animations();
         }
@@ -178,7 +179,7 @@ public class PlayerControl : MonoBehaviour
         {
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
             // Put a boolean in the if-statement if you don't want the player to rotate
-            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing && sword.activeSelf != true)
+            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing && Sword.activeSelf != true)
             {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -294,37 +295,38 @@ public class PlayerControl : MonoBehaviour
                 {
                     case 0:
                         myItem = Items.none;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
                     case 1:
                         myItem = Items.jump;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(true);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
                     case 2:
                         myItem = Items.seeThrough;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(true);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(false);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false);
                         canSee = true;
                         break;
                     case 3:
                         myItem = Items.magnet;
-                        _playerCanvas.GetComponent<UIManager>().EnableJump(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableSeeThrough(false);
-                        _playerCanvas.GetComponent<UIManager>().EnableMagnet(true);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false);
+                        fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
+                    case 4:
+                        myItem = Items.sword;
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true);
+                        fogDensity.fadeState(false);
+                        _playerCamera.cullingMask = ~(1 << 8);
+                        canSee = false;
+                        break;
+
                 }
             }
         }else
@@ -359,14 +361,14 @@ public class PlayerControl : MonoBehaviour
     }
 
 
-    private void Sword()
+    private void Swording()
     {
-        if (Input.GetButtonDown(playerPrefix + "Item"))
+        if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.sword)
         {
-            sword.SetActive(true);
+            Sword.SetActive(true);
         }
 
-        if (sword.activeSelf == true)
+        if (Sword.activeSelf == true)
         {
             currentSpeed = pushingSpeed / 2;
         }
