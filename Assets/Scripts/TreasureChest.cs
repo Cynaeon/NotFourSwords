@@ -29,7 +29,7 @@ public class TreasureChest : MonoBehaviour {
     {
         if (!opened)
         {
-            anime.Play("Default Take");
+            anime.Play("chestOpen");
             opened = true;
             Invoke("SpawnStuff", 1);
             Invoke("SpawnStuff", 1.3f);
