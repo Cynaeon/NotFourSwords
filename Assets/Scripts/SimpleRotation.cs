@@ -7,6 +7,7 @@ public class SimpleRotation : MonoBehaviour
 
     public float Xspeed;
     public float Yspeed;
+    public float Zspeed;
     Quaternion rotation;
 
     private void Awake()
@@ -27,6 +28,8 @@ public class SimpleRotation : MonoBehaviour
 
         // ...also rotate around the World's Y axis
         transform.Rotate(Vector3.up * Time.deltaTime * Yspeed);
+
+        transform.Rotate(Vector3.forward * Time.deltaTime * Zspeed);
         rotation = transform.rotation;
     }
 }
