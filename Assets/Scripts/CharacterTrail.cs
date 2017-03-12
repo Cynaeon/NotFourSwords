@@ -5,13 +5,14 @@ using UnityEngine;
 public class CharacterTrail : MonoBehaviour {
 
     public float lifetime;
+    public GameObject model;
 
     private Renderer _rend;
     private Color color;
  
 	// Use this for initialization
 	void Start () {
-        _rend = GetComponent<Renderer>();
+        _rend = model.GetComponent<Renderer>();
         color = _rend.material.color;
 	}
 	

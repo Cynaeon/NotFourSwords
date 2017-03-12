@@ -194,8 +194,9 @@ public class PlayerControl : MonoBehaviour
             afterImageTime -= Time.deltaTime;
             if (afterImageTime <= 0)
             {
-                Quaternion rot = playerModel.transform.rotation;
-                Instantiate(trailModel, transform.position, rot);
+                //Quaternion rot = playerModel.transform.rotation;
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+                Instantiate(trailModel, pos, transform.rotation);
                 afterImageTime = afterImageRatio;
             }
         }
