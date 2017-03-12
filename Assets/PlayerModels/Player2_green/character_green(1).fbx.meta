@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 40a6da3bc35f3474990b6dcff7dc4a42
-timeCreated: 1489334340
+guid: 28dfddd45ec0dfc4db79a0bfe61e0ac4
+timeCreated: 1489348009
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Armature
     100002: //RootNode
-    100004: CharacterBlue
-    100006: CharacterBlueOutline
+    100004: CharacterGreen
+    100006: CharacterGreenOutline
     100008: Chest
     100010: Fingers.L
     100012: Fingers.L_end
@@ -60,8 +60,8 @@ ModelImporter:
     100104: Wrist.R
     400000: Armature
     400002: //RootNode
-    400004: CharacterBlue
-    400006: CharacterBlueOutline
+    400004: CharacterGreen
+    400006: CharacterGreenOutline
     400008: Chest
     400010: Fingers.L
     400012: Fingers.L_end
@@ -111,16 +111,19 @@ ModelImporter:
     400100: UpperLeg.R
     400102: Wrist.L
     400104: Wrist.R
-    4300000: CharacterBlue
-    4300002: CharacterBlueOutline
-    7400000: Armature|blueIdleAnimation
-    7400002: Armature|blueIdleAnimationNoCrossbow
-    7400004: Armature|blueRunAnimation
-    7400006: Armature|blueRunAnimationCrossbow
-    7400008: CharacterBlue|blueRunAnimationCrossbow
+    4300000: CharacterGreen
+    4300002: CharacterGreenOutline
+    7400000: Armature|greenDashAnimationForwardNoCrossbow
+    7400002: Armature|greenDashAnimationLeftNoCrossbow
+    7400004: Armature|greenDashAnimationRightNoCrossbow
+    7400006: Armature|greenIdleAnimation
+    7400008: Armature|greenIdleAnimationNoCrossbow
+    7400010: Armature|greenRunAnimation
+    7400012: Armature|greenRunAnimationCrossbow
+    7400014: CharacterGreen|greenIdleAnimation
     9500000: //RootNode
-    13700000: CharacterBlue
-    13700002: CharacterBlueOutline
+    13700000: CharacterGreen
+    13700002: CharacterGreenOutline
   materials:
     importMaterials: 1
     materialName: 0
@@ -143,10 +146,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|blueIdleAnimationNoCrossbow
-      takeName: Armature|blueIdleAnimationNoCrossbow
+      name: Armature|greenDashAnimationForwardNoCrossbow
+      takeName: Armature|greenDashAnimationForwardNoCrossbow
       firstFrame: 0
-      lastFrame: 290
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -269,16 +272,552 @@ ModelImporter:
         weight: 1
       - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
         weight: 1
-      - path: CharacterBlue
+      - path: CharacterGreen
         weight: 1
-      - path: CharacterBlue/CharacterBlueOutline
+      - path: CharacterGreen/CharacterGreenOutline
         weight: 1
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|blueRunAnimation
-      takeName: Armature|blueRunAnimation
+      name: Armature|greenDashAnimationLeftNoCrossbow
+      takeName: Armature|greenDashAnimationLeftNoCrossbow
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/JacketCtrl.L
+        weight: 1
+      - path: Armature/JacketCtrl.L/JacketCtrl.L_end
+        weight: 1
+      - path: Armature/JacketCtrl.R
+        weight: 1
+      - path: Armature/JacketCtrl.R/JacketCtrl.R_end
+        weight: 1
+      - path: Armature/PantCtrl.L
+        weight: 1
+      - path: Armature/PantCtrl.L/PantCtrl.L_end
+        weight: 1
+      - path: Armature/PantCtrl.R
+        weight: 1
+      - path: Armature/PantCtrl.R/PantCtrl.R_end
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: CharacterGreen
+        weight: 1
+      - path: CharacterGreen/CharacterGreenOutline
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|greenDashAnimationRightNoCrossbow
+      takeName: Armature|greenDashAnimationRightNoCrossbow
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/JacketCtrl.L
+        weight: 1
+      - path: Armature/JacketCtrl.L/JacketCtrl.L_end
+        weight: 1
+      - path: Armature/JacketCtrl.R
+        weight: 1
+      - path: Armature/JacketCtrl.R/JacketCtrl.R_end
+        weight: 1
+      - path: Armature/PantCtrl.L
+        weight: 1
+      - path: Armature/PantCtrl.L/PantCtrl.L_end
+        weight: 1
+      - path: Armature/PantCtrl.R
+        weight: 1
+      - path: Armature/PantCtrl.R/PantCtrl.R_end
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: CharacterGreen
+        weight: 1
+      - path: CharacterGreen/CharacterGreenOutline
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|greenIdleAnimation
+      takeName: Armature|greenIdleAnimation
+      firstFrame: 0
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/JacketCtrl.L
+        weight: 1
+      - path: Armature/JacketCtrl.L/JacketCtrl.L_end
+        weight: 1
+      - path: Armature/JacketCtrl.R
+        weight: 1
+      - path: Armature/JacketCtrl.R/JacketCtrl.R_end
+        weight: 1
+      - path: Armature/PantCtrl.L
+        weight: 1
+      - path: Armature/PantCtrl.L/PantCtrl.L_end
+        weight: 1
+      - path: Armature/PantCtrl.R
+        weight: 1
+      - path: Armature/PantCtrl.R/PantCtrl.R_end
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: CharacterGreen
+        weight: 1
+      - path: CharacterGreen/CharacterGreenOutline
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|greenIdleAnimationNoCrossbow
+      takeName: Armature|greenIdleAnimationNoCrossbow
+      firstFrame: 0
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/JacketCtrl.L
+        weight: 1
+      - path: Armature/JacketCtrl.L/JacketCtrl.L_end
+        weight: 1
+      - path: Armature/JacketCtrl.R
+        weight: 1
+      - path: Armature/JacketCtrl.R/JacketCtrl.R_end
+        weight: 1
+      - path: Armature/PantCtrl.L
+        weight: 1
+      - path: Armature/PantCtrl.L/PantCtrl.L_end
+        weight: 1
+      - path: Armature/PantCtrl.R
+        weight: 1
+      - path: Armature/PantCtrl.R/PantCtrl.R_end
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: CharacterGreen
+        weight: 1
+      - path: CharacterGreen/CharacterGreenOutline
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|greenRunAnimation
+      takeName: Armature|greenRunAnimation
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -403,16 +942,16 @@ ModelImporter:
         weight: 1
       - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
         weight: 1
-      - path: CharacterBlue
+      - path: CharacterGreen
         weight: 1
-      - path: CharacterBlue/CharacterBlueOutline
+      - path: CharacterGreen/CharacterGreenOutline
         weight: 1
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|blueRunAnimationCrossbow
-      takeName: Armature|blueRunAnimationCrossbow
+      name: Armature|greenRunAnimationCrossbow
+      takeName: Armature|greenRunAnimationCrossbow
       firstFrame: 0
       lastFrame: 80
       wrapMode: 0
@@ -421,7 +960,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -537,25 +1076,25 @@ ModelImporter:
         weight: 1
       - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
         weight: 1
-      - path: CharacterBlue
+      - path: CharacterGreen
         weight: 1
-      - path: CharacterBlue/CharacterBlueOutline
+      - path: CharacterGreen/CharacterGreenOutline
         weight: 1
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: CharacterBlue|blueRunAnimationCrossbow
-      takeName: CharacterBlue|blueRunAnimationCrossbow
+      name: CharacterGreen|greenIdleAnimation
+      takeName: CharacterGreen|greenIdleAnimation
       firstFrame: 0
-      lastFrame: 80
+      lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -671,9 +1210,9 @@ ModelImporter:
         weight: 1
       - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
         weight: 1
-      - path: CharacterBlue
+      - path: CharacterGreen
         weight: 1
-      - path: CharacterBlue/CharacterBlueOutline
+      - path: CharacterGreen/CharacterGreenOutline
         weight: 1
       maskType: 3
       maskSource: {instanceID: 0}
