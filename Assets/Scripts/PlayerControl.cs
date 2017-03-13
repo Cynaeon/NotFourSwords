@@ -44,7 +44,8 @@ public class PlayerControl : MonoBehaviour
     public float crosshairScale = 1;
     public GameObject trailModel;
     public GameObject playerModel;
-    public GameObject Sword;
+    public GameObject HandSword;
+    public GameObject SwordHitBox;
     #endregion
 
     #region Player Attributes
@@ -133,8 +134,7 @@ public class PlayerControl : MonoBehaviour
         activeState = StateOfTheAnimation.idle;
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
-
-        Sword.SetActive(false);
+        HandSword.SetActive(false);
     }
 
     void Update()
@@ -179,7 +179,7 @@ public class PlayerControl : MonoBehaviour
         {
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
             // Put a boolean in the if-statement if you don't want the player to rotate
-            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing && Sword.activeSelf != true)
+            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
             {
                 transform.rotation = rotation;
                 transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -298,6 +298,7 @@ public class PlayerControl : MonoBehaviour
                         myItem = Items.none;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false);
                         fogDensity.fadeState(false);
+                        HandSword.SetActive(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -305,12 +306,14 @@ public class PlayerControl : MonoBehaviour
                         myItem = Items.jump;
                         _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false);
                         fogDensity.fadeState(false);
+                        HandSword.SetActive(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
                     case 2:
                         myItem = Items.seeThrough;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false);
+                        HandSword.SetActive(false);
                         canSee = true;
                         break;
                     case 3:
@@ -318,6 +321,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
+                        HandSword.SetActive(false);
                         canSee = false;
                         break;
                     case 4:
@@ -325,6 +329,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
+                        HandSword.SetActive(true);
                         canSee = false;
                         break;
 
@@ -366,19 +371,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.sword)
         {
-            Sword.SetActive(true);
-        }
-
-        if (Sword.activeSelf == true)
-        {
-            currentSpeed = pushingSpeed / 2;
-        }
-        else
-        {
-            if (!dash)
-            {
-                currentSpeed = defaultSpeed;
-            }
+            //TODO: Play sword animation
+            SwordHitBox.SetActive(true);
         }
     }
 

@@ -32,7 +32,7 @@ public class BreakWall : MonoBehaviour {
         }
 	}
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Sword")
         {
