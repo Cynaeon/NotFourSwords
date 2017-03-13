@@ -1,0 +1,28 @@
+﻿using UnityEngine;
+using System.Collections;
+
+
+public class SimpleFloat : MonoBehaviour {
+
+    public float floatSpan = 0.25f;
+    public float speed = 1.0f;
+
+    private float startY;
+    private float startX;
+
+    // Use this for initialization
+    void Start()
+    {
+        startY = transform.position.y;
+        startX = transform.position.x;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector3 tempPos = transform.position;
+        tempPos.y = startY + Mathf.Sin(Time.time * speed) * floatSpan / 2.0f;
+        tempPos.x = startX + Mathf.Sin(Time.time * speed) * floatSpan / 2.0f;
+        transform.position = tempPos;
+    }
+}
