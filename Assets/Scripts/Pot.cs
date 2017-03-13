@@ -27,8 +27,9 @@ public class Pot : MonoBehaviour {
     {
         Destroy(gameObject.GetComponent<CapsuleCollider>());
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
-        Instantiate(heart, pos, transform.rotation);
-        Instantiate(heart, pos, transform.rotation);
+        Quaternion rot = Quaternion.Euler(-90, 0, 0);
+        Instantiate(heart, pos, rot);
+        Instantiate(heart, pos, rot);
         Instantiate(breakAnimation, transform.position, (Quaternion.Euler(0f, Random.Range(0.0f, 360.0f),0f)));
         Destroy(gameObject);
     }
