@@ -45,6 +45,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject trailModel;
     public GameObject playerModel;
     public GameObject HandSword;
+    public GameObject Monocle;
+    public GameObject TailMagnet;
     public GameObject SwordHitBox;
     #endregion
 
@@ -135,6 +137,9 @@ public class PlayerControl : MonoBehaviour
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
         HandSword.SetActive(false);
+        Monocle.SetActive(false);
+        TailMagnet.SetActive(false);
+        
     }
 
     void Update()
@@ -300,6 +305,8 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false);
                         fogDensity.fadeState(false);
                         HandSword.SetActive(false);
+                        Monocle.SetActive(false);
+                        TailMagnet.SetActive(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -308,6 +315,8 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false);
                         fogDensity.fadeState(false);
                         HandSword.SetActive(false);
+                        Monocle.SetActive(false);
+                        TailMagnet.SetActive(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -315,6 +324,8 @@ public class PlayerControl : MonoBehaviour
                         myItem = Items.seeThrough;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false);
                         HandSword.SetActive(false);
+                        Monocle.SetActive(true);
+                        TailMagnet.SetActive(false);
                         canSee = true;
                         break;
                     case 3:
@@ -323,6 +334,8 @@ public class PlayerControl : MonoBehaviour
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         HandSword.SetActive(false);
+                        Monocle.SetActive(false);
+                        TailMagnet.SetActive(true);
                         canSee = false;
                         break;
                     case 4:
@@ -331,6 +344,8 @@ public class PlayerControl : MonoBehaviour
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         HandSword.SetActive(true);
+                        Monocle.SetActive(false);
+                        TailMagnet.SetActive(false);
                         canSee = false;
                         break;
 
