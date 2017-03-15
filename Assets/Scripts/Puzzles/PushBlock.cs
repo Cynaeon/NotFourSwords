@@ -5,7 +5,7 @@ using UnityEngine;
 public class PushBlock : MonoBehaviour {
 
     public int pushersRequired;
-    public List<string> pushers;
+    public List<int> pushers;
 
     private float pushingSpeed;
     private Vector3 movement;
@@ -28,13 +28,13 @@ public class PushBlock : MonoBehaviour {
 
     public void AddPusher(GameObject pusher)
     {
-        string pusherPrefix = pusher.GetComponent<PlayerControl>().playerPrefix;
+        int pusherPrefix = (int)pusher.GetComponent<PlayerControl>().playerPrefix;
         pushers.Add(pusherPrefix);
     }
 
     public void RemovePusher(GameObject pusher)
     {
-        pushers.Remove(pusher.GetComponent<PlayerControl>().playerPrefix);
+        pushers.Remove((int)pusher.GetComponent<PlayerControl>().playerPrefix);
     }
 
     public bool Move(Vector3 movement, float speed)

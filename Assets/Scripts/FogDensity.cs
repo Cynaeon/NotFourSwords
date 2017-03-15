@@ -56,6 +56,7 @@ public class FogDensity : MonoBehaviour
             clipPlane = clipPlane - 92;
         }
         camera.farClipPlane = clipPlane;
+        camera.clearFlags = CameraClearFlags.SolidColor;
     }
 
     private void FadeFogOut()
@@ -70,6 +71,7 @@ public class FogDensity : MonoBehaviour
             clipPlane = clipPlane + 92;
         }
         camera.farClipPlane = clipPlane;
+        camera.clearFlags = CameraClearFlags.Skybox;
     }
 
 

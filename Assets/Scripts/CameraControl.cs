@@ -9,7 +9,14 @@ public class CameraControl : MonoBehaviour
 
     public Transform target;
     public Transform lockOnCameraSpot;
-    public string playerPrefix;
+    public enum Players
+    {
+        P1_,
+        P2_,
+        P3_,
+        P4_
+    }
+    public Players playerPrefix;
 
     private Rigidbody _rigidbody;
     public float lockOnSpeed = 10.0f;
