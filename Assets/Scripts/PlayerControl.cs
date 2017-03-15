@@ -401,7 +401,7 @@ public class PlayerControl : MonoBehaviour
 
     private void CheckDeath()
     {
-        if (transform.position.y < -15 || currentHealth <= 0)
+        if (transform.position.y < -25 || currentHealth <= 0)
         {
             transform.position = new Vector3(0, 2, 0);
             currentHealth = 10.0f;
