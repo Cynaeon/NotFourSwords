@@ -43,5 +43,10 @@ public class Bolt : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
+        
+        if (other.tag == "Walls")
+        {
+            Destroy(gameObject);
+        }
     }
 }

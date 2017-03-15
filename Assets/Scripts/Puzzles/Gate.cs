@@ -70,6 +70,20 @@ public class Gate : MonoBehaviour {
                     return false;
                 }
             }
+            if (activator.GetComponent<Target>())
+            {
+                if (activator.GetComponent<Target>().activated)
+                {
+                    if ((int)activatorsRequired == 1)
+                    {
+                        return true;
+                    }
+                }
+                else if ((int)activatorsRequired == 0)
+                {
+                    return false;
+                }
+            }
         }
 
         if ((int)activatorsRequired == 0)
