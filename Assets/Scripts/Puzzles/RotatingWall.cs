@@ -16,19 +16,18 @@ public class RotatingWall : MonoBehaviour {
 	
 	void Update () {
     	activated = activator.GetComponent<HitSwitch>().activated;
-        Debug.Log(yRot);
         if (activated)
         {
-            if (yRot <= 90)
+            if (yRot >= -90)
             {
-                yRot += Time.deltaTime * turnSpeed;
+                yRot -= Time.deltaTime * turnSpeed;
             }
         }
         else
         {
-            if (yRot >= 0)
+            if (yRot <= 0)
             {
-                yRot -= Time.deltaTime * turnSpeed;
+                yRot += Time.deltaTime * turnSpeed;
             }
         }
         transform.localRotation = Quaternion.Euler(0, yRot, 0);
