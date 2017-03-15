@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour {
     public Image swordImage;
     public Image notificationImage;
     public Text health;
+	public Text paused;
+	public Text pausedShadow;
     public GameObject player;
     private float maxHealth;
     private float currentHealth;
@@ -20,6 +22,8 @@ public class UIManager : MonoBehaviour {
         magnetImage.enabled = false;
         notificationImage.enabled = false;
         swordImage.enabled = false;
+		paused.enabled = false;
+		pausedShadow.enabled = false;
 
         maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
@@ -46,4 +50,9 @@ public class UIManager : MonoBehaviour {
         magnetImage.enabled = magnet;
         swordImage.enabled = sword;
     }
+
+	public void UIPause(bool isPaused) {
+		paused.enabled = isPaused;
+		pausedShadow.enabled = isPaused;
+	}
 }

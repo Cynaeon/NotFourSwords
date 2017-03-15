@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour {
     public bool isPaused;
+	public UIManager p1UI;
+	public UIManager p2UI;
+	public UIManager p3UI;
+	public UIManager p4UI;
     private enum Pauser
     {
         P1,
@@ -12,10 +16,6 @@ public class PauseManager : MonoBehaviour {
         P4
     }
     private Pauser _pauser;
-
-    void Awake () {
-		
-	}
 	
 	void Update () {
         if (Input.GetButtonDown("P1_Pause"))
@@ -25,6 +25,9 @@ public class PauseManager : MonoBehaviour {
                 isPaused = true;
                 _pauser = Pauser.P1;
                 Time.timeScale = 0;
+				p2UI.UIPause(true);
+				p3UI.UIPause(true);
+				p4UI.UIPause(true);
             }
             else
             {
@@ -32,6 +35,9 @@ public class PauseManager : MonoBehaviour {
                 {
                     isPaused = false;
                     Time.timeScale = 1;
+					p2UI.UIPause(false);
+					p3UI.UIPause(false);
+					p4UI.UIPause(false);
                 }
             }
         }
@@ -43,6 +49,9 @@ public class PauseManager : MonoBehaviour {
                 isPaused = true;
                 _pauser = Pauser.P2;
                 Time.timeScale = 0;
+				p1UI.UIPause(true);
+				p3UI.UIPause(true);
+				p4UI.UIPause(true);
             }
             else
             {
@@ -50,6 +59,9 @@ public class PauseManager : MonoBehaviour {
                 {
                     isPaused = false;
                     Time.timeScale = 1;
+					p1UI.UIPause(false);
+					p3UI.UIPause(false);
+					p4UI.UIPause(false);
                 }
             }
         }
@@ -61,6 +73,9 @@ public class PauseManager : MonoBehaviour {
                 isPaused = true;
                 _pauser = Pauser.P3;
                 Time.timeScale = 0;
+				p1UI.UIPause(true);
+				p2UI.UIPause(true);
+				p4UI.UIPause(true);
             }
             else
             {
@@ -68,6 +83,9 @@ public class PauseManager : MonoBehaviour {
                 {
                     isPaused = false;
                     Time.timeScale = 1;
+					p1UI.UIPause(false);
+					p2UI.UIPause(false);
+					p4UI.UIPause(false);
                 }
             }
         }
@@ -79,6 +97,9 @@ public class PauseManager : MonoBehaviour {
                 isPaused = true;
                 _pauser = Pauser.P4;
                 Time.timeScale = 0;
+				p1UI.UIPause(true);
+				p2UI.UIPause(true);
+				p3UI.UIPause(true);
             }
             else
             {
@@ -86,6 +107,9 @@ public class PauseManager : MonoBehaviour {
                 {
                     isPaused = false;
                     Time.timeScale = 1;
+					p1UI.UIPause(false);
+					p2UI.UIPause(false);
+					p3UI.UIPause(false);
                 }
             }
         }
