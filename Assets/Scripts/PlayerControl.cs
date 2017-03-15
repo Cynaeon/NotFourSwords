@@ -6,6 +6,14 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
+    public enum Players
+    {
+        P1_,
+        P2_,
+        P3_,
+        P4_
+    }
+    public Players playerPrefix;
     public float maxMagnetDistance;
     public float magnetVelocity;
     public float minMagnetDistance;
@@ -35,7 +43,6 @@ public class PlayerControl : MonoBehaviour
     private Animator anime;
 
     #region Public Objects
-    public string playerPrefix;
     public Transform playerCamera;
     public Camera _playerCamera;
     public Canvas _playerCanvas;
