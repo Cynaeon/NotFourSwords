@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
 {
     public enum Players
     {
+        NotSelected,
         P1_,
         P2_,
         P3_,
@@ -35,7 +36,9 @@ public class PlayerControl : MonoBehaviour
     public enum StateOfTheAnimation
     {
         idle,
+        idle_Sword,
         running,
+        running_Sword,
         dashing
 
     }
@@ -110,6 +113,7 @@ public class PlayerControl : MonoBehaviour
     private bool canChangeItem;
     private bool canDash;
     private bool dash;
+    private bool toggleSword;
     private FogDensity fogDensity;
     #endregion
 
@@ -314,6 +318,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(false);
+                        toggleSword = false;
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -324,6 +329,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(false);
+                        toggleSword = false;
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -333,6 +339,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(true);
                         TailMagnet.SetActive(false);
+                        toggleSword = false;
                         canSee = true;
                         break;
                     case 3:
@@ -343,6 +350,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(true);
+                        toggleSword = false;
                         canSee = false;
                         break;
                     case 4:
@@ -350,7 +358,6 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
-                        HandSword.SetActive(true);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(false);
                         canSee = false;
@@ -394,8 +401,17 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.sword)
         {
+            if (!toggleSword)
+            {
+                HandSword.SetActive(true);
+                toggleSword = true;
+            }else
+            {
+                toggleSword = false;
+                HandSword.SetActive(false);
+            }
             //TODO: Play sword animation
-            SwordHitBox.SetActive(true);
+            
         }
     }
 
@@ -522,7 +538,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Shooting()
     {
-        if (!dash) {
+        if (!dash && !toggleSword) {
             if (shootingLevel == 0)
             {
                 shootingSpeed = 0.5f;
@@ -561,6 +577,12 @@ public class PlayerControl : MonoBehaviour
                 }
             }
             lastShot += Time.deltaTime;
+        }
+        if (toggleSword)
+        {
+            if(Input.GetButtonDown(playerPrefix + "Shoot")) {
+                SwordHitBox.SetActive(true);
+            }
         }
     }
 
@@ -745,6 +767,25 @@ public class PlayerControl : MonoBehaviour
 
     public void Animations()
     {
+        float myAngle = Mathf.Atan2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical")) * Mathf.Rad2Deg;
+        if (lockOn)
+        {
+            anime.SetFloat("DashAngle", myAngle);
+        }
+        else
+        {
+            anime.SetFloat("DashAngle", 0);
+        }
+        if (toggleSword)
+        {
+            anime.SetFloat("ItemState", 1);
+            anime.SetFloat("DashState", 1);
+        }else
+        {
+            anime.SetFloat("ItemState", 0);
+            anime.SetFloat("DashState", 0);
+        }
+        
         if (movementPlayer.x != 0 || movementPlayer.z != 0)
         {
             activeState = StateOfTheAnimation.running;
@@ -756,6 +797,7 @@ public class PlayerControl : MonoBehaviour
         if (activeState == StateOfTheAnimation.dashing)
         {
             anime.SetBool("Dashing", true);
+            anime.SetBool("Running", false);
         }
         else
         {

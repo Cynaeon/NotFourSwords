@@ -39,7 +39,7 @@ public class PickUpBox : MonoBehaviour
     {
         if (other.tag == "Chest")
         {
-            if (Input.GetButtonDown(playerPrefix + "Action"))
+            if (Input.GetButtonDown("P" + playerPrefix + "_Action"))
             {
                 other.GetComponent<TreasureChest>().OpenChest();
             }
