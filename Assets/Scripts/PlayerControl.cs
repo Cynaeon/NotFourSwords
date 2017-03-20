@@ -15,10 +15,6 @@ public class PlayerControl : MonoBehaviour
         P4_
     }
     public Players playerPrefix;
-    public float maxMagnetDistance;
-    public float magnetVelocity;
-    public float minMagnetDistance;
-    private bool _magnetActive;
 
     public PauseManager pauseManager;
     private bool _isPaused;
@@ -73,6 +69,9 @@ public class PlayerControl : MonoBehaviour
     private float dashInvulTime;
     private float lockAcquisitionRange;
     private float lockMaxRange;
+    private float _maxMagnetDistance;
+    private float _magnetVelocity;
+    private float _minMagnetDistance;
     private float dmgInvulTime;
     private Collider _grabSpot;
     #endregion
@@ -119,6 +118,7 @@ public class PlayerControl : MonoBehaviour
     private bool dash;
     private bool toggleSword;
     private bool invulnerable;
+    private bool _magnetActive;
     private FogDensity fogDensity;
     #endregion
 
@@ -151,6 +151,9 @@ public class PlayerControl : MonoBehaviour
         lockOnArrow = transform.Find("LockOnArrow");
         myItem = Items.none;
         activeState = StateOfTheAnimation.idle;
+        _maxMagnetDistance = playerManager.maxMagnetDistance;
+        _magnetVelocity = playerManager.magnetVelocity;
+        _minMagnetDistance = playerManager.minMagnetDistance;
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
         HandSword.SetActive(false);
@@ -453,7 +456,7 @@ public class PlayerControl : MonoBehaviour
         {
             _magnetActive = true;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, maxMagnetDistance))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, _maxMagnetDistance))
             {
                 Debug.Log(hit.distance);
                 if (hit.collider.tag == "Magnetic")
@@ -461,17 +464,17 @@ public class PlayerControl : MonoBehaviour
                     // Sticking to objects will be added here
                     verticalVelocity = 0;
                     movementPlayer = Vector3.zero;
-                    if (hit.distance >= minMagnetDistance)
+                    if (hit.distance >= _minMagnetDistance)
                     {
-                        controller.Move(transform.forward * Time.deltaTime * magnetVelocity);
+                        controller.Move(transform.forward * Time.deltaTime * _magnetVelocity);
                     }
                 }
                 else if (hit.collider.tag == "Metallic")
                 {
                     // And magnetic lifting here
-                    if (hit.distance >= minMagnetDistance)
+                    if (hit.distance >= _minMagnetDistance)
                     {
-                        hit.transform.Translate(-transform.forward * Time.deltaTime * magnetVelocity);
+                        hit.transform.Translate(-transform.forward * Time.deltaTime * _magnetVelocity);
                     }
                 }
             }
@@ -574,7 +577,13 @@ public class PlayerControl : MonoBehaviour
             else if (shootingLevel == 1)
             {
                 shootingSpeed = 0.3f;
-                if (Input.GetButtonDown(playerPrefix + "Shoot") && burstShot == false && lastShot > shootingSpeed)
+                if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+                {
+                    Instantiate(bolt, transform.position, transform.rotation);
+                    lastShot = 0;
+                }
+
+                /*if (Input.GetButtonDown(playerPrefix + "Shoot") && burstShot == false && lastShot > shootingSpeed)
                 {
                     burstShot = true;
                 }
@@ -588,7 +597,7 @@ public class PlayerControl : MonoBehaviour
                         burstCount = 0;
                     }
                     lastShot = 0;
-                }
+                }*/
             }
             else if (shootingLevel >= 2)
             {

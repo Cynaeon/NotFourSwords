@@ -19,6 +19,9 @@ public class PlayerManager : MonoBehaviour {
     public float gravity = 10f;
     public float jumpForce = 4f;
     public float dmgInvulTime = 2f;
+    public float maxMagnetDistance = 50f;
+    public float magnetVelocity = 25f;
+    public float minMagnetDistance = 1f;
 
     public Transform playerCamera;
     public GameObject bolt;
