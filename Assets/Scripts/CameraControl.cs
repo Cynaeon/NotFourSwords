@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class CameraControl : MonoBehaviour
 {
     private PauseManager _pauseManager;
@@ -20,6 +19,8 @@ public class CameraControl : MonoBehaviour
 
     private Rigidbody _rigidbody;
     public float lockOnSpeed = 10.0f;
+
+    public Transform defaultPos;
 
     float x = 0.0f;
     float y = 0.0f;
@@ -88,24 +89,21 @@ public class CameraControl : MonoBehaviour
                 y = ClampAngle(y, yMinLimit, yMaxLimit);
 
                 Quaternion rotation = Quaternion.Euler(y, x, 0);
-
-                //Debug.DrawLine(transform.position, target.position, Color.green, 2);
-
+   
                 RaycastHit hit;
-                if (Physics.Linecast(target.position, transform.position, out hit))
+                if (Physics.Linecast(target.position, defaultPos.position, out hit))
                 {
                     if (hit.transform.tag == "Walls")
                     {
                         distance = hit.distance;
                     }
                 }
-                else
-                {
-                    if (distance <= 10.0f)
-                    {
-                        distance += 0.1f;
-                    }
-                }
+                
+                Vector3 negDistance2 = new Vector3(0.0f, 0.0f, -defaultDist);
+                Vector3 position2 = rotation * negDistance2 + target.position;
+
+                defaultPos.rotation = rotation;
+                defaultPos.position = position2;
 
                 Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
                 Vector3 position = rotation * negDistance + target.position;
