@@ -13,11 +13,12 @@ public class PlayerManager : MonoBehaviour {
     public float burstSpeed = 0.2f;
     public float dashDuration = 0.5f;
     public float afterImageRatio = 0.1f;
-    public float invulTime = 0.2f;
+    public float dashInvulTime = 0.2f;
     public float lockAcquisitionRange = 5.0f;
     public float lockMaxRange = 15.0f;
     public float gravity = 10f;
     public float jumpForce = 4f;
+    public float dmgInvulTime = 2f;
 
     public Transform playerCamera;
     public GameObject bolt;
@@ -28,8 +29,6 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject player4;
 
     public List<Camera> mainCameras = new List<Camera>();
-
-    
 
 	void Start () {
 		player1.SetActive (true);
@@ -80,8 +79,6 @@ public class PlayerManager : MonoBehaviour {
 				player4.SetActive (false);
 			}
 		}
-
-        
 
         OrganizeCameras(FindActiveCameras());
 	}

@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
 {
     public enum Players
     {
+        NotSelected,
         P1_,
         P2_,
         P3_,
@@ -35,7 +36,9 @@ public class PlayerControl : MonoBehaviour
     public enum StateOfTheAnimation
     {
         idle,
+        idle_Sword,
         running,
+        running_Sword,
         dashing
 
     }
@@ -67,9 +70,10 @@ public class PlayerControl : MonoBehaviour
     private float shootingLevel;
     private float dashDuration;
     private float afterImageRatio;
-    private float invulTime;
+    private float dashInvulTime;
     private float lockAcquisitionRange;
     private float lockMaxRange;
+    private float dmgInvulTime;
     private Collider _grabSpot;
     #endregion
 
@@ -81,6 +85,7 @@ public class PlayerControl : MonoBehaviour
     private Color lockOnGreen;
     //private Color lockOnRed;
     private GameObject pushBlock;
+    private Renderer _rend;
     #endregion
 
     #region Private Variables
@@ -93,11 +98,13 @@ public class PlayerControl : MonoBehaviour
     private float dashTime;
     private float afterImageTime;
     private float lastShot;
+    private float currentInvulTime;
     private int burstCount;
     private float burstSpeed;
     private Transform lockOnTarget = null;
     private Vector3 dashDir;
     private int switchTarget;
+    private Color defaultColor;
     #endregion
 
     #region Private Booleans
@@ -110,6 +117,8 @@ public class PlayerControl : MonoBehaviour
     private bool canChangeItem;
     private bool canDash;
     private bool dash;
+    private bool toggleSword;
+    private bool invulnerable;
     private FogDensity fogDensity;
     #endregion
 
@@ -132,7 +141,8 @@ public class PlayerControl : MonoBehaviour
         burstSpeed = playerManager.burstSpeed;
         dashDuration = playerManager.dashDuration;
         afterImageRatio = playerManager.afterImageRatio;
-        invulTime = playerManager.invulTime;
+        dashInvulTime = playerManager.dashInvulTime;
+        dmgInvulTime = playerManager.dmgInvulTime;
         lockAcquisitionRange = playerManager.lockAcquisitionRange;
         lockMaxRange = playerManager.lockMaxRange;
         bolt = playerManager.bolt;
@@ -146,6 +156,8 @@ public class PlayerControl : MonoBehaviour
         HandSword.SetActive(false);
         Monocle.SetActive(false);
         TailMagnet.SetActive(false);
+        _rend = GetComponentInChildren<SkinnedMeshRenderer>();
+        defaultColor = _rend.material.color;
         
     }
 
@@ -164,7 +176,7 @@ public class PlayerControl : MonoBehaviour
             Movement();
             LockOnSystem();
             Shooting();
-            CheckDeath();
+            Health();
             SwitchItems();
             Swording();
             Lens();
@@ -190,7 +202,7 @@ public class PlayerControl : MonoBehaviour
         if (movementPlayer != Vector3.zero)
         {
             Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
-            // Put a boolean in the if-statement if you don't want the player to rotate
+            // Put a boolean in the if-statement below if you don't want the player to rotate
             if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
             {
                 transform.rotation = rotation;
@@ -207,7 +219,6 @@ public class PlayerControl : MonoBehaviour
             if (afterImageTime <= 0)
             {
                 //Quaternion rot = playerModel.transform.rotation;
-                
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
                 Instantiate(trailModel, pos, transform.rotation);
                 afterImageTime = afterImageRatio;
@@ -221,7 +232,6 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-
             movementPlayer.y = verticalVelocity;
             controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
         }
@@ -314,6 +324,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(false);
+                        toggleSword = false;
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -324,6 +335,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(false);
+                        toggleSword = false;
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
@@ -333,6 +345,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(true);
                         TailMagnet.SetActive(false);
+                        toggleSword = false;
                         canSee = true;
                         break;
                     case 3:
@@ -343,6 +356,7 @@ public class PlayerControl : MonoBehaviour
                         HandSword.SetActive(false);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(true);
+                        toggleSword = false;
                         canSee = false;
                         break;
                     case 4:
@@ -350,7 +364,6 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
-                        HandSword.SetActive(true);
                         Monocle.SetActive(false);
                         TailMagnet.SetActive(false);
                         canSee = false;
@@ -389,18 +402,42 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
     private void Swording()
     {
         if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.sword)
         {
+            if (!toggleSword)
+            {
+                HandSword.SetActive(true);
+                toggleSword = true;
+            }else
+            {
+                toggleSword = false;
+                HandSword.SetActive(false);
+            }
             //TODO: Play sword animation
-            SwordHitBox.SetActive(true);
+            
         }
     }
 
-    private void CheckDeath()
+    private void Health()
     {
+        // When invulnerable after taking dmg, flash red and disable hitbox
+        if (invulnerable && currentInvulTime <= dmgInvulTime)
+        {
+            playerHitbox.SetActive(false);
+            _rend.material.color = Color.Lerp(defaultColor, Color.red, Mathf.PingPong(Time.time, 0.2f));
+            currentInvulTime += Time.deltaTime;
+        }
+        else
+        {
+            playerHitbox.SetActive(true);
+            _rend.material.color = defaultColor;
+            currentInvulTime = 0;
+            invulnerable = false;
+        }
+
+        // Check death
         if (transform.position.y < -25 || currentHealth <= 0)
         {
             transform.position = new Vector3(0, 2, 0);
@@ -460,7 +497,7 @@ public class PlayerControl : MonoBehaviour
 
         if (dash)
         {
-            if (invulTime >= dashTime)
+            if (dashInvulTime >= dashTime)
             {
                 playerHitbox.SetActive(false);
             }
@@ -504,8 +541,10 @@ public class PlayerControl : MonoBehaviour
         return closest;
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg, Vector3 dir)
     {
+        invulnerable = true;
+        gameObject.GetComponent<ImpactReceiver>().AddImpact(Vector3.back + Vector3.up, 100);
         movementPlayer = -movementPlayer;
         currentHealth -= dmg;
     }
@@ -522,7 +561,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Shooting()
     {
-        if (!dash) {
+        if (!dash && !toggleSword) {
             if (shootingLevel == 0)
             {
                 shootingSpeed = 0.5f;
@@ -561,6 +600,12 @@ public class PlayerControl : MonoBehaviour
                 }
             }
             lastShot += Time.deltaTime;
+        }
+        if (toggleSword)
+        {
+            if(Input.GetButtonDown(playerPrefix + "Shoot")) {
+                SwordHitBox.SetActive(true);
+            }
         }
     }
 
@@ -745,6 +790,25 @@ public class PlayerControl : MonoBehaviour
 
     public void Animations()
     {
+        float myAngle = Mathf.Atan2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical")) * Mathf.Rad2Deg;
+        if (lockOn)
+        {
+            anime.SetFloat("DashAngle", myAngle);
+        }
+        else
+        {
+            anime.SetFloat("DashAngle", 0);
+        }
+        if (toggleSword)
+        {
+            anime.SetFloat("ItemState", 1);
+            anime.SetFloat("DashState", 1);
+        }else
+        {
+            anime.SetFloat("ItemState", 0);
+            anime.SetFloat("DashState", 0);
+        }
+        
         if (movementPlayer.x != 0 || movementPlayer.z != 0)
         {
             activeState = StateOfTheAnimation.running;
@@ -756,6 +820,7 @@ public class PlayerControl : MonoBehaviour
         if (activeState == StateOfTheAnimation.dashing)
         {
             anime.SetBool("Dashing", true);
+            anime.SetBool("Running", false);
         }
         else
         {
