@@ -30,8 +30,6 @@ public class PlayerManager : MonoBehaviour {
 
     public List<Camera> mainCameras = new List<Camera>();
 
-    
-
 	void Start () {
 		player1.SetActive (true);
 		player2.SetActive (false);
@@ -81,8 +79,6 @@ public class PlayerManager : MonoBehaviour {
 				player4.SetActive (false);
 			}
 		}
-
-        
 
         OrganizeCameras(FindActiveCameras());
 	}
