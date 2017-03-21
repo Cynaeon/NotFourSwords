@@ -99,7 +99,7 @@ public class PlayerControl : MonoBehaviour
     private float lastShot;
     private float currentInvulTime;
     private int burstCount;
-    private float burstSpeed;
+    //private float burstSpeed;
     private Transform lockOnTarget = null;
     private Vector3 dashDir;
     private int switchTarget;
@@ -138,7 +138,7 @@ public class PlayerControl : MonoBehaviour
         dashSpeed = playerManager.dashSpeed;
         pushingSpeed = playerManager.pushingSpeed;
         shootingSpeed = playerManager.shootingSpeed;
-        burstSpeed = playerManager.burstSpeed;
+        //burstSpeed = playerManager.burstSpeed;
         dashDuration = playerManager.dashDuration;
         afterImageRatio = playerManager.afterImageRatio;
         dashInvulTime = playerManager.dashInvulTime;

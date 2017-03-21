@@ -8,11 +8,10 @@ public class BreakWall : MonoBehaviour {
     public GameObject brokenPieces;
 
     private Renderer[] _rends;
-    private Collider _collider;
     private float a;
 
 	void Start () {
-        _collider = GetComponent<BoxCollider>();
+
         _rends = brokenPieces.GetComponentsInChildren<Renderer>();
         a = _rends[0].material.color.a;
 	}

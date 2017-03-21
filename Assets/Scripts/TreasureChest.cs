@@ -8,12 +8,10 @@ public class TreasureChest : MonoBehaviour {
     public GameObject powerUp;
 
     private bool opened;
-    private Vector3 openPos;
     private Animator anime;
 
 	// Use this for initialization
 	void Start () {
-        openPos = new Vector3(0, 180, 0);
         anime = GetComponent<Animator>();
     }
 	

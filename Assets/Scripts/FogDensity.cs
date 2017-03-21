@@ -16,14 +16,14 @@ public class FogDensity : MonoBehaviour
     Color previousAmbientLight;
     float previousHaloStrength;
     float previousFlareStrength;
-    private Camera camera;
+    private Camera playerCamera;
     public float clipPlane;
     private bool fade;
 
     
     void Start()
     {
-        camera = GetComponent<Camera>();
+        playerCamera = GetComponent<Camera>();
         clipPlane = 2000;
         fogDensity = 0;
     }
@@ -55,8 +55,8 @@ public class FogDensity : MonoBehaviour
         {
             clipPlane = clipPlane - 92;
         }
-        camera.farClipPlane = clipPlane;
-        camera.clearFlags = CameraClearFlags.SolidColor;
+        playerCamera.farClipPlane = clipPlane;
+        playerCamera.clearFlags = CameraClearFlags.SolidColor;
     }
 
     private void FadeFogOut()
@@ -70,8 +70,8 @@ public class FogDensity : MonoBehaviour
         {
             clipPlane = clipPlane + 92;
         }
-        camera.farClipPlane = clipPlane;
-        camera.clearFlags = CameraClearFlags.Skybox;
+        playerCamera.farClipPlane = clipPlane;
+        playerCamera.clearFlags = CameraClearFlags.Skybox;
     }
 
 

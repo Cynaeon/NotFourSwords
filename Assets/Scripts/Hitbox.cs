@@ -7,12 +7,11 @@ public class Hitbox : MonoBehaviour {
     public GameObject player;
 
     private PlayerControl _playerControl;
-    private int playerPrefix;
+
 
     void Start()
     {
         _playerControl = player.GetComponent<PlayerControl>();
-        playerPrefix = (int)_playerControl.playerPrefix;
     }
 
     void OnTriggerEnter(Collider other)
