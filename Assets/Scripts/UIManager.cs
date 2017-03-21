@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour {
     public Image magnetImage;
     public Image swordImage;
     public Image notificationImage;
+    public Image crosshair;
     public Text health;
 	public Text paused;
 	public Text pausedShadow;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour {
         swordImage.enabled = false;
 		paused.enabled = false;
 		pausedShadow.enabled = false;
+        crosshair.enabled = false;
 
         maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
@@ -36,6 +38,14 @@ public class UIManager : MonoBehaviour {
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
         health.text = "HP: " + currentHealth + " / " + maxHealth;
 
+        if (player.GetComponent<PlayerControl>().firstPerson)
+        {
+            crosshair.enabled = true;
+        }
+        else
+        {
+            crosshair.enabled = false;
+        }
     }
 
     public void EnableNotification(bool state)

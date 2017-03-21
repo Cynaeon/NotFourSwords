@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 public class CharacterSelectSpot : MonoBehaviour {
 
@@ -18,6 +19,7 @@ public class CharacterSelectSpot : MonoBehaviour {
 
 	void Start () {
         number = 1;
+        
 	}
 	
 	void Update () {
@@ -25,7 +27,7 @@ public class CharacterSelectSpot : MonoBehaviour {
         {
             playerActive = true;
         }
-
+        
         if (playerActive)
         {
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
@@ -91,9 +93,10 @@ public class CharacterSelectSpot : MonoBehaviour {
             {
                 axisReset = false;
             }
-
+            
             if (Input.GetButtonDown(playerPrefix + "Start"))
             {
+                GameObject character = GetPlayerCharacter();
                 SceneManager.LoadScene("outside_tower", LoadSceneMode.Single);
             }
         }
@@ -104,5 +107,26 @@ public class CharacterSelectSpot : MonoBehaviour {
             purple.SetActive(false);
             red.SetActive(false);
         }
+    }
+
+    private GameObject GetPlayerCharacter()
+    {
+        if (number == 1)
+        {
+            return blue;
+        }
+        if (number == 2)
+        {
+            return green;
+        }
+        if (number == 3)
+        {
+            return purple;
+        }
+        if (number == 4)
+        {
+            return red;
+        }
+        return null;
     }
 }
