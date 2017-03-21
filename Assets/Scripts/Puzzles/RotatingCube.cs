@@ -23,7 +23,6 @@ public class RotatingCube : MonoBehaviour {
         {
             Activate();
         }
-        
 	}
 
     public void Activate()

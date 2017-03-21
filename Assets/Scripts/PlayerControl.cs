@@ -46,8 +46,6 @@ public class PlayerControl : MonoBehaviour
     public Camera _playerCamera;
     public Canvas _playerCanvas;
     public GameObject playerHitbox;
-    public Texture2D crosshairTexture;
-    public float crosshairScale = 1;
     public GameObject trailModel;
     public GameObject playerModel;
     public GameObject HandSword;
@@ -109,7 +107,7 @@ public class PlayerControl : MonoBehaviour
     #region Private Booleans
     private bool burstShot;
     private bool lockOn;
-    private bool firstPerson;
+    [HideInInspector] public bool firstPerson;
     private bool grabbing;
     private bool climbing;
     private bool canSee;
@@ -119,6 +117,7 @@ public class PlayerControl : MonoBehaviour
     private bool toggleSword;
     private bool invulnerable;
     private bool _magnetActive;
+    [HideInInspector] public bool settingStartPos;
     private FogDensity fogDensity;
     #endregion
 
@@ -161,7 +160,7 @@ public class PlayerControl : MonoBehaviour
         TailMagnet.SetActive(false);
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
         defaultColor = _rend.material.color;
-        
+        settingStartPos = true;
     }
 
     void Update()
@@ -170,6 +169,7 @@ public class PlayerControl : MonoBehaviour
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
+            SetStartPosition();
             GetMovement();
             Dashing();
             Gravity();
@@ -187,6 +187,33 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    public void SetStartPosition()
+    {
+        if (settingStartPos)
+        {
+            GameObject startPos = GameObject.FindGameObjectWithTag("Start");
+            if (startPos)
+            {
+                if ((int)playerPrefix == 1)
+                {
+                    transform.position = new Vector3(startPos.transform.position.x - 2, startPos.transform.position.y, startPos.transform.position.z + 2);
+                }
+                if ((int)playerPrefix == 2)
+                {
+                    transform.position = new Vector3(startPos.transform.position.x + 2, startPos.transform.position.y, startPos.transform.position.z + 2);
+                }
+                if ((int)playerPrefix == 3)
+                {
+                    transform.position = new Vector3(startPos.transform.position.x - 2, startPos.transform.position.y, startPos.transform.position.z - 2);
+                }
+                if ((int)playerPrefix == 4)
+                {
+                    transform.position = new Vector3(startPos.transform.position.x + 2, startPos.transform.position.y, startPos.transform.position.z - 2);
+                }
+                settingStartPos = false;
+            }
+        }
+    }
 
     private void GetMovement()
     {
@@ -197,6 +224,14 @@ public class PlayerControl : MonoBehaviour
 
         float moveHorizontal = Input.GetAxis(playerPrefix + "Horizontal");
         float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
+        if (moveHorizontal < 0.3 && moveHorizontal > -0.3)
+        {
+            moveHorizontal = 0;
+        }
+        if (moveVertical < 0.3 && moveVertical > -0.3)
+        {
+            moveVertical = 0;
+        }
         movementPlayer = (moveHorizontal * right + moveVertical * forward).normalized;
     }
 
@@ -435,7 +470,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             playerHitbox.SetActive(true);
-            _rend.material.color = defaultColor;
+            //_rend.material.color = defaultColor;
             currentInvulTime = 0;
             invulnerable = false;
         }
@@ -786,14 +821,6 @@ public class PlayerControl : MonoBehaviour
             {
                 climbing = false;
             }
-        }
-    }
-
-    void OnGUI()
-    {
-        if (firstPerson)
-        {
-            GUI.DrawTexture(new Rect((Screen.width - crosshairTexture.width * crosshairScale) / 2, (Screen.height - crosshairTexture.height * crosshairScale) / 2, crosshairTexture.width * crosshairScale, crosshairTexture.height * crosshairScale), crosshairTexture);
         }
     }
 
