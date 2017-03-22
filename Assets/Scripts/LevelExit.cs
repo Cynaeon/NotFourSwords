@@ -9,6 +9,21 @@ public class LevelExit : MonoBehaviour {
     public GameObject[] screenFadeOut;
     public float fadeSpeed;
     public GameObject[] players;
+    public Transform elevator;
+
+    public enum Level
+    {
+        CharacterSelect = 0,
+        OutsideTowerDemo = 1,
+        Entrance = 2,
+        Labyrinth = 3,
+        Deflect = 4,
+        MagneticBlock = 5,
+        Enemies = 6,
+        RotatingCube = 7
+    }
+
+    public Level level;
 
     private Color screenFade;
     private float screenAlpha;
@@ -42,6 +57,11 @@ public class LevelExit : MonoBehaviour {
 
 		if (sceneExiting)
         {
+            if (elevator)
+            {
+                elevator.position += Vector3.up * Time.deltaTime * 5;
+            }
+
             screenAlpha += Time.deltaTime * fadeSpeed;
             foreach (GameObject image in screenFadeOut)
             {
@@ -49,9 +69,7 @@ public class LevelExit : MonoBehaviour {
             }
             if (screenAlpha >= 1)
             {
-                
-                SceneManager.LoadScene("Entrance", LoadSceneMode.Single);
-
+                SceneManager.LoadScene((int)level, LoadSceneMode.Single);
                 sceneEntering = true;
                 foreach (GameObject player in players)
                 {

@@ -1,29 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RotatingCube : MonoBehaviour {
 
     public GameObject target;
+    public GameObject cannon;
+    public GameObject meteor;
     public ParticleSystem destroyEffect;
     public float rotateSpeed;
+    public float meteorFireRate;
 
+    private float lastMeteor;
     private int timesRotated;
     private float Yrotation;
     private float Zrotation;
+    private bool increasedSpeed;
 
-	// Use this for initialization
-	void Start () {
+    void Start() {
         timesRotated = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (target.GetComponent<Target>().activated)
+    }
+
+    void Update() {
+        DefenceMechanism();
+        if (target.GetComponent<Target>().activated)
         {
             Activate();
         }
-	}
+    }
 
     public void Activate()
     {
@@ -36,7 +41,7 @@ public class RotatingCube : MonoBehaviour {
                 transform.rotation = Quaternion.Euler(0, 0, 180);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
-            } 
+            }
         }
         else if (timesRotated == 1)
         {
@@ -60,8 +65,9 @@ public class RotatingCube : MonoBehaviour {
                 timesRotated++;
             }
         }
-        else if (timesRotated == 3)
+        else if (timesRotated >= 3)
         {
+            timesRotated = 4;
             rotateSpeed += 1;
             Zrotation += rotateSpeed * Time.deltaTime;
             Yrotation += rotateSpeed * Time.deltaTime;
@@ -73,8 +79,57 @@ public class RotatingCube : MonoBehaviour {
             {
                 Instantiate(destroyEffect, transform.position, transform.rotation);
                 Destroy(gameObject);
+                Destroy(cannon);
             }
-
         }
+    }
+
+    private void DefenceMechanism()
+    {
+        if (timesRotated != 4)
+        {
+            if (timesRotated >= 1)
+            {
+                // Start firing meteors
+                lastMeteor += Time.deltaTime;
+                if (lastMeteor > meteorFireRate)
+                {
+                    Transform player = FindRandomPlayer();
+                    Vector3 spawnPoint = new Vector3(player.position.x, 30, player.position.z);
+                    Instantiate(meteor, spawnPoint, Quaternion.identity);
+                    lastMeteor = 0;
+                }
+            }
+            if (timesRotated >= 2)
+            {
+                // Start firing the spinning cannon
+                cannon.GetComponent<RotatingCubeCannon>().StartFiring();
+            }
+            if (timesRotated == 3)
+            {
+                // Speed things up
+                IncreaseSpeed();
+            }
+        }
+        else
+        {
+            cannon.GetComponent<RotatingCubeCannon>().StopFiring();
+        }
+    }
+
+    private void IncreaseSpeed()
+    {
+        if (!increasedSpeed)
+        {
+            meteorFireRate /= 2;
+            cannon.GetComponent<RotatingCubeCannon>().IncreaseSpeed();
+            increasedSpeed = true;
+        }
+    }
+
+    public virtual Transform FindRandomPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        return players[UnityEngine.Random.Range(0, players.Length)].transform;
     }
 }
