@@ -48,10 +48,13 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerHitbox;
     public GameObject trailModel;
     public GameObject playerModel;
-    public GameObject HandSword;
-    public GameObject Monocle;
-    public GameObject TailMagnet;
     public GameObject SwordHitBox;
+    //Items
+    public GameObject SwordItem;
+    public GameObject Sheath;
+    public GameObject MonocleItem;
+    public GameObject MagnetItem;
+    public GameObject BootsItem;
     #endregion
 
     #region Player Attributes
@@ -88,6 +91,7 @@ public class PlayerControl : MonoBehaviour
     #region Private Variables
     private PlayerManager playerManager;
     private Vector3 movementPlayer;
+    private FogDensity fogDensity;
     private float currentSpeed;
     private float verticalVelocity;
     private float gravity;
@@ -118,7 +122,6 @@ public class PlayerControl : MonoBehaviour
     private bool invulnerable;
     private bool _magnetActive;
     [HideInInspector] public bool settingStartPos;
-    private FogDensity fogDensity;
     #endregion
 
     void Start()
@@ -155,9 +158,7 @@ public class PlayerControl : MonoBehaviour
         _minMagnetDistance = playerManager.minMagnetDistance;
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
-        HandSword.SetActive(false);
-        Monocle.SetActive(false);
-        TailMagnet.SetActive(false);
+        SetActivity(false,false,false,false);
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
         defaultColor = _rend.material.color;
         settingStartPos = true;
@@ -358,21 +359,17 @@ public class PlayerControl : MonoBehaviour
                     case 0:
                         myItem = Items.none;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false);
-                        fogDensity.fadeState(false);
-                        HandSword.SetActive(false);
-                        Monocle.SetActive(false);
-                        TailMagnet.SetActive(false);
+                        SetActivity(false, false, false, false);
                         toggleSword = false;
+                        fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
                     case 1:
                         myItem = Items.jump;
                         _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false);
+                        SetActivity(false, false, true, false);
                         fogDensity.fadeState(false);
-                        HandSword.SetActive(false);
-                        Monocle.SetActive(false);
-                        TailMagnet.SetActive(false);
                         toggleSword = false;
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
@@ -380,30 +377,25 @@ public class PlayerControl : MonoBehaviour
                     case 2:
                         myItem = Items.seeThrough;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false);
-                        HandSword.SetActive(false);
-                        Monocle.SetActive(true);
-                        TailMagnet.SetActive(false);
+                        SetActivity(false, true, false, false);
                         toggleSword = false;
                         canSee = true;
                         break;
                     case 3:
                         myItem = Items.magnet;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false);
+                        SetActivity(false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
-                        HandSword.SetActive(false);
-                        Monocle.SetActive(false);
-                        TailMagnet.SetActive(true);
                         toggleSword = false;
                         canSee = false;
                         break;
                     case 4:
                         myItem = Items.sword;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true);
+                        SetActivity(false, false, false, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
-                        Monocle.SetActive(false);
-                        TailMagnet.SetActive(false);
                         canSee = false;
                         break;
 
@@ -413,6 +405,15 @@ public class PlayerControl : MonoBehaviour
         {
             _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
         }
+    }
+
+    private void SetActivity(bool _sword, bool _monocle, bool _boots, bool _magnet)
+    {
+        SwordItem.SetActive(_sword);
+        Sheath.SetActive(_sword);
+        MonocleItem.SetActive(_monocle);
+        BootsItem.SetActive(_boots);
+        MagnetItem.SetActive(_magnet);
     }
 
     private void Lens()
@@ -446,12 +447,12 @@ public class PlayerControl : MonoBehaviour
         {
             if (!toggleSword)
             {
-                HandSword.SetActive(true);
+                SwordItem.SetActive(true);
                 toggleSword = true;
             }else
             {
                 toggleSword = false;
-                HandSword.SetActive(false);
+                SwordItem.SetActive(false);
             }
             //TODO: Play sword animation
             
@@ -827,14 +828,19 @@ public class PlayerControl : MonoBehaviour
     public void Animations()
     {
         float myAngle = Mathf.Atan2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical")) * Mathf.Rad2Deg;
-        if (lockOn)
+        if (lockOn && dashTime > dashDuration - dashDuration/5)
         {
             anime.SetFloat("DashAngle", myAngle);
         }
-        else
+        if(dashTime == 0)
         {
+            anime.SetFloat("DashAngle", myAngle);
+        }
+
+        if(!lockOn){
             anime.SetFloat("DashAngle", 0);
         }
+
         if (toggleSword)
         {
             anime.SetFloat("ItemState", 1);
