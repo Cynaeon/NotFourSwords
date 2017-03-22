@@ -83,7 +83,7 @@ public class PlayerControl : MonoBehaviour
     private Transform lockOnArrow;
     private Renderer lockOnRend;
     private Color lockOnGreen;
-    //private Color lockOnRed;
+    private Color lockOnRed;
     private GameObject pushBlock;
     private Renderer _rend;
     #endregion
@@ -151,6 +151,8 @@ public class PlayerControl : MonoBehaviour
         gravity = playerManager.gravity;
         jumpForce = playerManager.jumpForce;
         lockOnArrow = transform.Find("LockOnArrow");
+        lockOnGreen = lockOnArrow.GetComponent<Renderer>().material.color;
+        lockOnRed = Color.red;
         myItem = Items.none;
         activeState = StateOfTheAnimation.idle;
         _maxMagnetDistance = playerManager.maxMagnetDistance;
@@ -471,7 +473,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             playerHitbox.SetActive(true);
-            //_rend.material.color = defaultColor;
+            _rend.material.color = defaultColor;
             currentInvulTime = 0;
             invulnerable = false;
         }
@@ -590,7 +592,10 @@ public class PlayerControl : MonoBehaviour
 
     public void HealDamage(float heal)
     {
-        currentHealth += heal;
+        if (currentHealth != maxHealth)
+        {
+            currentHealth += heal;
+        }
     }
 
     public void IncreaseShootingLevel(int upgrade)
@@ -698,6 +703,7 @@ public class PlayerControl : MonoBehaviour
 
         if (!lockOn)
         {
+            lockOnArrow.GetComponent<Renderer>().material.color = lockOnGreen;
             if (enemyList.Count > 0)
             {
                 switchTarget = 0;
@@ -723,6 +729,7 @@ public class PlayerControl : MonoBehaviour
         // Locked on
         else
         {
+            lockOnArrow.GetComponent<Renderer>().material.color = lockOnRed;
             if (lockOnTarget != null)
             {
                 if (Vector3.Distance(lockOnTarget.transform.position, transform.position) <= lockMaxRange)
