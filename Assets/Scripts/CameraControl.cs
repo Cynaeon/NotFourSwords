@@ -120,6 +120,13 @@ public class CameraControl : MonoBehaviour
         }
     }
 
+    public void SetStartPosition()
+    {
+        var targetRotationAngle = target.eulerAngles.y;
+        x = targetRotationAngle;
+        distance = defaultDist;
+    }
+
     public static float ClampAngle(float angle, float min, float max)
     {
         if (angle < -360F)
