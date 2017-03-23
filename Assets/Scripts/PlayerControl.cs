@@ -329,7 +329,7 @@ public class PlayerControl : MonoBehaviour
         {
             canDash = true;
             verticalVelocity = -gravity * Time.deltaTime;
-            if (Input.GetButtonDown(playerPrefix + "Item") && myItem == Items.jump)
+            if (Input.GetButton(playerPrefix + "Item") && myItem == Items.jump)
             {
                 verticalVelocity = jumpForce;
             }
