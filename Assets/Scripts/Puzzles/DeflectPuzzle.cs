@@ -16,14 +16,18 @@ public class DeflectPuzzle : MonoBehaviour {
 
         lastSpawnedTarget = 0;
 	}
-	
-	void Update () {
-		if (targets[lastSpawnedTarget].GetComponent<Target>().activated)
+
+    void Update()
+    {
+        if (lastSpawnedTarget < 2)
         {
-            lastSpawnedTarget++;
-            targets[lastSpawnedTarget].SetActive(true);
-            Instantiate(spawnEffect, targets[lastSpawnedTarget].transform.position, targets[1].transform.rotation);
-            
+            if (targets[lastSpawnedTarget].GetComponent<Target>().activated)
+            {
+                lastSpawnedTarget++;
+                targets[lastSpawnedTarget].SetActive(true);
+                Instantiate(spawnEffect, targets[lastSpawnedTarget].transform.position, targets[1].transform.rotation);
+
+            }
         }
-	}
+    }
 }

@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 
     public PauseManager pauseManager;
     private bool _isPaused;
+    public Transform startPos;
 
     public enum Items
     {
@@ -172,7 +173,7 @@ public class PlayerControl : MonoBehaviour
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
-            SetStartPosition();
+            
             GetMovement();
             Dashing();
             Gravity();
@@ -187,36 +188,34 @@ public class PlayerControl : MonoBehaviour
             Swording();
             Lens();
             Animations();
+            
         }
     }
 
-    public void SetStartPosition()
+    public void SetStartPosition(Transform startPos)
     {
-        if (settingStartPos)
+        this.startPos = startPos;
+        transform.rotation = startPos.rotation;
+        if ((int)playerPrefix == 1)
         {
-            GameObject startPos = GameObject.FindGameObjectWithTag("Start");
-            if (startPos)
-            {
-                if ((int)playerPrefix == 1)
-                {
-                    transform.position = new Vector3(startPos.transform.position.x - 2, startPos.transform.position.y, startPos.transform.position.z + 2);
-                }
-                if ((int)playerPrefix == 2)
-                {
-                    transform.position = new Vector3(startPos.transform.position.x + 2, startPos.transform.position.y, startPos.transform.position.z + 2);
-                }
-                if ((int)playerPrefix == 3)
-                {
-                    transform.position = new Vector3(startPos.transform.position.x - 2, startPos.transform.position.y, startPos.transform.position.z - 2);
-                }
-                if ((int)playerPrefix == 4)
-                {
-                    transform.position = new Vector3(startPos.transform.position.x + 2, startPos.transform.position.y, startPos.transform.position.z - 2);
-                }
-                settingStartPos = false;
-            }
+            transform.position = new Vector3(startPos.position.x - 2, startPos.position.y, startPos.position.z + 2);
         }
+        if ((int)playerPrefix == 2)
+        {
+            transform.position = new Vector3(startPos.position.x + 2, startPos.position.y, startPos.position.z + 2);
+        }
+        if ((int)playerPrefix == 3)
+        {
+            transform.position = new Vector3(startPos.position.x - 2, startPos.position.y, startPos.position.z - 2);
+        }
+        if ((int)playerPrefix == 4)
+        {
+            transform.position = new Vector3(startPos.position.x + 2, startPos.position.y, startPos.position.z - 2);
+        }
+        settingStartPos = false;
+            
     }
+    
 
     private void GetMovement()
     {
@@ -484,7 +483,15 @@ public class PlayerControl : MonoBehaviour
         // Check death
         if (transform.position.y < -25 || currentHealth <= 0)
         {
-            transform.position = new Vector3(0, 2, 0);
+            if (startPos)
+            {
+                transform.position = startPos.position;
+                transform.rotation = startPos.rotation;
+            }
+            else
+            {
+                transform.position = Vector3.zero;
+            }
             currentHealth = 10.0f;
         }
     }
