@@ -172,21 +172,24 @@ public class PlayerControl : MonoBehaviour
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
+            if (playerPrefix != Players.NotSelected)
+            {
+                GetMovement();
+                Dashing();
+                Gravity();
+                Magnet();
+                FirstPersonControls();
+                Grabbing();
+                Movement();
+                LockOnSystem();
+                Shooting();
+                Health();
+                SwitchItems();
+                Swording();
+                Lens();
+                Animations();
+            }
             
-            GetMovement();
-            Dashing();
-            Gravity();
-            Magnet();
-            FirstPersonControls();
-            Grabbing();
-            Movement();
-            LockOnSystem();
-            Shooting();
-            Health();
-            SwitchItems();
-            Swording();
-            Lens();
-            Animations();
             
         }
     }
@@ -195,6 +198,10 @@ public class PlayerControl : MonoBehaviour
     {
         this.startPos = startPos;
         transform.rotation = startPos.rotation;
+        if ((int)playerPrefix == 0)
+        {
+            transform.position = new Vector3(startPos.position.x, startPos.position.y, startPos.position.z);
+        }
         if ((int)playerPrefix == 1)
         {
             transform.position = new Vector3(startPos.position.x - 2, startPos.position.y, startPos.position.z + 2);

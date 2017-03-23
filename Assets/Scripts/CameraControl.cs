@@ -10,6 +10,7 @@ public class CameraControl : MonoBehaviour
     public Transform lockOnCameraSpot;
     public enum Players
     {
+        NotSelected,
         P1_,
         P2_,
         P3_,
@@ -70,51 +71,55 @@ public class CameraControl : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!_isPaused) {
-            if (target)
+        if (!_isPaused)
+        {
+            if (playerPrefix != Players.NotSelected)
             {
-                if (Input.GetButton(playerPrefix + "LockOn"))
+                if (target)
                 {
-                    var targetRotationAngle = target.eulerAngles.y;
-                    var currentRotationAngle = transform.eulerAngles.y;
-                    x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
-                }
-
-                // Scale speed with distance
-                xSpeed = 100 / distance;
-
-                x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
-                y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
-
-                y = ClampAngle(y, yMinLimit, yMaxLimit);
-
-                Quaternion rotation = Quaternion.Euler(y, x, 0);
-   
-                RaycastHit hit;
-                if (Physics.Linecast(target.position, defaultPos.position, out hit))
-                {
-                    if (hit.transform.tag == "Walls")
+                    if (Input.GetButton(playerPrefix + "LockOn"))
                     {
-                        distance = hit.distance;
+                        var targetRotationAngle = target.eulerAngles.y;
+                        var currentRotationAngle = transform.eulerAngles.y;
+                        x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
                     }
-                }
-                
-                Vector3 negDistance2 = new Vector3(0.0f, 0.0f, -defaultDist);
-                Vector3 position2 = rotation * negDistance2 + target.position;
 
-                defaultPos.rotation = rotation;
-                defaultPos.position = position2;
+                    // Scale speed with distance
+                    xSpeed = 100 / distance;
 
-                Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-                Vector3 position = rotation * negDistance + target.position;
+                    x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
+                    y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
 
-                transform.rotation = rotation;
-                transform.position = position;
+                    y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-                if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
-                {
-                    transform.position = target.position;
-                    transform.rotation = target.rotation;
+                    Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+                    RaycastHit hit;
+                    if (Physics.Linecast(target.position, defaultPos.position, out hit))
+                    {
+                        if (hit.transform.tag == "Walls")
+                        {
+                            distance = hit.distance;
+                        }
+                    }
+
+                    Vector3 negDistance2 = new Vector3(0.0f, 0.0f, -defaultDist);
+                    Vector3 position2 = rotation * negDistance2 + target.position;
+
+                    defaultPos.rotation = rotation;
+                    defaultPos.position = position2;
+
+                    Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+                    Vector3 position = rotation * negDistance + target.position;
+
+                    transform.rotation = rotation;
+                    transform.position = position;
+
+                    if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+                    {
+                        transform.position = target.position;
+                        transform.rotation = target.rotation;
+                    }
                 }
             }
         }

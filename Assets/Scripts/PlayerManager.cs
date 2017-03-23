@@ -46,7 +46,11 @@ public class PlayerManager : MonoBehaviour {
     }
 
 	void Update () {
-		if (Input.GetButtonDown("P1_Start")) {
+
+        SwitchPlayers();
+        
+
+        if (Input.GetButtonDown("P1_Start")) {
 			if (!player1.activeSelf) {
                 mainCameras[0].enabled = true;
 				player1.SetActive (true);
@@ -85,6 +89,58 @@ public class PlayerManager : MonoBehaviour {
 
         OrganizeCameras(FindActiveCameras());
 	}
+
+    private void SwitchPlayers()
+    {
+        if (Input.GetAxis("P1_DPadVertical") > 0.1f)
+        {
+            Debug.Log("Switched to player1");
+            player1.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.P1_;
+            player2.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player3.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player4.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            mainCameras[0].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.P1_;
+            mainCameras[1].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[2].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[3].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+        }
+        if (Input.GetAxis("P1_DPadHorizontal") < -0.1f)
+        {
+            Debug.Log("Switched to player2");
+            player1.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player2.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.P1_;
+            player3.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player4.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            mainCameras[0].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[1].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.P1_;
+            mainCameras[2].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[3].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+        }
+        if (Input.GetAxis("P1_DPadHorizontal") > 0.1f)
+        {
+            Debug.Log("Switched to player3");
+            player1.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player2.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player3.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.P1_;
+            player4.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            mainCameras[0].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[1].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[2].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.P1_;
+            mainCameras[3].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+        }
+        if (Input.GetAxis("P1_DPadVertical") < -0.1f)
+        {
+            Debug.Log("Switched to player4");
+            player1.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player2.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player3.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.NotSelected;
+            player4.GetComponent<PlayerControl>().playerPrefix = PlayerControl.Players.P1_;
+            mainCameras[0].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[1].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[2].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.NotSelected;
+            mainCameras[3].GetComponent<CameraControl>().playerPrefix = CameraControl.Players.P1_;
+        }
+    }
 
     private List<Camera> FindActiveCameras() {
         List<Camera> activeCams = new List<Camera>();
