@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public int lastDoorID;
     public Transform startPos;
 
+    public bool disableMovement;
+
 	// Use this for initialization
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
@@ -21,8 +23,32 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
+    public void DisableMovement()
+    {
+        disableMovement = true;
+    }
+
+    public void EnableMovement()
+    {
+        disableMovement = false;
+    }
+
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "Entrance")
+        {
+            Transform start = GameObject.FindGameObjectWithTag("Start").transform;
+            startPos = start.transform;
+            foreach (GameObject player in players)
+            {
+                player.GetComponent<PlayerControl>().SetStartPosition(startPos);
+            }
+            foreach (GameObject camera in cameras)
+            {
+                camera.GetComponent<CameraControl>().SetStartPosition();
+            }
+
+        }
         if (scene.name != "Entrance")
         {
             levelExits = GameObject.FindGameObjectsWithTag("Start");

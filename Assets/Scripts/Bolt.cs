@@ -6,6 +6,9 @@ public class Bolt : MonoBehaviour {
 
 	public float speed;
 	public float lifeTime;
+    public GameObject fire;
+
+    public bool onFire;
 
     public enum projectileType
     {
@@ -15,6 +18,11 @@ public class Bolt : MonoBehaviour {
 
     public projectileType type;
 	
+    void Start ()
+    {
+        fire.SetActive(false);
+    }
+
 	void Update () {
 		transform.Translate (Vector3.forward * Time.deltaTime * speed);
 		lifeTime -= Time.deltaTime;
@@ -22,6 +30,11 @@ public class Bolt : MonoBehaviour {
 		if (lifeTime < 0) {
 			Destroy (gameObject);
 		}
+
+        if (onFire)
+        {
+            fire.SetActive(true);
+        }
 	}
 
 	void OnTriggerEnter(Collider other) {
@@ -47,6 +60,10 @@ public class Bolt : MonoBehaviour {
         if (other.tag == "Walls")
         {
             Destroy(gameObject);
+        }
+        if (other.tag == "Fire")
+        {
+            onFire = true;
         }
     }
 }

@@ -90,6 +90,7 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
     #region Private Variables
+    private GameObject gameManager;
     private PlayerManager playerManager;
     private Vector3 movementPlayer;
     private float currentSpeed;
@@ -161,6 +162,8 @@ public class PlayerControl : MonoBehaviour
         _minMagnetDistance = playerManager.minMagnetDistance;
         _grabSpot = GetComponentInChildren<BoxCollider>();
         #endregion
+
+        gameManager = GameObject.Find("GameManager");
         SetActivity(false, false, false, false, false, false);
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
         defaultColor = _rend.material.color;
@@ -170,14 +173,16 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
+
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
-            if (playerPrefix != Players.NotSelected)
+            Gravity();
+
+            if (playerPrefix != Players.NotSelected && !gameManager.GetComponent<GameManager>().disableMovement)
             {
                 GetMovement();
                 Dashing();
-                Gravity();
                 Magnet();
                 FirstPersonControls();
                 Grabbing();
@@ -190,8 +195,6 @@ public class PlayerControl : MonoBehaviour
                 Lens();
                 Animations();
             }
-            
-            
         }
     }
 
@@ -419,6 +422,7 @@ public class PlayerControl : MonoBehaviour
     {
         SwordItem.SetActive(_sword);
         Sheath.SetActive(_sheath);
+
         SheathedSword.SetActive(_sheathedSword);
         MonocleItem.SetActive(_monocle);
         MagnetItem.SetActive(_magnet);
@@ -436,12 +440,10 @@ public class PlayerControl : MonoBehaviour
                 _playerCamera.cullingMask |= (1 << 8);
                 _playerCamera.cullingMask = ~(1 << 10);
                 canSee = false;
-
             }
             else
             {
-                
-                _playerCamera.clearFlags = CameraClearFlags.Skybox;
+                _playerCamera.clearFlags = CameraClearFlags.SolidColor;
                 fogDensity.fadeState(false);
                 _playerCamera.cullingMask = ~(1 << 8);
                 _playerCamera.cullingMask |= (1 << 10);
@@ -688,11 +690,47 @@ public class PlayerControl : MonoBehaviour
         }
         if (firstPerson && !_magnetActive)
         {
+            if (playerPrefix == Players.P1_)
+            {
+                _playerCamera.cullingMask = ~(1 << 13);
+            }
+            else if (playerPrefix == Players.P2_)
+            {
+                _playerCamera.cullingMask = ~(1 << 14);
+            }
+            else if (playerPrefix == Players.P3_)
+            {
+                _playerCamera.cullingMask = ~(1 << 15);
+            }
+            else if (playerPrefix == Players.P4_)
+            {
+                _playerCamera.cullingMask = ~(1 << 16);
+            }
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
             float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
             Vector3 lookPlayer = new Vector3(-lookVertical, -lookHorizontal, 0);
 
             transform.localEulerAngles += lookPlayer;
+        }
+        else
+        {
+            if (playerPrefix == Players.P1_)
+            {
+                _playerCamera.cullingMask |= (1 << 13);
+            }
+            else if (playerPrefix == Players.P2_)
+            {
+                _playerCamera.cullingMask |= (1 << 14);
+            }
+            else if (playerPrefix == Players.P3_)
+            {
+                _playerCamera.cullingMask |= (1 << 15);
+            }
+            else if (playerPrefix == Players.P4_)
+            {
+                _playerCamera.cullingMask |= (1 << 16);
+            }
+            
         }
     }
 

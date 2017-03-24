@@ -71,7 +71,7 @@ public class FogDensity : MonoBehaviour
             clipPlane = clipPlane + 92;
         }
         playerCamera.farClipPlane = clipPlane;
-        playerCamera.clearFlags = CameraClearFlags.Skybox;
+        playerCamera.clearFlags = CameraClearFlags.SolidColor;
     }
 
 
