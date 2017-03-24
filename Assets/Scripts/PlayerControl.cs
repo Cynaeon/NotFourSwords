@@ -61,6 +61,7 @@ public class PlayerControl : MonoBehaviour
     #region Player Attributes
     [HideInInspector] public float maxHealth;
     [HideInInspector] public float currentHealth;
+    [HideInInspector] public int gatheredCoins;
     private float defaultSpeed;
     private float dashSpeed;
     private float pushingSpeed;
@@ -135,6 +136,7 @@ public class PlayerControl : MonoBehaviour
         anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         currentHealth = playerManager.health;
+        gatheredCoins = playerManager.coins;
         maxHealth = playerManager.health;
         defaultSpeed = playerManager.defaultSpeed;
         currentSpeed = defaultSpeed;
@@ -190,8 +192,6 @@ public class PlayerControl : MonoBehaviour
                 Lens();
                 Animations();
             }
-            
-            
         }
     }
 
@@ -613,6 +613,11 @@ public class PlayerControl : MonoBehaviour
         {
             currentHealth += heal;
         }
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        gatheredCoins = gatheredCoins + amount;
     }
 
     public void IncreaseShootingLevel(int upgrade)

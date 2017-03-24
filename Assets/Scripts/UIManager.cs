@@ -11,11 +11,13 @@ public class UIManager : MonoBehaviour {
     public Image notificationImage;
     public Image crosshair;
     public Text health;
-	public Text paused;
+    public Text coins;
+    public Text paused;
 	public Text pausedShadow;
     public GameObject player;
     private float maxHealth;
     private float currentHealth;
+    private float Coins;
 
 	void Start () {
         seeThroughImage.enabled = false;
@@ -29,7 +31,9 @@ public class UIManager : MonoBehaviour {
 
         maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
+        Coins = player.GetComponent<PlayerControl>().gatheredCoins;
         health.text = "HP: " + currentHealth + " / " + maxHealth;
+        coins.text = "Coins: " + coins;
 	}
 	
 	// Update is called once per frame
@@ -37,6 +41,8 @@ public class UIManager : MonoBehaviour {
         maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
         health.text = "HP: " + currentHealth + " / " + maxHealth;
+        Coins = player.GetComponent<PlayerControl>().gatheredCoins;
+        coins.text = "Coins: " + Coins;
 
         if (player.GetComponent<PlayerControl>().firstPerson)
         {
