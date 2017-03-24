@@ -25,17 +25,21 @@ public class LevelExit : MonoBehaviour {
         Elevator = 8,
         Corridor_Archers = 9,
         Hide_and_Seek = 10,
-        Corridor_Empty = 11
+        Corridor_Empty = 11,
+        JumpPuzzle = 12,
+        Corridor_Jump = 13
     }
 
     public Level level;
 
+    private GameObject gameManager;
     private Color screenFade;
     private float screenAlpha;
     private bool sceneEntering;
     private bool sceneExiting;
 
 	void Awake () {
+        gameManager = GameObject.Find("GameManager");
         sceneEntering = true;
         screenAlpha = 1;
         screenFadeOut = GameObject.FindGameObjectsWithTag("ScreenFadeOut");
@@ -49,6 +53,7 @@ public class LevelExit : MonoBehaviour {
 	void Update () {
         if (sceneEntering)
         {
+            gameManager.GetComponent<GameManager>().DisableMovement();
             screenAlpha -= Time.deltaTime * fadeSpeed;
             foreach (GameObject image in screenFadeOut)
             {
@@ -60,8 +65,9 @@ public class LevelExit : MonoBehaviour {
             }
         }
 
-		if (sceneExiting)
+		else if (sceneExiting)
         {
+            gameManager.GetComponent<GameManager>().DisableMovement();
             screenAlpha += Time.deltaTime * fadeSpeed;
             foreach (GameObject image in screenFadeOut)
             {
@@ -71,13 +77,11 @@ public class LevelExit : MonoBehaviour {
             {
                 SceneManager.LoadScene((int)level, LoadSceneMode.Single);
                 sceneEntering = true;
-                /*
-                foreach (GameObject player in players)
-                {
-                    player.GetComponent<PlayerControl>().settingStartPos = true;
-                }
-                */
             }
+        }
+        else
+        {
+            gameManager.GetComponent<GameManager>().EnableMovement();
         }
 	}
 
