@@ -32,8 +32,8 @@ public class CameraControl : MonoBehaviour
     private float ySpeed;
     private float yMinLimit;
     private float yMaxLimit;
-    //private float distanceMin;
-    //private float distanceMax;
+    private float distanceMin;
+    private float distanceMax;
 
     void Start()
     {
@@ -45,8 +45,8 @@ public class CameraControl : MonoBehaviour
         yMinLimit = cameraManager.yMinLimit;
         yMaxLimit = cameraManager.yMaxLimit;
         defaultDist = distance;
-        //distanceMin = cameraManager.distanceMin;
-        //distanceMax = cameraManager.distanceMax;
+        distanceMin = cameraManager.distanceMin;
+        distanceMax = cameraManager.distanceMax;
 
         _pauseManager = GetComponent<PauseManager>();
 
@@ -91,6 +91,7 @@ public class CameraControl : MonoBehaviour
                     y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
 
                     y = ClampAngle(y, yMinLimit, yMaxLimit);
+                    distance = Mathf.Clamp(distance, distanceMin, distanceMax);
 
                     Quaternion rotation = Quaternion.Euler(y, x, 0);
 

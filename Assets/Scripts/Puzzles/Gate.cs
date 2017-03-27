@@ -84,6 +84,20 @@ public class Gate : MonoBehaviour {
                     return false;
                 }
             }
+            if (activator.GetComponent<Torch>())
+            {
+                if (activator.GetComponent<Torch>().lit)
+                {
+                    if ((int)activatorsRequired == 1)
+                    {
+                        return true;
+                    }
+                }
+                else if ((int)activatorsRequired == 0)
+                {
+                    return false;
+                }
+            }
         }
 
         if ((int)activatorsRequired == 0)

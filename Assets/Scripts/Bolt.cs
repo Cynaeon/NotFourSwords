@@ -10,6 +10,8 @@ public class Bolt : MonoBehaviour {
 
     public bool onFire;
 
+    private bool hitWall;
+
     public enum projectileType
     {
         Enemy, 
@@ -24,7 +26,11 @@ public class Bolt : MonoBehaviour {
     }
 
 	void Update () {
-		transform.Translate (Vector3.forward * Time.deltaTime * speed);
+        if (!hitWall)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        }
+        
 		lifeTime -= Time.deltaTime;
 
 		if (lifeTime < 0) {
@@ -34,6 +40,10 @@ public class Bolt : MonoBehaviour {
         if (onFire)
         {
             fire.SetActive(true);
+        }
+        if (hitWall)
+        {
+
         }
 	}
 
@@ -57,9 +67,9 @@ public class Bolt : MonoBehaviour {
             }
         }
         
-        if (other.tag == "Walls")
+        if (other.tag == "Walls" || other.tag == "PushBlock")
         {
-            Destroy(gameObject);
+            hitWall = true;
         }
         if (other.tag == "Fire")
         {

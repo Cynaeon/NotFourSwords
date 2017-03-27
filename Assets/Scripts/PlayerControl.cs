@@ -637,7 +637,8 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.5f;
                 if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Instantiate(bolt, transform.position, transform.rotation);
+                    Vector3 pos = new Vector3(transform.position.x , transform.position.y + .6f, transform.position.z);
+                    Instantiate(bolt, pos, transform.rotation);
                     lastShot = 0;
                 }
             }
@@ -646,7 +647,8 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.3f;
                 if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Instantiate(bolt, transform.position, transform.rotation);
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
+                    Instantiate(bolt, pos, transform.rotation);
                     lastShot = 0;
                 }
 
@@ -671,7 +673,8 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.1f;
                 if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Instantiate(bolt, transform.position, transform.rotation);
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
+                    Instantiate(bolt, pos, transform.rotation);
                     lastShot = 0;
                 }
             }
