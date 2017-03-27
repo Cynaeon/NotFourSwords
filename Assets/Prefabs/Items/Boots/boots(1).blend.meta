@@ -1,15 +1,20 @@
 fileFormatVersion: 2
-guid: 6a12e39bce5a48244833f8c55dfda2ff
-timeCreated: 1489501359
+guid: a960bba7470ca814d8873a325d07d5f3
+timeCreated: 1490603862
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Monocle
+    100000: Boot_outline
+    100002: //RootNode
+    400000: Boot_outline
+    400002: //RootNode
+    2300000: Boot_outline
+    2300002: //RootNode
+    3300000: Boot_outline
+    3300002: //RootNode
+    4300000: Boot
+    4300002: Boot_outline
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -52,8 +57,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 10
+    normalImportMode: 1
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0

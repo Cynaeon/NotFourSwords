@@ -6,18 +6,20 @@ public class ItemSpawner : MonoBehaviour
 {
     List<GameObject> Items = new List<GameObject>();
     public GameObject none;
-    public GameObject feather;
-    public GameObject lens;
+    public GameObject boots;
+    public GameObject monocle;
     public GameObject magnet;
     public GameObject sword;
+    public GameObject key;
 
     public enum _items
     {
         none,
-        feather,
-        lens,
+        boots,
+        monocle,
         magnet,
-        sword
+        sword,
+        key
     }
 
     public _items _active;
@@ -27,10 +29,11 @@ public class ItemSpawner : MonoBehaviour
     void Start()
     {
         Items.Add(none);
-        Items.Add(feather);
-        Items.Add(lens);
+        Items.Add(boots);
+        Items.Add(monocle);
         Items.Add(magnet);
         Items.Add(sword);
+        Items.Add(key);
         Items[(int)_active].SetActive(true);
     }
 
@@ -48,16 +51,19 @@ public class ItemSpawner : MonoBehaviour
                 _active = _items.none;
                 break;
             case 1:
-                _active = _items.feather;
+                _active = _items.boots;
                 break;
             case 2:
-                _active = _items.lens;
+                _active = _items.monocle;
                 break;
             case 3:
                 _active = _items.magnet;
                 break;
             case 4:
                 _active = _items.sword;
+                break;
+            case 5:
+                _active = _items.key;
                 break;
         }
 

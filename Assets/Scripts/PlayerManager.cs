@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
     public float health = 9.0f;
-    public int coins = 0;
+    public int score = 0;
     public float defaultSpeed = 10.0f;
     public float dashSpeed = 30.0f;
     public float pushingSpeed = 5.0f;

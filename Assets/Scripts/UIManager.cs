@@ -8,16 +8,17 @@ public class UIManager : MonoBehaviour {
     public Image jumpImage;
     public Image magnetImage;
     public Image swordImage;
+    public Image keyImage;
     public Image notificationImage;
     public Image crosshair;
     public Text health;
-    public Text coins;
+    public Text score;
     public Text paused;
 	public Text pausedShadow;
     public GameObject player;
     private float maxHealth;
     private float currentHealth;
-    private float Coins;
+    private float Score;
 
 	void Start () {
         seeThroughImage.enabled = false;
@@ -28,12 +29,14 @@ public class UIManager : MonoBehaviour {
 		paused.enabled = false;
 		pausedShadow.enabled = false;
         crosshair.enabled = false;
+        keyImage.enabled = false;
+        
 
         maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
-        Coins = player.GetComponent<PlayerControl>().gatheredCoins;
+        Score = player.GetComponent<PlayerControl>().gatheredScore;
         health.text = "HP: " + currentHealth + " / " + maxHealth;
-        coins.text = "Coins: " + coins;
+        score.text = "Mana: " + score;
 	}
 	
 	// Update is called once per frame
@@ -41,8 +44,8 @@ public class UIManager : MonoBehaviour {
         maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
         health.text = "HP: " + currentHealth + " / " + maxHealth;
-        Coins = player.GetComponent<PlayerControl>().gatheredCoins;
-        coins.text = "Coins: " + Coins;
+        Score = player.GetComponent<PlayerControl>().gatheredScore;
+        score.text = "Mana: " + Score;
 
         if (player.GetComponent<PlayerControl>().firstPerson)
         {
@@ -59,12 +62,13 @@ public class UIManager : MonoBehaviour {
         notificationImage.enabled = state;
     }
 
-    public void UIItems(bool jump, bool lens, bool magnet, bool sword)
+    public void UIItems(bool jump, bool lens, bool magnet, bool sword, bool key)
     {
         jumpImage.enabled = jump;
         seeThroughImage.enabled = lens;
         magnetImage.enabled = magnet;
         swordImage.enabled = sword;
+        keyImage.enabled = key;
     }
 
 	public void UIPause(bool isPaused) {
