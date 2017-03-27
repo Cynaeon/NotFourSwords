@@ -26,7 +26,8 @@ public class PlayerControl : MonoBehaviour
         jump,
         seeThrough,
         magnet,
-        sword
+        sword,
+        key
     }
     private Items myItem;
 
@@ -61,7 +62,7 @@ public class PlayerControl : MonoBehaviour
     #region Player Attributes
     [HideInInspector] public float maxHealth;
     [HideInInspector] public float currentHealth;
-    [HideInInspector] public int gatheredCoins;
+    [HideInInspector] public int gatheredScore;
     private float defaultSpeed;
     private float dashSpeed;
     private float pushingSpeed;
@@ -137,7 +138,7 @@ public class PlayerControl : MonoBehaviour
         anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         currentHealth = playerManager.health;
-        gatheredCoins = playerManager.coins;
+        gatheredScore = playerManager.score;
         maxHealth = playerManager.health;
         defaultSpeed = playerManager.defaultSpeed;
         currentSpeed = defaultSpeed;
@@ -371,7 +372,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     case 0:
                         myItem = Items.none;
-                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, false);
                         SetActivity(false,false, false, false, false, false);
                         fogDensity.fadeState(false);
                         toggleSword = false;
@@ -380,7 +381,7 @@ public class PlayerControl : MonoBehaviour
                         break;
                     case 1:
                         myItem = Items.jump;
-                        _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false, false);
                         fogDensity.fadeState(false);
                         SetActivity(false,false, false, false, false, true);
                         toggleSword = false;
@@ -389,14 +390,14 @@ public class PlayerControl : MonoBehaviour
                         break;
                     case 2:
                         myItem = Items.seeThrough;
-                        _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false, false);
                         SetActivity(false,false, false, true, false, false);
                         toggleSword = false;
                         canSee = true;
                         break;
                     case 3:
                         myItem = Items.magnet;
-                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false,false);
                         SetActivity(false,false, false, false, true, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
@@ -405,13 +406,20 @@ public class PlayerControl : MonoBehaviour
                         break;
                     case 4:
                         myItem = Items.sword;
-                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true, false);
                         SetActivity(false,true, true, false, false, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
                         break;
-
+                    case 5:
+                        myItem = Items.key;
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, true);
+                        SetActivity(false, true, true, false, false, false);
+                        fogDensity.fadeState(false);
+                        _playerCamera.cullingMask = ~(1 << 8);
+                        canSee = false;
+                        break;
                 }
             }
         }else
@@ -621,7 +629,7 @@ public class PlayerControl : MonoBehaviour
 
     public void IncreaseScore(int amount)
     {
-        gatheredCoins = gatheredCoins + amount;
+        gatheredScore = gatheredScore + amount;
     }
 
     public void IncreaseShootingLevel(int upgrade)
@@ -901,6 +909,7 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetFloat("DashAngle", myAngle);
         }
+
         if(dashTime == 0)
         {
             anime.SetFloat("DashAngle", myAngle);
