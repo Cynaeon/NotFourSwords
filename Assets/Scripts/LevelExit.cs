@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class LevelExit : MonoBehaviour {
+public class LevelExit : MonoBehaviour
+{
 
     public GameObject[] screenFadeOut;
     public float fadeSpeed;
@@ -32,13 +33,16 @@ public class LevelExit : MonoBehaviour {
 
     public Level level;
 
+    private GameObject[] playersInGame;
+    private List<Collider> playersAtExit = new List<Collider>();
     private GameObject gameManager;
     private Color screenFade;
     private float screenAlpha;
     private bool sceneEntering;
     private bool sceneExiting;
 
-	void Awake () {
+    void Awake()
+    {
         gameManager = GameObject.Find("GameManager");
         sceneEntering = true;
         screenAlpha = 1;
@@ -47,10 +51,18 @@ public class LevelExit : MonoBehaviour {
         {
             image.GetComponent<Image>().color = new Color(screenFade.r, screenFade.g, screenFade.b, screenAlpha);
         }
-        
     }
 
-	void Update () {
+    void Update()
+    {
+        playersInGame = GameObject.FindGameObjectsWithTag("Player");
+        if (playersAtExit.Count == playersInGame.Length)
+        {
+            GameObject gameManager = GameObject.Find("GameManager");
+            gameManager.GetComponent<GameManager>().lastDoorID = doorID;
+            sceneExiting = true;
+        }
+
         if (sceneEntering)
         {
             gameManager.GetComponent<GameManager>().DisableMovement();
@@ -65,7 +77,7 @@ public class LevelExit : MonoBehaviour {
             }
         }
 
-		else if (sceneExiting)
+        else if (sceneExiting)
         {
             gameManager.GetComponent<GameManager>().DisableMovement();
             screenAlpha += Time.deltaTime * fadeSpeed;
@@ -83,15 +95,27 @@ public class LevelExit : MonoBehaviour {
         {
             gameManager.GetComponent<GameManager>().EnableMovement();
         }
-	}
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            GameObject gameManager = GameObject.Find("GameManager");
-            gameManager.GetComponent<GameManager>().lastDoorID = doorID;
-            sceneExiting = true;
+            if (!playersAtExit.Contains(other))
+            {
+                playersAtExit.Add(other);
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (playersAtExit.Contains(other))
+            {
+                playersAtExit.Remove(other);
+            }
         }
     }
 }
