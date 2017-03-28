@@ -119,6 +119,7 @@ public class PlayerControl : MonoBehaviour
     private bool climbing;
     private bool canSee;
     private bool canChangeItem;
+    private bool canOpenDoor;
     private bool canDash;
     private bool dash;
     private bool toggleSword;
@@ -360,14 +361,14 @@ public class PlayerControl : MonoBehaviour
 
         if (canChangeItem)
         {
-            int itemAvailable = FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().checkActive();
+            int itemAvailable = FindClosestGameObjectWithTag("ItemSpawner").gameObject.GetComponent<ItemSpawner>().checkActive();
             if(itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none) 
             {
                 _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
             }
             if (Input.GetButtonDown(playerPrefix + "Action"))
             {
-                FindClosestItemSpawner().gameObject.GetComponent<ItemSpawner>().changeActive((int)myItem);
+                FindClosestGameObjectWithTag("ItemSpawner").gameObject.GetComponent<ItemSpawner>().changeActive((int)myItem);
                 switch (itemAvailable)
                 {
                     case 0:
@@ -415,7 +416,7 @@ public class PlayerControl : MonoBehaviour
                     case 5:
                         myItem = Items.key;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, true);
-                        SetActivity(false, true, true, false, false, false);
+                        SetActivity(false, false, false, false, false, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask = ~(1 << 8);
                         canSee = false;
@@ -426,6 +427,22 @@ public class PlayerControl : MonoBehaviour
         {
             _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
         }
+
+        if (canOpenDoor)
+        {
+            if(myItem == Items.key) {
+                if (Input.GetButtonDown(playerPrefix + "Item"))
+                {
+                    FindClosestGameObjectWithTag("Door").gameObject.GetComponent<Door>().OpenDoor();
+                    myItem = Items.none;
+                    _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false,false,false);
+                }
+            }
+        }
+        else
+        {
+        }
+
     }
 
     private void SetActivity(bool _sword, bool _sheath, bool _sheathedSword, bool _monocle, bool _magnet, bool _boots)
@@ -591,10 +608,10 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private GameObject FindClosestItemSpawner()
+    private GameObject FindClosestGameObjectWithTag(string tag)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("ItemSpawner");
+        gos = GameObject.FindGameObjectsWithTag(tag);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -849,6 +866,9 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+        
+
+       
 
         if (other.tag == "Ladder")
         {
@@ -883,6 +903,14 @@ public class PlayerControl : MonoBehaviour
         canChangeItem = changeTo;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Door")
+        {
+            canOpenDoor = true;
+        }
+    }
+
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "PushBlock")
@@ -902,6 +930,11 @@ public class PlayerControl : MonoBehaviour
             {
                 climbing = false;
             }
+        }
+
+        if(other.tag == "Door")
+        {
+            canOpenDoor = false;
         }
     }
 
