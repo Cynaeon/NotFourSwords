@@ -12,13 +12,13 @@ public class GameManager : MonoBehaviour {
     public Transform startPos;
 
     public bool disableMovement;
+    public bool keyPicked_1;
+    public bool doorOpened_1;
 
-	// Use this for initialization
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

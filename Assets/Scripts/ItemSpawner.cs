@@ -24,8 +24,6 @@ public class ItemSpawner : MonoBehaviour
 
     public _items _active;
 
-
-    // Use this for initialization
     void Start()
     {
         Items.Add(none);

@@ -6,8 +6,13 @@ public class Door : MonoBehaviour {
 
     public bool open;
 
+    private GameObject gameManager;
+
     private void Awake()
     {
+        gameManager = GameObject.Find("GameManager");
+        open = gameManager.GetComponent<GameManager>().doorOpened_1;
+
         if (open)
         {
             OpenDoor();
@@ -16,7 +21,8 @@ public class Door : MonoBehaviour {
 
     public void OpenDoor()
     {
-        Destroy(gameObject);
+        gameManager.GetComponent<GameManager>().doorOpened_1 = true;
+        gameObject.SetActive(false);
     }
 
 }
