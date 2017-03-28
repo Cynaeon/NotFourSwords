@@ -32,7 +32,7 @@ public class PickUpBox : MonoBehaviour
             _playerControl.HealDamage(1.0f);
             Destroy(other.gameObject);
         }
-        if(other.tag == "Coin")
+        if(other.tag == "Mana")
         {
             _playerControl.IncreaseScore(1);
             Destroy(other.gameObject);
