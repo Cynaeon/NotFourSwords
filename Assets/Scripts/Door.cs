@@ -5,13 +5,14 @@ using UnityEngine;
 public class Door : MonoBehaviour {
 
     public bool open;
+    public int doorID;
 
     private GameObject gameManager;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager");
-        open = gameManager.GetComponent<GameManager>().doorOpened_1;
+        open = gameManager.GetComponent<GameManager>().doorOpened[doorID];
 
         if (open)
         {
@@ -21,7 +22,7 @@ public class Door : MonoBehaviour {
 
     public void OpenDoor()
     {
-        gameManager.GetComponent<GameManager>().doorOpened_1 = true;
+        gameManager.GetComponent<GameManager>().doorOpened[doorID] = true;
         gameObject.SetActive(false);
     }
 

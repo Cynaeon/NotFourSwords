@@ -8,6 +8,7 @@ public class RotatingCube : MonoBehaviour {
     public GameObject target;
     public GameObject cannon;
     public GameObject meteor;
+    public GameObject ladder;
     public ParticleSystem destroyEffect;
     public float rotateSpeed;
     public float meteorFireRate;
@@ -20,6 +21,7 @@ public class RotatingCube : MonoBehaviour {
 
     void Start() {
         timesRotated = 0;
+        ladder.SetActive(false);
     }
 
     void Update() {
@@ -78,8 +80,9 @@ public class RotatingCube : MonoBehaviour {
             if (transform.localScale.x < 0.1f)
             {
                 Instantiate(destroyEffect, transform.position, transform.rotation);
-                Destroy(gameObject);
+                ladder.SetActive(true);
                 Destroy(cannon);
+                Destroy(gameObject);
             }
         }
     }

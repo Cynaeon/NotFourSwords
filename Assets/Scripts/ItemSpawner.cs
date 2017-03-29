@@ -22,16 +22,22 @@ public class ItemSpawner : MonoBehaviour
         key
     }
 
-    public _items _active;
+    [HideInInspector] public _items _active;
+    public int spawnerID;
+
+    private GameObject gameManager;
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
+
         Items.Add(none);
         Items.Add(boots);
         Items.Add(monocle);
         Items.Add(magnet);
         Items.Add(sword);
         Items.Add(key);
+        _active = gameManager.GetComponent<GameManager>().itemOnSpawner[spawnerID];
         Items[(int)_active].SetActive(true);
     }
 
@@ -64,7 +70,7 @@ public class ItemSpawner : MonoBehaviour
                 _active = _items.key;
                 break;
         }
-
+        gameManager.GetComponent<GameManager>().itemOnSpawner[spawnerID] = _active;
         Items[(int)_active].SetActive(true);
     }
 }

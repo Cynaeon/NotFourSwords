@@ -123,7 +123,8 @@ public class CameraControl : MonoBehaviour
 
                 if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
                 {
-                    transform.position = target.position;
+                    Vector3 pos = new Vector3(target.position.x, target.position.y + .6f, target.position.z);
+                    transform.position = pos;
                     transform.rotation = target.rotation;
                 }
             }

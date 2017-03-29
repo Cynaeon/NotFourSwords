@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,16 +13,31 @@ public class GameManager : MonoBehaviour {
     public Transform startPos;
 
     public bool disableMovement;
-    public bool keyPicked_1;
-    public bool doorOpened_1;
+    public bool[] doorOpened;
+    public ItemSpawner._items[] itemOnSpawner;
 
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
+        doorOpened = new bool[10];
+
+        SetSpawnerItems();
 	}
-	
-	void Update () {
-		
-	}
+
+    // Set all the itemspawner items here!! NOT in the inspector!
+    private void SetSpawnerItems()
+    {
+        itemOnSpawner = new ItemSpawner._items[10];
+
+        // Hide and Seek
+        itemOnSpawner[0] = ItemSpawner._items.key;
+        // Corridor (Jump)
+        itemOnSpawner[1] = ItemSpawner._items.boots;
+        itemOnSpawner[2] = ItemSpawner._items.boots;
+        itemOnSpawner[3] = ItemSpawner._items.boots;
+        itemOnSpawner[4] = ItemSpawner._items.boots;
+        // Labyrinth
+        itemOnSpawner[5] = ItemSpawner._items.monocle;
+    }
 
     public void DisableMovement()
     {

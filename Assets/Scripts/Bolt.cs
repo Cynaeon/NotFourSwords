@@ -19,10 +19,13 @@ public class Bolt : MonoBehaviour {
     }
 
     public projectileType type;
-	
-    void Start ()
+
+    void Start()
     {
-        fire.SetActive(false);
+        if (fire)
+        {
+            fire.SetActive(false);
+        }
     }
 
 	void Update () {
