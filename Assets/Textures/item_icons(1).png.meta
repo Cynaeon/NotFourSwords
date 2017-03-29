@@ -1,29 +1,33 @@
 fileFormatVersion: 2
-guid: d1fcb6aaa3ca1334097ef13712d8495c
-timeCreated: 1490268751
+guid: af4f311efee6c7445a9259b554295b41
+timeCreated: 1490781194
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: item_icons 1_0
-    21300002: item_icons 1_1
-    21300004: item_icons 1_2
-    21300006: item_icons 1_3
-    21300008: item_icons 1_4
-    21300010: item_icons 1_5
-    21300012: item_icons 1_6
-    21300014: item_icons 1_7
-    21300016: item_icons 1_8
-    21300018: item_icons 1_9
-    21300020: item_icons 1_10
-    21300022: item_icons 1_11
-    21300024: item_icons 1_12
-    21300026: item_icons 1_13
-    21300028: item_icons 1_14
-    21300030: item_icons 1_15
-    21300032: item_icons 1_16
-    21300034: item_icons 1_17
-    21300036: item_icons 1_18
-    21300038: item_icons 1_19
+    21300000: item_icons(1)_0
+    21300002: item_icons(1)_1
+    21300004: item_icons(1)_2
+    21300006: item_icons(1)_3
+    21300008: item_icons(1)_4
+    21300010: item_icons(1)_5
+    21300012: item_icons(1)_6
+    21300014: item_icons(1)_7
+    21300016: item_icons(1)_8
+    21300018: item_icons(1)_9
+    21300020: item_icons(1)_10
+    21300022: item_icons(1)_11
+    21300024: item_icons(1)_12
+    21300026: item_icons(1)_13
+    21300028: item_icons(1)_14
+    21300030: item_icons(1)_15
+    21300032: item_icons(1)_16
+    21300034: item_icons(1)_17
+    21300036: item_icons(1)_18
+    21300038: item_icons(1)_19
+    21300040: item_icons(1)_20
+    21300042: item_icons(1)_21
+    21300044: item_icons(1)_22
+    21300046: item_icons(1)_23
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -90,11 +94,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: item_icons 1_0
+      name: item_icons(1)_0
       rect:
         serializedVersion: 2
         x: 1
-        y: 2049
+        y: 2561
         width: 508
         height: 511
       alignment: 0
@@ -103,11 +107,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_1
+      name: item_icons(1)_1
       rect:
         serializedVersion: 2
         x: 512
-        y: 2049
+        y: 2561
         width: 510
         height: 511
       alignment: 0
@@ -116,11 +120,37 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_2
+      name: item_icons(1)_2
       rect:
         serializedVersion: 2
-        x: 1025
-        y: 2049
+        x: 1024
+        y: 2561
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2561
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2050
         width: 508
         height: 511
       alignment: 0
@@ -129,11 +159,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_3
+      name: item_icons(1)_5
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 2049
+        x: 512
+        y: 2050
         width: 510
         height: 511
       alignment: 0
@@ -142,7 +172,33 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_4
+      name: item_icons(1)_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2050
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2050
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_8
       rect:
         serializedVersion: 2
         x: 1
@@ -155,7 +211,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_5
+      name: item_icons(1)_9
       rect:
         serializedVersion: 2
         x: 512
@@ -168,23 +224,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_6
+      name: item_icons(1)_10
       rect:
         serializedVersion: 2
-        x: 1025
-        y: 1537
-        width: 508
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_7
-      rect:
-        serializedVersion: 2
-        x: 1536
+        x: 1024
         y: 1537
         width: 510
         height: 511
@@ -194,50 +237,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_8
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1026
-        width: 508
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_9
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1026
-        width: 510
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_10
-      rect:
-        serializedVersion: 2
-        x: 1025
-        y: 1026
-        width: 508
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_11
+      name: item_icons(1)_11
       rect:
         serializedVersion: 2
         x: 1536
-        y: 1026
+        y: 1537
         width: 510
         height: 511
       alignment: 0
@@ -246,77 +250,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_12
+      name: item_icons(1)_12
       rect:
         serializedVersion: 2
         x: 1
-        y: 513
+        y: 1025
         width: 508
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_13
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 513
-        width: 510
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_14
-      rect:
-        serializedVersion: 2
-        x: 1025
-        y: 513
-        width: 508
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_15
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 513
-        width: 510
-        height: 511
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_16
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 2
-        width: 508
-        height: 510
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: item_icons 1_17
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1
-        width: 511
         height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -324,26 +263,143 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_18
+      name: item_icons(1)_13
       rect:
         serializedVersion: 2
-        x: 1025
-        y: 2
-        width: 508
-        height: 510
+        x: 512
+        y: 1025
+        width: 510
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: item_icons 1_19
+      name: item_icons(1)_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 514
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_15
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1025
+        width: 510
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_16
       rect:
         serializedVersion: 2
         x: 1536
-        y: 2
+        y: 1025
         width: 510
-        height: 510
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 514
+        width: 508
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_18
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 514
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_19
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 514
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 508
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_21
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_22
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1
+        width: 510
+        height: 511
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: item_icons(1)_23
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1
+        width: 510
+        height: 511
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

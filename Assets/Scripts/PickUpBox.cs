@@ -7,11 +7,13 @@ public class PickUpBox : MonoBehaviour
 
     public GameObject player;
 
+    private GameObject gameManager;
     private PlayerControl _playerControl;
     private int playerPrefix;
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         _playerControl = player.GetComponent<PlayerControl>();
         playerPrefix = (int)_playerControl.playerPrefix;
     }
@@ -34,7 +36,9 @@ public class PickUpBox : MonoBehaviour
         }
         if(other.tag == "Mana")
         {
-            _playerControl.IncreaseScore(1);
+            int value = other.gameObject.GetComponent<Mana>().ManaValue;
+            _playerControl.IncreaseScore(value);
+            gameManager.GetComponent<GameManager>().TotalScore(value);
             Destroy(other.gameObject);
         }
     }

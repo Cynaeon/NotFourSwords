@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour {
     public GameObject[] cameras;
     public GameObject[] levelExits;
     public int lastDoorID;
+    public int combinedScore;
+    public int[] UpgradeLevel;
+    private int upgraded;
     public Transform startPos;
 
     public bool disableMovement;
@@ -17,10 +20,6 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
-	}
-	
-	void Update () {
-		
 	}
 
     public void DisableMovement()
@@ -72,8 +71,21 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
-
-
+    
+    public void TotalScore(int value)
+    {
+        combinedScore = combinedScore + value;
+        if(combinedScore >= UpgradeLevel[upgraded])
+        {
+            foreach (GameObject player in players)
+            {
+                player.GetComponent<PlayerControl>().IncreaseShootingLevel(1);
+            }
+            if(upgraded < UpgradeLevel.Length-1) {
+                upgraded++;
+            }
+        }
+    }
 
     void OnEnable()
     {
@@ -87,5 +99,7 @@ public class GameManager : MonoBehaviour {
         //Remember to always have an unsubscription for every delegate you subscribe to!
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
+
+
 
 }

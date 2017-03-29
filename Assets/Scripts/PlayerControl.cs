@@ -117,6 +117,7 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector] public bool firstPerson;
     private bool grabbing;
     private bool climbing;
+    private bool inAir;
     private bool canSee;
     private bool canChangeItem;
     private bool canOpenDoor;
@@ -177,7 +178,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-
+        
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -343,10 +344,13 @@ public class PlayerControl : MonoBehaviour
         if (controller.isGrounded)
         {
             canDash = true;
+            inAir = false;
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetButton(playerPrefix + "Item") && myItem == Items.jump)
             {
                 verticalVelocity = jumpForce;
+                inAir = true;
+                anime.SetBool("InAir", true);
             }
         }
         else if (!climbing)
@@ -657,6 +661,7 @@ public class PlayerControl : MonoBehaviour
     private void Shooting()
     {
         if (!dash && !toggleSword) {
+            
             if (shootingLevel == 0)
             {
                 shootingSpeed = 0.5f;
@@ -963,6 +968,13 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetFloat("ItemState", 0);
             anime.SetFloat("DashState", 0);
+        }
+        if (inAir)
+        {
+            anime.SetBool("InAir", true);
+        }else
+        {
+            anime.SetBool("InAir", false);
         }
         
         if (movementPlayer.x != 0 || movementPlayer.z != 0)
