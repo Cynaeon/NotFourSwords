@@ -26,9 +26,12 @@ public class LevelExit : MonoBehaviour
         Elevator = 8,
         Corridor_Archers = 9,
         Hide_and_Seek = 10,
-        Corridor_Empty = 11,
+        Corridor_Empty = 11, //Placeholder
         JumpPuzzle = 12,
-        Corridor_Jump = 13
+        Corridor_Jump = 13,
+        Corridor_Empty_2 = 14, //Placeholder
+        Corridor_Empty_3 = 15, //Placeholder
+        Corridor_Empty_4 = 16 //Placeholder
     }
 
     public Level level;
