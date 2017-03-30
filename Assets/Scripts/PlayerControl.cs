@@ -201,6 +201,7 @@ public class PlayerControl : MonoBehaviour
                 Animations();
             }
         }
+        //Debug.Log(movementPlayer);
     }
 
     public void SetStartPosition(Transform startPos)
@@ -297,7 +298,8 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton(playerPrefix + "Item"))
         {
             _grabSpot.enabled = false;
-        } else
+        }
+        else
         {
             _grabSpot.enabled = true;
         }
@@ -314,11 +316,11 @@ public class PlayerControl : MonoBehaviour
         {
             Vector3 direction = transform.position - pushBlock.transform.position;
             direction = direction.normalized;
+            SnapPlayerRotation(direction);
 
             if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
             {
                 movementPlayer.z = 0.0f;
-
             }
             else
             {
@@ -337,6 +339,14 @@ public class PlayerControl : MonoBehaviour
             grabbing = false;
             currentSpeed = defaultSpeed;
         }
+    }
+
+    private void SnapPlayerRotation(Vector3 direction) 
+    {
+        direction = transform.eulerAngles;
+        direction.y = Mathf.Round(direction.y / 90) * 90;
+        Debug.Log(direction);
+        transform.eulerAngles = direction;
     }
 
     private void Gravity()
@@ -861,7 +871,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.tag == "PushBlock")
         {
-            if (Input.GetButton(playerPrefix + "Action"))
+            if (Input.GetButtonDown(playerPrefix + "Action"))
             {
                 if (!grabbing)
                 {
@@ -871,9 +881,6 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
-        
-
-       
 
         if (other.tag == "Ladder")
         {
@@ -914,6 +921,12 @@ public class PlayerControl : MonoBehaviour
         {
             canOpenDoor = true;
         }
+        /*
+        if (other.tag == "MovingPlatform")
+        {
+            transform.parent = other.transform;
+        }
+        */
     }
 
     void OnTriggerExit(Collider other)
@@ -941,6 +954,12 @@ public class PlayerControl : MonoBehaviour
         {
             canOpenDoor = false;
         }
+        /*
+        if (other.tag == "MovingPlatform")
+        {
+            transform.parent = null;
+        }
+        */
     }
 
     public void Animations()
