@@ -14,6 +14,7 @@ public class Target : MonoBehaviour {
     {
         _rend = GetComponent<Renderer>();
         activeColor = new Color(1, 0.5f, 0.5f, 1);
+        activeColor = activeColor * Mathf.LinearToGammaSpace(0.01f);
         deactiveColor = _rend.material.color;
     }
 
@@ -34,6 +35,7 @@ public class Target : MonoBehaviour {
     {
         activated = true;
         _rend.material.color = activeColor;
+        _rend.material.SetColor("_EmissionColor", activeColor);
     }
 
     public void Deactivate()

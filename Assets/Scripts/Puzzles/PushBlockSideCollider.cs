@@ -9,7 +9,7 @@ public class PushBlockSideCollider : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Walls")
+        if (other.tag == "Walls" || other.tag == "Torch")
         {
             collided = true;
         }
@@ -17,7 +17,7 @@ public class PushBlockSideCollider : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Walls")
+        if (other.tag == "Walls" || other.tag == "Torch")
         {
             collided = false;
         }
