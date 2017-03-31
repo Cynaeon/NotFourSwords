@@ -509,7 +509,6 @@ public class PlayerControl : MonoBehaviour
                 SheathedSword.SetActive(true);
             }
             //TODO: Play sword animation
-            
         }
     }
 
@@ -742,19 +741,19 @@ public class PlayerControl : MonoBehaviour
         {
             if (playerPrefix == Players.P1_)
             {
-                _playerCamera.cullingMask = ~(1 << 13);
+                _playerCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player1"));
             }
             else if (playerPrefix == Players.P2_)
             {
-                _playerCamera.cullingMask = ~(1 << 14);
+                _playerCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player2"));
             }
             else if (playerPrefix == Players.P3_)
             {
-                _playerCamera.cullingMask = ~(1 << 15);
+                _playerCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player3"));
             }
             else if (playerPrefix == Players.P4_)
             {
-                _playerCamera.cullingMask = ~(1 << 16);
+                _playerCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Player4"));
             }
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
             float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
@@ -766,19 +765,19 @@ public class PlayerControl : MonoBehaviour
         {
             if (playerPrefix == Players.P1_)
             {
-                _playerCamera.cullingMask |= (1 << 13);
+                _playerCamera.cullingMask |= (1 << LayerMask.NameToLayer("Player1"));
             }
             else if (playerPrefix == Players.P2_)
             {
-                _playerCamera.cullingMask |= (1 << 14);
+                _playerCamera.cullingMask |= (1 << LayerMask.NameToLayer("Player2"));
             }
             else if (playerPrefix == Players.P3_)
             {
-                _playerCamera.cullingMask |= (1 << 15);
+                _playerCamera.cullingMask |= (1 << LayerMask.NameToLayer("Player3"));
             }
             else if (playerPrefix == Players.P4_)
             {
-                _playerCamera.cullingMask |= (1 << 16);
+                _playerCamera.cullingMask |= (1 << LayerMask.NameToLayer("Player4"));
             }
             
         }

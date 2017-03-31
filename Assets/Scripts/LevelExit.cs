@@ -59,7 +59,7 @@ public class LevelExit : MonoBehaviour
     void Update()
     {
         playersInGame = GameObject.FindGameObjectsWithTag("Player");
-        if (playersAtExit.Count == playersInGame.Length)
+        if (playersInGame.Length > 0 && playersAtExit.Count == playersInGame.Length)
         {
             GameObject gameManager = GameObject.Find("GameManager");
             gameManager.GetComponent<GameManager>().lastDoorID = doorID;
