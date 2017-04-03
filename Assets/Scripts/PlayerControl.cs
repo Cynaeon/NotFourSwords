@@ -55,6 +55,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject SheathedSword;
     public GameObject MonocleItem;
     public GameObject MagnetItem;
+    public GameObject MagnetEffect;
     public GameObject BootsItem;
     public GameObject SwordHitBox;
     #endregion
@@ -375,6 +376,7 @@ public class PlayerControl : MonoBehaviour
 
         if (canChangeItem)
         {
+            
             int itemAvailable = FindClosestGameObjectWithTag("ItemSpawner").gameObject.GetComponent<ItemSpawner>().checkActive();
             if(itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none) 
             {
@@ -385,13 +387,14 @@ public class PlayerControl : MonoBehaviour
                 FindClosestGameObjectWithTag("ItemSpawner").gameObject.GetComponent<ItemSpawner>().changeActive((int)myItem);
                 switch (itemAvailable)
                 {
+                    // Take the & symbols out from the cullingMask assignments below if lens (or something) doesn't work
                     case 0:
                         myItem = Items.none;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, false);
                         SetActivity(false,false, false, false, false, false);
                         fogDensity.fadeState(false);
                         toggleSword = false;
-                        _playerCamera.cullingMask = ~(1 << 8);
+                        _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
                         break;
                     case 1:
@@ -400,7 +403,7 @@ public class PlayerControl : MonoBehaviour
                         fogDensity.fadeState(false);
                         SetActivity(false,false, false, false, false, true);
                         toggleSword = false;
-                        _playerCamera.cullingMask = ~(1 << 8);
+                        _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
                         break;
                     case 2:
@@ -415,7 +418,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false,false);
                         SetActivity(false,false, false, false, true, false);
                         fogDensity.fadeState(false);
-                        _playerCamera.cullingMask = ~(1 << 8);
+                        _playerCamera.cullingMask &= ~(1 << 8);
                         toggleSword = false;
                         canSee = false;
                         break;
@@ -424,7 +427,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true, false);
                         SetActivity(false,true, true, false, false, false);
                         fogDensity.fadeState(false);
-                        _playerCamera.cullingMask = ~(1 << 8);
+                        _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
                         break;
                     case 5:
@@ -432,7 +435,7 @@ public class PlayerControl : MonoBehaviour
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, true);
                         SetActivity(false, false, false, false, false, false);
                         fogDensity.fadeState(false);
-                        _playerCamera.cullingMask = ~(1 << 8);
+                        _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
                         break;
                 }
@@ -476,6 +479,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (canSee)
             {
+                // Lens on
                 fogDensity.fadeState(true);
                 _playerCamera.clearFlags = CameraClearFlags.SolidColor;
                 _playerCamera.cullingMask |= (1 << 8);
@@ -484,6 +488,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
+                // Lens off
                 _playerCamera.clearFlags = CameraClearFlags.SolidColor;
                 fogDensity.fadeState(false);
                 _playerCamera.cullingMask = ~(1 << 8);
@@ -552,6 +557,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton(playerPrefix + "Item") && myItem == Items.magnet)
         {
             _magnetActive = true;
+            MagnetEffect.SetActive(true);
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, _maxMagnetDistance))
             {
@@ -578,6 +584,7 @@ public class PlayerControl : MonoBehaviour
         } else
         {
             _magnetActive = false;
+            MagnetEffect.SetActive(false);
         }
     }
 
@@ -737,7 +744,7 @@ public class PlayerControl : MonoBehaviour
         {
             firstPerson = false;
         }
-        if (firstPerson && !_magnetActive)
+        if (firstPerson)
         {
             if (playerPrefix == Players.P1_)
             {
