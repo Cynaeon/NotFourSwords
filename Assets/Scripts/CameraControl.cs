@@ -34,6 +34,7 @@ public class CameraControl : MonoBehaviour
     private float yMaxLimit;
     private float distanceMin;
     private float distanceMax;
+    private bool _lockedOn;
 
     void Start()
     {
@@ -81,13 +82,20 @@ public class CameraControl : MonoBehaviour
                     var targetRotationAngle = target.eulerAngles.y;
                     var currentRotationAngle = transform.eulerAngles.y;
                     x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
+                    _lockedOn = true;
+                } else
+                {
+                    _lockedOn = false;
                 }
 
                 // Scale speed with distance
                 xSpeed = 100 / distance;
 
-                x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
-                y -= Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
+                if (!_lockedOn)
+                {
+                    x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
+                    y += Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
+                }
 
                 y = ClampAngle(y, yMinLimit, yMaxLimit);
                 distance = Mathf.Clamp(distance, distanceMin, distanceMax);
