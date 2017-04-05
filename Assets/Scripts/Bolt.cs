@@ -70,7 +70,7 @@ public class Bolt : MonoBehaviour {
             }
         }
         
-        if (other.tag == "Walls" || other.tag == "PushBlock")
+        if (other.tag == "Walls" || other.tag == "PushBlock" || other.tag == "Rock")
         {
             hitWall = true;
         }

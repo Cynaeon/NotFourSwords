@@ -10,13 +10,11 @@ public class CharacterTrail : MonoBehaviour {
     private Renderer _rend;
     private Color color;
  
-	// Use this for initialization
 	void Start () {
         _rend = model.GetComponent<Renderer>();
         color = _rend.material.color;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
         lifetime -= Time.deltaTime;
         if (lifetime > 0)
