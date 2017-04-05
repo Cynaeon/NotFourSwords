@@ -108,6 +108,7 @@ public class PlayerControl : MonoBehaviour
     //private float burstSpeed;
     private Transform lockOnTarget = null;
     private Vector3 dashDir;
+    private float _switchTargetAxis;
     private int switchTarget;
     private Color defaultColor;
     #endregion
@@ -129,6 +130,7 @@ public class PlayerControl : MonoBehaviour
     private bool _magnetActive;
     [HideInInspector] public bool settingStartPos;
     private FogDensity fogDensity;
+    private bool _yAxisPressed;
     #endregion
 
     void Start()
@@ -861,14 +863,43 @@ public class PlayerControl : MonoBehaviour
                 lockOnArrow.gameObject.SetActive(false);
             }
 
-            if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
+            Debug.Log(switchTarget);
+            
+            // WIP Vertical Target Switching.
+            // Is literally bending logic and might actually cause the universe to collapse.
+
+            //if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
+            if (lockOnTarget != null)
             {
-                switchTarget++;
-                if (switchTarget >= enemyList.Count)
+                if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.5)
                 {
-                    switchTarget = 0;
+                    Debug.Log("Up");
+                    if (switchTarget < enemyList.Count - 1 && !_yAxisPressed)
+                    {
+                        switchTarget++;
+                        _yAxisPressed = true;
+                    }
+                    lockOnTarget = enemyList[switchTarget].transform;
                 }
-                lockOnTarget = enemyList[switchTarget].transform;
+                else
+                {
+                    _yAxisPressed = false;
+                }
+
+                if (Input.GetAxis(playerPrefix + "VerticalRightStick") < -0.5)
+                {
+                    Debug.Log("Down");
+                    if (switchTarget > 0 && !_yAxisPressed)
+                    {
+                        switchTarget--;
+                        _yAxisPressed = true;
+                    }
+                    lockOnTarget = enemyList[switchTarget].transform;
+                }
+                else
+                {
+                    _yAxisPressed = false;
+                }
             }
         }
     }
