@@ -185,7 +185,6 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-        Debug.Log(currentHealth);
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -352,7 +351,6 @@ public class PlayerControl : MonoBehaviour
     {
         direction = transform.eulerAngles;
         direction.y = Mathf.Round(direction.y / 90) * 90;
-        Debug.Log(direction);
         transform.eulerAngles = direction;
     }
 
@@ -551,6 +549,7 @@ public class PlayerControl : MonoBehaviour
                 transform.position = Vector3.zero;
             }
             currentHealth = maxHealth;
+            _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
         }
     }
 
@@ -872,8 +871,6 @@ public class PlayerControl : MonoBehaviour
                 lockOnTarget = null;
                 lockOnArrow.gameObject.SetActive(false);
             }
-
-            Debug.Log(switchTarget);
             
             // WIP Vertical Target Switching.
             // Is literally bending logic and might actually cause the universe to collapse.

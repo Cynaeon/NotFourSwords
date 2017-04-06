@@ -12,13 +12,10 @@ public class UIManager : MonoBehaviour {
     public Image notificationImage;
     public Image crosshair;
     public Image hearts;
-    public Text health;
     public Text score;
     public Text paused;
 	public Text pausedShadow;
     public GameObject player;
-    public GameObject heart;
-    private float maxHealth;
     private int currentHealth;
     private float Score;
 
@@ -62,7 +59,6 @@ public class UIManager : MonoBehaviour {
 
     public void UpdateHealth(int currentHealth)
     {
-        Debug.Log(currentHealth);
         hearts.gameObject.GetComponent<UIHeart>().ChangeHealth(currentHealth);
     }
 
