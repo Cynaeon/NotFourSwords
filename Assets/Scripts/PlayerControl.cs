@@ -194,6 +194,7 @@ public class PlayerControl : MonoBehaviour
             if (playerPrefix != Players.NotSelected && !gameManager.GetComponent<GameManager>().disableMovement)
             {
                 GetMovement();
+                Health();
                 Dashing();
                 Magnet();
                 FirstPersonControls();
@@ -201,7 +202,7 @@ public class PlayerControl : MonoBehaviour
                 Movement();
                 LockOnSystem();
                 Shooting();
-                Health();
+                
                 SwitchItems();
                 Swording();
                 Lens();
@@ -616,12 +617,15 @@ public class PlayerControl : MonoBehaviour
 
         if (dash)
         {
+            //Debug.Log(dashTime + " / " + dashInvulTime);
             if (dashInvulTime >= dashTime)
             {
+                Debug.Log("invul");
                 playerHitbox.SetActive(false);
             }
             else
             {
+                Debug.Log("not invul");
                 playerHitbox.SetActive(true);
             }
             grabbing = false;
