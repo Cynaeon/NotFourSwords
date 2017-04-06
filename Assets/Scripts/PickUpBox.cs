@@ -31,7 +31,7 @@ public class PickUpBox : MonoBehaviour
         }
         if (other.tag == "Heart")
         {
-            _playerControl.HealDamage(1.0f);
+            _playerControl.HealDamage(1);
             Destroy(other.gameObject);
         }
         if(other.tag == "Mana")

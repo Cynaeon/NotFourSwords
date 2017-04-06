@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    public float health = 9.0f;
+    public int health = 9;
     public int score = 0;
     public float defaultSpeed = 10.0f;
     public float dashSpeed = 30.0f;
