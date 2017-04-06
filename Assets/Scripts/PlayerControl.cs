@@ -37,8 +37,10 @@ public class PlayerControl : MonoBehaviour
         idle_Sword,
         running,
         running_Sword,
-        dashing
-
+        dashing,
+        jumping,
+        falling,
+        landing
     }
     private StateOfTheAnimation activeState;
     private Animator anime;
@@ -100,7 +102,9 @@ public class PlayerControl : MonoBehaviour
     private float verticalVelocity;
     private float gravity;
     private float jumpForce;
+    private Vector3 playerPos;
     private float dashTime;
+    private float fallTime;
     private float afterImageTime;
     private float lastShot;
     private float currentInvulTime;
@@ -118,7 +122,7 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector] public bool firstPerson;
     private bool grabbing;
     private bool climbing;
-    private bool inAir;
+    private bool Jumped;
     private bool canSee;
     private bool canChangeItem;
     private bool canOpenDoor;
@@ -161,8 +165,8 @@ public class PlayerControl : MonoBehaviour
         lockOnArrow = transform.Find("LockOnArrow");
         lockOnGreen = lockOnArrow.GetComponent<Renderer>().material.color;
         lockOnRed = Color.red;
+        playerPos = transform.position;
         myItem = Items.none;
-        activeState = StateOfTheAnimation.idle;
         _maxMagnetDistance = playerManager.maxMagnetDistance;
         _magnetVelocity = playerManager.magnetVelocity;
         _minMagnetDistance = playerManager.minMagnetDistance;
@@ -355,13 +359,11 @@ public class PlayerControl : MonoBehaviour
         if (controller.isGrounded)
         {
             canDash = true;
-            inAir = false;
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetButton(playerPrefix + "Item") && myItem == Items.jump)
             {
                 verticalVelocity = jumpForce;
-                inAir = true;
-                anime.SetBool("InAir", true);
+                Jumped = true;
             }
         }
         else if (!climbing)
@@ -594,6 +596,14 @@ public class PlayerControl : MonoBehaviour
         {
             if (canDash)
             {
+                if (lockOn)
+                {
+                    float myAngle = Mathf.Atan2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical")) * Mathf.Rad2Deg;
+                    anime.SetFloat("DashAngle", myAngle);
+                }else
+                {
+                    anime.SetFloat("DashAngle", 0);
+                }
                 dashDir = movementPlayer.normalized;
                 //dashDir = playerCamera.transform.TransformDirection(dashDir);
                 dashDir.y = 0.0f;
@@ -612,14 +622,12 @@ public class PlayerControl : MonoBehaviour
             {
                 playerHitbox.SetActive(true);
             }
-            activeState = StateOfTheAnimation.dashing;
             grabbing = false;
             movementPlayer = Vector3.zero;
             dashTime += Time.deltaTime;
 
             if (dashTime >= dashDuration)
             {
-                activeState = StateOfTheAnimation.idle;
                 canDash = false;
                 dash = false;
                 currentSpeed = defaultSpeed;
@@ -970,65 +978,77 @@ public class PlayerControl : MonoBehaviour
 
     public void Animations()
     {
-        float myAngle = Mathf.Atan2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical")) * Mathf.Rad2Deg;
-        if (lockOn && dashTime > dashDuration - dashDuration/5)
-        {
-            anime.SetFloat("DashAngle", myAngle);
-        }
-
-        if(dashTime == 0)
-        {
-            anime.SetFloat("DashAngle", myAngle);
-        }
-        if (!lockOn)
-        {
-            anime.SetFloat("DashAngle", 0);
-        }
-
         if (toggleSword)
         {
-            anime.SetFloat("ItemState", 1);
+            anime.SetFloat("SwordState", 1);
             anime.SetFloat("DashState", 1);
         }else
         {
-            anime.SetFloat("ItemState", 0);
+            anime.SetFloat("SwordState", 0);
             anime.SetFloat("DashState", 0);
         }
-        if (inAir)
+
+        if (controller.velocity.y < -8)
         {
-            anime.SetBool("InAir", true);
-        }else
-        {
-            anime.SetBool("InAir", false);
+            Jumped = false;
+            anime.SetBool("Falling", true);
+            anime.SetBool("Running", false);
+            anime.SetBool("Jumping", false);
+            activeState = StateOfTheAnimation.falling;    
         }
         
-        if (movementPlayer.x != 0 || movementPlayer.z != 0)
+        if(controller.velocity.y > -2 && Jumped)
         {
-            activeState = StateOfTheAnimation.running;
+            anime.SetBool("Jumping", true);
+            activeState = StateOfTheAnimation.jumping;
         }
-        if (movementPlayer.x == 0 && movementPlayer.z == 0 && !dash)
+       
+        if(controller.velocity.z > 0.1 || controller.velocity.x > 0.1 || controller.velocity.z < -0.1 || controller.velocity.x < -0.1 ) {
+                if (!dash) {
+                    activeState = StateOfTheAnimation.running;
+                    anime.SetBool("Running", true);
+                }
+        }
+        else
+        {
+            anime.SetBool("Running", false);
+        }
+
+        if(controller.velocity == Vector3.zero && activeState != StateOfTheAnimation.falling)
         {
             activeState = StateOfTheAnimation.idle;
-        }
-        if (activeState == StateOfTheAnimation.dashing)
-        {
-            anime.SetBool("Dashing", true);
             anime.SetBool("Running", false);
+        }
+        if (dash)
+        {
+            activeState = StateOfTheAnimation.dashing;
+            anime.SetBool("Running", false);
+            anime.SetBool("Dashing", true);
         }
         else
         {
             anime.SetBool("Dashing", false);
         }
-        if (activeState == StateOfTheAnimation.running)
+
+        if (controller.velocity == Vector3.zero)
         {
-            anime.SetBool("Running", true);
+            anime.SetBool("Idle", true);
         }
         else
         {
-            anime.SetBool("Running", false);
+            anime.SetBool("Idle", false);
         }
+
+        if (controller.isGrounded)
+        {
+            anime.SetBool("Landing", true);
+            anime.SetBool("Falling", false);
+        }
+        else
+
+        {
+            anime.SetBool("Landing", false);
+        }
+        
     }
-
-
-
 }
