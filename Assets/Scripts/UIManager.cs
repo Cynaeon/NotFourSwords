@@ -11,13 +11,15 @@ public class UIManager : MonoBehaviour {
     public Image keyImage;
     public Image notificationImage;
     public Image crosshair;
+    public Image hearts;
     public Text health;
     public Text score;
     public Text paused;
 	public Text pausedShadow;
     public GameObject player;
+    public GameObject heart;
     private float maxHealth;
-    private float currentHealth;
+    private int currentHealth;
     private float Score;
 
 	void Start () {
@@ -31,22 +33,18 @@ public class UIManager : MonoBehaviour {
         crosshair.enabled = false;
         keyImage.enabled = false;
         
-
-        maxHealth = player.GetComponent<PlayerControl>().maxHealth;
         currentHealth = player.GetComponent<PlayerControl>().currentHealth;
         Score = player.GetComponent<PlayerControl>().gatheredScore;
-        health.text = "HP: " + currentHealth + " / " + maxHealth;
+        
         score.text = "Mana: " + score;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        maxHealth = player.GetComponent<PlayerControl>().maxHealth;
-        currentHealth = player.GetComponent<PlayerControl>().currentHealth;
-        health.text = "HP: " + currentHealth + " / " + maxHealth;
+        
         Score = player.GetComponent<PlayerControl>().gatheredScore;
         score.text = "Mana: " + Score;
-
+        
         if (player.GetComponent<PlayerControl>().firstPerson)
         {
             crosshair.enabled = true;
@@ -60,6 +58,12 @@ public class UIManager : MonoBehaviour {
     public void EnableNotification(bool state)
     {
         notificationImage.enabled = state;
+    }
+
+    public void UpdateHealth(int currentHealth)
+    {
+        Debug.Log(currentHealth);
+        hearts.gameObject.GetComponent<UIHeart>().ChangeHealth(currentHealth);
     }
 
     public void UIItems(bool jump, bool lens, bool magnet, bool sword, bool key)

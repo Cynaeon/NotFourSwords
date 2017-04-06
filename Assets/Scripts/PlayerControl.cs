@@ -63,8 +63,8 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
     #region Player Attributes
-    [HideInInspector] public float maxHealth;
-    [HideInInspector] public float currentHealth;
+    [HideInInspector] public int maxHealth;
+    [HideInInspector] public int currentHealth;
     [HideInInspector] public int gatheredScore;
     private float defaultSpeed;
     private float dashSpeed;
@@ -185,7 +185,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-        
+        Debug.Log(currentHealth);
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -550,7 +550,7 @@ public class PlayerControl : MonoBehaviour
             {
                 transform.position = Vector3.zero;
             }
-            currentHealth = 10.0f;
+            currentHealth = maxHealth;
         }
     }
 
@@ -658,20 +658,22 @@ public class PlayerControl : MonoBehaviour
         return closest;
     }
 
-    public void TakeDamage(float dmg, Vector3 dir)
+    public void TakeDamage(int dmg, Vector3 dir)
     {
         invulnerable = true;
         gameObject.GetComponent<ImpactReceiver>().AddImpact(Vector3.back + Vector3.up, 100);
         movementPlayer = -movementPlayer;
         currentHealth -= dmg;
+        _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
     }
 
-    public void HealDamage(float heal)
+    public void HealDamage(int heal)
     {
         if (currentHealth != maxHealth)
         {
             currentHealth += heal;
         }
+        _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
     }
 
     public void IncreaseScore(int amount)
