@@ -877,17 +877,19 @@ public class PlayerControl : MonoBehaviour
                 lockOnArrow.gameObject.SetActive(false);
             }
 
-            Debug.Log(switchTarget);
-            
+
             // WIP Vertical Target Switching.
             // Is literally bending logic and might actually cause the universe to collapse.
+            // It's a quantum nightmare. Be careful not to read it, your existence might end without warning.
+            // On a more serious note,
+            // H E L P
 
             //if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
+            Debug.Log(Input.GetAxis(playerPrefix + "VerticalRightStick"));
             if (lockOnTarget != null)
             {
-                if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.5)
+                if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.25)
                 {
-                    Debug.Log("Up");
                     if (switchTarget < enemyList.Count - 1 && !_yAxisPressed)
                     {
                         switchTarget++;
@@ -895,14 +897,8 @@ public class PlayerControl : MonoBehaviour
                     }
                     lockOnTarget = enemyList[switchTarget].transform;
                 }
-                else
+                else if (Input.GetAxis(playerPrefix + "VerticalRightStick") < -0.25)
                 {
-                    _yAxisPressed = false;
-                }
-
-                if (Input.GetAxis(playerPrefix + "VerticalRightStick") < -0.5)
-                {
-                    Debug.Log("Down");
                     if (switchTarget > 0 && !_yAxisPressed)
                     {
                         switchTarget--;
