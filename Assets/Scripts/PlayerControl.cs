@@ -185,6 +185,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
+        Debug.Log(currentHealth);
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -193,6 +194,7 @@ public class PlayerControl : MonoBehaviour
             if (playerPrefix != Players.NotSelected && !gameManager.GetComponent<GameManager>().disableMovement)
             {
                 GetMovement();
+                Health();
                 Dashing();
                 Magnet();
                 FirstPersonControls();
@@ -200,7 +202,7 @@ public class PlayerControl : MonoBehaviour
                 Movement();
                 LockOnSystem();
                 Shooting();
-                Health();
+                
                 SwitchItems();
                 Swording();
                 Lens();
@@ -351,6 +353,7 @@ public class PlayerControl : MonoBehaviour
     {
         direction = transform.eulerAngles;
         direction.y = Mathf.Round(direction.y / 90) * 90;
+        Debug.Log(direction);
         transform.eulerAngles = direction;
     }
 
@@ -549,7 +552,6 @@ public class PlayerControl : MonoBehaviour
                 transform.position = Vector3.zero;
             }
             currentHealth = maxHealth;
-            _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
         }
     }
 
@@ -615,12 +617,15 @@ public class PlayerControl : MonoBehaviour
 
         if (dash)
         {
+            //Debug.Log(dashTime + " / " + dashInvulTime);
             if (dashInvulTime >= dashTime)
             {
+                Debug.Log("invul");
                 playerHitbox.SetActive(false);
             }
             else
             {
+                Debug.Log("not invul");
                 playerHitbox.SetActive(true);
             }
             grabbing = false;
@@ -871,16 +876,20 @@ public class PlayerControl : MonoBehaviour
                 lockOnTarget = null;
                 lockOnArrow.gameObject.SetActive(false);
             }
-            
+
+
             // WIP Vertical Target Switching.
             // Is literally bending logic and might actually cause the universe to collapse.
+            // It's a quantum nightmare. Be careful not to read it, your existence might end without warning.
+            // On a more serious note,
+            // H E L P
 
             //if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
+            Debug.Log(Input.GetAxis(playerPrefix + "VerticalRightStick"));
             if (lockOnTarget != null)
             {
-                if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.5)
+                if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.25)
                 {
-                    Debug.Log("Up");
                     if (switchTarget < enemyList.Count - 1 && !_yAxisPressed)
                     {
                         switchTarget++;
@@ -888,14 +897,8 @@ public class PlayerControl : MonoBehaviour
                     }
                     lockOnTarget = enemyList[switchTarget].transform;
                 }
-                else
+                else if (Input.GetAxis(playerPrefix + "VerticalRightStick") < -0.25)
                 {
-                    _yAxisPressed = false;
-                }
-
-                if (Input.GetAxis(playerPrefix + "VerticalRightStick") < -0.5)
-                {
-                    Debug.Log("Down");
                     if (switchTarget > 0 && !_yAxisPressed)
                     {
                         switchTarget--;
