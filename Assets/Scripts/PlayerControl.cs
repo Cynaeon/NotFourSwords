@@ -185,7 +185,6 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-        Debug.Log(currentHealth);
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -250,6 +249,7 @@ public class PlayerControl : MonoBehaviour
 
         float moveHorizontal = Input.GetAxis(playerPrefix + "Horizontal");
         float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
+        
         if (moveHorizontal < 0.3 && moveHorizontal > -0.3)
         {
             moveHorizontal = 0;
@@ -353,7 +353,6 @@ public class PlayerControl : MonoBehaviour
     {
         direction = transform.eulerAngles;
         direction.y = Mathf.Round(direction.y / 90) * 90;
-        Debug.Log(direction);
         transform.eulerAngles = direction;
     }
 
@@ -430,7 +429,7 @@ public class PlayerControl : MonoBehaviour
                     case 4:
                         myItem = Items.sword;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true, false);
-                        SetActivity(false,true, true, false, false, false);
+                        SetActivity(false, true, true, false, false, false);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
@@ -745,6 +744,7 @@ public class PlayerControl : MonoBehaviour
         if (toggleSword)
         {
             if(Input.GetButtonDown(playerPrefix + "Shoot")) {
+                anime.SetTrigger("Sword");
                 SwordHitBox.SetActive(true);
             }
         }
@@ -1045,6 +1045,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             anime.SetBool("Running", false);
+            Debug.Log("idle");
         }
 
         if(controller.velocity == Vector3.zero && activeState != StateOfTheAnimation.falling)
@@ -1082,6 +1083,24 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetBool("Landing", false);
         }
-        
+        if (grabbing)
+        {
+            if (toggleSword)
+            {
+                SwordItem.SetActive(false);
+                SheathedSword.SetActive(true);
+            }
+            anime.SetBool("Pushing", true);
+            
+        }
+        else
+        {
+            if (toggleSword)
+            {
+                SwordItem.SetActive(true);
+                SheathedSword.SetActive(false);
+            }
+            anime.SetBool("Pushing", false);
+        }
     }
 }
