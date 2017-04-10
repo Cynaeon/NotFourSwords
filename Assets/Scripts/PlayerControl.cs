@@ -49,6 +49,7 @@ public class PlayerControl : MonoBehaviour
     public Transform playerCamera;
     public Camera _playerCamera;
     public Canvas _playerCanvas;
+    public GameObject bolt;
     public GameObject playerHitbox;
     public GameObject trailModel;
     public GameObject playerModel;
@@ -81,11 +82,11 @@ public class PlayerControl : MonoBehaviour
     private float _minMagnetDistance;
     private float dmgInvulTime;
     private Collider _grabSpot;
+    private float deadzone;
     #endregion
 
     #region Other Objects
     private CharacterController controller;
-    private GameObject bolt;
     private Transform lockOnArrow;
     private Renderer lockOnRend;
     private Color lockOnGreen;
@@ -161,7 +162,6 @@ public class PlayerControl : MonoBehaviour
         dmgInvulTime = playerManager.dmgInvulTime;
         lockAcquisitionRange = playerManager.lockAcquisitionRange;
         lockMaxRange = playerManager.lockMaxRange;
-        bolt = playerManager.bolt;
         gravity = playerManager.gravity;
         jumpForce = playerManager.jumpForce;
         lockOnArrow = transform.Find("LockOnArrow");
@@ -173,6 +173,7 @@ public class PlayerControl : MonoBehaviour
         _magnetVelocity = playerManager.magnetVelocity;
         _minMagnetDistance = playerManager.minMagnetDistance;
         _grabSpot = GetComponentInChildren<BoxCollider>();
+        deadzone = playerManager.deadzone;
         #endregion
 
         gameManager = GameObject.Find("GameManager");
@@ -185,7 +186,6 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-        Debug.Log(currentHealth);
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -239,7 +239,7 @@ public class PlayerControl : MonoBehaviour
         settingStartPos = false;
             
     }
-    
+
 
     private void GetMovement()
     {
@@ -250,15 +250,16 @@ public class PlayerControl : MonoBehaviour
 
         float moveHorizontal = Input.GetAxis(playerPrefix + "Horizontal");
         float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
-        if (moveHorizontal < 0.3 && moveHorizontal > -0.3)
+
+        movementPlayer = new Vector2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical"));
+        if (movementPlayer.magnitude < deadzone)
         {
-            moveHorizontal = 0;
+            movementPlayer = Vector2.zero;
         }
-        if (moveVertical < 0.3 && moveVertical > -0.3)
+        else
         {
-            moveVertical = 0;
+            movementPlayer = (moveHorizontal * right + moveVertical * forward);
         }
-        movementPlayer = (moveHorizontal * right + moveVertical * forward).normalized;
     }
 
     private void Movement()
@@ -353,7 +354,6 @@ public class PlayerControl : MonoBehaviour
     {
         direction = transform.eulerAngles;
         direction.y = Mathf.Round(direction.y / 90) * 90;
-        Debug.Log(direction);
         transform.eulerAngles = direction;
     }
 
@@ -582,7 +582,10 @@ public class PlayerControl : MonoBehaviour
                     // And magnetic lifting here
                     if (hit.distance >= _minMagnetDistance)
                     {
-                        hit.transform.Translate(-transform.forward * Time.deltaTime * _magnetVelocity);
+                        Vector3 dir = transform.position - hit.transform.position;
+                        dir = dir.normalized;
+                        Debug.DrawRay(hit.transform.position, dir, Color.green, 2);
+                        hit.transform.Translate(dir * Time.deltaTime * _magnetVelocity, Space.Self);
                     }
                 }
             }
@@ -617,15 +620,12 @@ public class PlayerControl : MonoBehaviour
 
         if (dash)
         {
-            //Debug.Log(dashTime + " / " + dashInvulTime);
             if (dashInvulTime >= dashTime)
             {
-                Debug.Log("invul");
                 playerHitbox.SetActive(false);
             }
             else
             {
-                Debug.Log("not invul");
                 playerHitbox.SetActive(true);
             }
             grabbing = false;
@@ -699,8 +699,8 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.5f;
                 if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Vector3 pos = new Vector3(transform.position.x , transform.position.y + .6f, transform.position.z);
-                    Instantiate(bolt, pos, transform.rotation);
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
+                    Instantiate(bolt, pos + transform.forward, transform.rotation);
                     lastShot = 0;
                 }
             }
@@ -710,7 +710,7 @@ public class PlayerControl : MonoBehaviour
                 if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
                     Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-                    Instantiate(bolt, pos, transform.rotation);
+                    Instantiate(bolt, pos + transform.forward, transform.rotation);
                     lastShot = 0;
                 }
 
@@ -736,7 +736,7 @@ public class PlayerControl : MonoBehaviour
                 if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
                     Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-                    Instantiate(bolt, pos, transform.rotation);
+                    Instantiate(bolt, pos + transform.forward, transform.rotation);
                     lastShot = 0;
                 }
             }
