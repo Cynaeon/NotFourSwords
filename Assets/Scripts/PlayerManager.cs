@@ -23,9 +23,9 @@ public class PlayerManager : MonoBehaviour {
     public float maxMagnetDistance = 50f;
     public float magnetVelocity = 25f;
     public float minMagnetDistance = 1f;
+    public float deadzone = 0.25f;
 
-    public Transform playerCamera;
-    public GameObject bolt;
+    //public Transform playerCamera;
 
     public GameObject player1;
 	public GameObject player2;
