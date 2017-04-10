@@ -551,6 +551,7 @@ public class PlayerControl : MonoBehaviour
                 transform.position = Vector3.zero;
             }
             currentHealth = maxHealth;
+            _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
         }
     }
 
@@ -1082,6 +1083,34 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetBool("Landing", false);
         }
-        
+
+        if (grabbing)
+        {
+            if (toggleSword)
+            {
+                SwordItem.SetActive(false);
+                SheathedSword.SetActive(true);
+            }
+
+            if (Vector3.Dot(transform.forward, movementPlayer) > 0)
+            {
+                anime.SetFloat("PushState", 1);
+            }
+            if (Vector3.Dot(transform.forward, movementPlayer) < 0)
+            {
+                anime.SetFloat("PushState", 0);
+            }
+
+            anime.SetBool("Pushing", true);
+        }
+        else
+        {
+            if (toggleSword)
+            {
+                SwordItem.SetActive(true);
+                SheathedSword.SetActive(false);
+            }
+            anime.SetBool("Pushing", false);
+        }
     }
 }
