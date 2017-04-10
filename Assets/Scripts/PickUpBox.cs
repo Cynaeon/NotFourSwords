@@ -30,11 +30,10 @@ public class PickUpBox : MonoBehaviour
             Destroy(other.gameObject);
         }
         if (other.tag == "Heart")
-        {
-            if(_playerControl.currentHealth < _playerControl.maxHealth) {
-                _playerControl.HealDamage(1);
-                Destroy(other.gameObject);
-            }
+        { 
+            _playerControl.HealDamage(1);
+            Destroy(other.gameObject);
+
         }
         if(other.tag == "Mana")
         {

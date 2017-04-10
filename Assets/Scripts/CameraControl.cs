@@ -103,7 +103,7 @@ public class CameraControl : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(y, x, 0);
 
                 RaycastHit hit;
-                Debug.DrawLine(target.position, defaultPos.position, Color.green, 1);
+                //Debug.DrawLine(target.position, defaultPos.position, Color.green, 1);
                 if (Physics.Linecast(target.position, defaultPos.position, out hit))
                 {
                     if (hit.transform.tag == "Walls")
