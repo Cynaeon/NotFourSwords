@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour {
     public float health = 10.0f;
     public ParticleSystem hitEffect;
 
-    private Renderer _rend;
-    private Color defaultColor;
-    private Color hitColor = Color.red;
-    private float startTime;
+    protected Renderer _rend;
+    protected Color defaultColor;
+    protected Color hitColor = Color.red;
+    protected float startTime;
 
 	public virtual void Start () {
         _rend = GetComponent<Renderer>();

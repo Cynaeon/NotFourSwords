@@ -24,4 +24,18 @@ public class Trooper : Enemy {
             transform.position = Vector3.MoveTowards(transform.position, closestPlayer.position, speed * Time.deltaTime);
         }
     }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Sword")
+        {
+            health -= 1;
+            _rend.material.color = hitColor;
+            startTime = Time.time;
+        }
+        if (other.tag == "PlayerProjectile")
+        {
+            other.transform.forward = Vector3.Reflect(other.transform.forward, transform.forward);
+        }
+    }
 }
