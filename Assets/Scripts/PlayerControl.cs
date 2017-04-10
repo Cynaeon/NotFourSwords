@@ -202,7 +202,6 @@ public class PlayerControl : MonoBehaviour
                 Movement();
                 LockOnSystem();
                 Shooting();
-                
                 SwitchItems();
                 Swording();
                 Lens();
@@ -745,6 +744,7 @@ public class PlayerControl : MonoBehaviour
         if (toggleSword)
         {
             if(Input.GetButtonDown(playerPrefix + "Shoot")) {
+                anime.SetTrigger("Sword");
                 SwordHitBox.SetActive(true);
             }
         }
