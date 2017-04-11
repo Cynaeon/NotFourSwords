@@ -103,16 +103,18 @@ public class CameraControl : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(y, x, 0);
 
                 RaycastHit hit;
-                //Debug.DrawLine(target.position, defaultPos.position, Color.green, 1);
+                Debug.DrawLine(target.position, defaultPos.position, Color.green, 1);
                 if (Physics.Linecast(target.position, defaultPos.position, out hit))
                 {
-                    if (hit.transform.tag == "Walls")
+                    if (hit.transform.tag != "Player")
                     {
-                        distance = hit.distance;
+                        Debug.Log(hit.transform.name);
+                        if (hit.transform.tag == "Walls")
+                        {
+                            distance = hit.distance;
+                        }
                     }
                 }
-
-                // v If the camera keeps going nuts, delet this else v
                 else
                 {
                     distance = defaultDist;

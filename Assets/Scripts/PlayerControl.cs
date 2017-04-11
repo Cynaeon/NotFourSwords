@@ -526,7 +526,7 @@ public class PlayerControl : MonoBehaviour
         if (invulnerable && currentInvulTime <= dmgInvulTime)
         {
             playerHitbox.SetActive(false);
-            _rend.material.color = Color.Lerp(defaultColor, Color.red, Mathf.PingPong(Time.time, 0.2f));
+            _rend.material.color = Color.Lerp(defaultColor, Color.red, Mathf.PingPong(Time.time * 5, 1));
             currentInvulTime += Time.deltaTime;
         }
         else
@@ -884,7 +884,7 @@ public class PlayerControl : MonoBehaviour
             // H E L P
 
             //if (Input.GetButtonDown(playerPrefix + "SwitchTarget"))
-            Debug.Log(Input.GetAxis(playerPrefix + "VerticalRightStick"));
+            //Debug.Log(Input.GetAxis(playerPrefix + "VerticalRightStick"));
             if (lockOnTarget != null)
             {
                 if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.25)

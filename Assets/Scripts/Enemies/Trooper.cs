@@ -7,8 +7,11 @@ public class Trooper : Enemy {
     public float aggroRange;
     public float speed;
 
+    private Rigidbody _rb;
+
     public override void Start ()
     {
+        _rb = GetComponent<Rigidbody>();
         base.Start();
     }
 
@@ -29,6 +32,11 @@ public class Trooper : Enemy {
     {
         if (other.tag == "Sword")
         {
+            Vector3 dir = transform.position - other.transform.position;
+            dir = dir.normalized;
+            dir.y = 0.5f;
+            Debug.Log(dir);
+            _rb.AddForce(dir * 10000);
             health -= 1;
             _rend.material.color = hitColor;
             startTime = Time.time;
