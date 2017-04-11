@@ -208,7 +208,6 @@ public class PlayerControl : MonoBehaviour
                 Animations();
             }
         }
-        //Debug.Log(movementPlayer);
     }
 
     public void SetStartPosition(Transform startPos)
@@ -265,7 +264,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (movementPlayer != Vector3.zero)
         {
-            Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
+            Quaternion rotation = new Quaternion(0,0, playerCamera.rotation.z, 0);
             // Put a boolean in the if-statement below if you don't want the player to rotate
             if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
             {
@@ -782,7 +781,6 @@ public class PlayerControl : MonoBehaviour
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
             float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
             Vector3 lookPlayer = new Vector3(-lookVertical, -lookHorizontal, 0);
-
             transform.localEulerAngles += lookPlayer;
         }
         else
@@ -1100,11 +1098,18 @@ public class PlayerControl : MonoBehaviour
             {
                 anime.SetFloat("PushState", 0);
             }
-
+            if(Vector3.Dot(transform.forward, movementPlayer) == 0)
+            {
+                anime.enabled = false;
+            }else
+            {
+                anime.enabled = true;
+            }
             anime.SetBool("Pushing", true);
         }
         else
         {
+            anime.enabled = true;
             if (toggleSword)
             {
                 SwordItem.SetActive(true);
@@ -1112,5 +1117,6 @@ public class PlayerControl : MonoBehaviour
             }
             anime.SetBool("Pushing", false);
         }
+        
     }
 }
