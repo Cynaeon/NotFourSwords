@@ -35,6 +35,7 @@ public class CameraControl : MonoBehaviour
     private float distanceMin;
     private float distanceMax;
     private bool _lockedOn;
+    private bool firstPerson;
 
     void Start()
     {
@@ -83,15 +84,25 @@ public class CameraControl : MonoBehaviour
                     var currentRotationAngle = transform.eulerAngles.y;
                     x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
                     _lockedOn = true;
-                } else
+                }
+                else
                 {
                     _lockedOn = false;
+                }
+
+                if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+                {
+                    firstPerson = true;
+                }
+                else
+                {
+                    firstPerson = false;
                 }
 
                 // Scale speed with distance
                 xSpeed = 100 / distance;
 
-                if (!_lockedOn)
+                if (!_lockedOn && !firstPerson)
                 {
                     x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
                     y += Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
@@ -103,12 +114,12 @@ public class CameraControl : MonoBehaviour
                 Quaternion rotation = Quaternion.Euler(y, x, 0);
 
                 RaycastHit hit;
-                Debug.DrawLine(target.position, defaultPos.position, Color.green, 1);
+                //Debug.DrawLine(target.position, defaultPos.position, Color.green, 1);
                 if (Physics.Linecast(target.position, defaultPos.position, out hit))
                 {
                     if (hit.transform.tag != "Player")
                     {
-                        Debug.Log(hit.transform.name);
+                        //Debug.Log(hit.transform.name);
                         if (hit.transform.tag == "Walls")
                         {
                             distance = hit.distance;
@@ -132,7 +143,7 @@ public class CameraControl : MonoBehaviour
                 transform.rotation = rotation;
                 transform.position = position;
 
-                if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+                if (firstPerson)
                 {
                     Vector3 pos = new Vector3(target.position.x, target.position.y + .6f, target.position.z);
                     transform.position = pos;

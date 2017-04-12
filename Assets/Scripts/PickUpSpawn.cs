@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class PickUpSpawn : MonoBehaviour {
 
-    private float lifetime;
+    [HideInInspector] public bool collected;
+    public float lifetime;
+
+    private float currLifetime;
+    private Collider collider;
+    private Material material;
+    private Color defaultColor;
 
 	void Awake () {
+        material = GetComponentInChildren<Renderer>().material;
+        defaultColor = material.color;
+        collider = GetComponent<Collider>();
+        collider.enabled = false;
         Rigidbody rb = GetComponent<Rigidbody>();
         Vector3 dir = new Vector3(Random.Range(-1f, 1f), .5f, Random.Range(-1f, 1f));
         rb.AddForce(dir * 500);
@@ -14,6 +24,18 @@ public class PickUpSpawn : MonoBehaviour {
 
     void Update ()
     {
-        lifetime += Time.deltaTime;
+        if (currLifetime * 1.5f >= lifetime)
+        {
+            material.color = Color.Lerp(defaultColor, Color.clear, Mathf.PingPong(Time.time * 3, 1));
+        }
+        currLifetime += Time.deltaTime;
+        if (lifetime > 0.5f)
+        {
+            collider.enabled = true;
+        }
+        if (currLifetime >= lifetime)
+        {
+            Destroy(gameObject);
+        }
     }
 }

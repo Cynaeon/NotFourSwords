@@ -56,6 +56,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject SwordItem;
     public GameObject Sheath;
     public GameObject SheathedSword;
+    public TrailRenderer swordTrail;
     public GameObject MonocleItem;
     public GameObject MagnetItem;
     public GameObject MagnetEffect;
@@ -113,9 +114,12 @@ public class PlayerControl : MonoBehaviour
     //private float burstSpeed;
     private Transform lockOnTarget = null;
     private Vector3 dashDir;
+    private Vector3 slidingDir;
     private float _switchTargetAxis;
     private int switchTarget;
     private Color defaultColor;
+
+    private float swordSwing;
     #endregion
 
     #region Private Booleans
@@ -133,6 +137,7 @@ public class PlayerControl : MonoBehaviour
     private bool toggleSword;
     private bool invulnerable;
     private bool _magnetActive;
+    private bool sliding;
     [HideInInspector] public bool settingStartPos;
     private FogDensity fogDensity;
     private bool _yAxisPressed;
@@ -175,7 +180,7 @@ public class PlayerControl : MonoBehaviour
         _grabSpot = GetComponentInChildren<BoxCollider>();
         deadzone = playerManager.deadzone;
         #endregion
-
+        swordTrail = SwordItem.GetComponent<TrailRenderer>();
         gameManager = GameObject.Find("GameManager");
         SetActivity(false, false, false, false, false, false);
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -200,6 +205,7 @@ public class PlayerControl : MonoBehaviour
                 FirstPersonControls();
                 Grabbing();
                 Movement();
+                Sliding();
                 LockOnSystem();
                 Shooting();
                 SwitchItems();
@@ -209,6 +215,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
     }
+
 
     public void SetStartPosition(Transform startPos)
     {
@@ -260,43 +267,55 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+
+    private void Sliding()
+    {
+        if (sliding)
+        {
+            controller.Move(slidingDir * currentSpeed * 2 * Time.deltaTime);
+        }
+    }
+
     private void Movement()
     {
-        if (movementPlayer != Vector3.zero)
+        if (!sliding)
         {
-            Quaternion rotation = new Quaternion(0,0, playerCamera.rotation.z, 0);
-            // Put a boolean in the if-statement below if you don't want the player to rotate
-            if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
+            if (movementPlayer != Vector3.zero)
             {
-                transform.rotation = rotation;
-                transform.rotation = Quaternion.LookRotation(movementPlayer);
+                Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
+                // Put a boolean in the if-statement below if you don't want the player to rotate
+                if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
+                {
+                    transform.rotation = rotation;
+                    transform.rotation = Quaternion.LookRotation(movementPlayer);
+                }
             }
-        }
 
-        if (dash)
-        {
-            verticalVelocity = -gravity * Time.deltaTime;
-            controller.Move(dashDir * currentSpeed * Time.deltaTime);
-            // Create cool after images
-            afterImageTime -= Time.deltaTime;
-            if (afterImageTime <= 0)
+            if (dash)
             {
-                //Quaternion rot = playerModel.transform.rotation;
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
-                Instantiate(trailModel, pos, transform.rotation);
-                afterImageTime = afterImageRatio;
+                verticalVelocity = -gravity * Time.deltaTime;
+                controller.Move(dashDir * currentSpeed * Time.deltaTime);
+                // Create cool after images
+                afterImageTime -= Time.deltaTime;
+                if (afterImageTime <= 0)
+                {
+                    //Quaternion rot = playerModel.transform.rotation;
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+                    Instantiate(trailModel, pos, transform.rotation);
+                    afterImageTime = afterImageRatio;
+                }
             }
-        }
-        else if (climbing)
-        {
-            float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
-            movementPlayer = new Vector3(0, moveVertical, 0);
-            controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
-        }
-        else
-        {
-            movementPlayer.y = verticalVelocity;
-            controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+            else if (climbing)
+            {
+                float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
+                movementPlayer = new Vector3(0, moveVertical, 0);
+                controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+            }
+            else
+            {
+                movementPlayer.y = verticalVelocity;
+                controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -605,7 +624,8 @@ public class PlayerControl : MonoBehaviour
                 {
                     float myAngle = Mathf.Atan2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical")) * Mathf.Rad2Deg;
                     anime.SetFloat("DashAngle", myAngle);
-                }else
+                }
+                else
                 {
                     anime.SetFloat("DashAngle", 0);
                 }
@@ -744,8 +764,19 @@ public class PlayerControl : MonoBehaviour
         if (toggleSword)
         {
             if(Input.GetButtonDown(playerPrefix + "Shoot")) {
+                swordSwing = 0.8f;
                 anime.SetTrigger("Sword");
                 SwordHitBox.SetActive(true);
+            }
+
+            if (swordSwing > 0)
+            {
+                swordTrail.enabled = true;
+                swordSwing -= Time.deltaTime;
+            }
+            else
+            {
+                swordTrail.enabled = false;
             }
         }
     }
@@ -930,6 +961,7 @@ public class PlayerControl : MonoBehaviour
 
         if (other.tag == "Ladder")
         {
+            
             if (Input.GetButtonDown(playerPrefix + "Action"))
             {
                 if (!climbing)
@@ -949,11 +981,6 @@ public class PlayerControl : MonoBehaviour
                 other.GetComponent<Pot>().Break();
             }
         }
-
-        if (other.tag == "SlidingIce")
-        {
-            // xD
-        }
     }
 
     public void ItemStateChange(bool changeTo)
@@ -967,12 +994,12 @@ public class PlayerControl : MonoBehaviour
         {
             canOpenDoor = true;
         }
-        /*
-        if (other.tag == "MovingPlatform")
+
+        if (other.tag == "SlidingIce")
         {
-            transform.parent = other.transform;
+            slidingDir = movementPlayer.normalized;
+            sliding = true;
         }
-        */
     }
 
     void OnTriggerExit(Collider other)
@@ -1000,12 +1027,11 @@ public class PlayerControl : MonoBehaviour
         {
             canOpenDoor = false;
         }
-        /*
-        if (other.tag == "MovingPlatform")
+
+        if (other.tag == "SlidingIce")
         {
-            transform.parent = null;
+            sliding = false;
         }
-        */
     }
 
     public void Animations()
