@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: a6d527f4a3449d94a96af844dd853044
+timeCreated: 1491987793
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: //RootNode
+    100004: Chest
+    100006: Fingers.L
+    100008: Fingers.L_end
+    100010: Fingers.R
+    100012: Fingers.R_end
+    100014: Foot.L
+    100016: Foot.R
+    100018: Hand.L
+    100020: Hand.R
+    100022: Head
+    100024: Head_end
+    100026: LowerArm.L
+    100028: LowerArm.R
+    100030: LowerLeg.L
+    100032: LowerLeg.R
+    100034: Neck
+    100036: Purple
+    100038: Purple.001
+    100040: Shoulder.L
+    100042: Shoulder.R
+    100044: Spine
+    100046: Tail1
+    100048: Tail2
+    100050: Tail3
+    100052: Tail4
+    100054: Tail4.001
+    100056: Tail4.002
+    100058: Tail4.003
+    100060: Tail4.003_end
+    100062: Thumb.L
+    100064: Thumb.L_end
+    100066: Thumb.R
+    100068: Thumb.R_end
+    100070: Toes.L
+    100072: Toes.L_end
+    100074: Toes.R
+    100076: Toes.R_end
+    100078: UpperArm.L
+    100080: UpperArm.R
+    100082: UpperLeg.L
+    100084: UpperLeg.R
+    100086: Wrist.L
+    100088: Wrist.R
+    400000: Armature
+    400002: //RootNode
+    400004: Chest
+    400006: Fingers.L
+    400008: Fingers.L_end
+    400010: Fingers.R
+    400012: Fingers.R_end
+    400014: Foot.L
+    400016: Foot.R
+    400018: Hand.L
+    400020: Hand.R
+    400022: Head
+    400024: Head_end
+    400026: LowerArm.L
+    400028: LowerArm.R
+    400030: LowerLeg.L
+    400032: LowerLeg.R
+    400034: Neck
+    400036: Purple
+    400038: Purple.001
+    400040: Shoulder.L
+    400042: Shoulder.R
+    400044: Spine
+    400046: Tail1
+    400048: Tail2
+    400050: Tail3
+    400052: Tail4
+    400054: Tail4.001
+    400056: Tail4.002
+    400058: Tail4.003
+    400060: Tail4.003_end
+    400062: Thumb.L
+    400064: Thumb.L_end
+    400066: Thumb.R
+    400068: Thumb.R_end
+    400070: Toes.L
+    400072: Toes.L_end
+    400074: Toes.R
+    400076: Toes.R_end
+    400078: UpperArm.L
+    400080: UpperArm.R
+    400082: UpperLeg.L
+    400084: UpperLeg.R
+    400086: Wrist.L
+    400088: Wrist.R
+    4300000: Purple
+    4300002: Purple.001
+    7400000: Armature|_purpleDashAnimationBackward
+    7400002: Armature|_purpleDashAnimationBackwardSword
+    7400004: Armature|_purpleDashAnimationForward
+    7400006: Armature|_purpleDashAnimationForwardSword
+    7400008: Armature|_purpleDashAnimationLeft
+    7400010: Armature|_purpleDashAnimationLeftSword
+    7400012: Armature|_purpleDashAnimationRight
+    7400014: Armature|_purpleDashAnimationRightSword
+    7400016: Armature|_purpleIdleAnimation
+    7400018: Armature|_purpleIdleAnimationSword
+    7400020: Armature|_purpleRunAnimationCrossbow
+    7400022: Armature|_purpleRunAnimationSword
+    7400024: Armature|_purpleRunAnimationSword.005
+    7400026: Armature|_purpleT-pose
+    7400028: Armature|_purpleT-pose.001
+    7400030: Armature|Empty
+    7400032: Armature|Key.007Action
+    7400034: Armature|KeyAction
+    7400036: Armature|KeyAction.001
+    7400038: Armature|purpleJumpAnimation
+    7400040: Armature|purpleJumpAnimationSword
+    7400042: Armature|RubSword.007
+    7400044: Armature|RunAnimation
+    7400046: Armature|RunAnimation.001
+    7400048: Purple|_purpleDashAnimationBackward
+    7400050: Purple|Empty
+    7400052: Purple|Key.007Action
+    7400054: Purple|KeyAction
+    7400056: Purple|KeyAction.001
+    7400058: Purple|RubSword.007
+    7400060: Purple.001|_purpleT-pose.001
+    7400062: Purple.001|Empty
+    7400064: Purple.001|Key.007Action
+    7400066: Purple.001|KeyAction
+    7400068: Purple.001|KeyAction.001
+    7400070: Purple.001|RubSword.007
+    9500000: //RootNode
+    13700000: Purple
+    13700002: Purple.001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
