@@ -97,7 +97,7 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private GameObject gameManager;
+    private GameManager gameManager;
     private PlayerManager playerManager;
     private Vector3 movementPlayer;
     private float currentSpeed;
@@ -133,6 +133,7 @@ public class PlayerControl : MonoBehaviour
     private bool canChangeItem;
     private bool canOpenDoor;
     private bool canDash;
+    [HideInInspector] public bool disableMovement;
     private bool dash;
     private bool toggleSword;
     private bool invulnerable;
@@ -181,7 +182,7 @@ public class PlayerControl : MonoBehaviour
         deadzone = playerManager.deadzone;
         #endregion
         swordTrail = SwordItem.GetComponent<TrailRenderer>();
-        gameManager = GameObject.Find("GameManager");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         SetActivity(false, false, false, false, false, false);
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
         defaultColor = _rend.material.color;
@@ -196,7 +197,7 @@ public class PlayerControl : MonoBehaviour
         {
             Gravity();
 
-            if (playerPrefix != Players.NotSelected && !gameManager.GetComponent<GameManager>().disableMovement)
+            if (playerPrefix != Players.NotSelected && !gameManager.disableMovement && !disableMovement)
             {
                 GetMovement();
                 Health();
