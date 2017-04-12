@@ -780,8 +780,9 @@ public class PlayerControl : MonoBehaviour
             }
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
             float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
-            Vector3 lookPlayer = new Vector3(-lookVertical, -lookHorizontal, 0);
+            Vector3 lookPlayer = new Vector3(0, -lookHorizontal, 0);
             transform.localEulerAngles += lookPlayer;
+
         }
         else
         {
@@ -1010,6 +1011,7 @@ public class PlayerControl : MonoBehaviour
 
     public void Animations()
     {
+        
         if (toggleSword)
         {
             anime.SetFloat("SwordState", 1);
@@ -1117,6 +1119,28 @@ public class PlayerControl : MonoBehaviour
             }
             anime.SetBool("Pushing", false);
         }
-        
+        if (firstPerson)
+        {
+            anime.SetBool("FirstPerson", true);
+            float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
+            Vector3 lookPlayer = new Vector3(-lookVertical, 0, 0);
+            anime.SetFloat("AimState", anime.GetFloat("AimState") + lookVertical);
+
+            if (anime.GetFloat("AimState") < -90)
+            {
+                anime.SetFloat("AimState", -90);
+            }
+
+            if (anime.GetFloat("AimState") > 90)
+            {
+                anime.SetFloat("AimState", 90);
+            }
+
+        }
+        else
+        {
+            anime.SetFloat("AimState", 0);
+            anime.SetBool("FirstPerson", false);
+        }
     }
 }
