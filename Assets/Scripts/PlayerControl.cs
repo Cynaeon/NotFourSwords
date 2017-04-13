@@ -619,7 +619,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
         {
-            if (canDash)
+            if (canDash && !climbing && !_magnetActive)
             {
                 if (lockOn)
                 {
@@ -712,7 +712,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Shooting()
     {
-        if (!dash && !toggleSword) {
+        if (!dash && !toggleSword && !climbing && !_magnetActive) {
             
             if (shootingLevel == 0)
             {
