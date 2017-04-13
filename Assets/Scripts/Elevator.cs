@@ -25,6 +25,13 @@ public class Elevator : MonoBehaviour {
 
     void Awake()
     {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        int k = 0;
+        foreach (GameObject player in players)
+        {
+            playerControls[k] = player.GetComponent<PlayerControl>();
+            k++;
+        }
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _isColliding = new bool[5];
         _buttons = new Button[5][];
@@ -32,6 +39,8 @@ public class Elevator : MonoBehaviour {
         _buttons[2] = new Button[9];
         _buttons[3] = new Button[9];
         _buttons[4] = new Button[9];
+
+        GameObject[] canvases = GameObject.FindGameObjectsWithTag("Canvas");
         for (int i = 1; i <= 1; i++)
         {
             for (int j = 0; j <= 8; j++)
