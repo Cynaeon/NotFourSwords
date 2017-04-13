@@ -18,13 +18,14 @@ public class Elevator : MonoBehaviour {
     private bool[] _isColliding;
     private bool[] _unlockedButtons;
     private bool _isInMotion;
-    public GameManager gameManager;
+    private GameManager gameManager;
     private int _destination;
     private float _t;
     public float speed;
 
     void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _isColliding = new bool[5];
         _buttons = new Button[5][];
         _buttons[1] = new Button[9];
@@ -38,7 +39,6 @@ public class Elevator : MonoBehaviour {
                 _buttons[i][j] = canvases[i].transform.GetChild(j).GetComponent<Button>();
             }
         }
-
         _module = EventSystem.current.GetComponent<StandaloneInputModule>();
     }
 
@@ -68,12 +68,22 @@ public class Elevator : MonoBehaviour {
                             //{
                             if (j > 0)
                             {
-                                int temp = j;
-                                _buttons[i][temp].onClick.AddListener(() =>
+                                int tempJ = j;
+                                int tempI = i;
+                                _buttons[tempI][tempJ].onClick.AddListener(() =>
                                 {
-                                    _destination = temp;
-
+                                    _destination = tempJ;
+                                    playerControls[tempI].disableMovement = false;
                                     _isInMotion = true;
+
+                                    _inMenu = false;
+
+                                    for (int k = 0; k <= 8; k++)
+                                    {
+                                        _buttons[tempI][k].gameObject.SetActive(false);
+                                    }
+
+                                    EventSystem.current.SetSelectedGameObject(null);
                                 });
                             }
                             //}
@@ -102,10 +112,12 @@ public class Elevator : MonoBehaviour {
 
         if (_isInMotion)
         {
-            elevator.position = Vector3.Lerp(elevator.position, elevatorPositions[_destination].position, _t);
+            elevator.position = Vector3.MoveTowards(elevator.position, elevatorPositions[_destination].position, _t);
+            //elevator.position = Vector3.Lerp(elevator.position, elevatorPositions[_destination].position, _t);
             _t += speed;
             Debug.Log(_t);
-            if (_t >= 1)
+
+            if (Vector3.Distance(elevator.position, elevatorPositions[_destination].position) < 0.1f) 
             {
                 _isInMotion = false;
                 _t = 0;
@@ -115,6 +127,8 @@ public class Elevator : MonoBehaviour {
         //EventSystem.current.SetSelectedGameObject(p1Input.gameObject);
         //p1Input.ActivateInputField();
     }
+
+    
 
     void OnTriggerEnter(Collider other)
     {

@@ -19,12 +19,12 @@ public class GameManager : MonoBehaviour {
     public bool[] doorOpened;
     public ItemSpawner._items[] itemOnSpawner;
 
-    public bool[] floorsUnlocked;
+    public bool[] floorsUnlocked = new bool[8];
 
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
         doorOpened = new bool[10];
-        floorsUnlocked = new bool[8]; // 8 for compatibility with aspects of the elevator script.
+        //floorsUnlocked; // 8 for compatibility with aspects of the elevator script.
         floorsUnlocked[1] = true;
         SetSpawnerItems();
 	}

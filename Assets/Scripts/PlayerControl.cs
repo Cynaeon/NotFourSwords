@@ -617,8 +617,12 @@ public class PlayerControl : MonoBehaviour
 
     private void Dashing()
     {
-        if (movementPlayer != Vector3.zero && dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
+        if (dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
         {
+            if (movementPlayer == Vector3.zero)
+            {
+                movementPlayer = transform.forward.normalized;
+            }
             if (canDash && !climbing && !_magnetActive)
             {
                 if (lockOn)
