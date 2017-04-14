@@ -104,8 +104,8 @@ public class CameraControl : MonoBehaviour
 
                 if (!_lockedOn && !firstPerson)
                 {
-                    x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * 0.02f;
-                    y += Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * 0.02f;
+                    x += Input.GetAxis(playerPrefix + "HorizontalRightStick") * xSpeed * distance * Time.deltaTime; //0.02f;
+                    y += Input.GetAxis(playerPrefix + "VerticalRightStick") * ySpeed * Time.deltaTime; // 0.02f;
                 }
 
                 y = ClampAngle(y, yMinLimit, yMaxLimit);
@@ -120,7 +120,7 @@ public class CameraControl : MonoBehaviour
                     if (hit.transform.tag != "Player")
                     {
                         //Debug.Log(hit.transform.name);
-                        if (hit.transform.tag == "Walls")
+                        if (hit.transform.tag == "Walls" || hit.transform.tag == "Exit")
                         {
                             distance = hit.distance;
                         }

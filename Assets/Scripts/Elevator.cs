@@ -20,7 +20,7 @@ public class Elevator : MonoBehaviour {
     private bool _isInMotion;
     private GameManager gameManager;
     private int _destination;
-    private float _t;
+    private float _maxDistanceDelta;
     public float speed;
 
     void Awake()
@@ -121,15 +121,15 @@ public class Elevator : MonoBehaviour {
 
         if (_isInMotion)
         {
-            elevator.position = Vector3.MoveTowards(elevator.position, elevatorPositions[_destination].position, _t);
+            elevator.position = Vector3.MoveTowards(elevator.position, elevatorPositions[_destination].position, _maxDistanceDelta);
             //elevator.position = Vector3.Lerp(elevator.position, elevatorPositions[_destination].position, _t);
-            _t += speed;
-            Debug.Log(_t);
+            _maxDistanceDelta += speed;
+            Debug.Log(_maxDistanceDelta);
 
             if (Vector3.Distance(elevator.position, elevatorPositions[_destination].position) < 0.1f) 
             {
                 _isInMotion = false;
-                _t = 0;
+                _maxDistanceDelta = 0;
             }
         }
 

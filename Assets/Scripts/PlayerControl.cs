@@ -295,6 +295,7 @@ public class PlayerControl : MonoBehaviour
             if (dash)
             {
                 verticalVelocity = -gravity * Time.deltaTime;
+                // Easing goes here I guess
                 controller.Move(dashDir * currentSpeed * Time.deltaTime);
                 // Create cool after images
                 afterImageTime -= Time.deltaTime;
@@ -844,6 +845,8 @@ public class PlayerControl : MonoBehaviour
 
     private void LockOnSystem()
     {
+        
+
         lockOn = Input.GetButton(playerPrefix + "LockOn");
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -863,6 +866,12 @@ public class PlayerControl : MonoBehaviour
             .CompareTo(
               Vector2.Distance(this.transform.position, b.transform.position));
         });
+
+        //Debug.Log("Target: " + switchTarget + "\nArray size: " + enemyList.Count);
+        //foreach (GameObject go in enemyList)
+        //{
+        //    Debug.Log(go.name);
+        //}
 
         if (!lockOn)
         {
@@ -926,6 +935,7 @@ public class PlayerControl : MonoBehaviour
             {
                 if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.25)
                 {
+                    
                     if (switchTarget < enemyList.Count - 1 && !_yAxisPressed)
                     {
                         switchTarget++;
