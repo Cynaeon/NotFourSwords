@@ -9,8 +9,8 @@ public class PeekabooArcher : Enemy {
     public float shootingTime;
     public float aggroRange;
     public GameObject bolt;
-
     private float currentTime;
+    public Transform shootPos;
     private Vector3 hidePosition;
     private Vector3 upPosition;
 
@@ -54,6 +54,7 @@ public class PeekabooArcher : Enemy {
 
     private void Shoot()
     {
-        Instantiate(bolt, transform.position, transform.rotation);
+        Vector3 ShootPosition = new Vector3(shootPos.position.x, shootPos.position.y, shootPos.position.z);
+        Instantiate(bolt, ShootPosition, transform.rotation);
     }
 }
