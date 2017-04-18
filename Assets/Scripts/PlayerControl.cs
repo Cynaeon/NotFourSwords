@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     }
     public Players playerPrefix;
 
+    public Transform head;
     public PauseManager pauseManager;
     private bool _isPaused;
     public Transform startPos;
@@ -724,9 +725,7 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.5f;
                 if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-                    Instantiate(bolt, pos + transform.forward, transform.rotation);
-                    lastShot = 0;
+                    Shoot();
                 }
             }
             else if (shootingLevel == 1)
@@ -734,35 +733,15 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.3f;
                 if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-                    Instantiate(bolt, pos + transform.forward, transform.rotation);
-                    lastShot = 0;
+                    Shoot();
                 }
-
-                /*if (Input.GetButtonDown(playerPrefix + "Shoot") && burstShot == false && lastShot > shootingSpeed)
-                {
-                    burstShot = true;
-                }
-                if (burstShot && lastShot > burstSpeed)
-                {
-                    Instantiate(bolt, transform.position, transform.rotation);
-                    burstCount++;
-                    if (burstCount >= 3)
-                    {
-                        burstShot = false;
-                        burstCount = 0;
-                    }
-                    lastShot = 0;
-                }*/
             }
             else if (shootingLevel >= 2)
             {
                 shootingSpeed = 0.1f;
                 if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-                    Instantiate(bolt, pos + transform.forward, transform.rotation);
-                    lastShot = 0;
+                    Shoot();    
                 }
             }
             lastShot += Time.deltaTime;
@@ -785,6 +764,13 @@ public class PlayerControl : MonoBehaviour
                 swordTrail.enabled = false;
             }
         }
+    }
+
+    private void Shoot()
+    {
+        Vector3 pos = new Vector3(head.position.x, head.position.y + .6f, head.position.z);
+        Instantiate(bolt, pos + transform.forward, head.transform.rotation);
+        lastShot = 0;
     }
 
     private void FirstPersonControls()
@@ -982,6 +968,12 @@ public class PlayerControl : MonoBehaviour
             {
                 if (!climbing)
                 {
+                    /*
+                    Vector3 pos = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+                    pos += Vector3.forward;
+                    transform.position = pos;
+                    */
+                    transform.rotation = other.transform.forward;
                     climbing = true;
                 } else
                 {
@@ -997,6 +989,18 @@ public class PlayerControl : MonoBehaviour
                 other.GetComponent<Pot>().Break();
             }
         }
+        
+        if (other.tag == "SlidingIce")
+        {
+            if (!sliding)
+            {
+                if (movementPlayer.x != 0 && movementPlayer.z != 0)
+                {
+                    slidingDir = movementPlayer.normalized;
+                    sliding = true;
+                }
+            }
+        }
     }
 
     public void ItemStateChange(bool changeTo)
@@ -1006,15 +1010,28 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Door")
+        if (other.tag == "Door")
         {
             canOpenDoor = true;
         }
 
         if (other.tag == "SlidingIce")
         {
-            slidingDir = movementPlayer.normalized;
-            sliding = true;
+            Debug.Log(movementPlayer);
+            if (movementPlayer.x != 0 && movementPlayer.z != 0)
+            {
+                slidingDir = movementPlayer.normalized;
+                sliding = true;
+            }
+        }
+
+        if (other.tag == "Metallic")
+        {
+            if (sliding)
+            {
+                slidingDir = Vector3.zero;
+                sliding = false;
+            }
         }
     }
 
