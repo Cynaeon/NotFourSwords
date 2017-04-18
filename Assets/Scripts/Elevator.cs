@@ -25,14 +25,12 @@ public class Elevator : MonoBehaviour {
 
     void Awake()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        int k = 0;
-        foreach (GameObject player in players)
-        {
-            playerControls[k] = player.GetComponent<PlayerControl>();
-            k++;
-        }
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerControls = new PlayerControl[5];
+        for (int i = 1; i < 5; i++)
+        {
+            playerControls[i] = gameManager.players[i - 1].GetComponent<PlayerControl>();
+        }
         _isColliding = new bool[5];
         _buttons = new Button[5][];
         _buttons[1] = new Button[9];
@@ -53,7 +51,7 @@ public class Elevator : MonoBehaviour {
 
     void Update()
     {
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i <= 1; i++) {
             if (_isColliding[i])
             {
                 if (!_inMenu && !_isInMotion)
@@ -73,29 +71,29 @@ public class Elevator : MonoBehaviour {
                         {
                             _buttons[i][j].gameObject.SetActive(true);
 
-                            //if (gameManager.floorsUnlocked[j])
-                            //{
-                            if (j > 0)
+                            if (gameManager.floorsUnlocked[j])
                             {
-                                int tempJ = j;
-                                int tempI = i;
-                                _buttons[tempI][tempJ].onClick.AddListener(() =>
+                                if (j > 0)
                                 {
-                                    _destination = tempJ;
-                                    playerControls[tempI].disableMovement = false;
-                                    _isInMotion = true;
-
-                                    _inMenu = false;
-
-                                    for (int k = 0; k <= 8; k++)
+                                    int tempJ = j;
+                                    int tempI = i;
+                                    _buttons[tempI][tempJ].onClick.AddListener(() =>
                                     {
-                                        _buttons[tempI][k].gameObject.SetActive(false);
-                                    }
+                                        _destination = tempJ;
+                                        playerControls[tempI].disableMovement = false;
+                                        _isInMotion = true;
 
-                                    EventSystem.current.SetSelectedGameObject(null);
-                                });
+                                        _inMenu = false;
+
+                                        for (int k = 0; k <= 8; k++)
+                                        {
+                                            _buttons[tempI][k].gameObject.SetActive(false);
+                                        }
+
+                                        EventSystem.current.SetSelectedGameObject(null);
+                                    });
+                                }
                             }
-                            //}
                         }
                         EventSystem.current.SetSelectedGameObject(_buttons[i][0].gameObject);
                     }

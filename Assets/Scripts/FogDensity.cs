@@ -25,7 +25,8 @@ public class FogDensity : MonoBehaviour
     {
         playerCamera = GetComponent<Camera>();
         clipPlane = 2000;
-        fogDensity = 0;
+        fogDensity = 0.05f;
+        RenderSettings.fogColor = Color.blue;
     }
 
     void Update()
@@ -47,7 +48,8 @@ public class FogDensity : MonoBehaviour
 
     private void FadeFogIn()
     {
-        if (fogDensity <= 0.05)
+        RenderSettings.fogColor = Color.black;
+        if (fogDensity <= 0.1)
         { 
             fogDensity = fogDensity + 0.005f;
         }
@@ -61,7 +63,8 @@ public class FogDensity : MonoBehaviour
 
     private void FadeFogOut()
     {
-        if (fogDensity > 0)
+        RenderSettings.fogColor = Color.blue;
+        if (fogDensity > 0.03f)
         {
             fogDensity = fogDensity - 0.005f;
         }
@@ -77,7 +80,7 @@ public class FogDensity : MonoBehaviour
 
     void OnPreRender()
     {
-        previousFog = RenderSettings.fog;
+        /*previousFog = RenderSettings.fog;
         previousFogColor = RenderSettings.fogColor;
         previousFogDensity = RenderSettings.fogDensity;
         previousAmbientLight = RenderSettings.ambientLight;
@@ -101,7 +104,7 @@ public class FogDensity : MonoBehaviour
         RenderSettings.fogDensity = previousFogDensity;
         RenderSettings.ambientLight = previousAmbientLight;
         RenderSettings.haloStrength = previousHaloStrength;
-        RenderSettings.flareStrength = previousFlareStrength;
+        RenderSettings.flareStrength = previousFlareStrength;*/
     }
 }
 
