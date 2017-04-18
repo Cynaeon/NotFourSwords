@@ -53,6 +53,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerHitbox;
     public GameObject trailModel;
     public GameObject playerModel;
+    public GameObject crossbow;
     public GameObject SwordItem;
     public GameObject Sheath;
     public GameObject SheathedSword;
@@ -183,7 +184,7 @@ public class PlayerControl : MonoBehaviour
         #endregion
         swordTrail = SwordItem.GetComponent<TrailRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        SetActivity(false, false, false, false, false, false);
+        SetActivity(false, false, false, false, false, false, true);
         _rend = GetComponentInChildren<SkinnedMeshRenderer>();
         defaultColor = _rend.material.color;
         settingStartPos = true;
@@ -338,10 +339,14 @@ public class PlayerControl : MonoBehaviour
             pushBlock = null;
             grabbing = false;
             currentSpeed = defaultSpeed;
+            if (!toggleSword) {
+                crossbow.SetActive(true);
+            }
         }
 
         if (grabbing && !firstPerson)
         {
+            crossbow.SetActive(false);
             Vector3 direction = transform.position - pushBlock.transform.position;
             direction = direction.normalized;
             SnapPlayerRotation(direction);
@@ -415,7 +420,7 @@ public class PlayerControl : MonoBehaviour
                     case 0:
                         myItem = Items.none;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, false);
-                        SetActivity(false,false, false, false, false, false);
+                        SetActivity(false,false, false, false, false, false, true);
                         fogDensity.fadeState(false);
                         toggleSword = false;
                         _playerCamera.cullingMask &= ~(1 << 8);
@@ -425,7 +430,7 @@ public class PlayerControl : MonoBehaviour
                         myItem = Items.jump;
                         _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false, false);
                         fogDensity.fadeState(false);
-                        SetActivity(false,false, false, false, false, true);
+                        SetActivity(false,false, false, false, false, true, true);
                         toggleSword = false;
                         _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
@@ -433,14 +438,14 @@ public class PlayerControl : MonoBehaviour
                     case 2:
                         myItem = Items.seeThrough;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false, false);
-                        SetActivity(false,false, false, true, false, false);
+                        SetActivity(false,false, false, true, false, false,true);
                         toggleSword = false;
                         canSee = true;
                         break;
                     case 3:
                         myItem = Items.magnet;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false,false);
-                        SetActivity(false,false, false, false, true, false);
+                        SetActivity(false,false, false, false, true, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
                         toggleSword = false;
@@ -449,7 +454,7 @@ public class PlayerControl : MonoBehaviour
                     case 4:
                         myItem = Items.sword;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true, false);
-                        SetActivity(false,true, true, false, false, false);
+                        SetActivity(false,true, true, false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
@@ -457,7 +462,7 @@ public class PlayerControl : MonoBehaviour
                     case 5:
                         myItem = Items.key;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, true);
-                        SetActivity(false, false, false, false, false, false);
+                        SetActivity(false, false,false,false,false,false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
@@ -486,15 +491,15 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    private void SetActivity(bool _sword, bool _sheath, bool _sheathedSword, bool _monocle, bool _magnet, bool _boots)
+    private void SetActivity(bool _sword, bool _sheath, bool _sheathedSword, bool _monocle, bool _magnet, bool _boots, bool _crossbow)
     {
         SwordItem.SetActive(_sword);
         Sheath.SetActive(_sheath);
-
         SheathedSword.SetActive(_sheathedSword);
         MonocleItem.SetActive(_monocle);
         MagnetItem.SetActive(_magnet);
         BootsItem.SetActive(_boots);
+        crossbow.SetActive(_crossbow);
     }
 
     private void Lens()
@@ -529,15 +534,16 @@ public class PlayerControl : MonoBehaviour
             if (!toggleSword)
             {
                 SwordItem.SetActive(true);
+                crossbow.SetActive(false);
                 SheathedSword.SetActive(false);
                 toggleSword = true;
             }else
             {
                 toggleSword = false;
                 SwordItem.SetActive(false);
+                crossbow.SetActive(true);
                 SheathedSword.SetActive(true);
             }
-            //TODO: Play sword animation
         }
     }
 
@@ -1183,5 +1189,6 @@ public class PlayerControl : MonoBehaviour
             anime.SetFloat("AimState", 0);
             anime.SetBool("FirstPerson", false);
         }
+        
     }
 }
