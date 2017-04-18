@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     }
     public Players playerPrefix;
 
-    public Transform head;
+    
     public PauseManager pauseManager;
     private bool _isPaused;
     public Transform startPos;
@@ -697,7 +697,7 @@ public class PlayerControl : MonoBehaviour
     public void TakeDamage(int dmg, Vector3 dir)
     {
         invulnerable = true;
-        gameObject.GetComponent<ImpactReceiver>().AddImpact(Vector3.back + Vector3.up, 100);
+        gameObject.GetComponent<ImpactReceiver>().AddImpact(-dir + Vector3.up * 2, 100);
         movementPlayer = -movementPlayer;
         currentHealth -= dmg;
         _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
@@ -774,8 +774,8 @@ public class PlayerControl : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 pos = new Vector3(head.position.x, head.position.y + .6f, head.position.z);
-        Instantiate(bolt, pos + transform.forward, head.transform.rotation);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
+        Instantiate(bolt, pos + transform.forward, transform.rotation);
         lastShot = 0;
     }
 
@@ -979,7 +979,7 @@ public class PlayerControl : MonoBehaviour
                     pos += Vector3.forward;
                     transform.position = pos;
                     */
-                    transform.rotation = other.transform.forward;
+                    //transform.rotation = other.transform.forward;
                     climbing = true;
                 } else
                 {

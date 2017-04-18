@@ -7,9 +7,6 @@ public class CameraControl : MonoBehaviour
     private bool _isPaused;
 
     public Transform target;
-    public Transform targetHead;
-
-    private Transform currentTarget;
     public Transform lockOnCameraSpot;
     public enum Players
     {
@@ -61,7 +58,7 @@ public class CameraControl : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody>();
 
-        currentTarget = target;
+        target = target;
 
         // Make the rigid body not change rotation
         if (_rigidbody != null)
@@ -85,7 +82,7 @@ public class CameraControl : MonoBehaviour
 
                 if (Input.GetButton(playerPrefix + "LockOn"))
                 {
-                    var targetRotationAngle = currentTarget.eulerAngles.y;
+                    var targetRotationAngle = target.eulerAngles.y;
                     var currentRotationAngle = transform.eulerAngles.y;
                     x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime);
                     _lockedOn = true;
@@ -120,7 +117,7 @@ public class CameraControl : MonoBehaviour
 
                 RaycastHit hit;
                 //Debug.DrawLine(target.position, defaultPos.position, Color.green, 1);
-                if (Physics.Linecast(currentTarget.position, defaultPos.position, out hit))
+                if (Physics.Linecast(target.position, defaultPos.position, out hit))
                 {
                     if (hit.transform.tag != "Player")
                     {
@@ -137,27 +134,26 @@ public class CameraControl : MonoBehaviour
                 }
 
                 Vector3 negDistance2 = new Vector3(0.0f, 0.0f, -defaultDist);
-                Vector3 position2 = rotation * negDistance2 + currentTarget.position;
+                Vector3 position2 = rotation * negDistance2 + target.position;
 
                 defaultPos.rotation = rotation;
                 defaultPos.position = position2;
 
                 Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-                Vector3 position = rotation * negDistance + currentTarget.position;
+                Vector3 position = rotation * negDistance + target.position;
 
                 transform.rotation = rotation;
                 transform.position = position;
 
                 if (firstPerson)
-                {
-                    currentTarget = targetHead;
-                    Vector3 pos = new Vector3(currentTarget.position.x, currentTarget.position.y + .6f, currentTarget.position.z);
+                {   
+                    Vector3 pos = new Vector3(target.position.x, target.position.y + .6f, target.position.z);
                     transform.position = pos;
-                    transform.rotation = currentTarget.rotation;
+                    transform.rotation = target.rotation;
                 }
                 else
                 {
-                    currentTarget = target;
+                    
                 }
             }
         }
@@ -165,7 +161,7 @@ public class CameraControl : MonoBehaviour
 
     public void SetStartPosition()
     {
-        var targetRotationAngle = currentTarget.eulerAngles.y;
+        var targetRotationAngle = target.eulerAngles.y;
         x = targetRotationAngle;
         distance = defaultDist;
     }
