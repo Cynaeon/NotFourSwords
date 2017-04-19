@@ -96,6 +96,7 @@ public class PlayerControl : MonoBehaviour
     private Color lockOnRed;
     private GameObject pushBlock;
     private Renderer _rend;
+    private TrailRenderer trailRend;
     #endregion
 
     #region Private Variables
@@ -183,6 +184,8 @@ public class PlayerControl : MonoBehaviour
         _grabSpot = GetComponentInChildren<BoxCollider>();
         deadzone = playerManager.deadzone;
         #endregion
+        trailRend = GetComponent<TrailRenderer>();
+        trailRend.time = 0;
         swordTrail = SwordItem.GetComponent<TrailRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         SetActivity(false, false, false, false, false, false, true);
@@ -274,7 +277,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (sliding)
         {
+            trailRend.time = 0.5f;
             controller.Move(slidingDir * currentSpeed * 2 * Time.deltaTime);
+        } else
+        {
+            trailRend.time = 0;
         }
     }
 
@@ -628,7 +635,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Dashing()
     {
-        if (dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
+        if (dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash") && !sliding)
         {
             if (movementPlayer == Vector3.zero)
             {
@@ -1013,6 +1020,11 @@ public class PlayerControl : MonoBehaviour
                     slidingDir = movementPlayer.normalized;
                     sliding = true;
                 }
+                else if (dash)
+                {
+                    slidingDir = dashDir.normalized;
+                    sliding = true;
+                }
             }
         }
     }
@@ -1031,12 +1043,16 @@ public class PlayerControl : MonoBehaviour
 
         if (other.tag == "SlidingIce")
         {
-            Debug.Log(movementPlayer);
             if (movementPlayer.x != 0 && movementPlayer.z != 0)
             {
                 slidingDir = movementPlayer.normalized;
                 sliding = true;
             }
+            else if (dash)
+            {
+                slidingDir = dashDir.normalized;
+                sliding = true;
+            } 
         }
 
         if (other.tag == "Metallic")
@@ -1213,7 +1229,6 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetFloat("AimState", 0);
             anime.SetBool("FirstPerson", false);
-        }
-        
+        }       
     }
 }

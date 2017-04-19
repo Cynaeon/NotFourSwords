@@ -154,10 +154,6 @@ public class CameraControl : MonoBehaviour
                     rot *= Quaternion.Euler(90, 0, 0);
                     transform.rotation = rot;
                 }
-                else
-                {
-                    
-                }
             }
         }
     }
