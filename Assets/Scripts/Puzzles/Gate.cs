@@ -109,7 +109,7 @@ public class Gate : MonoBehaviour {
 
     public IEnumerator Activate()
     {
-        while (Vector3.Distance(bar.position, openPos) > 0.01f)
+        while (Vector3.Distance(bar.position, openPos) > 0.001f)
         {
             bar.position = Vector3.MoveTowards(bar.position, openPos, Time.deltaTime * 10);
             yield return null;
@@ -118,7 +118,7 @@ public class Gate : MonoBehaviour {
 
     public IEnumerator Deactivate()
     {
-        while (Vector3.Distance(bar.position, closePos) > 0.01f)
+        while (Vector3.Distance(bar.position, closePos) > 0.001f)
         {
             bar.position = Vector3.MoveTowards(bar.position, closePos, Time.deltaTime * 10);
             yield return null;

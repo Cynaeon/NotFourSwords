@@ -5,6 +5,12 @@ using UnityEngine;
 public class VacuumBox : MonoBehaviour {
 
     public float pullSpeed;
+    public Transform player;
+
+    void Update()
+    {
+        transform.position = player.position;
+    }
 
     void OnTriggerStay(Collider other)
     {

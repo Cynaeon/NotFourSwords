@@ -38,7 +38,7 @@ public class Elevator : MonoBehaviour {
         _buttons[3] = new Button[9];
         _buttons[4] = new Button[9];
 
-        GameObject[] canvases = GameObject.FindGameObjectsWithTag("Canvas");
+        //GameObject[] canvases = GameObject.FindGameObjectsWithTag("Canvas");
         for (int i = 1; i <= 1; i++)
         {
             for (int j = 0; j <= 8; j++)
@@ -71,8 +71,8 @@ public class Elevator : MonoBehaviour {
                         {
                             _buttons[i][j].gameObject.SetActive(true);
 
-                            if (gameManager.floorsUnlocked[j])
-                            {
+                            //if (gameManager.floorsUnlocked[j])
+                            //{
                                 if (j > 0)
                                 {
                                     int tempJ = j;
@@ -94,7 +94,7 @@ public class Elevator : MonoBehaviour {
                                     });
                                 }
                             }
-                        }
+//                        }
                         EventSystem.current.SetSelectedGameObject(_buttons[i][0].gameObject);
                     }
                 }

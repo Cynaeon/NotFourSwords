@@ -21,11 +21,33 @@ public class PressurePlate : MonoBehaviour {
         deactiveColor = _rend.material.color;
     }
 
+    void Update ()
+    {
+        if (activated)
+        {
+            _rend.material.color = activeColor;
+            if (Vector3.Distance(plate.position, downPos) > 0.01f)
+            {
+                plate.position = Vector3.MoveTowards(plate.position, downPos, Time.deltaTime * 1);
+                
+            }
+        }
+        else
+        {
+            _rend.material.color = deactiveColor;
+            if (Vector3.Distance(plate.position, upPos) > 0.01f)
+            {
+                plate.position = Vector3.MoveTowards(plate.position, upPos, Time.deltaTime * 1);
+               
+            }
+        }
+     }
+
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player" || other.tag == "PushBlock")
         {
-            StartCoroutine("Activate");
+            activated = true;
         }
     }
 
@@ -33,7 +55,7 @@ public class PressurePlate : MonoBehaviour {
     {
         if (other.tag == "Player" || other.tag == "PushBlock")
         {
-            StartCoroutine("Deactivate");
+            activated = false;
         }
     }
 

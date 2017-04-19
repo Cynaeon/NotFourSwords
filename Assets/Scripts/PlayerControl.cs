@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
         P4_
     }
     public Players playerPrefix;
-
+    public Transform chest;
     
     public PauseManager pauseManager;
     private bool _isPaused;
@@ -198,7 +198,6 @@ public class PlayerControl : MonoBehaviour
         if (!_isPaused)
         {
             Gravity();
-
             if (playerPrefix != Players.NotSelected && !gameManager.disableMovement && !disableMovement)
             {
                 GetMovement();
@@ -314,6 +313,10 @@ public class PlayerControl : MonoBehaviour
                 float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
                 movementPlayer = new Vector3(0, moveVertical, 0);
                 controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+                if (controller.isGrounded)
+                {
+                    climbing = false;
+                }
             }
             else
             {
@@ -774,8 +777,10 @@ public class PlayerControl : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-        Instantiate(bolt, pos + transform.forward, transform.rotation);
+        Vector3 pos = new Vector3(crossbow.transform.position.x, crossbow.transform.position.y, crossbow.transform.position.z);
+        Quaternion rot = crossbow.transform.rotation;
+        rot *= Quaternion.Euler(90, 0, 0);
+        Instantiate(bolt, pos, rot);
         lastShot = 0;
     }
 
@@ -980,6 +985,9 @@ public class PlayerControl : MonoBehaviour
                     transform.position = pos;
                     */
                     //transform.rotation = other.transform.forward;
+                    Vector3 direction = transform.position - other.transform.position;
+                    direction = direction.normalized;
+                    SnapPlayerRotation(direction);
                     climbing = true;
                 } else
                 {
