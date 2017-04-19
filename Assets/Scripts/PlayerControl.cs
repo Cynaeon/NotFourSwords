@@ -406,7 +406,6 @@ public class PlayerControl : MonoBehaviour
 
         if (canChangeItem)
         {
-            
             int itemAvailable = FindClosestGameObjectWithTag("ItemSpawner").gameObject.GetComponent<ItemSpawner>().checkActive();
             if(itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none) 
             {
@@ -470,9 +469,6 @@ public class PlayerControl : MonoBehaviour
                         break;
                 }
             }
-        }else
-        {
-            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
         }
 
         if (canOpenDoor)
@@ -724,7 +720,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Shooting()
     {
-        if (!dash && !toggleSword && !climbing && !_magnetActive) {
+        if (!dash && !toggleSword && !climbing && !_magnetActive && !grabbing) {
             
             if (shootingLevel == 0)
             {
@@ -1011,6 +1007,10 @@ public class PlayerControl : MonoBehaviour
 
     public void ItemStateChange(bool changeTo)
     {
+        if (!changeTo)
+        {
+            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
+        }
         canChangeItem = changeTo;
     }
 
@@ -1206,6 +1206,15 @@ public class PlayerControl : MonoBehaviour
             anime.SetFloat("AimState", 0);
             anime.SetBool("FirstPerson", false);
         }
-        
+
+        if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped)
+        {
+            anime.SetBool("Shooting", true);
+        }else
+        {
+            anime.SetBool("Shooting", false);
+        }
+
+
     }
 }

@@ -143,7 +143,7 @@ public class Elevator : MonoBehaviour {
         {
             if (other == playerControls[i].playerHitbox.GetComponent<Collider>())
             {
-                //canvases[i].GetComponent<UIManager>().EnableNotification(true);
+                canvases[i].GetComponent<UIManager>().EnableNotification(true);
                 _isColliding[i] = true;
             }
         }
@@ -155,7 +155,7 @@ public class Elevator : MonoBehaviour {
         {
             if (other == playerControls[i].playerHitbox.GetComponent<Collider>())
             {
-                //canvases[i].GetComponent<UIManager>().EnableNotification(false);
+                canvases[i].GetComponent<UIManager>().EnableNotification(false);
                 _isColliding[i] = false;
                 
             }
