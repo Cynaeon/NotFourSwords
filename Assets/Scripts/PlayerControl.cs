@@ -994,6 +994,9 @@ public class PlayerControl : MonoBehaviour
                     transform.position = pos;
                     */
                     //transform.rotation = other.transform.forward;
+                    Vector3 direction = transform.position - other.transform.position;
+                    direction = direction.normalized;
+                    SnapPlayerRotation(direction);
                     climbing = true;
                 } else
                 {
