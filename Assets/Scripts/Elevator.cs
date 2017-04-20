@@ -66,10 +66,11 @@ public class Elevator : MonoBehaviour {
                         for (int j = 0; j <= 8; j++)
                         {
                             _buttons[i][j].gameObject.SetActive(true);
-
-                            //if (gameManager.floorsUnlocked[j])
-                            //{
-                                if (j > 0)
+                            Debug.Log(j + " and length is " + gameManager.floorsUnlocked.Length);
+                            
+                            if (j > 0)
+                            { 
+                                if (gameManager.floorsUnlocked[j])
                                 {
                                     int tempJ = j;
                                     int tempI = i;
@@ -90,7 +91,7 @@ public class Elevator : MonoBehaviour {
                                     });
                                 }
                             }
-//                        }
+                        }
                         EventSystem.current.SetSelectedGameObject(_buttons[i][0].gameObject);
                     }
                 }
