@@ -77,10 +77,10 @@ public class FogDensity : MonoBehaviour
         playerCamera.clearFlags = CameraClearFlags.SolidColor;
     }
 
-
+    /*
     void OnPreRender()
     {
-        /*previousFog = RenderSettings.fog;
+        previousFog = RenderSettings.fog;
         previousFogColor = RenderSettings.fogColor;
         previousFogDensity = RenderSettings.fogDensity;
         previousAmbientLight = RenderSettings.ambientLight;
@@ -104,8 +104,9 @@ public class FogDensity : MonoBehaviour
         RenderSettings.fogDensity = previousFogDensity;
         RenderSettings.ambientLight = previousAmbientLight;
         RenderSettings.haloStrength = previousHaloStrength;
-        RenderSettings.flareStrength = previousFlareStrength;*/
-    }
+        RenderSettings.flareStrength = previousFlareStrength;
+}
+*/
 }
 
 
