@@ -1207,14 +1207,34 @@ public class PlayerControl : MonoBehaviour
             anime.SetBool("FirstPerson", false);
         }
 
-        if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped)
+        if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped && !firstPerson)
         {
             anime.SetBool("Shooting", true);
         }else
         {
             anime.SetBool("Shooting", false);
         }
-
+        if (climbing && Vector3.Dot(transform.up, movementPlayer) > 0)
+        {
+            anime.SetBool("Climbing", true);
+            anime.SetFloat("ClimbState", 1);
+            anime.enabled = true;
+        }
+        if(climbing && Vector3.Dot(transform.up, movementPlayer) < 0)
+        {
+            anime.SetBool("Climbing", true);
+            anime.SetFloat("ClimbState", -1);
+            anime.enabled = true;
+        }
+        if(climbing && Vector3.Dot(transform.up, movementPlayer) == 0)
+        {
+            anime.SetBool("Climbing", true);
+            anime.enabled = false;
+        }
+        if (!climbing)
+        {
+            anime.SetBool("Climbing", false);
+        }
 
     }
 }
