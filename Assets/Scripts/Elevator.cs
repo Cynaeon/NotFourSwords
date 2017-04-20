@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class Elevator : MonoBehaviour {
 
     public PlayerControl[] playerControls;
-    public Canvas[] canvases; 
+    public Transform[] buttonContainers;
     public InputField[] inputFields;
     public Transform[] elevatorPositions;
     private Button[][] _buttons;
@@ -27,23 +27,19 @@ public class Elevator : MonoBehaviour {
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerControls = new PlayerControl[5];
+        _buttons = new Button[5][];
         for (int i = 1; i < 5; i++)
         {
             playerControls[i] = gameManager.players[i - 1].GetComponent<PlayerControl>();
+            _buttons[i] = new Button[9];
         }
         _isColliding = new bool[5];
-        _buttons = new Button[5][];
-        _buttons[1] = new Button[9];
-        _buttons[2] = new Button[9];
-        _buttons[3] = new Button[9];
-        _buttons[4] = new Button[9];
-
-        //GameObject[] canvases = GameObject.FindGameObjectsWithTag("Canvas");
+        
         for (int i = 1; i <= 1; i++)
         {
             for (int j = 0; j <= 8; j++)
             {
-                _buttons[i][j] = canvases[i].transform.GetChild(j).GetComponent<Button>();
+                _buttons[i][j] = buttonContainers[i].transform.GetChild(j).GetComponent<Button>();
             }
         }
         _module = EventSystem.current.GetComponent<StandaloneInputModule>();
@@ -143,7 +139,7 @@ public class Elevator : MonoBehaviour {
         {
             if (other == playerControls[i].playerHitbox.GetComponent<Collider>())
             {
-                canvases[i].GetComponent<UIManager>().EnableNotification(true);
+                //canvases[i].GetComponent<UIManager>().EnableNotification(true);
                 _isColliding[i] = true;
             }
         }
@@ -155,7 +151,7 @@ public class Elevator : MonoBehaviour {
         {
             if (other == playerControls[i].playerHitbox.GetComponent<Collider>())
             {
-                canvases[i].GetComponent<UIManager>().EnableNotification(false);
+                //canvases[i].GetComponent<UIManager>().EnableNotification(false);
                 _isColliding[i] = false;
                 
             }
