@@ -7,6 +7,7 @@ public class CameraControl : MonoBehaviour
     private bool _isPaused;
 
     public Transform target;
+    public Transform crossbow;
     public Transform lockOnCameraSpot;
     public enum Players
     {
@@ -147,13 +148,11 @@ public class CameraControl : MonoBehaviour
 
                 if (firstPerson)
                 {   
-                    Vector3 pos = new Vector3(target.position.x, target.position.y + .6f, target.position.z);
+                    Vector3 pos = new Vector3(crossbow.position.x, crossbow.position.y + 0.2f, crossbow.position.z);
                     transform.position = pos;
-                    transform.rotation = target.rotation;
-                }
-                else
-                {
-                    
+                    Quaternion rot = crossbow.rotation;
+                    rot *= Quaternion.Euler(90, 0, 0);
+                    transform.rotation = rot;
                 }
             }
         }
