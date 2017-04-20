@@ -1207,7 +1207,7 @@ public class PlayerControl : MonoBehaviour
             anime.SetBool("FirstPerson", false);
         }
 
-        if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped && !firstPerson)
+        if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped && !firstPerson && !dash)
         {
             anime.SetBool("Shooting", true);
         }else
