@@ -6,6 +6,7 @@ public class PickUpSpawn : MonoBehaviour {
 
     [HideInInspector] public bool collected;
     public float lifetime;
+    [HideInInspector] public bool canBeCollected;
 
     private float currLifetime;
     private Collider collider;
@@ -13,6 +14,7 @@ public class PickUpSpawn : MonoBehaviour {
     private Color defaultColor;
 
 	void Awake () {
+        canBeCollected = false;
         material = GetComponentInChildren<Renderer>().material;
         defaultColor = material.color;
         collider = GetComponent<Collider>();
@@ -23,14 +25,15 @@ public class PickUpSpawn : MonoBehaviour {
 	}
 
     void Update ()
-    {
+    { 
         if (currLifetime * 1.5f >= lifetime)
         {
             material.color = Color.Lerp(defaultColor, Color.clear, Mathf.PingPong(Time.time * 3, 1));
         }
         currLifetime += Time.deltaTime;
-        if (lifetime > 0.5f)
+        if (currLifetime > 0.5f)
         {
+            canBeCollected = true;
             collider.enabled = true;
         }
         if (currLifetime >= lifetime)

@@ -37,9 +37,11 @@ public class CameraControl : MonoBehaviour
     private float distanceMax;
     private bool _lockedOn;
     private bool firstPerson;
+    private PlayerControl playerControl;
 
     void Start()
     {
+        playerControl = target.GetComponent<PlayerControl>();
         GameObject cameraManagerGO = GameObject.Find("CameraManager");
         CameraManager cameraManager = cameraManagerGO.GetComponent<CameraManager>();
         distance = cameraManager.distance;
@@ -59,8 +61,6 @@ public class CameraControl : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody>();
 
-        target = target;
-
         // Make the rigid body not change rotation
         if (_rigidbody != null)
         {
@@ -72,6 +72,7 @@ public class CameraControl : MonoBehaviour
     private void Update()
     {
         _isPaused = _pauseManager.isPaused;
+        firstPerson = playerControl.firstPerson;
     }
 
     void LateUpdate()
@@ -80,7 +81,6 @@ public class CameraControl : MonoBehaviour
         {
             if (playerPrefix != Players.NotSelected)
             {
-
                 if (Input.GetButton(playerPrefix + "LockOn"))
                 {
                     var targetRotationAngle = target.eulerAngles.y;
@@ -91,15 +91,6 @@ public class CameraControl : MonoBehaviour
                 else
                 {
                     _lockedOn = false;
-                }
-
-                if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
-                {
-                    firstPerson = true;
-                }
-                else
-                {
-                    firstPerson = false;
                 }
 
                 // Scale speed with distance
@@ -147,7 +138,10 @@ public class CameraControl : MonoBehaviour
                 transform.position = position;
 
                 if (firstPerson)
-                {   
+                {
+                    var targetRotationAngle = target.eulerAngles.y;
+                    var currentRotationAngle = transform.eulerAngles.y;
+                    x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime * 100);
                     Vector3 pos = new Vector3(crossbow.position.x, crossbow.position.y + 0.2f, crossbow.position.z);
                     transform.position = pos;
                     Quaternion rot = crossbow.rotation;

@@ -102,6 +102,7 @@ public class PlayerControl : MonoBehaviour
     private GameManager gameManager;
     private PlayerManager playerManager;
     private Vector3 movementPlayer;
+    private TrailRenderer trailRend;
     private float currentSpeed;
     private float verticalVelocity;
     private float gravity;
@@ -120,7 +121,7 @@ public class PlayerControl : MonoBehaviour
     private float _switchTargetAxis;
     private int switchTarget;
     private Color defaultColor;
-
+    private GameObject lastBounced;
     private float swordSwing;
     #endregion
 
@@ -183,6 +184,8 @@ public class PlayerControl : MonoBehaviour
         _grabSpot = GetComponentInChildren<BoxCollider>();
         deadzone = playerManager.deadzone;
         #endregion
+        trailRend = GetComponent<TrailRenderer>();
+        trailRend.time = 0;
         swordTrail = SwordItem.GetComponent<TrailRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         SetActivity(false, false, false, false, false, false, true);
@@ -275,7 +278,11 @@ public class PlayerControl : MonoBehaviour
     {
         if (sliding)
         {
+            trailRend.time = 0.5f;
             controller.Move(slidingDir * currentSpeed * 2 * Time.deltaTime);
+        } else
+        {
+            trailRend.time = 0;
         }
     }
 
@@ -621,7 +628,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Dashing()
     {
-        if (dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash"))
+        if (dashTime == 0 && Input.GetButtonDown(playerPrefix + "Dash") && !sliding)
         {
             if (movementPlayer == Vector3.zero)
             {
@@ -770,15 +777,27 @@ public class PlayerControl : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-        Instantiate(bolt, pos + transform.forward, transform.rotation);
+        //Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
+        //Instantiate(bolt, pos + transform.forward, transform.rotation);
+        Vector3 pos = new Vector3(crossbow.transform.position.x, crossbow.transform.position.y, crossbow.transform.position.z);
+        Quaternion rot = crossbow.transform.rotation;
+        rot *= Quaternion.Euler(90, 0, 0);
+        Instantiate(bolt, pos, rot);
         lastShot = 0;
     }
 
     private void FirstPersonControls()
     {
-        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5 && movementPlayer == Vector3.zero && !lockOn)
         {
+            if (!firstPerson)
+            {
+                //Vector3 rot = new Vector3(playerCamera.transform.rotation.x, 0, playerCamera.transform.rotation.z);
+                Vector3 dir = transform.position - playerCamera.transform.position;
+                dir.y = 0;
+                transform.rotation = Quaternion.LookRotation(dir);
+                
+            }
             firstPerson = true;
         }
         else
@@ -807,7 +826,6 @@ public class PlayerControl : MonoBehaviour
             float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
             Vector3 lookPlayer = new Vector3(0, -lookHorizontal, 0);
             transform.localEulerAngles += lookPlayer;
-
         }
         else
         {
@@ -976,6 +994,9 @@ public class PlayerControl : MonoBehaviour
                     transform.position = pos;
                     */
                     //transform.rotation = other.transform.forward;
+                    Vector3 direction = transform.position - other.transform.position;
+                    direction = direction.normalized;
+                    SnapPlayerRotation(direction);
                     climbing = true;
                 } else
                 {
@@ -1029,14 +1050,33 @@ public class PlayerControl : MonoBehaviour
                 slidingDir = movementPlayer.normalized;
                 sliding = true;
             }
+            else if (dash)
+            {
+                slidingDir = dashDir.normalized;
+                sliding = true;
+            }
         }
 
-        if (other.tag == "Metallic")
+        if (other.tag == "SlideStopper")
         {
             if (sliding)
             {
                 slidingDir = Vector3.zero;
                 sliding = false;
+            }
+        }
+
+        if (other.tag == "SlideBouncer")
+        {
+            if (sliding)
+            {
+                if (lastBounced != other.gameObject)
+                {
+                    slidingDir = Vector3.Reflect(slidingDir, other.transform.forward);
+                    // This might be a bad idea...
+                    slidingDir *= 1.1f;
+                    lastBounced = other.gameObject;
+                }
             }
         }
     }
