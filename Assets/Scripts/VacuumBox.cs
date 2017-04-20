@@ -16,7 +16,10 @@ public class VacuumBox : MonoBehaviour {
     {
         if (other.tag == "Heart" || other.tag == "Mana")
         {
-            other.transform.position = Vector3.MoveTowards(other.transform.position, transform.position, Time.deltaTime * pullSpeed);
+            if (other.GetComponent<PickUpSpawn>().canBeCollected)
+            {
+                other.transform.position = Vector3.MoveTowards(other.transform.position, transform.position, Time.deltaTime * pullSpeed);
+            }
         }
     }
 }
