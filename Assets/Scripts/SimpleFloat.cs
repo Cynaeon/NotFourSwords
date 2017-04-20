@@ -6,7 +6,8 @@ public class SimpleFloat : MonoBehaviour {
 
     public float floatSpan = 0.25f;
     public float speed = 1.0f;
-
+    public bool yFloat;
+    public bool xFloat;
     private float startY;
     private float startX;
 
@@ -21,8 +22,14 @@ public class SimpleFloat : MonoBehaviour {
     void Update()
     {
         Vector3 tempPos = transform.position;
-        tempPos.y = startY + Mathf.Sin(Time.time * speed) * floatSpan / 2.0f;
-        tempPos.x = startX + Mathf.Sin(Time.time * speed) * floatSpan / 2.0f;
+        if (yFloat)
+        {
+            tempPos.y = startY + Mathf.Sin(Time.time * speed) * floatSpan / 2.0f;
+        }
+        if (xFloat)
+        {
+            tempPos.x = startX + Mathf.Sin(Time.time * speed) * floatSpan / 2.0f;
+        }
         transform.position = tempPos;
     }
 }

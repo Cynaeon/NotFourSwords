@@ -727,7 +727,8 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.5f;
                 if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Shoot();
+                    
+                    Invoke("Shoot", Time.deltaTime);
                 }
             }
             else if (shootingLevel == 1)
@@ -770,15 +771,26 @@ public class PlayerControl : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
-        Instantiate(bolt, pos + transform.forward, transform.rotation);
+        //Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
+        //Instantiate(bolt, pos + transform.forward, transform.rotation);
+        Vector3 pos = new Vector3(crossbow.transform.position.x, crossbow.transform.position.y, crossbow.transform.position.z);
+        Quaternion rot = crossbow.transform.rotation;
+        rot *= Quaternion.Euler(90, 0, 0);
+        Instantiate(bolt, pos, rot);
         lastShot = 0;
     }
 
     private void FirstPersonControls()
     {
-        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5)
+        if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5 && movementPlayer == Vector3.zero)
         {
+            if (!firstPerson)
+            {
+                /*
+                Vector3 rot = new Vector3(playerCamera.transform.rotation.x, 0, playerCamera.transform.rotation.z);
+                transform.rotation = Quaternion.Euler(rot);
+                */
+            }
             firstPerson = true;
         }
         else
@@ -1214,7 +1226,5 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetBool("Shooting", false);
         }
-
-
     }
 }
