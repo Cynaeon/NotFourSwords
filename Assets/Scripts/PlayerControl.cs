@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     }
     public Players playerPrefix;
 
-    
+
     public PauseManager pauseManager;
     private bool _isPaused;
     public Transform startPos;
@@ -67,9 +67,12 @@ public class PlayerControl : MonoBehaviour
     #endregion
 
     #region Player Attributes
-    [HideInInspector] public int maxHealth;
-    [HideInInspector] public int currentHealth;
-    [HideInInspector] public int gatheredScore;
+    [HideInInspector]
+    public int maxHealth;
+    [HideInInspector]
+    public int currentHealth;
+    [HideInInspector]
+    public int gatheredScore;
     private float defaultSpeed;
     private float dashSpeed;
     private float pushingSpeed;
@@ -128,7 +131,8 @@ public class PlayerControl : MonoBehaviour
     #region Private Booleans
     private bool burstShot;
     private bool lockOn;
-    [HideInInspector] public bool firstPerson;
+    [HideInInspector]
+    public bool firstPerson;
     private bool grabbing;
     private bool climbing;
     private bool Jumped;
@@ -136,13 +140,15 @@ public class PlayerControl : MonoBehaviour
     private bool canChangeItem;
     private bool canOpenDoor;
     private bool canDash;
-    [HideInInspector] public bool disableMovement;
+    [HideInInspector]
+    public bool disableMovement;
     private bool dash;
     private bool toggleSword;
     private bool invulnerable;
     private bool _magnetActive;
     private bool sliding;
-    [HideInInspector] public bool settingStartPos;
+    [HideInInspector]
+    public bool settingStartPos;
     private FogDensity fogDensity;
     private bool _yAxisPressed;
     #endregion
@@ -248,7 +254,7 @@ public class PlayerControl : MonoBehaviour
             transform.position = new Vector3(startPos.position.x + 2, startPos.position.y, startPos.position.z - 2);
         }
         settingStartPos = false;
-            
+
     }
 
 
@@ -280,7 +286,8 @@ public class PlayerControl : MonoBehaviour
         {
             trailRend.time = 0.5f;
             controller.Move(slidingDir * currentSpeed * 2 * Time.deltaTime);
-        } else
+        }
+        else
         {
             trailRend.time = 0;
         }
@@ -340,14 +347,15 @@ public class PlayerControl : MonoBehaviour
         {
             _grabSpot.enabled = true;
         }
-        
+
         if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
             pushBlock = null;
             grabbing = false;
             currentSpeed = defaultSpeed;
-            if (!toggleSword) {
+            if (!toggleSword)
+            {
                 crossbow.SetActive(true);
             }
         }
@@ -382,7 +390,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void SnapPlayerRotation(Vector3 direction) 
+    private void SnapPlayerRotation(Vector3 direction)
     {
         direction = transform.eulerAngles;
         direction.y = Mathf.Round(direction.y / 90) * 90;
@@ -414,7 +422,7 @@ public class PlayerControl : MonoBehaviour
         if (canChangeItem)
         {
             int itemAvailable = FindClosestGameObjectWithTag("ItemSpawner").gameObject.GetComponent<ItemSpawner>().checkActive();
-            if(itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none) 
+            if (itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none)
             {
                 _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
             }
@@ -427,7 +435,7 @@ public class PlayerControl : MonoBehaviour
                     case 0:
                         myItem = Items.none;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, false);
-                        SetActivity(false,false, false, false, false, false, true);
+                        SetActivity(false, false, false, false, false, false, true);
                         fogDensity.fadeState(false);
                         toggleSword = false;
                         _playerCamera.cullingMask &= ~(1 << 8);
@@ -437,7 +445,7 @@ public class PlayerControl : MonoBehaviour
                         myItem = Items.jump;
                         _playerCanvas.GetComponent<UIManager>().UIItems(true, false, false, false, false);
                         fogDensity.fadeState(false);
-                        SetActivity(false,false, false, false, false, true, true);
+                        SetActivity(false, false, false, false, false, true, true);
                         toggleSword = false;
                         _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
@@ -445,14 +453,14 @@ public class PlayerControl : MonoBehaviour
                     case 2:
                         myItem = Items.seeThrough;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, true, false, false, false);
-                        SetActivity(false,false, false, true, false, false,true);
+                        SetActivity(false, false, false, true, false, false, true);
                         toggleSword = false;
                         canSee = true;
                         break;
                     case 3:
                         myItem = Items.magnet;
-                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false,false);
-                        SetActivity(false,false, false, false, true, false, true);
+                        _playerCanvas.GetComponent<UIManager>().UIItems(false, false, true, false, false);
+                        SetActivity(false, false, false, false, true, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
                         toggleSword = false;
@@ -461,7 +469,7 @@ public class PlayerControl : MonoBehaviour
                     case 4:
                         myItem = Items.sword;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, true, false);
-                        SetActivity(false,true, true, false, false, false, true);
+                        SetActivity(false, true, true, false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
@@ -469,7 +477,7 @@ public class PlayerControl : MonoBehaviour
                     case 5:
                         myItem = Items.key;
                         _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, true);
-                        SetActivity(false, false,false,false,false,false, true);
+                        SetActivity(false, false, false, false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
                         canSee = false;
@@ -480,12 +488,13 @@ public class PlayerControl : MonoBehaviour
 
         if (canOpenDoor)
         {
-            if(myItem == Items.key) {
+            if (myItem == Items.key)
+            {
                 if (Input.GetButtonDown(playerPrefix + "Item"))
                 {
                     FindClosestGameObjectWithTag("Door").gameObject.GetComponent<Door>().OpenDoor();
                     myItem = Items.none;
-                    _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false,false,false);
+                    _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, false);
                 }
             }
         }
@@ -541,7 +550,8 @@ public class PlayerControl : MonoBehaviour
                 crossbow.SetActive(false);
                 SheathedSword.SetActive(false);
                 toggleSword = true;
-            }else
+            }
+            else
             {
                 toggleSword = false;
                 SwordItem.SetActive(false);
@@ -619,7 +629,8 @@ public class PlayerControl : MonoBehaviour
                     }
                 }
             }
-        } else
+        }
+        else
         {
             _magnetActive = false;
             MagnetEffect.SetActive(false);
@@ -727,8 +738,9 @@ public class PlayerControl : MonoBehaviour
 
     private void Shooting()
     {
-        if (!dash && !toggleSword && !climbing && !_magnetActive && !grabbing) {
-            
+        if (!dash && !toggleSword && !climbing && !_magnetActive && !grabbing)
+        {
+
             if (shootingLevel == 0)
             {
                 shootingSpeed = 0.5f;
@@ -750,14 +762,15 @@ public class PlayerControl : MonoBehaviour
                 shootingSpeed = 0.1f;
                 if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
-                    Shoot();    
+                    Shoot();
                 }
             }
             lastShot += Time.deltaTime;
         }
         if (toggleSword)
         {
-            if(Input.GetButtonDown(playerPrefix + "Shoot")) {
+            if (Input.GetButtonDown(playerPrefix + "Shoot"))
+            {
                 swordSwing = 0.8f;
                 anime.SetTrigger("Sword");
                 SwordHitBox.SetActive(true);
@@ -796,7 +809,7 @@ public class PlayerControl : MonoBehaviour
                 Vector3 dir = transform.position - playerCamera.transform.position;
                 dir.y = 0;
                 transform.rotation = Quaternion.LookRotation(dir);
-                
+
             }
             firstPerson = true;
         }
@@ -845,13 +858,13 @@ public class PlayerControl : MonoBehaviour
             {
                 _playerCamera.cullingMask |= (1 << LayerMask.NameToLayer("Player4"));
             }
-            
+
         }
     }
 
     private void LockOnSystem()
     {
-        
+
 
         lockOn = Input.GetButton(playerPrefix + "LockOn");
 
@@ -897,7 +910,7 @@ public class PlayerControl : MonoBehaviour
                     lockOnArrow.gameObject.SetActive(false);
                     lockOnTarget = null;
                 }
-            } 
+            }
             else
             {
                 lockOnArrow.gameObject.SetActive(false);
@@ -941,7 +954,7 @@ public class PlayerControl : MonoBehaviour
             {
                 if (Input.GetAxis(playerPrefix + "VerticalRightStick") > 0.25)
                 {
-                    
+
                     if (switchTarget < enemyList.Count - 1 && !_yAxisPressed)
                     {
                         switchTarget++;
@@ -983,7 +996,7 @@ public class PlayerControl : MonoBehaviour
 
         if (other.tag == "Ladder")
         {
-            
+
             if (Input.GetButtonDown(playerPrefix + "Action"))
             {
                 if (!climbing)
@@ -998,7 +1011,8 @@ public class PlayerControl : MonoBehaviour
                     direction = direction.normalized;
                     SnapPlayerRotation(direction);
                     climbing = true;
-                } else
+                }
+                else
                 {
                     climbing = false;
                 }
@@ -1012,7 +1026,7 @@ public class PlayerControl : MonoBehaviour
                 other.GetComponent<Pot>().Break();
             }
         }
-        
+
         if (other.tag == "SlidingIce")
         {
             if (!sliding)
@@ -1102,7 +1116,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if(other.tag == "Door")
+        if (other.tag == "Door")
         {
             canOpenDoor = false;
         }
@@ -1115,12 +1129,13 @@ public class PlayerControl : MonoBehaviour
 
     public void Animations()
     {
-        
+
         if (toggleSword)
         {
             anime.SetFloat("SwordState", 1);
             anime.SetFloat("DashState", 1);
-        }else
+        }
+        else
         {
             anime.SetFloat("SwordState", 0);
             anime.SetFloat("DashState", 0);
@@ -1132,27 +1147,29 @@ public class PlayerControl : MonoBehaviour
             anime.SetBool("Falling", true);
             anime.SetBool("Running", false);
             anime.SetBool("Jumping", false);
-            activeState = StateOfTheAnimation.falling;    
+            activeState = StateOfTheAnimation.falling;
         }
-        
-        if(controller.velocity.y > -2 && Jumped)
+
+        if (controller.velocity.y > -2 && Jumped)
         {
             anime.SetBool("Jumping", true);
             activeState = StateOfTheAnimation.jumping;
         }
-       
-        if(controller.velocity.z > 0.1 || controller.velocity.x > 0.1 || controller.velocity.z < -0.1 || controller.velocity.x < -0.1 ) {
-                if (!dash) {
-                    activeState = StateOfTheAnimation.running;
-                    anime.SetBool("Running", true);
-                }
+
+        if (controller.velocity.z > 0.1 || controller.velocity.x > 0.1 || controller.velocity.z < -0.1 || controller.velocity.x < -0.1)
+        {
+            if (!dash)
+            {
+                activeState = StateOfTheAnimation.running;
+                anime.SetBool("Running", true);
+            }
         }
         else
         {
             anime.SetBool("Running", false);
         }
 
-        if(controller.velocity == Vector3.zero && activeState != StateOfTheAnimation.falling)
+        if (controller.velocity == Vector3.zero && activeState != StateOfTheAnimation.falling)
         {
             activeState = StateOfTheAnimation.idle;
             anime.SetBool("Running", false);
@@ -1179,12 +1196,16 @@ public class PlayerControl : MonoBehaviour
 
         if (controller.isGrounded)
         {
+            anime.SetBool("IsGrounded", true);
             anime.SetBool("Landing", true);
             anime.SetBool("Falling", false);
+            anime.SetBool("Jumping", false);
         }
         else
 
         {
+
+            anime.SetBool("IsGrounded", false);
             anime.SetBool("Landing", false);
         }
 
@@ -1204,10 +1225,11 @@ public class PlayerControl : MonoBehaviour
             {
                 anime.SetFloat("PushState", 0);
             }
-            if(Vector3.Dot(transform.forward, movementPlayer) == 0)
+            if (Vector3.Dot(transform.forward, movementPlayer) == 0)
             {
                 anime.enabled = false;
-            }else
+            }
+            else
             {
                 anime.enabled = true;
             }
@@ -1250,7 +1272,8 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped && !firstPerson && !dash)
         {
             anime.SetBool("Shooting", true);
-        }else
+        }
+        else
         {
             anime.SetBool("Shooting", false);
         }
@@ -1260,13 +1283,13 @@ public class PlayerControl : MonoBehaviour
             anime.SetFloat("ClimbState", 1);
             anime.enabled = true;
         }
-        if(climbing && Vector3.Dot(transform.up, movementPlayer) < 0)
+        if (climbing && Vector3.Dot(transform.up, movementPlayer) < 0)
         {
             anime.SetBool("Climbing", true);
             anime.SetFloat("ClimbState", -1);
             anime.enabled = true;
         }
-        if(climbing && Vector3.Dot(transform.up, movementPlayer) == 0)
+        if (climbing && Vector3.Dot(transform.up, movementPlayer) == 0)
         {
             anime.SetBool("Climbing", true);
             anime.enabled = false;
@@ -1275,6 +1298,5 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetBool("Climbing", false);
         }
-
     }
 }
