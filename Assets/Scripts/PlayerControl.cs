@@ -62,7 +62,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject MonocleItem;
     public GameObject MagnetItem;
     public GameObject MagnetEffect;
-    public GameObject BootsItem;
+    public GameObject LeftBoot;
+    public GameObject RightBoot;
     public GameObject SwordHitBox;
     #endregion
 
@@ -331,6 +332,10 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
+                if (_magnetActive) {
+                    movementPlayer = new Vector3(0, 0, 0);
+                }
+
                 movementPlayer.y = verticalVelocity;
                 controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
             }
@@ -511,7 +516,8 @@ public class PlayerControl : MonoBehaviour
         SheathedSword.SetActive(_sheathedSword);
         MonocleItem.SetActive(_monocle);
         MagnetItem.SetActive(_magnet);
-        BootsItem.SetActive(_boots);
+        LeftBoot.SetActive(_boots);
+        RightBoot.SetActive(_boots);
         crossbow.SetActive(_crossbow);
     }
 
@@ -599,7 +605,7 @@ public class PlayerControl : MonoBehaviour
     {
         // Magnet
         // Works when no GrabSpot is present
-        if (Input.GetButton(playerPrefix + "Item") && myItem == Items.magnet)
+        if (Input.GetButton(playerPrefix + "Item") && myItem == Items.magnet && !climbing && !grabbing)
         {
             _magnetActive = true;
             MagnetEffect.SetActive(true);
@@ -1297,6 +1303,13 @@ public class PlayerControl : MonoBehaviour
         if (!climbing)
         {
             anime.SetBool("Climbing", false);
+        }
+        if (_magnetActive)
+        {
+            anime.SetBool("Magnet", true);
+        }else
+        {
+            anime.SetBool("Magnet", false);
         }
     }
 }
