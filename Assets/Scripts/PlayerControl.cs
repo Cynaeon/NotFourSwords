@@ -403,10 +403,13 @@ public class PlayerControl : MonoBehaviour
         {
             canDash = true;
             verticalVelocity = -gravity * Time.deltaTime;
-            if (Input.GetButton(playerPrefix + "Item") && myItem == Items.jump)
+            if (playerPrefix != Players.NotSelected)
             {
-                verticalVelocity = jumpForce;
-                Jumped = true;
+                if (Input.GetButton(playerPrefix + "Item") && myItem == Items.jump)
+                {
+                    verticalVelocity = jumpForce;
+                    Jumped = true;
+                }
             }
         }
         else if (!climbing)
