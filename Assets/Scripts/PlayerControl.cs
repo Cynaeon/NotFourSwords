@@ -753,7 +753,7 @@ public class PlayerControl : MonoBehaviour
             if (shootingLevel == 0)
             {
                 shootingSpeed = 0.5f;
-                if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+                if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
                     Shoot();
                 }
@@ -761,7 +761,7 @@ public class PlayerControl : MonoBehaviour
             else if (shootingLevel == 1)
             {
                 shootingSpeed = 0.3f;
-                if (Input.GetButtonDown(playerPrefix + "Shoot") && lastShot > shootingSpeed)
+                if (Input.GetButton(playerPrefix + "Shoot") && lastShot > shootingSpeed)
                 {
                     Shoot();
                 }
@@ -801,11 +801,14 @@ public class PlayerControl : MonoBehaviour
     {
         //Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
         //Instantiate(bolt, pos + transform.forward, transform.rotation);
-        Vector3 pos = new Vector3(crossbow.transform.position.x, crossbow.transform.position.y, crossbow.transform.position.z);
-        Quaternion rot = crossbow.transform.rotation;
-        rot *= Quaternion.Euler(90, 0, 0);
-        Instantiate(bolt, pos, rot);
-        lastShot = 0;
+        if (anime.GetBool("Shooting"))
+        {
+            Vector3 pos = new Vector3(crossbow.transform.position.x, crossbow.transform.position.y, crossbow.transform.position.z);
+            Quaternion rot = crossbow.transform.rotation;
+            rot *= Quaternion.Euler(90, 0, 0);
+            Instantiate(bolt, pos, rot);
+            lastShot = 0;
+        }
     }
 
     private void FirstPersonControls()
@@ -910,7 +913,7 @@ public class PlayerControl : MonoBehaviour
                 if (Vector3.Distance(enemyList[0].transform.position, transform.position) < lockAcquisitionRange)
                 {
                     lockOnTarget = enemyList[0].transform;
-                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 3f, lockOnTarget.position.z);
                     lockOnArrow.gameObject.SetActive(true);
                     lockOnArrow.transform.position = arrowPos;
                 }
@@ -935,7 +938,7 @@ public class PlayerControl : MonoBehaviour
                 if (Vector3.Distance(lockOnTarget.transform.position, transform.position) <= lockMaxRange)
                 {
                     transform.LookAt(lockOnTarget);
-                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 3f, lockOnTarget.position.z);
                     lockOnArrow.transform.position = arrowPos;
                 }
                 else

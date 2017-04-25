@@ -98,7 +98,7 @@ public class RotatingCube : MonoBehaviour {
                 if (lastMeteor > meteorFireRate)
                 {
                     Transform player = FindRandomPlayer();
-                    Vector3 spawnPoint = new Vector3(player.position.x, 30, player.position.z);
+                    Vector3 spawnPoint = new Vector3(player.position.x, 24.75f, player.position.z);
                     Instantiate(meteor, spawnPoint, Quaternion.identity);
                     lastMeteor = 0;
                 }

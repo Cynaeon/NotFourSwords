@@ -24,7 +24,8 @@ public class Trooper : Enemy {
         if (closestDist < aggroRange)
         {
             transform.LookAt(closestPlayer);
-            transform.position = Vector3.MoveTowards(transform.position, closestPlayer.position, speed * Time.deltaTime);
+            Vector3 target = new Vector3(closestPlayer.position.x, 0, closestPlayer.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
     }
 
