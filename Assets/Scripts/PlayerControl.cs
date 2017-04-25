@@ -148,6 +148,7 @@ public class PlayerControl : MonoBehaviour
     private bool invulnerable;
     private bool _magnetActive;
     private bool sliding;
+    private bool hitting;
     [HideInInspector]
     public bool settingStartPos;
     private FogDensity fogDensity;
@@ -302,7 +303,7 @@ public class PlayerControl : MonoBehaviour
             {
                 Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
                 // Put a boolean in the if-statement below if you don't want the player to rotate
-                if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing)
+                if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing && !hitting)
                 {
                     transform.rotation = rotation;
                     transform.rotation = Quaternion.LookRotation(movementPlayer);
@@ -332,7 +333,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-                if (_magnetActive) {
+                if (_magnetActive || hitting) {
                     movementPlayer = new Vector3(0, 0, 0);
                 }
 
@@ -488,6 +489,7 @@ public class PlayerControl : MonoBehaviour
                         SetActivity(false, false, false, false, false, false, true);
                         fogDensity.fadeState(false);
                         _playerCamera.cullingMask &= ~(1 << 8);
+                        toggleSword = false;
                         canSee = false;
                         break;
                 }
@@ -782,6 +784,7 @@ public class PlayerControl : MonoBehaviour
             {
                 swordSwing = 0.8f;
                 anime.SetTrigger("Sword");
+                anime.Play("Sword", 0, 0.5f);
                 SwordHitBox.SetActive(true);
             }
 
@@ -1278,7 +1281,7 @@ public class PlayerControl : MonoBehaviour
             anime.SetBool("FirstPerson", false);
         }
 
-        if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped && !firstPerson && !dash)
+        if (Input.GetButton(playerPrefix + "Shoot") && !toggleSword && !grabbing && !Jumped && !firstPerson && !dash && !_magnetActive)
         {
             anime.SetBool("Shooting", true);
         }
@@ -1286,6 +1289,7 @@ public class PlayerControl : MonoBehaviour
         {
             anime.SetBool("Shooting", false);
         }
+
         if (climbing && Vector3.Dot(transform.up, movementPlayer) > 0)
         {
             anime.SetBool("Climbing", true);
@@ -1313,6 +1317,14 @@ public class PlayerControl : MonoBehaviour
         }else
         {
             anime.SetBool("Magnet", false);
+        }
+
+        if (anime.GetCurrentAnimatorStateInfo(0).IsName("Sword"))
+        {
+            hitting = true;
+        }else
+        {
+            hitting = false;
         }
     }
 }
