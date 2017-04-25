@@ -20,18 +20,20 @@ public class GameManager : MonoBehaviour {
     public ItemSpawner._items[] itemOnSpawner;
 
     public bool[] floorsUnlocked = new bool[9];
+    public int attempts;
 
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
         doorOpened = new bool[10];
-        floorsUnlocked[1] = true;
+        /*floorsUnlocked[1] = true;
         floorsUnlocked[2] = true;
         floorsUnlocked[3] = true;
         floorsUnlocked[4] = true;
         floorsUnlocked[5] = true;
         floorsUnlocked[6] = true;
         floorsUnlocked[7] = true;
-        floorsUnlocked[8] = true;
+        floorsUnlocked[8] = true;*/
+
         SetSpawnerItems();
 	}
 

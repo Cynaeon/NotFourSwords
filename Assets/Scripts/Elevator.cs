@@ -12,7 +12,6 @@ public class Elevator : MonoBehaviour {
     public Transform[] elevatorPositions;
     private Button[][] _buttons;
     private StandaloneInputModule _module;
-    public string password;
     public Transform elevator;
     private bool _inMenu;
     private bool[] _isColliding;
@@ -22,6 +21,7 @@ public class Elevator : MonoBehaviour {
     private int _destination;
     private float _maxDistanceDelta;
     public float speed;
+    private bool _typing;
 
     void Awake()
     {
@@ -35,7 +35,7 @@ public class Elevator : MonoBehaviour {
         }
         _isColliding = new bool[5];
         
-        for (int i = 1; i <= 1; i++)
+        for (int i = 1; i <= 4; i++)
         {
             for (int j = 0; j <= 8; j++)
             {
@@ -47,7 +47,7 @@ public class Elevator : MonoBehaviour {
 
     void Update()
     {
-        for (int i = 1; i <= 1; i++) {
+        for (int i = 1; i <= 4; i++) {
             if (_isColliding[i])
             {
                 if (!_inMenu && !_isInMotion)
@@ -65,13 +65,13 @@ public class Elevator : MonoBehaviour {
 
                         for (int j = 0; j <= 8; j++)
                         {
-                            _buttons[i][j].gameObject.SetActive(true);
-                            Debug.Log(j + " and length is " + gameManager.floorsUnlocked.Length);
+                            _buttons[i][0].gameObject.SetActive(true);
                             
                             if (j > 0)
                             { 
                                 if (gameManager.floorsUnlocked[j])
                                 {
+                                    _buttons[i][j].gameObject.SetActive(true);
                                     int tempJ = j;
                                     int tempI = i;
                                     _buttons[tempI][tempJ].onClick.AddListener(() =>
@@ -90,6 +90,15 @@ public class Elevator : MonoBehaviour {
                                         EventSystem.current.SetSelectedGameObject(null);
                                     });
                                 }
+                            } else
+                            {
+                                int tempI = i;
+                                _buttons[tempI][0].onClick.AddListener(() =>
+                                {
+                                    inputFields[tempI].gameObject.SetActive(true);
+                                    EventSystem.current.SetSelectedGameObject(inputFields[tempI].gameObject);
+                                    _typing = true;
+                                });
                             }
                         }
                         EventSystem.current.SetSelectedGameObject(_buttons[i][0].gameObject);
@@ -99,7 +108,9 @@ public class Elevator : MonoBehaviour {
                 {
                     if (Input.GetButtonDown("P" + i + "_Dash"))
                     {
-                        _inMenu = false;
+                        if (!_typing)
+                        {
+                            _inMenu = false;
 
                         playerControls[i].disableMovement = false;
 
@@ -108,12 +119,164 @@ public class Elevator : MonoBehaviour {
                             _buttons[i][j].gameObject.SetActive(false);
                         }
 
-                        EventSystem.current.SetSelectedGameObject(null);
+                        
+                            EventSystem.current.SetSelectedGameObject(null);
+                        } else
+                        {
+                            inputFields[i].gameObject.SetActive(false);
+                        }
                     }
                 }
             }
         }
 
+        for (int i = 1; i <= 4; i++)
+        {
+            
+            if (inputFields[i] != null)
+            {
+
+                int tempI = i;
+                inputFields[i].onEndEdit.AddListener((string contents) =>
+                {
+                    switch (contents)
+                    {
+                        case "2":
+                            gameManager.floorsUnlocked[2] = true;
+                            _buttons[tempI][2].gameObject.SetActive(true);
+                            _buttons[tempI][2].onClick.AddListener(() =>
+                            {
+                                _destination = 2;
+                                playerControls[tempI].disableMovement = false;
+                                _isInMotion = true;
+
+                                _inMenu = false;
+
+                                for (int k = 0; k <= 8; k++)
+                                {
+                                    _buttons[tempI][k].gameObject.SetActive(false);
+                                }
+
+                                EventSystem.current.SetSelectedGameObject(null);
+                            });
+                            gameManager.attempts = 0;
+                            break;
+                        case "3":
+                            gameManager.floorsUnlocked[3] = true;
+                            _buttons[tempI][3].gameObject.SetActive(true);
+                            _buttons[tempI][3].onClick.AddListener(() =>
+                            {
+                                _destination = 3;
+                                playerControls[tempI].disableMovement = false;
+                                _isInMotion = true;
+
+                                _inMenu = false;
+
+                                for (int k = 0; k <= 8; k++)
+                                {
+                                    _buttons[tempI][k].gameObject.SetActive(false);
+                                }
+
+                                EventSystem.current.SetSelectedGameObject(null);
+                            });
+                            gameManager.attempts = 0;
+                            break;
+                        case "4":
+                            gameManager.floorsUnlocked[4] = true;
+                            _buttons[tempI][4].gameObject.SetActive(true);
+                            _buttons[tempI][4].onClick.AddListener(() =>
+                            {
+                                _destination = 4;
+                                playerControls[tempI].disableMovement = false;
+                                _isInMotion = true;
+
+                                _inMenu = false;
+
+                                for (int k = 0; k <= 8; k++)
+                                {
+                                    _buttons[tempI][k].gameObject.SetActive(false);
+                                }
+
+                                EventSystem.current.SetSelectedGameObject(null);
+                            });
+                            gameManager.attempts = 0;
+                            break;
+                        case "5":
+                            gameManager.floorsUnlocked[5] = true;
+                            _buttons[tempI][5].gameObject.SetActive(true);
+                            _buttons[tempI][5].onClick.AddListener(() =>
+                            {
+                                _destination = 5;
+                                playerControls[tempI].disableMovement = false;
+                                _isInMotion = true;
+
+                                _inMenu = false;
+
+                                for (int k = 0; k <= 8; k++)
+                                {
+                                    _buttons[tempI][k].gameObject.SetActive(false);
+                                }
+
+                                EventSystem.current.SetSelectedGameObject(null);
+                            });
+                            gameManager.attempts = 0;
+                            break;
+                        case "6":
+                            gameManager.floorsUnlocked[6] = true;
+                            _buttons[tempI][6].gameObject.SetActive(true);
+                            _buttons[tempI][6].onClick.AddListener(() =>
+                            {
+                                _destination = 6;
+                                playerControls[tempI].disableMovement = false;
+                                _isInMotion = true;
+
+                                _inMenu = false;
+
+                                for (int k = 0; k <= 8; k++)
+                                {
+                                    _buttons[tempI][k].gameObject.SetActive(false);
+                                }
+
+                                EventSystem.current.SetSelectedGameObject(null);
+                            });
+                            gameManager.attempts = 0;
+                            break;
+                        case "7":
+                            gameManager.floorsUnlocked[7] = true;
+                            _buttons[tempI][7].gameObject.SetActive(true);
+                            _buttons[tempI][7].onClick.AddListener(() =>
+                            {
+                                _destination = 7;
+                                playerControls[tempI].disableMovement = false;
+                                _isInMotion = true;
+
+                                _inMenu = false;
+
+                                for (int k = 0; k <= 8; k++)
+                                {
+                                    _buttons[tempI][k].gameObject.SetActive(false);
+                                }
+
+                                EventSystem.current.SetSelectedGameObject(null);
+                            });
+                            gameManager.attempts = 0;
+                            break;
+                        default:
+                            gameManager.attempts++;
+                            if (gameManager.attempts == 10)
+                            {
+                                // Snape kills Dumbledore
+                            }
+                            break;
+                    }
+                    inputFields[tempI].text = null;
+                    inputFields[tempI].gameObject.SetActive(false);
+                    inputFields[tempI].onEndEdit.RemoveAllListeners();
+                    EventSystem.current.SetSelectedGameObject(_buttons[tempI][0].gameObject);
+                    _typing = false;
+                });
+            }
+        }
         if (_isInMotion)
         {
             elevator.position = Vector3.MoveTowards(elevator.position, elevatorPositions[_destination].position, _maxDistanceDelta);
