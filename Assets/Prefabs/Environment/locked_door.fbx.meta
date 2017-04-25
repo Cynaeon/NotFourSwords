@@ -1,21 +1,20 @@
 fileFormatVersion: 2
-guid: f29a354d9b0f60e48a2796ec46caf70a
-timeCreated: 1490219861
+guid: b25e8beb89020344698e8fa23069441f
+timeCreated: 1493138791
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Outline
-    400000: //RootNode
-    400002: Outline
-    2300000: //RootNode
-    2300002: Outline
-    3300000: //RootNode
-    3300002: Outline
-    4300000: Cylinder.000
-    4300002: Arch Scaled
-    4300004: Outline
+    100000: door_outline
+    100002: //RootNode
+    400000: door_outline
+    400002: //RootNode
+    2300000: door_outline
+    2300002: //RootNode
+    3300000: door_outline
+    3300002: //RootNode
+    4300000: door
+    4300002: door_outline
   materials:
     importMaterials: 1
     materialName: 0
