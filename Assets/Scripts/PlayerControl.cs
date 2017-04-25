@@ -801,7 +801,7 @@ public class PlayerControl : MonoBehaviour
     {
         //Vector3 pos = new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z);
         //Instantiate(bolt, pos + transform.forward, transform.rotation);
-        if (anime.GetBool("Shooting"))
+        if (anime.GetBool("Shooting") || anime.GetBool("Idle"))
         {
             Vector3 pos = new Vector3(crossbow.transform.position.x, crossbow.transform.position.y, crossbow.transform.position.z);
             Quaternion rot = crossbow.transform.rotation;
