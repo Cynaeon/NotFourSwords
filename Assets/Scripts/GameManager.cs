@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 
     public bool[] floorsUnlocked = new bool[9];
     public int attempts;
+    public int currentFloor;
 
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour {
         floorsUnlocked[6] = true;
         floorsUnlocked[7] = true;
         floorsUnlocked[8] = true;*/
-
+        currentFloor = 1;
         SetSpawnerItems();
 	}
 
