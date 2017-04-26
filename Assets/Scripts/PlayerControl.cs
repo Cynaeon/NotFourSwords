@@ -916,7 +916,7 @@ public class PlayerControl : MonoBehaviour
                 if (Vector3.Distance(enemyList[0].transform.position, transform.position) < lockAcquisitionRange)
                 {
                     lockOnTarget = enemyList[0].transform;
-                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 3f, lockOnTarget.position.z);
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
                     lockOnArrow.gameObject.SetActive(true);
                     lockOnArrow.transform.position = arrowPos;
                 }
@@ -941,7 +941,7 @@ public class PlayerControl : MonoBehaviour
                 if (Vector3.Distance(lockOnTarget.transform.position, transform.position) <= lockMaxRange)
                 {
                     transform.LookAt(lockOnTarget);
-                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 3f, lockOnTarget.position.z);
+                    Vector3 arrowPos = new Vector3(lockOnTarget.position.x, lockOnTarget.position.y + 1.5f, lockOnTarget.position.z);
                     lockOnArrow.transform.position = arrowPos;
                 }
                 else

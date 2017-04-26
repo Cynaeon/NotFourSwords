@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
-        doorOpened = new bool[10];
+        doorOpened = new bool[50];
         /*floorsUnlocked[1] = true;
         floorsUnlocked[2] = true;
         floorsUnlocked[3] = true;

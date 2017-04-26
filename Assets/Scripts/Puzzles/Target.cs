@@ -2,45 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour {
+public class Target : MonoBehaviour
+{
 
-    [HideInInspector] public bool activated;
-    private Color activeColor;
-    private Color deactiveColor;
-    private Renderer _rend;
+    public GameObject orb;
 
-    // Use this for initialization
+    [HideInInspector]
+    public bool activated;
+
+    public Color activeColorInside;
+    public Color activeColorOutside;
+    private Color deactiveColorInside;
+    private Color deactiveColorOutside;
+    private Color activeColorEmission;
+    private Renderer insideRend;
+    private Renderer outsideRend;
+
     void Start()
     {
-        _rend = GetComponent<Renderer>();
-        activeColor = new Color(1, 0.5f, 0.5f, 1);
-        activeColor = activeColor * Mathf.LinearToGammaSpace(0.01f);
-        deactiveColor = _rend.material.color;
-    }
+        insideRend = orb.GetComponent<Renderer>();
+        outsideRend = GetComponent<Renderer>();
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+        deactiveColorInside = insideRend.material.color;
+        deactiveColorOutside = outsideRend.material.color;
+
+        activeColorEmission = activeColorOutside * Mathf.LinearToGammaSpace(0.8f);
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerProjectile")
         {
-            Activate(); 
+            if (!activated)
+            {
+                Activate();
+            }
         }
     }
 
     private void Activate()
     {
         activated = true;
-        _rend.material.color = activeColor;
-        _rend.material.SetColor("_EmissionColor", activeColor);
+        insideRend.material.color = activeColorInside;
+        outsideRend.material.SetColor("_EmissionColor", activeColorEmission);
+        outsideRend.materials[1].color = activeColorOutside;
     }
 
     public void Deactivate()
     {
         activated = false;
-        _rend.material.color = deactiveColor;
+        insideRend.material.color = deactiveColorInside;
+        outsideRend.materials[1].color = deactiveColorOutside;
     }
 }
+
+
+     
