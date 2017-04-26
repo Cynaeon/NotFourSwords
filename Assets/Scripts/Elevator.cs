@@ -43,6 +43,7 @@ public class Elevator : MonoBehaviour {
             }
         }
         _module = EventSystem.current.GetComponent<StandaloneInputModule>();
+        elevator.position = elevatorPositions[gameManager.currentFloor].position;
     }
 
     void Update()
@@ -54,6 +55,7 @@ public class Elevator : MonoBehaviour {
                 {
                     if (Input.GetButtonDown("P" + i + "_Action") && !_inMenu)
                     {
+                        Debug.Log(i);
                         _inMenu = true;
 
                         playerControls[i].disableMovement = true;
@@ -77,6 +79,7 @@ public class Elevator : MonoBehaviour {
                                     _buttons[tempI][tempJ].onClick.AddListener(() =>
                                     {
                                         _destination = tempJ;
+                                        gameManager.currentFloor = tempJ;
                                         playerControls[tempI].disableMovement = false;
                                         _isInMotion = true;
 
@@ -147,6 +150,7 @@ public class Elevator : MonoBehaviour {
                             _buttons[tempI][2].onClick.AddListener(() =>
                             {
                                 _destination = 2;
+                                gameManager.currentFloor = 2;
                                 playerControls[tempI].disableMovement = false;
                                 _isInMotion = true;
 
@@ -167,6 +171,7 @@ public class Elevator : MonoBehaviour {
                             _buttons[tempI][3].onClick.AddListener(() =>
                             {
                                 _destination = 3;
+                                gameManager.currentFloor = 3;
                                 playerControls[tempI].disableMovement = false;
                                 _isInMotion = true;
 
@@ -183,6 +188,7 @@ public class Elevator : MonoBehaviour {
                             break;
                         case "4":
                             gameManager.floorsUnlocked[4] = true;
+                            gameManager.currentFloor = 4;
                             _buttons[tempI][4].gameObject.SetActive(true);
                             _buttons[tempI][4].onClick.AddListener(() =>
                             {
@@ -203,6 +209,7 @@ public class Elevator : MonoBehaviour {
                             break;
                         case "5":
                             gameManager.floorsUnlocked[5] = true;
+                            gameManager.currentFloor = 5;
                             _buttons[tempI][5].gameObject.SetActive(true);
                             _buttons[tempI][5].onClick.AddListener(() =>
                             {
@@ -223,6 +230,7 @@ public class Elevator : MonoBehaviour {
                             break;
                         case "6":
                             gameManager.floorsUnlocked[6] = true;
+                            gameManager.currentFloor = 6;
                             _buttons[tempI][6].gameObject.SetActive(true);
                             _buttons[tempI][6].onClick.AddListener(() =>
                             {
@@ -243,6 +251,7 @@ public class Elevator : MonoBehaviour {
                             break;
                         case "7":
                             gameManager.floorsUnlocked[7] = true;
+                            gameManager.currentFloor = 7;
                             _buttons[tempI][7].gameObject.SetActive(true);
                             _buttons[tempI][7].onClick.AddListener(() =>
                             {
