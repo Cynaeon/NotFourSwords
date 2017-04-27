@@ -19,7 +19,7 @@ public class DeflectPuzzle : MonoBehaviour {
 
     void Update()
     {
-        if (lastSpawnedTarget < 2)
+        if (lastSpawnedTarget < 1)
         {
             if (targets[lastSpawnedTarget].GetComponent<Target>().activated)
             {
