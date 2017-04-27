@@ -9,16 +9,21 @@ ModelImporter:
     100002: Camera
     100004: door
     100006: Lamp
+    100008: outline
     400000: //RootNode
     400002: Camera
     400004: door
     400006: Lamp
+    400008: outline
     2300000: //RootNode
     2300002: door
+    2300004: outline
     3300000: //RootNode
     3300002: door
+    3300004: outline
     4300000: Door
     4300002: door
+    4300004: outline
   materials:
     importMaterials: 1
     materialName: 0

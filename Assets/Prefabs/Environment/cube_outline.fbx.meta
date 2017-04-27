@@ -1,20 +1,15 @@
 fileFormatVersion: 2
-guid: 4f12d91ef4ce62b489fd81e976764726
-timeCreated: 1490916119
+guid: e8c1f1b1561160c4f98a92239f5ce2ba
+timeCreated: 1493246629
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cylinder.001
     400000: //RootNode
-    400002: Cylinder.001
     2300000: //RootNode
-    2300002: Cylinder.001
     3300000: //RootNode
-    3300002: Cylinder.001
-    4300000: Cylinder
-    4300002: Cylinder.001
+    4300000: outline
   materials:
     importMaterials: 1
     materialName: 0
