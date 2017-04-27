@@ -57,4 +57,20 @@ public class PeekabooArcher : Enemy {
         Vector3 ShootPosition = new Vector3(shootPos.position.x, shootPos.position.y, shootPos.position.z);
         Instantiate(bolt, ShootPosition, transform.rotation);
     }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Sword")
+        {
+            health -= 1;
+            _rend.material.color = hitColor;
+            startTime = Time.time;
+        }
+        if (other.tag == "PlayerProjectile")
+        {
+            health -= 1;
+            _rend.material.color = hitColor;
+            startTime = Time.time;
+        }
+    }
 }
