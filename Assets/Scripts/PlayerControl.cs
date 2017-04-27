@@ -1034,6 +1034,14 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
+        if (other.tag == "Lever")
+        {
+            if (Input.GetButtonDown(playerPrefix + "Action"))
+            {
+                other.GetComponent<Lever>().TurnLever();
+            }
+        }
+
         if (other.tag == "Pot")
         {
             if (dash)
