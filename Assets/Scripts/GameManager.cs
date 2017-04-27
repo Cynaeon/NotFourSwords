@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public bool[] floorsUnlocked = new bool[9];
     public int attempts;
     public int currentFloor;
+    public Canvas[] canvases;
 
 	void Start () {
         levelExits = GameObject.FindGameObjectsWithTag("Start");
