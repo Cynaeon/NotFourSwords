@@ -63,7 +63,7 @@ public class FogDensity : MonoBehaviour
 
     private void FadeFogOut()
     {
-        RenderSettings.fogColor = new Color(0.627451f, 0.12549f, 0.941176f);
+        RenderSettings.fogColor = new Color(0.5f, 0, 1);
         if (fogDensity > 0.03f)
         {
             fogDensity = fogDensity - 0.005f;

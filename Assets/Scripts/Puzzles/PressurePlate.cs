@@ -25,7 +25,7 @@ public class PressurePlate : MonoBehaviour {
     {
         if (activated)
         {
-            _rend.material.color = activeColor;
+            //_rend.material.color = activeColor;
             if (Vector3.Distance(plate.position, downPos) > 0.01f)
             {
                 plate.position = Vector3.MoveTowards(plate.position, downPos, Time.deltaTime * 1);
@@ -34,7 +34,7 @@ public class PressurePlate : MonoBehaviour {
         }
         else
         {
-            _rend.material.color = deactiveColor;
+            //_rend.material.color = deactiveColor;
             if (Vector3.Distance(plate.position, upPos) > 0.01f)
             {
                 plate.position = Vector3.MoveTowards(plate.position, upPos, Time.deltaTime * 1);
@@ -62,7 +62,7 @@ public class PressurePlate : MonoBehaviour {
     private IEnumerator Activate()
     {
         activated = true;
-        _rend.material.color = activeColor;
+        //_rend.material.color = activeColor;
         while (Vector3.Distance(plate.position, downPos) > 0.01f)
         {
             plate.position = Vector3.MoveTowards(plate.position, downPos, Time.deltaTime * 1);
@@ -73,7 +73,7 @@ public class PressurePlate : MonoBehaviour {
     private IEnumerator Deactivate()
     {
         activated = false;
-        _rend.material.color = deactiveColor;
+        //_rend.material.color = deactiveColor;
         while (Vector3.Distance(plate.position, upPos) > 0.01f)
         {
             plate.position = Vector3.MoveTowards(plate.position, upPos, Time.deltaTime * 1);

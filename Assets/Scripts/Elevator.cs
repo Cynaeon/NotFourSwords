@@ -53,9 +53,8 @@ public class Elevator : MonoBehaviour {
             {
                 if (!_inMenu && !_isInMotion)
                 {
-                    if (Input.GetButtonDown("P" + i + "_Action") && !_inMenu)
+                    if (Input.GetButtonDown("P" + i + "_Action"))
                     {
-                        Debug.Log(i);
                         _inMenu = true;
 
                         playerControls[i].disableMovement = true;
@@ -78,19 +77,22 @@ public class Elevator : MonoBehaviour {
                                     int tempI = i;
                                     _buttons[tempI][tempJ].onClick.AddListener(() =>
                                     {
-                                        _destination = tempJ;
-                                        gameManager.currentFloor = tempJ;
-                                        playerControls[tempI].disableMovement = false;
-                                        _isInMotion = true;
-
-                                        _inMenu = false;
-
-                                        for (int k = 0; k <= 8; k++)
+                                        if (gameManager.currentFloor != tempJ)
                                         {
-                                            _buttons[tempI][k].gameObject.SetActive(false);
-                                        }
+                                            _destination = tempJ;
+                                            gameManager.currentFloor = tempJ;
+                                            playerControls[tempI].disableMovement = false;
+                                            _isInMotion = true;
 
-                                        EventSystem.current.SetSelectedGameObject(null);
+                                            _inMenu = false;
+
+                                            for (int k = 0; k <= 8; k++)
+                                            {
+                                                _buttons[tempI][k].gameObject.SetActive(false);
+                                            }
+
+                                            EventSystem.current.SetSelectedGameObject(null);
+                                        }
                                     });
                                 }
                             } else
@@ -149,19 +151,22 @@ public class Elevator : MonoBehaviour {
                             _buttons[tempI][2].gameObject.SetActive(true);
                             _buttons[tempI][2].onClick.AddListener(() =>
                             {
-                                _destination = 2;
-                                gameManager.currentFloor = 2;
-                                playerControls[tempI].disableMovement = false;
-                                _isInMotion = true;
-
-                                _inMenu = false;
-
-                                for (int k = 0; k <= 8; k++)
+                                if (gameManager.currentFloor != 2)
                                 {
-                                    _buttons[tempI][k].gameObject.SetActive(false);
-                                }
+                                    _destination = 2;
+                                    gameManager.currentFloor = 2;
+                                    playerControls[tempI].disableMovement = false;
+                                    _isInMotion = true;
 
-                                EventSystem.current.SetSelectedGameObject(null);
+                                    _inMenu = false;
+
+                                    for (int k = 0; k <= 8; k++)
+                                    {
+                                        _buttons[tempI][k].gameObject.SetActive(false);
+                                    }
+
+                                    EventSystem.current.SetSelectedGameObject(null);
+                                }
                             });
                             gameManager.attempts = 0;
                             break;
@@ -170,103 +175,122 @@ public class Elevator : MonoBehaviour {
                             _buttons[tempI][3].gameObject.SetActive(true);
                             _buttons[tempI][3].onClick.AddListener(() =>
                             {
-                                _destination = 3;
-                                gameManager.currentFloor = 3;
-                                playerControls[tempI].disableMovement = false;
-                                _isInMotion = true;
-
-                                _inMenu = false;
-
-                                for (int k = 0; k <= 8; k++)
+                                if (gameManager.currentFloor != 3)
                                 {
-                                    _buttons[tempI][k].gameObject.SetActive(false);
-                                }
+                                    _destination = 3;
+                                    gameManager.currentFloor = 3;
+                                    playerControls[tempI].disableMovement = false;
+                                    _isInMotion = true;
 
-                                EventSystem.current.SetSelectedGameObject(null);
+                                    _inMenu = false;
+
+                                    for (int k = 0; k <= 8; k++)
+                                    {
+                                        _buttons[tempI][k].gameObject.SetActive(false);
+                                    }
+
+                                    EventSystem.current.SetSelectedGameObject(null);
+                                }
                             });
                             gameManager.attempts = 0;
                             break;
                         case "4":
                             gameManager.floorsUnlocked[4] = true;
-                            gameManager.currentFloor = 4;
+                            
                             _buttons[tempI][4].gameObject.SetActive(true);
                             _buttons[tempI][4].onClick.AddListener(() =>
                             {
-                                _destination = 4;
-                                playerControls[tempI].disableMovement = false;
-                                _isInMotion = true;
-
-                                _inMenu = false;
-
-                                for (int k = 0; k <= 8; k++)
+                                if (gameManager.currentFloor != 4)
                                 {
-                                    _buttons[tempI][k].gameObject.SetActive(false);
-                                }
+                                    _destination = 4;
+                                    gameManager.currentFloor = 4;
+                                    playerControls[tempI].disableMovement = false;
+                                    _isInMotion = true;
 
-                                EventSystem.current.SetSelectedGameObject(null);
+                                    _inMenu = false;
+
+                                    for (int k = 0; k <= 8; k++)
+                                    {
+                                        _buttons[tempI][k].gameObject.SetActive(false);
+                                    }
+
+                                    EventSystem.current.SetSelectedGameObject(null);
+                                }
                             });
                             gameManager.attempts = 0;
                             break;
                         case "5":
                             gameManager.floorsUnlocked[5] = true;
-                            gameManager.currentFloor = 5;
+                            
                             _buttons[tempI][5].gameObject.SetActive(true);
                             _buttons[tempI][5].onClick.AddListener(() =>
                             {
-                                _destination = 5;
-                                playerControls[tempI].disableMovement = false;
-                                _isInMotion = true;
-
-                                _inMenu = false;
-
-                                for (int k = 0; k <= 8; k++)
+                                if (gameManager.currentFloor != 5)
                                 {
-                                    _buttons[tempI][k].gameObject.SetActive(false);
-                                }
+                                    _destination = 5;
+                                    gameManager.currentFloor = 5;
+                                    playerControls[tempI].disableMovement = false;
+                                    _isInMotion = true;
 
-                                EventSystem.current.SetSelectedGameObject(null);
+                                    _inMenu = false;
+
+                                    for (int k = 0; k <= 8; k++)
+                                    {
+                                        _buttons[tempI][k].gameObject.SetActive(false);
+                                    }
+
+                                    EventSystem.current.SetSelectedGameObject(null);
+                                }
                             });
                             gameManager.attempts = 0;
                             break;
                         case "6":
                             gameManager.floorsUnlocked[6] = true;
-                            gameManager.currentFloor = 6;
+                            
                             _buttons[tempI][6].gameObject.SetActive(true);
                             _buttons[tempI][6].onClick.AddListener(() =>
                             {
-                                _destination = 6;
-                                playerControls[tempI].disableMovement = false;
-                                _isInMotion = true;
-
-                                _inMenu = false;
-
-                                for (int k = 0; k <= 8; k++)
+                                if (gameManager.currentFloor != 6)
                                 {
-                                    _buttons[tempI][k].gameObject.SetActive(false);
-                                }
+                                    _destination = 6;
+                                    gameManager.currentFloor = 6;
+                                    playerControls[tempI].disableMovement = false;
+                                    _isInMotion = true;
 
-                                EventSystem.current.SetSelectedGameObject(null);
+                                    _inMenu = false;
+
+                                    for (int k = 0; k <= 8; k++)
+                                    {
+                                        _buttons[tempI][k].gameObject.SetActive(false);
+                                    }
+
+                                    EventSystem.current.SetSelectedGameObject(null);
+                                }
                             });
                             gameManager.attempts = 0;
                             break;
                         case "7":
                             gameManager.floorsUnlocked[7] = true;
-                            gameManager.currentFloor = 7;
+                            
                             _buttons[tempI][7].gameObject.SetActive(true);
                             _buttons[tempI][7].onClick.AddListener(() =>
                             {
-                                _destination = 7;
-                                playerControls[tempI].disableMovement = false;
-                                _isInMotion = true;
-
-                                _inMenu = false;
-
-                                for (int k = 0; k <= 8; k++)
+                                if (gameManager.currentFloor != 7)
                                 {
-                                    _buttons[tempI][k].gameObject.SetActive(false);
-                                }
+                                    _destination = 7;
+                                    gameManager.currentFloor = 7;
+                                    playerControls[tempI].disableMovement = false;
+                                    _isInMotion = true;
 
-                                EventSystem.current.SetSelectedGameObject(null);
+                                    _inMenu = false;
+
+                                    for (int k = 0; k <= 8; k++)
+                                    {
+                                        _buttons[tempI][k].gameObject.SetActive(false);
+                                    }
+
+                                    EventSystem.current.SetSelectedGameObject(null);
+                                }
                             });
                             gameManager.attempts = 0;
                             break;
