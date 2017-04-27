@@ -94,12 +94,14 @@ public class PlayerControl : MonoBehaviour
 
     #region Other Objects
     private CharacterController controller;
+    private UIManager UI;
     private Transform lockOnArrow;
     private Renderer lockOnRend;
     private Color lockOnGreen;
     private Color lockOnRed;
     private GameObject pushBlock;
     private GameObject ladder;
+    private GameObject door;
     private Renderer _rend;
     #endregion
 
@@ -165,6 +167,7 @@ public class PlayerControl : MonoBehaviour
         pauseManager = GetComponent<PauseManager>();
         playerManager = playerManagerGO.GetComponent<PlayerManager>();
         fogDensity = _playerCamera.GetComponent<FogDensity>();
+        UI = _playerCanvas.GetComponent<UIManager>();
         anime = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         currentHealth = playerManager.health;
@@ -437,7 +440,7 @@ public class PlayerControl : MonoBehaviour
             int itemAvailable = FindClosestGameObjectWithTag("ItemSpawner").gameObject.GetComponent<ItemSpawner>().checkActive();
             if (itemAvailable > 0 && itemAvailable != (int)myItem || itemAvailable == 0 && myItem != Items.none)
             {
-                _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
+                UI.EnableNotification(true);
             }
             if (Input.GetButtonDown(playerPrefix + "Action"))
             {
@@ -504,16 +507,20 @@ public class PlayerControl : MonoBehaviour
         {
             if (myItem == Items.key)
             {
+                UI.EnableItemNotification(true);
                 if (Input.GetButtonDown(playerPrefix + "Item"))
                 {
-                    FindClosestGameObjectWithTag("Door").gameObject.GetComponent<Door>().OpenDoor();
                     myItem = Items.none;
                     _playerCanvas.GetComponent<UIManager>().UIItems(false, false, false, false, false);
+                    UI.EnableItemNotification(false);
+                    door.GetComponent<Door>().OpenDoor();
+                    door = null;
                 }
             }
         }
         else
         {
+            UI.EnableItemNotification(false);
         }
 
     }
@@ -1102,7 +1109,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (!changeTo)
         {
-            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
+            UI.EnableNotification(false);
         }
         canChangeItem = changeTo;
     }
@@ -1111,12 +1118,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (other.tag == "Door")
         {
+            door = other.gameObject;
             canOpenDoor = true;
         }
 
         if (other.tag == "PushBlock")
         {
-            _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
+            UI.EnableNotification(true);
             pushBlock = other.gameObject;
             canPush = true;
         }
@@ -1162,7 +1170,7 @@ public class PlayerControl : MonoBehaviour
         if(other.tag == "Ladder")
         {
             ladder = other.gameObject;
-            _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
+            UI.EnableNotification(true);
             canClimb = true;
         }
     }
@@ -1172,19 +1180,21 @@ public class PlayerControl : MonoBehaviour
         if (other.tag == "PushBlock")
         {
             canPush = false;
-            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
+            UI.EnableNotification(false);
         }
 
         if (other.tag == "Ladder")
         {
-            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
+            UI.EnableNotification(false);
             canClimb = false;
             ladder = null;
         }
 
         if (other.tag == "Door")
         {
+            door = null;
             canOpenDoor = false;
+            UI.EnableItemNotification(false);
         }
 
         if (other.tag == "SlidingIce")
