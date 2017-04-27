@@ -13,15 +13,25 @@ public class RotatingCube : MonoBehaviour {
     public float rotateSpeed;
     public float meteorFireRate;
 
+    public GameObject box;
+    public Material sleeping;
+    public Material angry;
+    public Material hurt;
+
     private float lastMeteor;
     private int timesRotated;
     private float Yrotation;
     private float Zrotation;
     private bool increasedSpeed;
+    private Renderer boxRend;
 
     void Start() {
+        Vector3 rot = transform.rotation.eulerAngles;
+        Yrotation += rot.y;
         timesRotated = 0;
         ladder.SetActive(false);
+        boxRend = box.GetComponent<Renderer>();
+        
     }
 
     void Update() {
@@ -30,39 +40,41 @@ public class RotatingCube : MonoBehaviour {
         {
             Activate();
         }
+        Debug.Log(Yrotation);
     }
 
     public void Activate()
     {
         if (timesRotated == 0)
         {
-            Zrotation += rotateSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0, 0, Zrotation);
-            if (Zrotation >= 180)
+            boxRend.material = hurt;
+            Yrotation += rotateSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, Yrotation, 0);
+            if (Yrotation >= 270)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.rotation = Quaternion.Euler(0, 270, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
             }
         }
         else if (timesRotated == 1)
         {
-            Yrotation += rotateSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0, Yrotation, Zrotation);
-            if (Yrotation >= 270)
+            Yrotation -= rotateSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, Yrotation, 0);
+            if (Yrotation <= 0)
             {
-                transform.rotation = Quaternion.Euler(0, 270, 180);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
             }
         }
         else if (timesRotated == 2)
         {
-            Zrotation += rotateSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0, Yrotation, Zrotation);
-            if (Zrotation >= 360)
+            Yrotation += rotateSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, Yrotation, 0);
+            if (Yrotation >= 450)
             {
-                transform.rotation = Quaternion.Euler(0, 270, 360);
+                transform.rotation = Quaternion.Euler(0, 450, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
             }

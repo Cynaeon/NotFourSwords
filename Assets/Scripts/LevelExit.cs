@@ -70,7 +70,6 @@ public class LevelExit : MonoBehaviour
 
         if (sceneEntering)
         {
-            Debug.Log(screenAlpha);
             gameManager.GetComponent<GameManager>().DisableMovement();
             screenAlpha -= Time.deltaTime * fadeSpeed;
             foreach (GameObject image in screenFadeOut)
@@ -85,7 +84,6 @@ public class LevelExit : MonoBehaviour
 
         else if (sceneExiting)
         {
-            Debug.Log(screenAlpha);
             gameManager.GetComponent<GameManager>().DisableMovement();
             screenAlpha += Time.deltaTime * fadeSpeed;
             foreach (GameObject image in screenFadeOut)
