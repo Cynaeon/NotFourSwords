@@ -31,7 +31,6 @@ public class RotatingCube : MonoBehaviour {
         timesRotated = 0;
         ladder.SetActive(false);
         boxRend = box.GetComponent<Renderer>();
-        
     }
 
     void Update() {
@@ -52,6 +51,7 @@ public class RotatingCube : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
             if (Yrotation >= 270)
             {
+                boxRend.material = angry;
                 transform.rotation = Quaternion.Euler(0, 270, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
@@ -59,10 +59,12 @@ public class RotatingCube : MonoBehaviour {
         }
         else if (timesRotated == 1)
         {
+            boxRend.material = hurt;
             Yrotation -= rotateSpeed * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
             if (Yrotation <= 0)
             {
+                boxRend.material = angry;
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
@@ -70,10 +72,12 @@ public class RotatingCube : MonoBehaviour {
         }
         else if (timesRotated == 2)
         {
+            boxRend.material = hurt;
             Yrotation += rotateSpeed * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
             if (Yrotation >= 450)
             {
+                boxRend.material = angry;
                 transform.rotation = Quaternion.Euler(0, 450, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
@@ -81,6 +85,7 @@ public class RotatingCube : MonoBehaviour {
         }
         else if (timesRotated >= 3)
         {
+            boxRend.material = hurt;
             timesRotated = 4;
             rotateSpeed += 1;
             Zrotation += rotateSpeed * Time.deltaTime;
