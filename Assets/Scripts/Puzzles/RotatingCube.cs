@@ -47,40 +47,43 @@ public class RotatingCube : MonoBehaviour {
         if (timesRotated == 0)
         {
             boxRend.material = hurt;
-            Yrotation += rotateSpeed * Time.deltaTime;
+            Yrotation -= rotateSpeed * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
-            if (Yrotation >= 270)
+            if (Yrotation <= -270)
             {
                 boxRend.material = angry;
-                transform.rotation = Quaternion.Euler(0, 270, 0);
+                transform.rotation = Quaternion.Euler(0, -270, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
+                rotateSpeed *= 1.5f;
             }
         }
         else if (timesRotated == 1)
         {
             boxRend.material = hurt;
-            Yrotation -= rotateSpeed * Time.deltaTime;
+            Yrotation += rotateSpeed * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
-            if (Yrotation <= 0)
+            if (Yrotation > 270)
             {
                 boxRend.material = angry;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.rotation = Quaternion.Euler(0, 270, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
+                rotateSpeed *= 1.5f;
             }
         }
         else if (timesRotated == 2)
         {
             boxRend.material = hurt;
-            Yrotation += rotateSpeed * Time.deltaTime;
+            Yrotation -= rotateSpeed * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, Yrotation, 0);
-            if (Yrotation >= 450)
+            if (Yrotation <= -540)
             {
                 boxRend.material = angry;
-                transform.rotation = Quaternion.Euler(0, 450, 0);
+                transform.rotation = Quaternion.Euler(0, -540, 0);
                 target.GetComponent<Target>().Deactivate();
                 timesRotated++;
+                rotateSpeed *= 1.5f;
             }
         }
         else if (timesRotated >= 3)
@@ -90,9 +93,8 @@ public class RotatingCube : MonoBehaviour {
             rotateSpeed += 1;
             Zrotation += rotateSpeed * Time.deltaTime;
             Yrotation += rotateSpeed * Time.deltaTime;
-            transform.localScale -= Vector3.one * Time.deltaTime * 2;
+            transform.localScale -= Vector3.one * Time.deltaTime * 1;
             transform.rotation = Quaternion.Euler(0, Yrotation, Zrotation);
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
 
             if (transform.localScale.x < 0.1f)
             {
