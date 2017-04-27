@@ -99,6 +99,7 @@ public class PlayerControl : MonoBehaviour
     private Color lockOnGreen;
     private Color lockOnRed;
     private GameObject pushBlock;
+    private GameObject ladder;
     private Renderer _rend;
     #endregion
 
@@ -141,6 +142,8 @@ public class PlayerControl : MonoBehaviour
     private bool canChangeItem;
     private bool canOpenDoor;
     private bool canDash;
+    private bool canClimb;
+    private bool canPush;
     [HideInInspector]
     public bool disableMovement;
     private bool dash;
@@ -224,6 +227,8 @@ public class PlayerControl : MonoBehaviour
                 Shooting();
                 SwitchItems();
                 Swording();
+                Climbing();
+                Pushing();
                 Lens();
                 Animations();
             }
@@ -357,7 +362,6 @@ public class PlayerControl : MonoBehaviour
         if (grabbing && !Input.GetButton(playerPrefix + "Action"))
         {
             pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
-            pushBlock = null;
             grabbing = false;
             currentSpeed = defaultSpeed;
             if (!toggleSword)
@@ -564,6 +568,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
+
                 toggleSword = false;
                 SwordItem.SetActive(false);
                 crossbow.SetActive(true);
@@ -617,7 +622,6 @@ public class PlayerControl : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, _maxMagnetDistance))
             {
-                Debug.Log(hit.distance);
                 if (hit.collider.tag == "Magnetic")
                 {
                     // Sticking to objects will be added here
@@ -852,8 +856,24 @@ public class PlayerControl : MonoBehaviour
             }
             float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
             float lookVertical = Input.GetAxis(playerPrefix + "VerticalRightStick");
-            Vector3 lookPlayer = new Vector3(0, -lookHorizontal, 0);
-            transform.localEulerAngles += lookPlayer;
+            Vector3 lookPlayerHorizontal = new Vector3(0, -lookHorizontal, 0);
+            transform.localEulerAngles += lookPlayerHorizontal;
+           
+            //Animations for lookaround
+            anime.SetBool("FirstPerson", true);
+            Vector3 lookPlayerVertical = new Vector3(-lookVertical, 0, 0);
+            anime.SetFloat("AimState", anime.GetFloat("AimState") + lookVertical);
+
+                if (anime.GetFloat("AimState") < -90)
+                {
+                    anime.SetFloat("AimState", -90);
+                }
+
+                if (anime.GetFloat("AimState") > 90)
+                {
+                    anime.SetFloat("AimState", 90);
+                }
+
         }
         else
         {
@@ -873,8 +893,11 @@ public class PlayerControl : MonoBehaviour
             {
                 _playerCamera.cullingMask |= (1 << LayerMask.NameToLayer("Player4"));
             }
-
-        }
+            //Animations for lookaround
+            anime.SetFloat("AimState", 0);
+            anime.SetBool("FirstPerson", false);
+        
+    }
     }
 
     private void LockOnSystem()
@@ -994,45 +1017,57 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider other)
+    private void Climbing()
     {
-        if (other.tag == "PushBlock")
+        if (canClimb)
         {
-            if (Input.GetButtonDown(playerPrefix + "Action"))
-            {
-                if (!grabbing)
-                {
-                    pushBlock = other.gameObject;
-                    pushBlock.GetComponent<PushBlock>().AddPusher(gameObject);
-                    grabbing = true;
-                }
-            }
-        }
-
-        if (other.tag == "Ladder")
-        {
-
             if (Input.GetButtonDown(playerPrefix + "Action"))
             {
                 if (!climbing)
                 {
-                    /*
-                    Vector3 pos = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
-                    pos += Vector3.forward;
-                    transform.position = pos;
-                    */
-                    //transform.rotation = other.transform.forward;
-                    Vector3 direction = transform.position - other.transform.position;
+                    Vector3 direction = transform.position - ladder.transform.position;
                     direction = direction.normalized;
                     SnapPlayerRotation(direction);
                     climbing = true;
-                }
-                else
+                }else
                 {
                     climbing = false;
                 }
             }
         }
+        else
+        {
+            climbing = false;
+        }
+    }
+
+    private void Pushing()
+    {
+        if (canPush)
+        {
+            if (Input.GetButtonDown(playerPrefix + "Action"))
+            {
+                if (!grabbing)
+                {
+                    pushBlock.GetComponent<PushBlock>().AddPusher(gameObject);
+                    grabbing = true;
+                }
+            }
+        }
+        else
+        {
+            if (grabbing)
+            {
+                pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
+                pushBlock = null;
+                grabbing = false;
+                currentSpeed = defaultSpeed;
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    { 
 
         if (other.tag == "Pot")
         {
@@ -1071,7 +1106,15 @@ public class PlayerControl : MonoBehaviour
             canOpenDoor = true;
         }
 
-        if (other.tag == "SlidingIce")
+        if (other.tag == "PushBlock")
+        {
+            _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
+            pushBlock = other.gameObject;
+            canPush = true;
+        }
+        
+
+            if (other.tag == "SlidingIce")
         {
             Debug.Log(movementPlayer);
             if (movementPlayer.x != 0 && movementPlayer.z != 0)
@@ -1108,27 +1151,27 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+        if(other.tag == "Ladder")
+        {
+            ladder = other.gameObject;
+            _playerCanvas.GetComponent<UIManager>().EnableNotification(true);
+            canClimb = true;
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "PushBlock")
         {
-            if (grabbing)
-            {
-                pushBlock.GetComponent<PushBlock>().RemovePusher(gameObject);
-                pushBlock = null;
-                grabbing = false;
-                currentSpeed = defaultSpeed;
-            }
+            canPush = false;
+            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
         }
 
         if (other.tag == "Ladder")
         {
-            if (climbing)
-            {
-                climbing = false;
-            }
+            _playerCanvas.GetComponent<UIManager>().EnableNotification(false);
+            canClimb = false;
+            ladder = null;
         }
 
         if (other.tag == "Door")

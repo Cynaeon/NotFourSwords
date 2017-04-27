@@ -33,4 +33,13 @@ public class Hitbox : MonoBehaviour {
             _playerControl.TakeDamage(1, dir);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "PeekabooArcher")
+        {
+            Vector3 dir = collision.transform.position - transform.position;
+            _playerControl.TakeDamage(1, dir);
+        }
+    }
 }
