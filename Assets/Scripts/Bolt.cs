@@ -72,6 +72,7 @@ public class Bolt : MonoBehaviour {
         
         if (other.tag == "Walls" || other.tag == "PushBlock" || other.tag == "Rock")
         {
+            transform.parent = other.transform.parent;
             hitWall = true;
         }
         if (other.tag == "Fire")

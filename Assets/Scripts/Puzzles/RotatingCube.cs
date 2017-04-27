@@ -114,9 +114,13 @@ public class RotatingCube : MonoBehaviour {
                 lastMeteor += Time.deltaTime;
                 if (lastMeteor > meteorFireRate)
                 {
-                    Transform player = FindRandomPlayer();
-                    Vector3 spawnPoint = new Vector3(player.position.x, 24.75f, player.position.z);
-                    Instantiate(meteor, spawnPoint, Quaternion.identity);
+                    //Transform player = FindRandomPlayer();
+                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (GameObject player in players)
+                    {
+                        Vector3 spawnPoint = new Vector3(player.transform.position.x, 24.75f, player.transform.position.z);
+                        Instantiate(meteor, spawnPoint, Quaternion.identity);
+                    }
                     lastMeteor = 0;
                 }
             }

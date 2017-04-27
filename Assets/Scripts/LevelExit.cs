@@ -15,9 +15,9 @@ public class LevelExit : MonoBehaviour
 
     public enum Level
     {
-        CharacterSelect = 0,
+        Entrance = 0,
         OutsideTowerDemo = 1,
-        Entrance = 2,
+        CharacterSelect = 2,
         Labyrinth = 3,
         Deflect = 4,
         MagneticBlock = 5,
