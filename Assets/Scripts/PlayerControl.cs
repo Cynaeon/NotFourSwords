@@ -1069,6 +1069,14 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerStay(Collider other)
     { 
 
+        if (other.tag == "Lever")
+        {
+            if (Input.GetButtonDown(playerPrefix + "Action"))
+            {
+                other.GetComponent<Lever>().TurnLever();
+            }
+        }
+
         if (other.tag == "Pot")
         {
             if (dash)
