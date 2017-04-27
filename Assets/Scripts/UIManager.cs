@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour {
     public Image swordImage;
     public Image keyImage;
     public Image notificationImage;
+    public Image ItemNotification;
     public Image crosshair;
     public Image hearts;
     public Text score;
@@ -55,6 +56,11 @@ public class UIManager : MonoBehaviour {
     public void EnableNotification(bool state)
     {
         notificationImage.enabled = state;
+    }
+
+    public void EnableItemNotification(bool state)
+    {
+        ItemNotification.enabled = state;
     }
 
     public void UpdateHealth(int currentHealth)
