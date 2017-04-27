@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6593fc94da9838e4796cbc95e4a474dc
-timeCreated: 1490920372
+guid: d30b9a035ff869b45881cb3c55e7378f
+timeCreated: 1493308581
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -13,7 +13,7 @@ ModelImporter:
     2300002: outline
     3300000: //RootNode
     3300002: outline
-    4300000: door
+    4300000: screen
     4300002: outline
   materials:
     importMaterials: 1
