@@ -24,12 +24,12 @@ public class LevelExit : MonoBehaviour
         Enemies = 6,
         RotatingCube = 7,
         Elevator = 8,
-        Corridor_Archers = 9,
+        Floor1WestCorridor = 9,
         Hide_and_Seek = 10,
-        Corridor_Empty = 11, //Placeholder
+        Floor1EastCorridor = 11,
         JumpPuzzle = 12,
-        Corridor_Jump = 13,
-        Corridor_Empty_2 = 14, //Placeholder
+        Floor2NorthCorridor = 13,
+        Floor2SouthCorridor = 14,
         Corridor_Empty_3 = 15, //Placeholder
         Corridor_Empty_4 = 16, //Placeholder
         DarkPuzzle = 17,

@@ -7,14 +7,28 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: outline
+    100004: console
+    100006: outline.001
+    100008: screen
     400000: //RootNode
     400002: outline
+    400004: console
+    400006: outline.001
+    400008: screen
     2300000: //RootNode
     2300002: outline
+    2300004: console
+    2300006: outline.001
+    2300008: screen
     3300000: //RootNode
     3300002: outline
+    3300004: console
+    3300006: outline.001
+    3300008: screen
     4300000: screen
     4300002: outline
+    4300004: outline.001
+    4300006: console
   materials:
     importMaterials: 1
     materialName: 0
