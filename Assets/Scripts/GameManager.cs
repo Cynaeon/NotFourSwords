@@ -46,13 +46,14 @@ public class GameManager : MonoBehaviour {
 
         // Hide and Seek
         itemOnSpawner[0] = ItemSpawner._items.key;
+        itemOnSpawner[1] = ItemSpawner._items.key;
         // Corridor (Jump)
-        itemOnSpawner[1] = ItemSpawner._items.boots;
         itemOnSpawner[2] = ItemSpawner._items.boots;
         itemOnSpawner[3] = ItemSpawner._items.boots;
         itemOnSpawner[4] = ItemSpawner._items.boots;
+        itemOnSpawner[5] = ItemSpawner._items.boots;
         // Labyrinth
-        itemOnSpawner[5] = ItemSpawner._items.monocle;
+        itemOnSpawner[6] = ItemSpawner._items.monocle;
     }
 
     public void DisableMovement()
