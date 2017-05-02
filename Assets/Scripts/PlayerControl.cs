@@ -48,6 +48,7 @@ public class PlayerControl : MonoBehaviour
 
     #region Public Objects
     public Transform playerCamera;
+    public GameObject player;
     public Camera _playerCamera;
     public Canvas _playerCanvas;
     public GameObject bolt;
@@ -65,6 +66,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject LeftBoot;
     public GameObject RightBoot;
     public GameObject SwordHitBox;
+    public ParticleSystem snowExplosion;
+    public ParticleSystem snowRespawn;
     #endregion
 
     #region Player Attributes
@@ -90,6 +93,8 @@ public class PlayerControl : MonoBehaviour
     private float dmgInvulTime;
     private Collider _grabSpot;
     private float deadzone;
+    [HideInInspector] public float respawnTime;
+    [HideInInspector] public float timeDead;
     #endregion
 
     #region Other Objects
@@ -149,6 +154,8 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public bool disableMovement;
     private bool dash;
+    [HideInInspector] public bool dead;
+    [HideInInspector] public bool preparedRespawn;
     private bool toggleSword;
     private bool invulnerable;
     private bool _magnetActive;
@@ -197,6 +204,7 @@ public class PlayerControl : MonoBehaviour
         _minMagnetDistance = playerManager.minMagnetDistance;
         _grabSpot = GetComponentInChildren<BoxCollider>();
         deadzone = playerManager.deadzone;
+        respawnTime = playerManager.respawnTime;
         #endregion
         trailRend = GetComponent<TrailRenderer>();
         trailRend.time = 0;
@@ -270,22 +278,25 @@ public class PlayerControl : MonoBehaviour
 
     private void GetMovement()
     {
-        Vector3 forward = playerCamera.transform.TransformDirection(Vector3.forward);
-        forward.y = 0;
-        forward = forward.normalized;
-        Vector3 right = new Vector3(forward.z, 0, -forward.x);
-
-        float moveHorizontal = Input.GetAxis(playerPrefix + "Horizontal");
-        float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
-
-        movementPlayer = new Vector2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical"));
-        if (movementPlayer.magnitude < deadzone)
+        if (!dead)
         {
-            movementPlayer = Vector2.zero;
-        }
-        else
-        {
-            movementPlayer = (moveHorizontal * right + moveVertical * forward);
+            Vector3 forward = playerCamera.transform.TransformDirection(Vector3.forward);
+            forward.y = 0;
+            forward = forward.normalized;
+            Vector3 right = new Vector3(forward.z, 0, -forward.x);
+
+            float moveHorizontal = Input.GetAxis(playerPrefix + "Horizontal");
+            float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
+
+            movementPlayer = new Vector2(Input.GetAxis(playerPrefix + "Horizontal"), Input.GetAxis(playerPrefix + "Vertical"));
+            if (movementPlayer.magnitude < deadzone)
+            {
+                movementPlayer = Vector2.zero;
+            }
+            else
+            {
+                movementPlayer = (moveHorizontal * right + moveVertical * forward);
+            }
         }
     }
 
@@ -305,48 +316,52 @@ public class PlayerControl : MonoBehaviour
 
     private void Movement()
     {
-        if (!sliding)
+        if (!dead)
         {
-            if (movementPlayer != Vector3.zero)
+            if (!sliding)
             {
-                Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
-                // Put a boolean in the if-statement below if you don't want the player to rotate
-                if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing && !hitting)
+                if (movementPlayer != Vector3.zero)
                 {
-                    transform.rotation = rotation;
-                    transform.rotation = Quaternion.LookRotation(movementPlayer);
-                }
-            }
-
-            if (dash)
-            {
-                verticalVelocity = -gravity * Time.deltaTime;
-                // Easing goes here I guess
-                controller.Move(dashDir * currentSpeed * Time.deltaTime);
-                // Create cool after images
-                afterImageTime -= Time.deltaTime;
-                if (afterImageTime <= 0)
-                {
-                    //Quaternion rot = playerModel.transform.rotation;
-                    Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
-                    Instantiate(trailModel, pos, transform.rotation);
-                    afterImageTime = afterImageRatio;
-                }
-            }
-            else if (climbing)
-            {
-                float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
-                movementPlayer = new Vector3(0, moveVertical, 0);
-                controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
-            }
-            else
-            {
-                if (_magnetActive || hitting) {
-                    movementPlayer = new Vector3(0, 0, 0);
+                    Quaternion rotation = new Quaternion(0, 0, playerCamera.rotation.z, 0);
+                    // Put a boolean in the if-statement below if you don't want the player to rotate
+                    if (!firstPerson && !lockOn && !grabbing && !_magnetActive && !climbing && !hitting)
+                    {
+                        transform.rotation = rotation;
+                        transform.rotation = Quaternion.LookRotation(movementPlayer);
+                    }
                 }
 
-                movementPlayer.y = verticalVelocity;
-                controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+                if (dash)
+                {
+                    verticalVelocity = -gravity * Time.deltaTime;
+                    // Easing goes here I guess
+                    controller.Move(dashDir * currentSpeed * Time.deltaTime);
+                    // Create cool after images
+                    afterImageTime -= Time.deltaTime;
+                    if (afterImageTime <= 0)
+                    {
+                        //Quaternion rot = playerModel.transform.rotation;
+                        Vector3 pos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+                        Instantiate(trailModel, pos, transform.rotation);
+                        afterImageTime = afterImageRatio;
+                    }
+                }
+                else if (climbing)
+                {
+                    float moveVertical = Input.GetAxis(playerPrefix + "Vertical");
+                    movementPlayer = new Vector3(0, moveVertical, 0);
+                    controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    if (_magnetActive || hitting)
+                    {
+                        movementPlayer = new Vector3(0, 0, 0);
+                    }
+
+                    movementPlayer.y = verticalVelocity;
+                    controller.Move(movementPlayer * currentSpeed * Time.deltaTime);
+                }
             }
         }
     }
@@ -604,18 +619,59 @@ public class PlayerControl : MonoBehaviour
         // Check death
         if (transform.position.y < -25 || currentHealth <= 0)
         {
-            if (startPos)
+            if (!dead)
             {
-                transform.position = startPos.position;
-                transform.rotation = startPos.rotation;
+                Instantiate(snowExplosion, transform.position, Quaternion.Euler(-90, 0, 0));
+                player.SetActive(false);
+                dead = true;
             }
-            else
-            {
-                transform.position = Vector3.zero;
-            }
-            currentHealth = maxHealth;
-            _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
         }
+
+        if (dead)
+        {
+            UI.EnableRespawnText();
+            timeDead += Time.deltaTime;
+            
+            if (timeDead + 2 >= respawnTime)
+            {
+                if (!preparedRespawn)
+                {
+                    PrepareRespawn();
+                }
+            }
+            
+            if (timeDead >= respawnTime)
+            {
+                UI.DisableRespawnText();
+                Respawn(); 
+            }
+        }
+    }
+
+    private void PrepareRespawn()
+    {
+        if (startPos)
+        {
+            transform.position = startPos.position;
+            transform.rotation = startPos.rotation;
+        }
+        else
+        {
+            transform.position = Vector3.zero;
+        }
+        currentHealth = maxHealth;
+        _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 6, transform.position.z);
+        var particles = Instantiate(snowRespawn, pos, Quaternion.Euler(-90, 0, 0));
+        preparedRespawn = true;
+    }
+
+    private void Respawn()
+    {
+        dead = false;
+        player.SetActive(true);
+        timeDead = 0;
+        preparedRespawn = false;
     }
 
     private void Magnet()

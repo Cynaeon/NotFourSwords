@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour {
     public float magnetVelocity = 25f;
     public float minMagnetDistance = 1f;
     public float deadzone = 0.25f;
+    public float respawnTime = 5;
 
     //public Transform playerCamera;
 

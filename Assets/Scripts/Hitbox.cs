@@ -19,7 +19,7 @@ public class Hitbox : MonoBehaviour {
         if (other.tag == "Fire")
         {
             Vector3 dir = other.transform.position - transform.position;
-            _playerControl.TakeDamage(10, dir);
+            _playerControl.TakeDamage(9, dir);
         }
         if (other.tag == "EnemyProjectile")
         {

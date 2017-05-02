@@ -125,28 +125,29 @@ public class CameraControl : MonoBehaviour
                     distance = defaultDist;
                 }
 
-                Vector3 negDistance2 = new Vector3(0.0f, 0.0f, -defaultDist);
-                Vector3 position2 = rotation * negDistance2 + target.position;
-
-                defaultPos.rotation = rotation;
-                defaultPos.position = position2;
-
-                Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
-                Vector3 position = rotation * negDistance + target.position;
-
-                transform.rotation = rotation;
-                transform.position = position;
-
-                if (firstPerson)
+                if (!playerControl.dead || playerControl.preparedRespawn)
                 {
-                    var targetRotationAngle = target.eulerAngles.y;
-                    var currentRotationAngle = transform.eulerAngles.y;
-                    x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime * 100);
-                    Vector3 pos = new Vector3(crossbow.position.x, crossbow.position.y + 0.2f, crossbow.position.z);
-                    transform.position = pos;
-                    Quaternion rot = crossbow.rotation;
-                    rot *= Quaternion.Euler(90, 0, 0);
-                    transform.rotation = rot;
+                    Vector3 negDistance2 = new Vector3(0.0f, 0.0f, -defaultDist);
+                    Vector3 position2 = rotation * negDistance2 + target.position;
+                    defaultPos.position = position2;
+
+                    Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+                    Vector3 position = rotation * negDistance + target.position;
+                    transform.position = position;
+                    defaultPos.rotation = rotation;
+                    transform.rotation = rotation;
+
+                    if (firstPerson)
+                    {
+                        var targetRotationAngle = target.eulerAngles.y;
+                        var currentRotationAngle = transform.eulerAngles.y;
+                        x = Mathf.LerpAngle(currentRotationAngle, targetRotationAngle, lockOnSpeed * Time.deltaTime * 100);
+                        Vector3 pos = new Vector3(crossbow.position.x, crossbow.position.y + 0.2f, crossbow.position.z);
+                        transform.position = pos;
+                        Quaternion rot = crossbow.rotation;
+                        rot *= Quaternion.Euler(90, 0, 0);
+                        transform.rotation = rot;
+                    }
                 }
             }
         }

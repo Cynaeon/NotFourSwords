@@ -14,11 +14,14 @@ public class UIManager : MonoBehaviour {
     public Image crosshair;
     public Image hearts;
     public Text score;
+    public Text respawn;
     public Text paused;
 	public Text pausedShadow;
     public GameObject player;
     private int currentHealth;
     private float Score;
+    private PlayerControl playerControl;
+    private int timeToRespawn;
 
 	void Start () {
         seeThroughImage.enabled = false;
@@ -30,9 +33,11 @@ public class UIManager : MonoBehaviour {
 		pausedShadow.enabled = false;
         crosshair.enabled = false;
         keyImage.enabled = false;
-        
-        currentHealth = player.GetComponent<PlayerControl>().currentHealth;
-        Score = player.GetComponent<PlayerControl>().gatheredScore;
+        respawn.enabled = false;
+
+        playerControl = player.GetComponent<PlayerControl>();
+        currentHealth = playerControl.currentHealth;
+        Score = playerControl.gatheredScore;
         
         score.text = "Mana: " + score;
 	}
@@ -40,10 +45,10 @@ public class UIManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        Score = player.GetComponent<PlayerControl>().gatheredScore;
+        Score = playerControl.gatheredScore;
         score.text = "Mana: " + Score;
         
-        if (player.GetComponent<PlayerControl>().firstPerson)
+        if (playerControl.firstPerson)
         {
             crosshair.enabled = true;
         }
@@ -51,6 +56,23 @@ public class UIManager : MonoBehaviour {
         {
             crosshair.enabled = false;
         }
+
+        if (respawn.enabled == true)
+        {
+            float time = playerControl.respawnTime - playerControl.timeDead;
+            timeToRespawn = (int)time;
+            respawn.text = "Respawning in " + timeToRespawn;
+        }
+    }
+
+    public void EnableRespawnText()
+    {
+        respawn.enabled = true;
+    }
+
+    public void DisableRespawnText()
+    {
+        respawn.enabled = false;
     }
 
     public void EnableNotification(bool state)
