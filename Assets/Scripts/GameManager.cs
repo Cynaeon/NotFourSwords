@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public GameObject[] players;
     public GameObject[] cameras;
     public GameObject[] levelExits;
+    public GameObject cameraManager;
+    public GameObject playerManager;
     public int lastDoorID;
     public int combinedScore;
     public int[] UpgradeLevel;
@@ -68,8 +70,17 @@ public class GameManager : MonoBehaviour {
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Entrance")
+        if (scene.name == "Menu")
         {
+            disableMovement = true;
+            cameraManager.SetActive(false);
+            //playerManager.SetActive(false);
+        }
+        else if (scene.name == "Entrance")
+        {
+            disableMovement = false;
+            cameraManager.SetActive(true);
+            playerManager.SetActive(true);
             Transform start = GameObject.FindGameObjectWithTag("Start").transform;
             startPos = start.transform;
             foreach (GameObject player in players)
@@ -82,7 +93,7 @@ public class GameManager : MonoBehaviour {
             }
 
         }
-        if (scene.name != "Entrance")
+        else if (scene.name != "Entrance")
         {
             levelExits = GameObject.FindGameObjectsWithTag("Start");
 
@@ -122,7 +133,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void SetCharacterToPlayer()
+    {
 
+    }
 
     void OnEnable()
     {
