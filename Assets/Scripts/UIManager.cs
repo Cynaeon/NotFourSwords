@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour {
     public Image ItemNotification;
     public Image crosshair;
     public Image hearts;
-    public Text score;
+    public Image mana;
     public Text respawn;
     public Text paused;
 	public Text pausedShadow;
@@ -37,16 +37,11 @@ public class UIManager : MonoBehaviour {
 
         playerControl = player.GetComponent<PlayerControl>();
         currentHealth = playerControl.currentHealth;
-        Score = playerControl.gatheredScore;
         
-        score.text = "Mana: " + score;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
-        Score = playerControl.gatheredScore;
-        score.text = "Mana: " + Score;
         
         if (playerControl.firstPerson)
         {
@@ -73,6 +68,23 @@ public class UIManager : MonoBehaviour {
     public void DisableRespawnText()
     {
         respawn.enabled = false;
+    }
+
+    public void FillMana(float valueToIncrease, int[] upgradeLevels, int currentUpgradeLevel, float combinedScore)
+    {
+        float temp = upgradeLevels[currentUpgradeLevel]; 
+        
+        if(combinedScore < upgradeLevels[currentUpgradeLevel])
+        {
+            //background colorchange
+        }
+        if(currentUpgradeLevel != 0)
+        {
+            combinedScore = combinedScore - upgradeLevels[currentUpgradeLevel - 1];
+            temp = upgradeLevels[currentUpgradeLevel] - upgradeLevels[currentUpgradeLevel-1];
+        }
+        
+        mana.fillAmount = (combinedScore / temp);
     }
 
     public void EnableNotification(bool state)

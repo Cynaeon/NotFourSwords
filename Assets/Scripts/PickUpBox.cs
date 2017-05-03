@@ -39,8 +39,8 @@ public class PickUpBox : MonoBehaviour
         {
             int value = other.gameObject.GetComponent<Mana>().ManaValue;
             _playerControl.IncreaseScore(value);
-            gameManager.GetComponent<GameManager>().TotalScore(value);
             Destroy(other.gameObject);
+            gameManager.GetComponent<GameManager>().TotalScore(value);
         }
     }
     

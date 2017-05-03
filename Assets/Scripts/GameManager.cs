@@ -109,7 +109,9 @@ public class GameManager : MonoBehaviour {
     public void TotalScore(int value)
     {
         combinedScore = combinedScore + value;
-        if(combinedScore >= UpgradeLevel[upgraded])
+        
+
+        if (combinedScore >= UpgradeLevel[upgraded])
         {
             foreach(GameObject player in players)
             {
@@ -118,6 +120,14 @@ public class GameManager : MonoBehaviour {
             if(upgraded < UpgradeLevel.Length - 1)
             {
                 upgraded++;
+            }
+        }
+
+        foreach (Canvas canvas in canvases)
+        {
+            if (canvas != null)
+            {
+                canvas.GetComponent<UIManager>().FillMana(value, UpgradeLevel, upgraded, combinedScore);
             }
         }
     }
