@@ -167,7 +167,7 @@ public class PlayerControl : MonoBehaviour
     private bool _yAxisPressed;
     #endregion
 
-    void Start()
+    void OnEnable()
     {
         #region Get player attributes from manager
         GameObject playerManagerGO = GameObject.Find("PlayerManager");

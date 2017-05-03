@@ -1,132 +1,166 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public class CharacterSelectSpot : MonoBehaviour {
 
-    public GameObject blue;
-    public GameObject green;
-    public GameObject purple;
-    public GameObject red;
-
     public string playerPrefix;
+    public RawImage character;
+    public GameObject[] arrows;
+    public bool inSelectScreen;
+    public GameObject mainCanvas;
+    public Text joinText;
 
-    private bool playerActive;
-    private int number;
+    private bool joined;
     private bool axisReset;
+    private MainMenu mainMenu;
 
 	void Start () {
-        number = 1;
-        
+        SetActiveCharacter();
+        DisableArrows();
+        mainMenu = mainCanvas.GetComponent<MainMenu>();
 	}
-	
+
 	void Update () {
+        if (inSelectScreen)
+        {
+            PlayerInput();
+        }
+
+        if (mainMenu.transition == MainMenu.Transition.mainToSelect)
+        {
+            inSelectScreen = true;
+        } 
+        else
+        {
+            inSelectScreen = false;
+        }
+	}
+
+    private void PlayerInput()
+    {
+        
         if (Input.GetButtonDown(playerPrefix + "Action"))
         {
-            playerActive = true;
+            joined = true;
         }
-        
-        if (playerActive)
+
+        if (!joined)
         {
-            float lookHorizontal = Input.GetAxis(playerPrefix + "HorizontalRightStick");
-            Vector3 lookPlayer = new Vector3(0, -lookHorizontal, 0);
-
-            blue.transform.localEulerAngles += lookPlayer * 3;
-            green.transform.localEulerAngles += lookPlayer * 3;
-            purple.transform.localEulerAngles += lookPlayer * 3;
-            red.transform.localEulerAngles += lookPlayer * 3;
-
-            if (Input.GetButtonDown(playerPrefix + "Dash"))
+            /*
+            if (Input.GetAxis(playerPrefix + "Horizontal") > 0.5f && !axisReset)
             {
-                playerActive = false;
-            }
-
-            if (number == 1)
-            {
-                green.SetActive(false);
-                red.SetActive(false);
-                blue.SetActive(true);
-            }
-            if (number == 2)
-            {
-                purple.SetActive(false);
-                blue.SetActive(false);
-                green.SetActive(true);
-            }
-            if (number == 3)
-            {
-                red.SetActive(false);
-                green.SetActive(false);
-                purple.SetActive(true);
-            }
-            if (number == 4)
-            {
-                blue.SetActive(false);
-                purple.SetActive(false);
-                red.SetActive(true);
-            }
-
-            if (!axisReset && Input.GetAxis(playerPrefix + "Horizontal") > 0.4)
-            {
-                number++;
                 axisReset = true;
+                NextCharacter();
             }
-
-            if (!axisReset && Input.GetAxis(playerPrefix + "Horizontal") < -0.4)
+            else if (Input.GetAxis(playerPrefix + "Horizontal") < -0.5f && !axisReset)
             {
-                number--;
                 axisReset = true;
+                PreviousCharacter();
             }
 
-            if (number >= 5)
-            {
-                number = 1;
-            }
-            if (number <= 0)
-            {
-                number = 4;
-            }
-
-            if (Input.GetAxis(playerPrefix + "Horizontal") == 0)
+            else if (Input.GetAxis(playerPrefix + "Horizontal") == 0)
             {
                 axisReset = false;
             }
-            
-            if (Input.GetButtonDown(playerPrefix + "Start"))
+            */
+            if (Input.GetButtonDown(playerPrefix + "Dash"))
             {
-                GameObject character = GetPlayerCharacter();
-                SceneManager.LoadScene("outside_tower", LoadSceneMode.Single);
+                mainMenu.SelectToMain();
             }
         }
         else
         {
-            blue.SetActive(false);
-            green.SetActive(false);
-            purple.SetActive(false);
-            red.SetActive(false);
+            if (Input.GetButtonDown(playerPrefix + "Dash"))
+            {
+                joined = false;
+            }
+        }
+
+        if (joined)
+        {
+            character.enabled = true;
+            joinText.enabled = false;
+        }
+        else
+        {
+            character.enabled = false;
+            joinText.enabled = true;
+        }
+        /*
+        if (lockedCharacter)
+        {
+            DisableArrows();
+        }
+        else
+        {
+            EnableArrows();
+        }
+        */
+    }
+
+    /*
+    public void NextCharacter()
+    {
+        selectedCharacter++;
+        if (selectedCharacter == 4)
+        {
+            selectedCharacter = 0;
+        }
+        SetActiveCharacter();
+    }
+    
+
+    public void PreviousCharacter()
+    {
+        selectedCharacter--;
+        if (selectedCharacter == -1)
+        {
+            selectedCharacter = 3;
+        }
+        SetActiveCharacter();
+    }
+    */
+
+    public void SetActiveCharacter()
+    {
+        character.enabled = true;
+    }
+    /*
+    private void SetDefaultCharacter()
+    {
+        if (playerPrefix == "P1_")
+        {
+            selectedCharacter = 0;
+        }
+        else if (playerPrefix == "P2_")
+        {
+            selectedCharacter = 1;
+        }
+        else if (playerPrefix == "P3_")
+        {
+            selectedCharacter = 2;
+        }
+        else if (playerPrefix == "P4_")
+        {
+            selectedCharacter = 3;
+        }
+    }
+    */
+    private void DisableArrows()
+    {
+        foreach (GameObject arrow in arrows)
+        {
+            arrow.SetActive(false);
         }
     }
 
-    private GameObject GetPlayerCharacter()
+    private void EnableArrows()
     {
-        if (number == 1)
+        foreach (GameObject arrow in arrows)
         {
-            return blue;
+            arrow.SetActive(true);
         }
-        if (number == 2)
-        {
-            return green;
-        }
-        if (number == 3)
-        {
-            return purple;
-        }
-        if (number == 4)
-        {
-            return red;
-        }
-        return null;
     }
 }
