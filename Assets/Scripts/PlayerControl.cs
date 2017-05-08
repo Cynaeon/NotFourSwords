@@ -650,7 +650,7 @@ public class PlayerControl : MonoBehaviour
 
     private void PrepareRespawn()
     {
-        if (startPos)
+        if (startPos != null)
         {
             transform.position = startPos.position;
             transform.rotation = startPos.rotation;
