@@ -9,6 +9,7 @@ public class RotatingCube : MonoBehaviour {
     public GameObject cannon;
     public GameObject meteor;
     public GameObject ladder;
+    public GameObject lever;
     public ParticleSystem destroyEffect;
     public float rotateSpeed;
     public float meteorFireRate;
@@ -30,6 +31,7 @@ public class RotatingCube : MonoBehaviour {
         Yrotation += rot.y;
         timesRotated = 0;
         ladder.SetActive(false);
+        lever.SetActive(false);
         boxRend = box.GetComponent<Renderer>();
     }
 
@@ -39,7 +41,6 @@ public class RotatingCube : MonoBehaviour {
         {
             Activate();
         }
-        Debug.Log(Yrotation);
     }
 
     public void Activate()
@@ -100,6 +101,7 @@ public class RotatingCube : MonoBehaviour {
             {
                 Instantiate(destroyEffect, transform.position, transform.rotation);
                 ladder.SetActive(true);
+                lever.SetActive(true);
                 Destroy(cannon);
                 Destroy(gameObject);
             }

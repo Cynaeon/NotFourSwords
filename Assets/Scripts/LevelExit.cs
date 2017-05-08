@@ -33,7 +33,9 @@ public class LevelExit : MonoBehaviour
         Corridor_Empty_3 = 15, //Placeholder
         Corridor_Empty_4 = 16, //Placeholder
         DarkPuzzle = 17,
-        Corridor_Torch = 18
+        Corridor_Torch = 18,
+        Floor3EastCorridor = 19,
+        Floor3WestCorridor = 20
     }
 
     public Level level;
