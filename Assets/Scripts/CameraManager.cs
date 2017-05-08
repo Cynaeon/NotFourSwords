@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour {
 
-    public float distance = 10.0f;
+    public float distance = 5.0f;
     public float xSpeed = 80.0f;
     public float ySpeed = 80.0f;
     public float yMinLimit = -10f;

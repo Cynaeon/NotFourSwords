@@ -20,6 +20,7 @@ ModelImporter:
     4300000: Cylinder
     4300002: Cylinder.001
     4300004: Outline
+    4300006: Silo
   materials:
     importMaterials: 1
     materialName: 0
