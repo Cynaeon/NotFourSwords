@@ -23,22 +23,17 @@ public class FogDensity : MonoBehaviour
     
     void Start()
     {
+        /*
         playerCamera = GetComponent<Camera>();
         clipPlane = 2000;
         fogDensity = 0.05f;
         RenderSettings.fogColor = Color.magenta;
+        */
     }
 
     void Update()
     {
-        if (fade)
-        {
-            FadeFogIn();
-        }
-        else
-        {
-            FadeFogOut();
-        }
+        
     }
 
     public void fadeState(bool state)
@@ -46,67 +41,22 @@ public class FogDensity : MonoBehaviour
         fade = state;
     }
 
-    private void FadeFogIn()
-    {
-        RenderSettings.fogColor = Color.black;
-        if (fogDensity <= 0.1)
-        { 
-            fogDensity = fogDensity + 0.005f;
-        }
-        if(clipPlane > 80)
-        {
-            clipPlane = clipPlane - 92;
-        }
-        playerCamera.farClipPlane = clipPlane;
-        playerCamera.clearFlags = CameraClearFlags.SolidColor;
-    }
-
-    private void FadeFogOut()
-    {
-        RenderSettings.fogColor = new Color(0.5f, 0, 1);
-        if (fogDensity > 0.03f)
-        {
-            fogDensity = fogDensity - 0.005f;
-        }
-
-        if (clipPlane < 1000)
-        {
-            clipPlane = clipPlane + 92;
-        }
-        playerCamera.farClipPlane = clipPlane;
-        playerCamera.clearFlags = CameraClearFlags.SolidColor;
-    }
-
-    /*
     void OnPreRender()
     {
-        previousFog = RenderSettings.fog;
-        previousFogColor = RenderSettings.fogColor;
         previousFogDensity = RenderSettings.fogDensity;
-        previousAmbientLight = RenderSettings.ambientLight;
-        previousHaloStrength = RenderSettings.haloStrength;
-        previousFlareStrength = RenderSettings.flareStrength;
-        if (fog)
+        previousFogColor = RenderSettings.fogColor;
+        if (fade)
         {
-            RenderSettings.fog = fog;
-            RenderSettings.fogColor = fogColor;
-            RenderSettings.fogDensity = fogDensity;
-            RenderSettings.ambientLight = ambientLight;
-            RenderSettings.haloStrength = haloStrength;
-            RenderSettings.flareStrength = flareStrength;
+            RenderSettings.fogColor = Color.black;
+            RenderSettings.fogDensity = 0.05f;
         }
     }
 
-    void OnPostRender()
+    private void OnPostRender()
     {
-        RenderSettings.fog = previousFog;
-        RenderSettings.fogColor = previousFogColor;
         RenderSettings.fogDensity = previousFogDensity;
-        RenderSettings.ambientLight = previousAmbientLight;
-        RenderSettings.haloStrength = previousHaloStrength;
-        RenderSettings.flareStrength = previousFlareStrength;
-}
-*/
+        RenderSettings.fogColor = previousFogColor;
+    }
 }
 
 
