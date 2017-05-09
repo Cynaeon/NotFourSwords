@@ -13,7 +13,7 @@ public class WallGlow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float emission = Mathf.PingPong(Time.time * fadeSpeed, 0.5f) + 0.1f;
+        float emission = Mathf.PingPong(Time.time * fadeSpeed, 0.7f) + 0.05f;
         Color baseColor = runes.color;
 
         Color finalColor = baseColor * Mathf.LinearToGammaSpace(emission);
