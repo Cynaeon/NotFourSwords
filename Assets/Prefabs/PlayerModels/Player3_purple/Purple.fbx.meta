@@ -156,7 +156,4255 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationBackward
+      takeName: Armature|_purpleDashAnimationBackward
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationBackwardSword
+      takeName: Armature|_purpleDashAnimationBackwardSword
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationForward
+      takeName: Armature|_purpleDashAnimationForward
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationForwardSword
+      takeName: Armature|_purpleDashAnimationForwardSword
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationLeft
+      takeName: Armature|_purpleDashAnimationLeft
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationLeftSword
+      takeName: Armature|_purpleDashAnimationLeftSword
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationRight
+      takeName: Armature|_purpleDashAnimationRight
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleDashAnimationRightSword
+      takeName: Armature|_purpleDashAnimationRightSword
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleIdleAnimation
+      takeName: Armature|_purpleIdleAnimation
+      firstFrame: 0
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleIdleAnimationSword
+      takeName: Armature|_purpleIdleAnimationSword
+      firstFrame: 0
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleRunAnimationCrossbow
+      takeName: Armature|_purpleRunAnimationCrossbow
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleRunAnimationSword
+      takeName: Armature|_purpleRunAnimationSword
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleRunAnimationSword.005
+      takeName: Armature|_purpleRunAnimationSword.005
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleT-pose
+      takeName: Armature|_purpleT-pose
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|_purpleT-pose.001
+      takeName: Armature|_purpleT-pose.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Empty
+      takeName: Armature|Empty
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Key.007Action
+      takeName: Armature|Key.007Action
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|KeyAction
+      takeName: Armature|KeyAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|KeyAction.001
+      takeName: Armature|KeyAction.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|purpleJumpAnimation
+      takeName: Armature|purpleJumpAnimation
+      firstFrame: 0
+      lastFrame: 115
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|purpleJumpAnimationSword
+      takeName: Armature|purpleJumpAnimationSword
+      firstFrame: 0
+      lastFrame: 115
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|RubSword.007
+      takeName: Armature|RubSword.007
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|RunAnimation
+      takeName: Armature|RunAnimation
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|RunAnimation.001
+      takeName: Armature|RunAnimation.001
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple|_purpleDashAnimationBackward
+      takeName: Purple|_purpleDashAnimationBackward
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple|Empty
+      takeName: Purple|Empty
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple|Key.007Action
+      takeName: Purple|Key.007Action
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple|KeyAction
+      takeName: Purple|KeyAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple|KeyAction.001
+      takeName: Purple|KeyAction.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple|RubSword.007
+      takeName: Purple|RubSword.007
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple.001|_purpleT-pose.001
+      takeName: Purple.001|_purpleT-pose.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple.001|Empty
+      takeName: Purple.001|Empty
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple.001|Key.007Action
+      takeName: Purple.001|Key.007Action
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple.001|KeyAction
+      takeName: Purple.001|KeyAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple.001|KeyAction.001
+      takeName: Purple.001|KeyAction.001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Purple.001|RubSword.007
+      takeName: Purple.001|RubSword.007
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Spine
+        weight: 1
+      - path: Armature/Spine/Chest
+        weight: 1
+      - path: Armature/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Spine/Chest/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Hand.L/Fingers.L/Fingers.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.L/UpperArm.L/LowerArm.L/Wrist.L/Thumb.L/Thumb.L_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Hand.R/Fingers.R/Fingers.R_end
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R
+        weight: 1
+      - path: Armature/Spine/Chest/Shoulder.R/UpperArm.R/LowerArm.R/Wrist.R/Thumb.R/Thumb.R_end
+        weight: 1
+      - path: Armature/Spine/Tail1
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003
+        weight: 1
+      - path: Armature/Spine/Tail1/Tail2/Tail3/Tail4/Tail4.001/Tail4.002/Tail4.003/Tail4.003_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L
+        weight: 1
+      - path: Armature/Spine/UpperLeg.L/LowerLeg.L/Foot.L/Toes.L/Toes.L_end
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R
+        weight: 1
+      - path: Armature/Spine/UpperLeg.R/LowerLeg.R/Foot.R/Toes.R/Toes.R_end
+        weight: 1
+      - path: Purple
+        weight: 1
+      - path: Purple/Purple.001
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
