@@ -13,9 +13,10 @@ public class Target : MonoBehaviour
 
     public Color activeColorInside;
     public Color activeColorOutside;
+    public Color activeEmissionInside;
+    public Color activeEmissionOutside;
     private Color deactiveColorInside;
     private Color deactiveColorOutside;
-    private Color activeColorEmission;
     private Renderer insideRend;
     private Renderer outsideRend;
 
@@ -26,8 +27,6 @@ public class Target : MonoBehaviour
 
         deactiveColorInside = insideRend.material.color;
         deactiveColorOutside = outsideRend.material.color;
-
-        activeColorEmission = activeColorOutside * Mathf.LinearToGammaSpace(0.8f);
     }
 
     void OnTriggerEnter(Collider other)
@@ -46,8 +45,10 @@ public class Target : MonoBehaviour
         activated = true;
         Instantiate(hitEffect, transform.position, transform.rotation);
         insideRend.material.color = activeColorInside;
-        outsideRend.material.SetColor("_EmissionColor", activeColorEmission);
+        insideRend.material.SetColor("_EmissionColor", activeEmissionInside);
         outsideRend.materials[1].color = activeColorOutside;
+        outsideRend.materials[1].SetColor("_EmissionColor", activeEmissionOutside);
+        
     }
 
     public void Deactivate()

@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log("moi");
             crosshair.enabled = false;
         }
 

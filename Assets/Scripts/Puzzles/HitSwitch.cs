@@ -35,11 +35,6 @@ public class HitSwitch : MonoBehaviour {
         
     }
 
-    private void Update()
-    {
-        Debug.Log(deactiveColorOutside);
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "PlayerProjectile")
