@@ -1,22 +1,15 @@
 fileFormatVersion: 2
-guid: 212d82e8639443f40aaef7c14c218048
-timeCreated: 1490920858
+guid: 0a5de5158f2818f42bc45bca5552318d
+timeCreated: 1494349995
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: outline
     400000: //RootNode
-    400002: outline
     2300000: //RootNode
-    2300002: outline
     3300000: //RootNode
-    3300002: outline
-    4300000: door
-    4300002: doorbackwall
-    4300004: outline
-    4300006: secret_backwall
+    4300000: Silo
   materials:
     importMaterials: 1
     materialName: 0
