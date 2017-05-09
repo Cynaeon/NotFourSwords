@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour {
 
 	void Update () {
 
-        //SwitchPlayers();
+        SwitchPlayers();
         
         
         if (Input.GetButtonDown("P1_Start")) {

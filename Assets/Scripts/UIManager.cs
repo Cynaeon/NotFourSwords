@@ -45,10 +45,12 @@ public class UIManager : MonoBehaviour {
         
         if (playerControl.firstPerson)
         {
+            
             crosshair.enabled = true;
         }
         else
         {
+            Debug.Log("moi");
             crosshair.enabled = false;
         }
 
