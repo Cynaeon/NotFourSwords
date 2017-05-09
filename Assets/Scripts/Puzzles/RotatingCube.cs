@@ -122,8 +122,11 @@ public class RotatingCube : MonoBehaviour {
                     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                     foreach (GameObject player in players)
                     {
-                        Vector3 spawnPoint = new Vector3(player.transform.position.x, 24.75f, player.transform.position.z);
-                        Instantiate(meteor, spawnPoint, Quaternion.identity);
+                        if (Vector3.Distance(transform.position, player.transform.position) <= 60)
+                        {
+                            Vector3 spawnPoint = new Vector3(player.transform.position.x, 24.75f, player.transform.position.z);
+                            Instantiate(meteor, spawnPoint, Quaternion.identity);
+                        }
                     }
                     lastMeteor = 0;
                 }

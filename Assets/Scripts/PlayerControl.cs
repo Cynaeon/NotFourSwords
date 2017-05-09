@@ -219,6 +219,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
+        
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -241,7 +242,10 @@ public class PlayerControl : MonoBehaviour
                 Climbing();
                 Pushing();
                 Lens();
-                Animations();
+                if (!dead)
+                {
+                    Animations();
+                }
             }
         }
     }
@@ -957,8 +961,11 @@ public class PlayerControl : MonoBehaviour
                 _playerCamera.cullingMask |= (1 << LayerMask.NameToLayer("Player4"));
             }
             //Animations for lookaround
-            anime.SetFloat("AimState", 0);
-            anime.SetBool("FirstPerson", false);
+            if (!dead)
+            {
+                anime.SetFloat("AimState", 0);
+                anime.SetBool("FirstPerson", false);
+            }
         
     }
     }

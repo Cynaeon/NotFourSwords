@@ -6,13 +6,19 @@ public class HitSwitch : MonoBehaviour {
 
     public GameObject orb;
     public GameObject hitEffect;
+    public GameObject impactEffect;
 
     [HideInInspector] public bool activated;
 
-    private Color activeColorInside;
-    private Color activeColorOutside;
+    public Color activeColorInside;
+    public Color activeColorOutside;
+    public Color activeEmissionInside;
+    public Color activeEmissionOutside;
+
     private Color deactiveColorInside;
     private Color deactiveColorOutside;
+    private Color deactiveEmissionOutside;
+    private Color deactiveEmissionInside;
     private Renderer insideRend;
     private Renderer outsideRend;
 
@@ -22,8 +28,16 @@ public class HitSwitch : MonoBehaviour {
         
         deactiveColorInside = insideRend.material.color;
         deactiveColorOutside = outsideRend.material.color;
+        deactiveEmissionOutside = outsideRend.material.GetColor("_EmissionColor");
+        deactiveEmissionInside = insideRend.material.GetColor("_EmissionColor");
         activeColorInside = new Color(0.9f, 0.9f, 0.9f, insideRend.material.color.a);
         activeColorOutside = new Color(1, 1, 1, outsideRend.material.color.a);
+        
+    }
+
+    private void Update()
+    {
+        Debug.Log(deactiveColorOutside);
     }
 
     void OnTriggerEnter(Collider other)
@@ -38,6 +52,7 @@ public class HitSwitch : MonoBehaviour {
             {
                 Activate();
             }
+            Instantiate(impactEffect, transform.position, transform.rotation);
             Destroy(other.gameObject);
         } 
     }
@@ -47,7 +62,9 @@ public class HitSwitch : MonoBehaviour {
         hitEffect.SetActive(true);
         activated = true;
         insideRend.material.color = activeColorInside;
+        insideRend.material.SetColor("_EmissionColor", activeEmissionInside);
         outsideRend.material.color = activeColorOutside;
+        outsideRend.material.SetColor("_EmissionColor", activeEmissionOutside);
     }
 
     private void Deactivate()
@@ -55,6 +72,8 @@ public class HitSwitch : MonoBehaviour {
         hitEffect.SetActive(false);
         activated = false;
         insideRend.material.color = deactiveColorInside;
+        insideRend.material.SetColor("_EmissionColor", deactiveEmissionInside);
         outsideRend.material.color = deactiveColorOutside;
+        outsideRend.material.SetColor("_EmissionColor", deactiveEmissionOutside);
     }
 }

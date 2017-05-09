@@ -6,6 +6,7 @@ public class Target : MonoBehaviour
 {
 
     public GameObject orb;
+    public ParticleSystem hitEffect;
 
     [HideInInspector]
     public bool activated;
@@ -43,6 +44,7 @@ public class Target : MonoBehaviour
     private void Activate()
     {
         activated = true;
+        Instantiate(hitEffect, transform.position, transform.rotation);
         insideRend.material.color = activeColorInside;
         outsideRend.material.SetColor("_EmissionColor", activeColorEmission);
         outsideRend.materials[1].color = activeColorOutside;
