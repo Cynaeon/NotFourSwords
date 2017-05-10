@@ -37,15 +37,12 @@ public class UIManager : MonoBehaviour {
 
         playerControl = player.GetComponent<PlayerControl>();
         currentHealth = playerControl.currentHealth;
-        
 	}
 	
-	// Update is called once per frame
 	void Update () {
         
         if (playerControl.firstPerson)
         {
-            
             crosshair.enabled = true;
         }
         else
