@@ -165,6 +165,7 @@ public class PlayerControl : MonoBehaviour
     public bool settingStartPos;
     private FogDensity fogDensity;
     private bool _yAxisPressed;
+    private bool firstPersonTriggerHeld;
     #endregion
 
     void OnEnable()
@@ -219,7 +220,6 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // ¯\_(ツ)_/¯
-        
         _isPaused = pauseManager.isPaused;
         if (!_isPaused)
         {
@@ -247,6 +247,11 @@ public class PlayerControl : MonoBehaviour
                     Animations();
                 }
             }
+        }
+        else if (Input.GetButtonDown(playerPrefix + "Back"))
+        {
+            // Press "back" while paused to exit the game
+            Application.Quit();
         }
     }
 
@@ -887,6 +892,33 @@ public class PlayerControl : MonoBehaviour
 
     private void FirstPersonControls()
     {
+        if (Input.GetAxisRaw(playerPrefix + "FirstPerson") > 0.5)
+        {
+            if (firstPersonTriggerHeld == false)
+            {
+                if (!firstPerson)
+                {
+                    //Vector3 rot = new Vector3(playerCamera.transform.rotation.x, 0, playerCamera.transform.rotation.z);
+                    Vector3 dir = transform.position - playerCamera.transform.position;
+                    dir.y = 0;
+                    transform.rotation = Quaternion.LookRotation(dir);
+                }
+                firstPerson = true;
+                firstPersonTriggerHeld = true;
+            }
+        }
+        if (Input.GetAxisRaw(playerPrefix + "FirstPerson") < 0.5)
+        {
+            firstPersonTriggerHeld = false;
+            firstPerson = false;
+        }
+
+        if (movementPlayer != Vector3.zero)
+        {
+            firstPerson = false;
+        }
+
+        /*
         if (Input.GetAxis(playerPrefix + "FirstPerson") > 0.5 && movementPlayer == Vector3.zero && !lockOn)
         {
             if (!firstPerson)
@@ -895,7 +927,6 @@ public class PlayerControl : MonoBehaviour
                 Vector3 dir = transform.position - playerCamera.transform.position;
                 dir.y = 0;
                 transform.rotation = Quaternion.LookRotation(dir);
-
             }
             firstPerson = true;
         }
@@ -903,6 +934,7 @@ public class PlayerControl : MonoBehaviour
         {
             firstPerson = false;
         }
+        */
         if (firstPerson)
         {
             if (playerPrefix == Players.P1_)
@@ -1099,7 +1131,8 @@ public class PlayerControl : MonoBehaviour
                     direction = direction.normalized;
                     SnapPlayerRotation(direction);
                     climbing = true;
-                }else
+                }
+                else
                 {
                     climbing = false;
                 }
@@ -1138,7 +1171,6 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     { 
-
         if (other.tag == "Lever")
         {
             if (Input.GetButtonDown(playerPrefix + "Action"))
@@ -1176,7 +1208,15 @@ public class PlayerControl : MonoBehaviour
         }
         canChangeItem = changeTo;
     }
-
+    
+    public void OnSceneChange()
+    {
+        canDash = false;
+        dash = false;
+        currentSpeed = defaultSpeed;
+        dashTime = 0; 
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Door")
@@ -1190,51 +1230,50 @@ public class PlayerControl : MonoBehaviour
             UI.EnableNotification(true);
             pushBlock = other.gameObject;
             canPush = true;
-        }
-        
 
             if (other.tag == "SlidingIce")
-        {
-            Debug.Log(movementPlayer);
-            if (movementPlayer.x != 0 && movementPlayer.z != 0)
             {
-                slidingDir = movementPlayer.normalized;
-                sliding = true;
-            }
-            else if (dash)
-            {
-                slidingDir = dashDir.normalized;
-                sliding = true;
-            }
-        }
-
-        if (other.tag == "SlideStopper")
-        {
-            if (sliding)
-            {
-                slidingDir = Vector3.zero;
-                sliding = false;
-            }
-        }
-
-        if (other.tag == "SlideBouncer")
-        {
-            if (sliding)
-            {
-                if (lastBounced != other.gameObject)
+                Debug.Log(movementPlayer);
+                if (movementPlayer.x != 0 && movementPlayer.z != 0)
                 {
-                    slidingDir = Vector3.Reflect(slidingDir, other.transform.forward);
-                    // This might be a bad idea...
-                    slidingDir *= 1.1f;
-                    lastBounced = other.gameObject;
+                    slidingDir = movementPlayer.normalized;
+                    sliding = true;
+                }
+                else if (dash)
+                {
+                    slidingDir = dashDir.normalized;
+                    sliding = true;
                 }
             }
-        }
-        if(other.tag == "Ladder")
-        {
-            ladder = other.gameObject;
-            UI.EnableNotification(true);
-            canClimb = true;
+
+            if (other.tag == "SlideStopper")
+            {
+                if (sliding)
+                {
+                    slidingDir = Vector3.zero;
+                    sliding = false;
+                }
+            }
+
+            if (other.tag == "SlideBouncer")
+            {
+                if (sliding)
+                {
+                    if (lastBounced != other.gameObject)
+                    {
+                        slidingDir = Vector3.Reflect(slidingDir, other.transform.forward);
+                        // This might be a bad idea...
+                        slidingDir *= 1.1f;
+                        lastBounced = other.gameObject;
+                    }
+                }
+            }
+            if (other.tag == "Ladder")
+            {
+                ladder = other.gameObject;
+                UI.EnableNotification(true);
+                canClimb = true;
+            }
         }
     }
 

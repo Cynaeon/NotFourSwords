@@ -115,12 +115,15 @@ public class GameManager : MonoBehaviour {
                 camera.GetComponent<CameraControl>().SetStartPosition();
             }
         }
+        foreach(GameObject player in players)
+        {
+            player.GetComponent<PlayerControl>().OnSceneChange();
+        }
     }
 
     public void TotalScore(int value)
     {
         combinedScore = combinedScore + value;
-        
 
         if (combinedScore >= UpgradeLevel[upgraded])
         {
