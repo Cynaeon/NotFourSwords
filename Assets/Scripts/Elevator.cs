@@ -16,9 +16,9 @@ public class Elevator : MonoBehaviour {
     private bool _inMenu;
     private bool[] _isColliding;
     private bool[] _unlockedButtons;
-    private bool _isInMotion;
+    public bool isInMotion;
     private GameManager gameManager;
-    private int _destination;
+    public int destination;
     private float _maxDistanceDelta;
     public float speed;
     private bool _typing;
@@ -51,7 +51,7 @@ public class Elevator : MonoBehaviour {
         for (int i = 1; i <= 4; i++) {
             if (_isColliding[i])
             {
-                if (!_inMenu && !_isInMotion)
+                if (!_inMenu && !isInMotion)
                 {
                     if (Input.GetButtonDown("P" + i + "_Action"))
                     {
@@ -79,10 +79,10 @@ public class Elevator : MonoBehaviour {
                                     {
                                         if (gameManager.currentFloor != tempJ)
                                         {
-                                            _destination = tempJ;
+                                            destination = tempJ;
                                             gameManager.currentFloor = tempJ;
                                             playerControls[tempI].disableMovement = false;
-                                            _isInMotion = true;
+                                            isInMotion = true;
 
                                             _inMenu = false;
 
@@ -153,10 +153,10 @@ public class Elevator : MonoBehaviour {
                             {
                                 if (gameManager.currentFloor != 2)
                                 {
-                                    _destination = 2;
+                                    destination = 2;
                                     gameManager.currentFloor = 2;
                                     playerControls[tempI].disableMovement = false;
-                                    _isInMotion = true;
+                                    isInMotion = true;
 
                                     _inMenu = false;
 
@@ -177,10 +177,10 @@ public class Elevator : MonoBehaviour {
                             {
                                 if (gameManager.currentFloor != 3)
                                 {
-                                    _destination = 3;
+                                    destination = 3;
                                     gameManager.currentFloor = 3;
                                     playerControls[tempI].disableMovement = false;
-                                    _isInMotion = true;
+                                    isInMotion = true;
 
                                     _inMenu = false;
 
@@ -202,10 +202,10 @@ public class Elevator : MonoBehaviour {
                             {
                                 if (gameManager.currentFloor != 4)
                                 {
-                                    _destination = 4;
+                                    destination = 4;
                                     gameManager.currentFloor = 4;
                                     playerControls[tempI].disableMovement = false;
-                                    _isInMotion = true;
+                                    isInMotion = true;
 
                                     _inMenu = false;
 
@@ -227,10 +227,10 @@ public class Elevator : MonoBehaviour {
                             {
                                 if (gameManager.currentFloor != 5)
                                 {
-                                    _destination = 5;
+                                    destination = 5;
                                     gameManager.currentFloor = 5;
                                     playerControls[tempI].disableMovement = false;
-                                    _isInMotion = true;
+                                    isInMotion = true;
 
                                     _inMenu = false;
 
@@ -252,10 +252,10 @@ public class Elevator : MonoBehaviour {
                             {
                                 if (gameManager.currentFloor != 6)
                                 {
-                                    _destination = 6;
+                                    destination = 6;
                                     gameManager.currentFloor = 6;
                                     playerControls[tempI].disableMovement = false;
-                                    _isInMotion = true;
+                                    isInMotion = true;
 
                                     _inMenu = false;
 
@@ -277,10 +277,10 @@ public class Elevator : MonoBehaviour {
                             {
                                 if (gameManager.currentFloor != 7)
                                 {
-                                    _destination = 7;
+                                    destination = 7;
                                     gameManager.currentFloor = 7;
                                     playerControls[tempI].disableMovement = false;
-                                    _isInMotion = true;
+                                    isInMotion = true;
 
                                     _inMenu = false;
 
@@ -310,16 +310,16 @@ public class Elevator : MonoBehaviour {
                 });
             }
         }
-        if (_isInMotion)
+        if (isInMotion)
         {
-            elevator.position = Vector3.MoveTowards(elevator.position, elevatorPositions[_destination].position, _maxDistanceDelta);
-            //elevator.position = Vector3.Lerp(elevator.position, elevatorPositions[_destination].position, _t);
-            _maxDistanceDelta += speed;
+            elevator.position = Vector3.MoveTowards(elevator.position, elevatorPositions[destination].position, _maxDistanceDelta);
+            //elevator.position = Vector3.Lerp(elevator.position, elevatorPositions[_destination].position, _maxDistanceDelta);
+            _maxDistanceDelta += speed * Time.deltaTime;
             Debug.Log(_maxDistanceDelta);
 
-            if (Vector3.Distance(elevator.position, elevatorPositions[_destination].position) < 0.1f) 
+            if (Vector3.Distance(elevator.position, elevatorPositions[destination].position) < 0.1f) 
             {
-                _isInMotion = false;
+                isInMotion = false;
                 _maxDistanceDelta = 0;
             }
         }
