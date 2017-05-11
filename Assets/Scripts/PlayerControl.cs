@@ -396,7 +396,6 @@ public class PlayerControl : MonoBehaviour
 
         if (grabbing && !firstPerson)
         {
-            crossbow.SetActive(false);
             Vector3 direction = transform.position - pushBlock.transform.position;
             direction = direction.normalized;
             SnapPlayerRotation(direction);
@@ -1225,7 +1224,8 @@ public class PlayerControl : MonoBehaviour
             pushBlock = other.gameObject;
             canPush = true;
 
-            if (other.tag == "SlidingIce")
+        }
+        if (other.tag == "SlidingIce")
             {
                 Debug.Log(movementPlayer);
                 if (movementPlayer.x != 0 && movementPlayer.z != 0)
@@ -1268,7 +1268,7 @@ public class PlayerControl : MonoBehaviour
                 UI.EnableNotification(true);
                 canClimb = true;
             }
-        }
+        
     }
 
     void OnTriggerExit(Collider other)
@@ -1383,11 +1383,6 @@ public class PlayerControl : MonoBehaviour
 
         if (grabbing)
         {
-            if (toggleSword)
-            {
-                SwordItem.SetActive(false);
-                SheathedSword.SetActive(true);
-            }
 
             if (Vector3.Dot(transform.forward, movementPlayer) > 0)
             {
@@ -1410,11 +1405,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             anime.enabled = true;
-            if (toggleSword)
-            {
-                SwordItem.SetActive(true);
-                SheathedSword.SetActive(false);
-            }
+            
             anime.SetBool("Pushing", false);
         }
         if (firstPerson)
