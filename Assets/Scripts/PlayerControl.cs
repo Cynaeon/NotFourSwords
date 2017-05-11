@@ -1224,7 +1224,7 @@ public class PlayerControl : MonoBehaviour
             UI.EnableNotification(true);
             pushBlock = other.gameObject;
             canPush = true;
-
+        }
             if (other.tag == "SlidingIce")
             {
                 Debug.Log(movementPlayer);
@@ -1269,7 +1269,7 @@ public class PlayerControl : MonoBehaviour
                 canClimb = true;
             }
         }
-    }
+    
 
     void OnTriggerExit(Collider other)
     {

@@ -37,20 +37,19 @@ public class PlayerManager : MonoBehaviour {
 
 	void Start () {
 		player1.SetActive (true);
-		player2.SetActive (false);
-		player3.SetActive (false);
-		player4.SetActive (false);
+		player2.SetActive (true);
+		player3.SetActive (true);
+		player4.SetActive (true);
 
 		mainCameras[0].enabled = true;
-		mainCameras[1].enabled = false;
-        mainCameras[2].enabled = false;
-        mainCameras[3].enabled = false;
+		mainCameras[1].enabled = true;
+        mainCameras[2].enabled = true;
+        mainCameras[3].enabled = true;
     }
 
 	void Update () {
 
-        SwitchPlayers();
-        
+        //SwitchPlayers();
         
         if (Input.GetButtonDown("P1_Start")) {
 			if (!player1.activeSelf) {
