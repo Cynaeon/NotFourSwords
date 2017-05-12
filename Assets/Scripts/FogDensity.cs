@@ -47,8 +47,8 @@ public class FogDensity : MonoBehaviour
         previousFogColor = RenderSettings.fogColor;
         if (fade)
         {
-            RenderSettings.fogColor = Color.black;
-            RenderSettings.fogDensity = 0.05f;
+            RenderSettings.fogColor = Color.white;
+            RenderSettings.fogDensity = 0.02f;
         }
     }
 

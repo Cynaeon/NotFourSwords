@@ -6,12 +6,21 @@ public class Flicker : MonoBehaviour {
     public Light torchLight;
     public float minRange;
     public float maxRange;
+    public float interval;
+
+    private float time;
+    private float newRange;
 
 	void Awake () {
 		
 	}
 	
 	void Update () {
-        torchLight.range = Random.Range(minRange, maxRange);
+        time += Time.deltaTime;
+        if (time > interval)
+        {
+            newRange = Random.Range(minRange, maxRange);
+            torchLight.range = Mathf.Lerp(torchLight.range, newRange, Time.deltaTime * 5);
+        }
 	}
 }
