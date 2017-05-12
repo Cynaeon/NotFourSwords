@@ -1218,6 +1218,11 @@ public class PlayerControl : MonoBehaviour
             canOpenDoor = true;
         }
 
+        if(other.tag == "Chest")
+        {
+            UI.EnableNotification(true);
+        }
+
         if (other.tag == "PushBlock")
         {
             UI.EnableNotification(true);
@@ -1276,6 +1281,11 @@ public class PlayerControl : MonoBehaviour
         if (other.tag == "PushBlock")
         {
             canPush = false;
+            UI.EnableNotification(false);
+        }
+
+        if (other.tag == "Chest")
+        {
             UI.EnableNotification(false);
         }
 
