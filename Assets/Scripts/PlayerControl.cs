@@ -242,7 +242,10 @@ public class PlayerControl : MonoBehaviour
                 Climbing();
                 Pushing();
                 Lens();
-                Animations();
+                if (!dead)
+                {
+                    Animations();
+                }
             }
         }
         else if (Input.GetButtonDown(playerPrefix + "Back"))
@@ -666,7 +669,7 @@ public class PlayerControl : MonoBehaviour
         }
         currentHealth = maxHealth;
         _playerCanvas.GetComponent<UIManager>().UpdateHealth(currentHealth);
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 6, transform.position.z);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
         var particles = Instantiate(snowRespawn, pos, Quaternion.Euler(-90, 0, 0));
         preparedRespawn = true;
     }
@@ -1311,7 +1314,6 @@ public class PlayerControl : MonoBehaviour
 
     public void Animations()
     {
-
         if (toggleSword)
         {
             anime.SetFloat("SwordState", 1);

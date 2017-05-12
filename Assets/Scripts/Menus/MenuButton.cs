@@ -31,6 +31,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, ISelectHandler, I
 
     public void OnDeselect(BaseEventData eventData)
     {
-        highlightParticles.SetActive(false);
+        if (highlightParticles)
+        {
+            highlightParticles.SetActive(false);
+        }
     }
 }

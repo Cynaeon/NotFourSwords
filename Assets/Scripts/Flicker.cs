@@ -20,7 +20,7 @@ public class Flicker : MonoBehaviour {
         if (time > interval)
         {
             newRange = Random.Range(minRange, maxRange);
-            torchLight.range = Mathf.Lerp(torchLight.range, newRange, Time.deltaTime * 5);
+            torchLight.range = Mathf.Lerp(torchLight.range, newRange, Time.deltaTime * 10);
         }
 	}
 }
