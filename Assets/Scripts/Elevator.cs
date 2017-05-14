@@ -315,7 +315,6 @@ public class Elevator : MonoBehaviour {
             elevator.position = Vector3.MoveTowards(elevator.position, elevatorPositions[destination].position, _maxDistanceDelta);
             //elevator.position = Vector3.Lerp(elevator.position, elevatorPositions[_destination].position, _maxDistanceDelta);
             _maxDistanceDelta += speed * Time.deltaTime;
-            Debug.Log(_maxDistanceDelta);
 
             if (Vector3.Distance(elevator.position, elevatorPositions[destination].position) < 0.1f) 
             {
