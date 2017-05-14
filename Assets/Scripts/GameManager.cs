@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour {
 
             foreach (GameObject exit in levelExits)
             {
+                Debug.Log(exit);
                 if (exit.GetComponent<LevelExit>().doorID == lastDoorID)
                 {
                     startPos = exit.GetComponent<LevelExit>().startPosition;
