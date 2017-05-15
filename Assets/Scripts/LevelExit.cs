@@ -37,7 +37,9 @@ public class LevelExit : MonoBehaviour
         Floor3EastCorridor = 19,
         LensPuzzle = 20,
         Floor4WestCorridor = 21,
-        Floor4EastCorridor = 22
+        Floor4EastCorridor = 22,
+        DemoEnding = 23,
+        Floor3WestCorridor
     }
 
     public Level level;

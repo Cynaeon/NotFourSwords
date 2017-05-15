@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviour {
 	void Update () {
 
         //SwitchPlayers();
-        
+        /*
         if (Input.GetButtonDown("P1_Start")) {
 			if (!player1.activeSelf) {
                 mainCameras[0].enabled = true;
@@ -87,7 +87,7 @@ public class PlayerManager : MonoBehaviour {
 				player4.SetActive (false);
 			}
 		}
-        
+        */
 
         OrganizeCameras(FindActiveCameras());
 	}

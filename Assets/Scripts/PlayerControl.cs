@@ -1212,7 +1212,7 @@ public class PlayerControl : MonoBehaviour
         currentSpeed = defaultSpeed;
         dashTime = 0; 
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Door")
@@ -1221,7 +1221,7 @@ public class PlayerControl : MonoBehaviour
             canOpenDoor = true;
         }
 
-        if(other.tag == "Chest")
+        if (other.tag == "Chest")
         {
             UI.EnableNotification(true);
         }
@@ -1234,50 +1234,50 @@ public class PlayerControl : MonoBehaviour
 
         }
         if (other.tag == "SlidingIce")
+        {
+            Debug.Log(movementPlayer);
+            if (movementPlayer.x != 0 && movementPlayer.z != 0)
             {
-                Debug.Log(movementPlayer);
-                if (movementPlayer.x != 0 && movementPlayer.z != 0)
-                {
-                    slidingDir = movementPlayer.normalized;
-                    sliding = true;
-                }
-                else if (dash)
-                {
-                    slidingDir = dashDir.normalized;
-                    sliding = true;
-                }
+                slidingDir = movementPlayer.normalized;
+                sliding = true;
             }
+            else if (dash)
+            {
+                slidingDir = dashDir.normalized;
+                sliding = true;
+            }
+        }
 
-            if (other.tag == "SlideStopper")
+        if (other.tag == "SlideStopper")
+        {
+            if (sliding)
             {
-                if (sliding)
-                {
-                    slidingDir = Vector3.zero;
-                    sliding = false;
-                }
+                slidingDir = Vector3.zero;
+                sliding = false;
             }
+        }
 
-            if (other.tag == "SlideBouncer")
+        if (other.tag == "SlideBouncer")
+        {
+            if (sliding)
             {
-                if (sliding)
+                if (lastBounced != other.gameObject)
                 {
-                    if (lastBounced != other.gameObject)
-                    {
-                        slidingDir = Vector3.Reflect(slidingDir, other.transform.forward);
-                        // This might be a bad idea...
-                        slidingDir *= 1.1f;
-                        lastBounced = other.gameObject;
-                    }
+                    slidingDir = Vector3.Reflect(slidingDir, other.transform.forward);
+                    // This might be a bad idea...
+                    slidingDir *= 1.1f;
+                    lastBounced = other.gameObject;
                 }
             }
-            if (other.tag == "Ladder")
-            {
-                ladder = other.gameObject;
-                UI.EnableNotification(true);
-                canClimb = true;
-            }
-        
+        }
+        if (other.tag == "Ladder")
+        {
+            ladder = other.gameObject;
+            UI.EnableNotification(true);
+            canClimb = true;
+        }
     }
+    
 
     void OnTriggerExit(Collider other)
     {

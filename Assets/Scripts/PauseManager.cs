@@ -18,7 +18,7 @@ public class PauseManager : MonoBehaviour {
     private Pauser _pauser;
 	
 	void Update () {
-        if (Input.GetButtonDown("P1_Pause"))
+        if (Input.GetButtonDown("P1_Start"))
         {
             if (!isPaused)
             {
@@ -42,7 +42,7 @@ public class PauseManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown("P2_Pause"))
+        if (Input.GetButtonDown("P2_Start"))
         {
             if (!isPaused)
             {
@@ -66,7 +66,7 @@ public class PauseManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown("P3_Pause"))
+        if (Input.GetButtonDown("P3_Start"))
         {
             if (!isPaused)
             {
@@ -90,7 +90,7 @@ public class PauseManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown("P4_Pause"))
+        if (Input.GetButtonDown("P4_Start"))
         {
             if (!isPaused)
             {
