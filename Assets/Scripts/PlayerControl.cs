@@ -1331,6 +1331,7 @@ public class PlayerControl : MonoBehaviour
             anime.SetBool("Falling", true);
             anime.SetBool("Running", false);
             anime.SetBool("Jumping", false);
+
             activeState = StateOfTheAnimation.falling;
         }
 
